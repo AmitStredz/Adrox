@@ -1,18 +1,27 @@
 import React from "react";
 import svg from "./assets/globe-effect.svg";
 import Scanner from "./assets/scanner.png";
+import globe from "./assets/globeGIF.gif";
+import Lottie from "react-lottie";
 
-import '..//landingPage.css'
+import "..//landingPage.css";
 
 export default function page1() {
-
-    const svgURL = './assets/globe-effect.svg';
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: globe,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
+  const svgURL = "./assets/globe-effect.svg";
 
   return (
-    <div>
+    <div className="relative">
       <div
         className="flex items-center bg-center bg-no-repeat h-[100vh] mt-40 justify-center gap-10"
-        style={{ backgroundImage: `url(${svg})` }}
+        // style={{ backgroundImage: `url(${svg})` }}
       >
         <img src={Scanner} alt="scanner" className="w-56" />
         <div className="flex flex-col leading-tight text-[56px] font-700 gap-7">
@@ -34,6 +43,17 @@ export default function page1() {
             Scan to Download
           </a>
         </div>
+      </div>
+
+      {/* <div>
+        <Lottie 
+          options={defaultOptions}
+          height={400}
+          width={400}
+        />
+      </div> */}
+      <div className="flex justify-center items-center top-0  absolute w-full">
+        <img src={globe} alt="Animation" className="w-[80%]" />
       </div>
     </div>
   );
