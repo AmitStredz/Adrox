@@ -1,0 +1,24 @@
+.bg-blur{
+    /* overflow-y: scroll; */
+    background: transparent;
+    backdrop-filter: blur(30px);
+}
+.gradient-text {
+    background-image: linear-gradient(45deg, #D8D6DA, #9F99A4);
+    /* -webkit-background-clip: text; */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+/* .backAnimation{
+    height: 100%;
+  width: 100%;
+  background-image: url('./pages/assets/globe-effect.svg');
+  background-size: cover; or contain, depending on your needs
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+} */

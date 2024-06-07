@@ -1,0 +1,197 @@
+// import React from "react";
+// import { useState } from "react";
+// import Background from "./assets/account-background.png";
+// import { useNavigate } from "react-router-dom";
+
+// const Signup7 = () => {
+
+//   const history = useNavigate();
+//   const handleButtonClick = () => {
+//     history("/signup8");
+//   };
+//   return (
+//     <div className="flex bg-[#0f011a] h-screen text-white font-nunito p-24 justify-evenly gap-10 relative overflow-hidden">
+//       <div className="w-[40%] items-center">
+//         <div className="text-center">
+//           <h1 className="font-700 text-[48px] text-[#C653FF]">
+//             Welcome Aboard
+//           </h1>
+//           <p className="font-300 text-[16px]">
+//             Just A Couple Of Clicks And We Start
+//           </p>
+//         </div>
+//         <div className="w-">
+//           <img src={Background}></img>
+//         </div>
+//       </div>
+
+//       {/* Signup7 is this */}
+//       <div className="z-10">
+//         <div className="flex flex-col gap-10 ">
+//           <div className="flex items-center gap-1 justify-center">
+//             <div className="circle bg-[#C653FF] rounded-full w-3 h-3"></div>
+//             <div className="line w-10 h-[2px] bg-white"></div>
+//             <div className="circle bg-white rounded-full w-3 h-3"></div>
+//             <div className="line w-10 h-[2px] bg-white"></div>
+//             <div className="circle bg-white rounded-full w-3 h-3"></div>
+//             <div className="line w-10 h-[2px] bg-white"></div>
+//             <div className="circle bg-white rounded-full w-3 h-3"></div>
+//           </div>
+//           <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[30rem] p-20 rounded-2xl">
+//             <h1 className="font-700 text-[36px]">Create Account</h1>
+//             <input
+//               type="text"
+//               required
+//               placeholder="Name"
+//               className="bg-transparent outline-none border-b-2 pb-2"
+//             ></input>
+//             <input
+//               type="text"
+//               required
+//               placeholder="Mobile Number"
+//               className="bg-transparent outline-none border-b-2 pb-2"
+//             ></input>
+//             <input
+//               type="email"
+//               required
+//               placeholder="Email Id"
+//               className="bg-transparent outline-none border-b-2 pb-2"
+//             ></input>
+//             <div className="text-center">
+//               <button
+//                 onClick={handleButtonClick}
+//                 className="p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+//               >
+//                 Send OTP
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className="absolute w-[90%] top-[-40%] right-[-40%] ">
+//         <img src="/ellipse.png" alt="hello"></img>
+//       </div>
+//       <div className="absolute w-[90%] bottom-[-50%] left-[-40%] ">
+//         <img src="/ellipse.png" alt="hello"></img>
+//       </div>
+
+//     </div>
+//   );
+// };
+
+// export default Signup7;
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Background from "./assets/account-background.png";
+import statAnimation from "./assets/starAnimation.png";
+
+const Signup7 = () => {
+  const [fullName, setFullName] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  const handleButtonClick = async () => {
+    const userId = localStorage.getItem("user_id"); // Retrieve user_id from localStorage
+
+    const data = {
+      full_name: fullName,
+      mobile_number: mobileNumber,
+      email: email,
+      user_id: userId,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://adrox-0ad3c3933d0d.herokuapp.com/api/users/store-profile/",
+        data
+      );
+      alert(JSON.stringify(response.data));
+      navigate("/signup10"); // Navigate to signup10 on successful response
+    } catch (error) {
+      console.error("There was an error!", error);
+      alert("Error: " + (error.response?.data || error.message));
+    }
+  };
+
+  return (
+    <div className="flex bg-[#0f011a] h-screen text-white font-nunito p-24 justify-evenly gap-10 relative overflow-hidden">
+      <div className="w-[40%] items-center z-50">
+        <div className="text-center">
+          <h1 className="font-700 text-[48px] text-[#C653FF]">
+            Welcome Aboard
+          </h1>
+          <p className="font-300 text-[16px]">
+            Just A Couple Of Clicks And We Start
+          </p>
+        </div>
+      </div>
+
+      {/* Signup7 is this */}
+      <div className="z-50">
+        <div className="flex flex-col gap-10 ">
+          <div className="flex items-center gap-1 justify-center">
+            <div className="circle bg-[#C653FF] rounded-full w-3 h-3"></div>
+            <div className="line w-10 h-[2px] bg-white"></div>
+            <div className="circle bg-white rounded-full w-3 h-3"></div>
+            <div className="line w-10 h-[2px] bg-white"></div>
+            <div className="circle bg-white rounded-full w-3 h-3"></div>
+            <div className="line w-10 h-[2px] bg-white"></div>
+            <div className="circle bg-white rounded-full w-3 h-3"></div>
+          </div>
+          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[30rem] p-20 rounded-2xl">
+            <h1 className="font-700 text-[36px]">Create Account</h1>
+            <input
+              type="text"
+              required
+              placeholder="Name"
+              className="bg-transparent outline-none border-b-2 pb-2"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            ></input>
+            <input
+              type="text"
+              required
+              placeholder="Mobile Number"
+              className="bg-transparent outline-none border-b-2 pb-2"
+              value={mobileNumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
+            ></input>
+            <input
+              type="email"
+              required
+              placeholder="Email Id"
+              className="bg-transparent outline-none border-b-2 pb-2"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></input>
+            <div className="text-center">
+              <button
+                onClick={handleButtonClick}
+                className="p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+              >
+                Send OTP
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute w-[90%] top-[-40%] right-[-40%] z-10">
+        <img src="/ellipse.png" alt="hello"></img>
+      </div>
+      <div className="absolute w-[80%] bottom-[-50%] left-[-40%] z-10 ">
+        <img src="/ellipse.png" alt="hello"></img>
+      </div>
+
+      <div className="absolute left-0 w-[100%] h-[10%] top-0 ">
+        <img src={statAnimation}></img>
+      </div>
+    </div>
+  );
+};
+
+export default Signup7;

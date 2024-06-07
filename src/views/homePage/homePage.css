@@ -1,0 +1,6 @@
+.bg-blur{
+    /* overflow-y: scroll; */
+    /* background: transparent; */
+    backdrop-filter: blur(30px);
+
+}
