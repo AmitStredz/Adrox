@@ -69,28 +69,28 @@ export default function page1() {
       <div className="absolute top-20 left-0 flex justify-center items-center w-full">
         <img src={svg2} className=""></img>
       </div>
-      <div className="absolute top-10 -left-14 flex justify-center items-center w-full">
+      <div className="absolute top-10 -left-10 flex justify-center items-center w-full">
         <img
           src={vector1}
           alt="Animation"
           className="w-[45%] rotating-image-clock opacity-50"
         />
       </div>
-      <div className="absolute top-10 -left-14 flex justify-center items-center w-full">
+      <div className="absolute top-10 -left-10 flex justify-center items-center w-full">
         <img
           src={vector2}
           alt="Animation"
           className="w-[45%] scale-[-1] rotating-image-clock rotating-scale  opacity-50"
         />
       </div>
-      <div className="absolute top-10 -left-14 flex justify-center items-center w-full">
+      <div className="absolute top-10 -left-10 flex justify-center items-center w-full">
         <img
           src={vector3}
           alt="Animation"
           className="w-[45%] rotating-image-anticlock opacity-50"
         />
       </div>
-      <div className="absolute top-10 -left-14 flex justify-center items-center w-full">
+      <div className="absolute top-10 -left-10 flex justify-center items-center w-full">
         <img
           src={vector4}
           alt="Animation"

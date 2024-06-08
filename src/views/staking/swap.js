@@ -1,0 +1,81 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import stroke from "./assets/strokeEffect.png";
+import ellipse from "./assets/ellipse.png";
+import dollarBlue from "./assets/dollarBlue.png";
+import starBlue from "./assets/starBlue.png";
+import swap from "./assets/swapBlue.png";
+
+export default function Swap({ closeModal }) {
+  const history = useNavigate();
+  return (
+    <div className="bg-[#0F011A]  font-nunito text-white overflow-hidden flex items-center justify-center relative">
+      <div className="flex justify-center w-full z-[1000] backdrop:blur-sm">
+        <div className="flex flex-col gap-10 my-20 bg-slate-600 bg-opacity-15 p-14 rounded-3xl w-5/12 z-50">
+          <div className="flex items-center justify-between">
+            <h1 className="font-700 text-[48px]">Swap Tokens</h1>
+            <i
+              className="ri-close-fill text-4xl cursor-pointer hover:scale-105"
+              onClick={() => history("/wallet")}
+            ></i>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <p className="font-500">1 USD = 4 ADX</p>
+            <div className="flex gap-6 items-center">
+              <div className="flex flex-col bg-gradient-to-tl from-[#1A0C24] to-[#251530] border border-slate-700 rounded-xl p-10 gap-10 w-6/12">
+                <div className="flex  gap-1 rounded-3xl p-2 w-24 justify-center bg-slate-500 bg-opacity-20">
+                  <img src={starBlue} className="w-5 h-5"></img>
+                  <p className="text-24px">ADX</p>
+                </div>
+                <div className="flex justify-end border border-slate-600 rounded-lg p-1 px-3 text-[28px] font-700">
+                  <p>150000</p>
+                </div>
+              </div>
+              <img src={swap} className="h-10"></img>
+              <div className="flex flex-col border border-slate-700 bg-gradient-to-tl from-[#1A0C24] to-[#251530] rounded-xl p-10 gap-10 w-6/12">
+                <div className="flex gap-1 rounded-3xl p-2 w-24 justify-center bg-slate-500 bg-opacity-20">
+                  <img src={starBlue} className="w-5 h-5"></img>
+                  <p className="text-24px">USD</p>
+                </div>
+                <div className="flex justify-end border border-slate-600 rounded-lg p-1 px-3 text-[28px] font-700">
+                  <p>600</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 p-3 px-10 font-100 text-slate-300 bg-gradient-to-tl from-[#1A0C24] to-[#251530] border border-slate-700 rounded-xl">
+            <div className="flex justify-between">
+              <p>USD</p>
+              <p>600</p>
+            </div>
+            <div className="flex justify-between">
+              <p>Gas Fee</p>
+              <p>5%</p>
+            </div>
+            <div className="w-full h-[1px] bg-opacity-45 bg-white"></div>
+            <div className="flex justify-between">
+              <p>Total</p>
+              <p>570 USD</p>
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            <p className=" p-2 px-24 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
+              Swap
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute right-0 top-[25rem]">
+        <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
+      </div>
+      <div className="absolute left-[-30%] w-[80%] top-[5rem]">
+        <img src={ellipse} alt="ellipse" />
+      </div>
+    </div>
+  );
+}

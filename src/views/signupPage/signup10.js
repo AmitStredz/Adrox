@@ -118,7 +118,7 @@ const Signup10 = () => {
     } else {
       // alert("Secret recovery phrase does not match");
       setShowModal(true);
-    }
+    } 
   };
 
   return (

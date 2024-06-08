@@ -1,5 +1,4 @@
 import React from "react";
-
 import img1 from "./assets/adrox-logo.png";
 import { useHistory, useNavigate } from "react-router-dom";
 
@@ -15,7 +14,7 @@ export default function Header() {
 
   return (
     <div className=" w-full flex items-center justify-between p-5 px-28 fixed bg-blur z-[100]">
-      <div className="w-56">
+      <div className="w-56 cursor-pointer" onClick={()=> history('/landingPage')}>
         <img src={img1} alt="img1" />
       </div>
       <div className="flex gap-10 items-center">

@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function page5() {
+export default function Page5() {
+  const history = useNavigate();
   return (
     <div className="flex justify-center bg-gradient-to-r from-[#170328] to-[#2D0246] p-16">
       <div className="text-center flex flex-col gap-9">
@@ -8,7 +10,7 @@ export default function page5() {
           Begin Your Crypto Journey Today!
         </h1>
         <div>
-          <a className=" p-2 px-10 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
+          <a className=" p-2 px-10 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer" onClick={() => history('/signup1')}>
             Sign Up Now
           </a>
         </div>

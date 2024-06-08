@@ -796,7 +796,7 @@ export default function Staking1Month() {
               className="p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
               onClick={handleButtonClick}
             >
-              Stake
+              Stake 
             </a>
           </div>
         </div>

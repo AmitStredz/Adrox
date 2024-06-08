@@ -29,6 +29,9 @@ import Staking1Month from "./views/staking/staking1Month";
 import Staking3Month from "./views/staking/staking3Month";
 import Staking6Month from "./views/staking/staking6Month";
 import Staking1Year from "./views/staking/staking1Year";
+import Withdraw from "./views/staking/withdraw";
+import Swap from "./views/staking/swap";
+import Account from "./views/staking/account";
 
 import GlobeAnimation from "./views/landingPage/pages/globeAnimation";
 export default function App() {
@@ -64,6 +67,9 @@ export default function App() {
 
         <Route path="/globeAnimation" element={<GlobeAnimation  />} />
         <Route path="/wallet" element={<Wallet/>} />
+        <Route path="/withdraw" element={<Withdraw/>} />
+        <Route path="/swap" element={<Swap/>} />
+        <Route path="/account" element={<Account/>} />
 
         <Route element={<NotFound/>} />
       </Routes>
