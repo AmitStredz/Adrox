@@ -50,6 +50,7 @@
     transform: rotate(-360deg); /* Rotate image 360 degrees */
   }
 }
+
 /* src/components/StarBackground.css */
 .star-container {
   /* position: fixed; */
@@ -68,7 +69,7 @@
   height: 2px;
   background: white;
   opacity: 0;
-  animation: moveStar 20s linear infinite;
+  animation: moveStar 30s linear infinite;
 }
 
 @keyframes moveStar {
