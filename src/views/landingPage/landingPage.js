@@ -9,7 +9,7 @@ import './landingPage.css'
 
 const LandingPage= () => {
   return (
-    <div className='bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden'>
+    <div className='bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden relative'>
       <Header></Header>
       <Page1></Page1>
       <Page2></Page2>
