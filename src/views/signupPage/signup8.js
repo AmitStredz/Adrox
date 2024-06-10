@@ -263,7 +263,7 @@ const Signup8 = () => {
                   isLoading ? "bg-gradient-to-r from-gray-800 to-gray-500 cursor-not-allowed" : ""
                 }`} 
               >
-                Verify
+                {isLoading ? "Verifying" : "Verify"}
               </button>
             </div>
             <div className="text-[14px] text-center mt-[-20px]">

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../landingPage.css';
 
-const GlobeAnimation = () => {
+const StarAnimation = () => {
   useEffect(() => {
     const styleSheet = document.styleSheets[0];
     [...Array(200)].forEach((_, i) => {
@@ -34,4 +34,4 @@ const GlobeAnimation = () => {
   );
 };
 
-export default GlobeAnimation;
+export default StarAnimation;

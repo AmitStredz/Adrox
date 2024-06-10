@@ -13,7 +13,7 @@ import vector6 from "./assets/vector6.svg";
 import vector7 from "./assets/vector7.svg";
 import vector8 from "./assets/vector8.svg";
 
-import GlobeAnimation from "./globeAnimation";
+import StarAnimation from "./starAnimation";
 
 import "..//landingPage.css";
 
@@ -107,7 +107,7 @@ export default function page1() {
           <img src={vector8} alt="Animation" className="w-[80%]" />
         </div> */}
       <div className="absolute w-screen h-screen top-0 left-0  z-10">
-        <GlobeAnimation></GlobeAnimation>
+        <StarAnimation></StarAnimation>
       </div>
     </div>
   );

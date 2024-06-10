@@ -6,6 +6,7 @@ import Page2 from "./pages/page2";
 import Page3 from "./pages/page3";
 import Page4 from "./pages/page4";
 import Footer from "./pages/footer";
+import StarAnimation from "../landingPage/pages/starAnimation";
 
 export default function homePage() {
   return (
@@ -31,6 +32,10 @@ export default function homePage() {
         <img src="/ellipse.png"></img>
       </div>
       
+      <div className="absolute w-screen h-screen top-0 left-0  z-10">
+        <StarAnimation></StarAnimation>
+      </div>
+
     </div>
   );
 }

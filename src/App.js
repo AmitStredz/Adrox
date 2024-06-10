@@ -34,7 +34,6 @@ import Deposit from "./views/staking/deposit";
 import Swap from "./views/staking/swap";
 import Account from "./views/staking/account";
 
-import GlobeAnimation from "./views/landingPage/pages/globeAnimation";
 export default function App() {
   return (
     <Router>
@@ -66,7 +65,6 @@ export default function App() {
         <Route path="/staking6Month" element={<Staking6Month/>} />
         <Route path="/staking1Year" element={<Staking1Year/>} />
 
-        <Route path="/globeAnimation" element={<GlobeAnimation  />} />
         <Route path="/wallet" element={<Wallet/>} />
         <Route path="/withdraw" element={<Withdraw/>} />
         <Route path="/deposit" element={<Deposit/>} />
