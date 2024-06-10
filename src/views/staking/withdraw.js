@@ -5,7 +5,7 @@ import stroke from "./assets/strokeEffect.png";
 import ellipse from "./assets/ellipse.png";
 import dollar from "./assets/dollarBlue.png";
 
-export default function Withdraw({ closeModal }) {
+export default function Withdraw() {
   const history = useNavigate();
   return (
     <div className="bg-[#0F011A]  font-nunito text-slate-300 overflow-hidden flex items-center justify-center relative">

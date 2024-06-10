@@ -577,8 +577,7 @@
 
  */
 
-
- .signup5-container {
+.signup5-container {
   width: 100%;
   display: flex;
   overflow: auto;
@@ -602,7 +601,7 @@
   gap: 10px;
   top: 126px;
   left: 392px;
-  width: 656px;
+  width: 500px;
   height: 795px;
   display: flex;
   padding: 64px 80px;
@@ -769,23 +768,28 @@
   display: flex;
   position: absolute;
   align-items: flex-start;
-  flex-shrink: 1;
+  /* flex-shrink: 1; */
 }
 
 .signup5-buttons {
   gap: 16px;
-  top: 276px;
+  top: 300px;
   left: 375px;
   width: 115px;
   height: 40px;
   display: flex;
   padding: 8px 24px;
   position: absolute;
-  background: linear-gradient(0deg, rgba(171, 0, 255, 1) 0%, rgba(75, 17, 123, 1) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(171, 0, 255, 1) 0%,
+    rgba(75, 17, 123, 1) 100%
+  );
   align-items: center;
   flex-shrink: 0;
   border-radius: 15px;
   justify-content: center;
+  z-index: 1;
 }
 
 .signup5-text14 {
@@ -802,9 +806,9 @@
 }
 
 .signup5-text16 {
-  top: 228px;
+  top: 250px;
   left: 32px;
-  color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 0.684);
   width: 133px;
   height: auto;
   position: absolute;
@@ -817,6 +821,7 @@
   font-stretch: normal;
   text-decoration: underline;
   cursor: pointer;
+  z-index: 1;
 }
 
 .signup5-group90 {
@@ -831,7 +836,7 @@
 }
 
 .signup5-group86 {
-  top: 0px;
+  top: 30px;
   left: 0px;
   width: 490px;
   height: 212px;
@@ -839,11 +844,14 @@
   position: absolute;
   align-items: flex-start;
   flex-shrink: 1;
+  justify-items: center;
+  border: solid rgba(138, 137, 137, 0.355) 2px;
+  border-radius: 20px;
 }
 
 .signup5-frame87 {
   gap: 32px;
-  top: 26px;
+  top: 60px;
   left: 33px;
   display: flex;
   position: absolute;
@@ -860,7 +868,7 @@
 .signup5-phrase-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 30px;
 }
 
 .signup5-phrase-item {
@@ -887,16 +895,15 @@
 }
 
 .signup5-ellipse2 {
-  top: 377px;
-  left: -708px;
+  bottom: 0px;
   width: 989px;
   height: 989px;
   position: absolute;
 }
 
 .signup5-ellipse3 {
-  top: -79px;
-  left: 951px;
+  top: 0px;
+  right: 0px;
   width: 691px;
   height: 691px;
   position: absolute;

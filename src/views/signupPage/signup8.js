@@ -1,12 +1,121 @@
-import React from "react";
-import Background from "./assets/account-background.png";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import Background from "./assets/account-background.png";
+import globe1 from "./assets/globe1.png";
+import globe2 from "./assets/globe2.png";
+import starGlow from "./assets/Glowstar.png";
+import circumcircle1 from "./assets/circumcircle.png";
+import circle from "./assets/circle.png";
+import { PhoneMissed } from "lucide-react";
 
 const Signup8 = () => {
-  const history = useNavigate();
-  
-  const handleButtonClick = () => {
-    history("/signup9");
+  const [phoneOtp, setPhoneOtp] = useState("");
+  const [emailOtp, setEmailOtp] = useState("");
+  const [otpIsValid, setOtpIsValid] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const phoneOtpRefs = useRef([]);
+  const emailOtpRefs = useRef([]);
+
+  useEffect(() => {
+    // Focus the next OTP input field if the current one has been filled
+    const focusNextInput = (currentIndex, refs) => {
+      if (refs.current[currentIndex + 1]) {
+        refs.current[currentIndex + 1].focus();
+      }
+    };
+
+    // Focus the previous OTP input field if the current one is empty
+    const focusPrevInput = (currentIndex, refs) => {
+      if (refs.current[currentIndex - 1]) {
+        refs.current[currentIndex - 1].focus();
+      }
+    };
+
+    // Listen for changes in phoneOtp state and automatically move focus
+    for (let i = 0; i < phoneOtp.length; i++) {
+      if (phoneOtp[i] && !phoneOtpRefs.current[i + 1]) {
+        focusNextInput(i, phoneOtpRefs);
+        break;
+      }
+    }
+
+    // Listen for changes in emailOtp state and automatically move focus
+    for (let i = 0; i < emailOtp.length; i++) {
+      if (emailOtp[i] && !emailOtpRefs.current[i + 1]) {
+        focusNextInput(i, emailOtpRefs);
+        break;
+      }
+    }
+  }, [phoneOtp, emailOtp]);
+
+  const handlePhoneOtpChange = (index, value) => {
+    const updatedOtp = phoneOtp.split("");
+    updatedOtp[index] = value;
+    setPhoneOtp(updatedOtp.join(""));
+    // Move cursor backward if deleting a digit
+    if (value === "" && index > 0) {
+      phoneOtpRefs.current[index - 1].focus();
+    }
+  };
+
+  const handleEmailOtpChange = (index, value) => {
+    const updatedOtp = emailOtp.split("");
+    updatedOtp[index] = value;
+    setEmailOtp(updatedOtp.join(""));
+
+    // Move cursor backward if deleting a digit
+    if (value === "" && index > 0) {
+      emailOtpRefs.current[index - 1].focus();
+    }
+  };
+
+  const handleButtonClick = async () => {
+    if (isLoading) return; // Prevent multiple clicks
+    setIsLoading(true);
+
+    const userId = localStorage.getItem("user_id");
+    const storedPhoneOtp = localStorage.getItem("mobile_otp");
+    const storedEmailOtp = localStorage.getItem("email_otp");
+
+    console.log("storedPhoneOtp: ", storedPhoneOtp);
+    console.log("phoneOtp: ", phoneOtp);
+    console.log("storedEmailOtp: ", storedEmailOtp);
+    console.log('emailOtp" ', emailOtp);
+
+    if (phoneOtp === storedPhoneOtp && emailOtp === storedEmailOtp) {
+      try {
+        const response = await axios.post(
+          "https://example.com/api/verify-otp",
+          {
+            user_id: userId,
+            phone_otp: phoneOtp,
+            email_otp: emailOtp,
+          }
+        );
+
+        if (response.data.message === "OTP verification successfull.") {
+          setOtpIsValid(true);
+          navigate("/signup9");
+        } else {
+          setOtpIsValid(false);
+          // alert("Invalid OTPs.");
+        }
+      } catch (error) {
+        setOtpIsValid(true);
+        console.error("Error:", error);
+        alert("Error: Unable to verify OTPs. Please try again.");
+      } finally{
+        setIsLoading(false);
+      }
+    } else {
+      setOtpIsValid(false);
+      setIsLoading(false);
+      // alert("Invalid OTPs. Please enter the correct OTPs.");
+    }
   };
 
   return (
@@ -20,8 +129,22 @@ const Signup8 = () => {
             Just A Couple Of Clicks And We Start
           </p>
         </div>
-        <div className="w-">
-          <img src={Background}></img>
+
+        <div className="relative">
+          <img className="absolute " src={circle}></img>
+          <img className="absolute top-20 left-20" src={starGlow}></img>
+          <img
+            className="absolute -top-4 -left-6 rotating-circle-clock opacity-30"
+            src={circumcircle1}
+          ></img>
+          <img
+            className="absolute -left-5 -top-6 rotating-image-clock"
+            src={globe1}
+          ></img>
+          <img
+            className="absolute -left-5 -top-6 rotating-image-anticlock"
+            src={globe2}
+          ></img>
         </div>
       </div>
 
@@ -41,47 +164,104 @@ const Signup8 = () => {
             <h1 className="font-700 text-[36px]">Create Account</h1>
             <input
               type="text"
-              required
+              readOnly
               placeholder="Name"
-              className="bg-transparent border-b-2 pb-2 outline-none"
+              value={localStorage.getItem("full_name")}
+              className="bg-transparent border-b-2 pb-2 outline-none cursor-not-allowed"
             ></input>
 
             <input
               type="text"
-              required
+              readOnly
+              value={localStorage.getItem("mobile_number")}
               placeholder="Mobile Number"
-              className="bg-transparent border-b-2 pb-2 outline-none"
+              className="bg-transparent border-b-2 pb-2 outline-none cursor-not-allowed"
             ></input>
             <div className="flex flex-col gap-2">
               <p className="text-[12px]">Enter the OTP sent to 9*******85</p>
-              <div className="flex gap-3">
-                <input className="w-5 h-5 border bg-transparent p-1"></input>
-                <input className="w-5 h-5 border bg-transparent p-1"></input>
-                <input className="w-5 h-5 border bg-transparent p-1"></input>
-                <input className="w-5 h-5 border bg-transparent p-1"></input>
+              <div className="flex gap-5">
+                <div className="flex gap-3">
+                  {[...Array(4)].map((_, index) => (
+                    <input
+                      key={index}
+                      ref={(el) => (phoneOtpRefs.current[index] = el)}
+                      className={`w-5 h-5 border bg-transparent p-1 ${
+                        otpIsValid ? "" : "border-red-500"
+                      }`}
+                      maxLength="1"
+                      value={phoneOtp[index] || ""}
+                      onChange={(e) => {
+                        handlePhoneOtpChange(index, e.target.value);
+                        if (e.target.value !== "") {
+                          if (index < 3) {
+                            phoneOtpRefs.current[index + 1].focus();
+                          } else {
+                            phoneOtpRefs.current[index].blur();
+                          }
+                        }
+                      }}
+                    ></input>
+                  ))}
+                </div>
+                <div
+                  className={`text-red-500 text-[12px] ${
+                    otpIsValid ? "hidden" : ""
+                  }`}
+                >
+                  <p>OTP Verification Failed: Retry</p>
+                </div>
               </div>
             </div>
             <input
               type="email"
-              required
+              readOnly
+              value={localStorage.getItem("email")}
               placeholder="Email Id"
-              className="bg-transparent border-b-2 pb-2 outline-none"
+              className="bg-transparent border-b-2 pb-2 outline-none cursor-not-allowed"
             ></input>
             <div className="flex flex-col gap-2">
               <p className="text-[12px]">
                 Enter the OTP sent to a*******in@gmail.com
               </p>
-              <div className="flex gap-3">
-                <input className="w-5 h-5 border bg-transparent p-1"></input>
-                <input className="w-5 h-5 border bg-transparent p-1"></input>
-                <input className="w-5 h-5 border bg-transparent p-1"></input>
-                <input className="w-5 h-5 border bg-transparent p-1"></input>
+              <div className="flex gap-5">
+                <div className="flex gap-3">
+                  {[...Array(4)].map((_, index) => (
+                    <input
+                      key={index}
+                      ref={(el) => (emailOtpRefs.current[index] = el)}
+                      className={`w-5 h-5 border bg-transparent p-1 ${
+                        otpIsValid ? "" : "border-red-500"
+                      }`}
+                      maxLength="1"
+                      value={emailOtp[index] || ""}
+                      onChange={(e) => {
+                        handleEmailOtpChange(index, e.target.value);
+                        if (e.target.value !== "") {
+                          if (index < 3) {
+                            emailOtpRefs.current[index + 1].focus();
+                          } else {
+                            emailOtpRefs.current[index].blur();
+                          }
+                        }
+                      }}
+                    ></input>
+                  ))}
+                </div>
+                <div
+                  className={`text-red-500 text-[12px] ${
+                    otpIsValid ? "hidden" : ""
+                  }`}
+                >
+                  <p>OTP Verification Failed: Retry</p>
+                </div>
               </div>
             </div>
             <div className="text-center">
               <button
                 onClick={handleButtonClick}
-                className="p-2 px-16 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+                className={`p-2 px-16 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
+                  isLoading ? "bg-gradient-to-r from-gray-800 to-gray-500 cursor-not-allowed" : ""
+                }`} 
               >
                 Verify
               </button>

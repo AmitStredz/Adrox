@@ -86,6 +86,12 @@ import { useNavigate } from "react-router-dom";
 import InvalidPhrase from "./invalidPhraseModal";
 import statAnimation from "./assets/starAnimation.png";
 
+import globe1 from "./assets/globe1.png";
+import globe2 from "./assets/globe2.png";
+import starGlow from "./assets/Glowstar.png";
+import circumcircle1 from "./assets/circumcircle.png";
+import circle from "./assets/circle.png";
+
 const Signup10 = () => {
   const [phraseInputs, setPhraseInputs] = useState(Array(12).fill(""));
   const navigate = useNavigate();
@@ -113,12 +119,15 @@ const Signup10 = () => {
     const storedPhrase = JSON.parse(localStorage.getItem("recoveryPhrase"));
     const inputPhrase = phraseInputs.join(" ");
 
+    console.log('storedPhrase: ', storedPhrase);
+    console.log('inputPhrase: ', inputPhrase);
+    
     if (storedPhrase.join(" ") === inputPhrase) {
       navigate("/signup11");
     } else {
       // alert("Secret recovery phrase does not match");
       setShowModal(true);
-    } 
+    }
   };
 
   return (
@@ -130,7 +139,25 @@ const Signup10 = () => {
           </h1>
           <p className="font-300 text-[16px]">
             Just A Couple Of Clicks And We Start
-          </p>
+          </p> 
+          
+        </div>
+
+        <div className="relative">
+          <img className="absolute " src={circle}></img>
+          <img className="absolute top-20 left-20" src={starGlow}></img>
+          <img
+            className="absolute -top-4 -left-6 rotating-circle-clock opacity-30"
+            src={circumcircle1}
+          ></img>
+          <img
+            className="absolute -left-5 -top-6 rotating-image-clock"
+            src={globe1}
+          ></img>
+          <img
+            className="absolute -left-5 -top-6 rotating-image-anticlock"
+            src={globe2}
+          ></img>
         </div>
       </div>
 
@@ -182,9 +209,9 @@ const Signup10 = () => {
       <div className="absolute w-[90%] bottom-[-50%] left-[-40%] z-10">
         <img src="/ellipse.png" alt="hello" />
       </div>
-      <div className="absolute left-0 w-[100%] h-[10%] top-0 ">
+      {/* <div className="absolute left-0 w-[100%] h-[10%] top-0 ">
         <img src={statAnimation}></img>
-      </div>
+      </div> */}
 
       <div className="z-50">
         {showModal && <InvalidPhrase closeModal={() => setShowModal(false)} />}

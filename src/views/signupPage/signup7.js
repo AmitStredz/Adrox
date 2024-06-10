@@ -82,20 +82,44 @@
 
 // export default Signup7;
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./animateLogo.css";
+
 import Background from "./assets/account-background.png";
 import statAnimation from "./assets/starAnimation.png";
+
+import globe1 from "./assets/globe1.png";
+import globe2 from "./assets/globe2.png";
+import starGlow from "./assets/Glowstar.png";
+import circumcircle1 from "./assets/circumcircle.png";
+import circle from "./assets/circle.png";
 
 const Signup7 = () => {
   const [fullName, setFullName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const validateForm = () => {
+      const phoneRegex = /^[0-9]{10}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      setIsFormValid(phoneRegex.test(mobileNumber) && emailRegex.test(email));
+    };
+
+    validateForm();
+  }, [mobileNumber, email]);
+
   const handleButtonClick = async () => {
-    const userId = localStorage.getItem("user_id"); // Retrieve user_id from localStorage
+    if (isLoading) return; // Prevent multiple clicks
+    setIsLoading(true);
+
+    const userId = localStorage.getItem("user_id"); 
 
     const data = {
       full_name: fullName,
@@ -109,11 +133,24 @@ const Signup7 = () => {
         "https://adrox-0ad3c3933d0d.herokuapp.com/api/users/store-profile/",
         data
       );
+      localStorage.setItem("mobile_otp", response.data.mobile_otp); 
+      localStorage.setItem("email_otp", response.data.email_otp);
+      localStorage.setItem("full_name", fullName); 
+      localStorage.setItem("mobile_number", mobileNumber); 
+      localStorage.setItem("email", email); 
+      localStorage.setItem("referral_id", response.data.referral_id); 
+
+      console.log("mobile_otp", response.data.mobile_otp);
+      console.log("email_otp", response.data.email_otp);
       alert(JSON.stringify(response.data));
-      navigate("/signup10"); // Navigate to signup10 on successful response
+
+      navigate("/signup8"); 
+      
     } catch (error) {
       console.error("There was an error!", error);
       alert("Error: " + (error.response?.data || error.message));
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -127,6 +164,23 @@ const Signup7 = () => {
           <p className="font-300 text-[16px]">
             Just A Couple Of Clicks And We Start
           </p>
+        </div>
+
+        <div className="relative">
+          <img className="absolute " src={circle}></img>
+          <img className="absolute top-20 left-20" src={starGlow}></img>
+          <img
+            className="absolute -top-4 -left-6 rotating-circle-clock opacity-30"
+            src={circumcircle1}
+          ></img>
+          <img
+            className="absolute -left-5 -top-6 rotating-image-clock"
+            src={globe1}
+          ></img>
+          <img
+            className="absolute -left-5 -top-6 rotating-image-anticlock"
+            src={globe2}
+          ></img>
         </div>
       </div>
 
@@ -170,10 +224,15 @@ const Signup7 = () => {
             ></input>
             <div className="text-center">
               <button
+                disabled={!isFormValid || isLoading}
                 onClick={handleButtonClick}
-                className="p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+                className={`p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] ${
+                  !isFormValid || isLoading
+                    ? "bg-gradient-to-  r from-gray-800 to-gray-500 cursor-not-allowed"
+                    : ""
+                }`}
               >
-                Send OTP
+                <span>{isLoading ? "Sending OTP..." : "Send OTP"}</span>
               </button>
             </div>
           </div>
@@ -187,9 +246,9 @@ const Signup7 = () => {
         <img src="/ellipse.png" alt="hello"></img>
       </div>
 
-      <div className="absolute left-0 w-[100%] h-[10%] top-0 ">
+      {/* <div className="back absolute left-0 w-[100%] h-[10%] top-0 ">
         <img src={statAnimation}></img>
-      </div>
+      </div> */}
     </div>
   );
 };

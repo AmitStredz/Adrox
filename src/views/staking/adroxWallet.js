@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function AdroxWallet() {
   const [showModal, setShowModal] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="relative">
@@ -24,13 +24,13 @@ export default function AdroxWallet() {
             <p className="font-800 text-[52px]">$1,000 USD</p>
           </div>
           <div className="flex gap-5 z-50">
-            <div className="flex  p-2 px-12 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
+            <div className="flex  p-2 px-12 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer" onClick={() => navigate('/deposit')}>
               <img src={deposit} className="w-5"></img>
               <p>Deposit</p>
             </div>
             <div
               className="flex border border-slate-500 cursor-pointer p-2 px-12 rounded-2xl"
-              onClick={() => history("/withdraw")}
+              onClick={() => navigate("/withdraw")}
             >
               <img src={withdraw} className="w-5"></img>
               <p>Withdraw</p>
@@ -39,7 +39,7 @@ export default function AdroxWallet() {
         </div>
         <div className="flex flex-col justify-center items-end h-full">
           <div className="flex gap-10">
-            <div className="flex gap-2 p-2 px-12 items-center rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer" onClick={()=> history('/swap')}>
+            <div className="flex gap-2 p-2 px-12 items-center rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer" onClick={()=> navigate('/swap')}>
               <img src={swap} className="w-4 h-5"></img>
               <p>Swap</p>
             </div>

@@ -7,7 +7,7 @@
 // const Signup5 = (props) => {
 //   return (
 //     <div className="signup5-container">
-//       <Helmet>
+//       <Helmet> 
 //         <title>exported project</title>
 //       </Helmet>
 //       <div className="signup5-signup5">
@@ -300,7 +300,7 @@ const Signup5 = () => {
     } else {
       navigate("/signup4"); // Redirect to signup4 if no phrase found
     }
-  }, [navigate]);
+  }, [navigate]); 
 
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(recoveryPhrase.join(" "));

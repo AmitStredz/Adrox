@@ -7,7 +7,7 @@ import dollarBlue from "./assets/dollarBlue.png";
 import starBlue from "./assets/starBlue.png";
 import swap from "./assets/swapBlue.png";
 
-export default function Swap({ closeModal }) {
+export default function Swap() {
   const history = useNavigate();
   return (
     <div className="bg-[#0F011A]  font-nunito text-white overflow-hidden flex items-center justify-center relative">

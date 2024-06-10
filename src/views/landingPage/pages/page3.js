@@ -1,8 +1,12 @@
 
 import Scanner from "./assets/scanner.png";
+
+import leftStar from './assets/leftStar.png'
+import rightStar from './assets/rightStar.png'
+
 export default function page3() {
   return (
-    <div className="flex justify-center bg-[#1E0031] ">
+    <div className="flex justify-center bg-[#1E0031] relative">
       <div className="flex items-center justify-between w-[65%] my-36">
         <div className="flex flex-col gap-10">
           <div className="text-[64px] leading-none font-nunito font-700 text-[#C653FF]">
@@ -39,6 +43,11 @@ export default function page3() {
             Scan to Download
           </a>
         </div>
+      </div>
+
+      <div className="absolue">
+        <img src={leftStar} className="absolute -left-80 -top-10 rotating-image-anticlock opacity-10 z-10"></img>
+        <img src={rightStar} className="absolute -right-80 -bottom-16 rotating-image-clock opacity-10 w-[45%]"></img>
       </div>
     </div>
   );
