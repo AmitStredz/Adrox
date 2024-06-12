@@ -15,7 +15,7 @@ export default function Deposit({ closeModal }) {
     setIsLoading(true); // Set loading to true while API call is made
 
     try {
-      const response = await axios.post("your_api_endpoint_here", {
+      const response = await axios.post("https://adrox-89b6c88377f5.herokuapp.com/api/wallet/deposit/", {
         wallet_id: walletId,
         amount: amount,
       });

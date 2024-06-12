@@ -190,7 +190,7 @@ const Signup4 = () => {
     try {
       console.log("Button clicked, initiating API call");
       const response = await fetch(
-        "https://adrox-0ad3c3933d0d.herokuapp.com/api/users/generate-phrase/",
+        "https://adrox-89b6c88377f5.herokuapp.com/api/users/generate-phrase/",
         {
           method: "GET",
           headers: {
@@ -215,6 +215,7 @@ const Signup4 = () => {
         localStorage.setItem("recoveryPhrase", JSON.stringify(phraseArray));
         localStorage.setItem("user_id", data.user_id); // Store user_id in localStorage
         console.log("Phrase and user_id stored in localStorage", phraseArray, data.user_id);
+        console.log('User_Id: ', data.user_id);
         navigate("/signup5");
         console.log("Navigated to signup5");
       } else {

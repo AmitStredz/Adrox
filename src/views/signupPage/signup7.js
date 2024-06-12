@@ -90,11 +90,7 @@ import "./animateLogo.css";
 import Background from "./assets/account-background.png";
 import statAnimation from "./assets/starAnimation.png";
 
-import globe1 from "./assets/globe1.png";
-import globe2 from "./assets/globe2.png";
-import starGlow from "./assets/Glowstar.png";
-import circumcircle1 from "./assets/circumcircle.png";
-import circle from "./assets/circle.png";
+import SignupAnimation from "./signupAnimation";
 
 const Signup7 = () => {
   const [fullName, setFullName] = useState("");
@@ -119,7 +115,7 @@ const Signup7 = () => {
     if (isLoading) return; // Prevent multiple clicks
     setIsLoading(true);
 
-    const userId = localStorage.getItem("user_id"); 
+    const userId = localStorage.getItem("user_id");
 
     const data = {
       full_name: fullName,
@@ -128,24 +124,25 @@ const Signup7 = () => {
       user_id: userId,
     };
 
+    console.log("user_id", userId);
+
     try {
       const response = await axios.post(
-        "https://adrox-0ad3c3933d0d.herokuapp.com/api/users/store-profile/",
+        "https://adrox-89b6c88377f5.herokuapp.com/api/users/store-profile/",
         data
       );
-      localStorage.setItem("mobile_otp", response.data.mobile_otp); 
+      localStorage.setItem("mobile_otp", response.data.mobile_otp);
       localStorage.setItem("email_otp", response.data.email_otp);
-      localStorage.setItem("full_name", fullName); 
-      localStorage.setItem("mobile_number", mobileNumber); 
-      localStorage.setItem("email", email); 
-      localStorage.setItem("referral_id", response.data.referral_id); 
+      localStorage.setItem("full_name", fullName);
+      localStorage.setItem("mobile_number", mobileNumber);
+      localStorage.setItem("email", email);
+      localStorage.setItem("referral_id", response.data.referral_id);
 
       console.log("mobile_otp", response.data.mobile_otp);
       console.log("email_otp", response.data.email_otp);
-      alert(JSON.stringify(response.data));
+      // alert(JSON.stringify(response.data));
 
-      navigate("/signup8"); 
-      
+      navigate("/signup8");
     } catch (error) {
       console.error("There was an error!", error);
       alert("Error: " + (error.response?.data || error.message));
@@ -165,23 +162,7 @@ const Signup7 = () => {
             Just A Couple Of Clicks And We Start
           </p>
         </div>
-
-        <div className="relative">
-          <img className="absolute " src={circle}></img>
-          <img className="absolute top-20 left-20" src={starGlow}></img>
-          <img
-            className="absolute -top-4 -left-6 rotating-circle-clock opacity-30"
-            src={circumcircle1}
-          ></img>
-          <img
-            className="absolute -left-5 -top-6 rotating-image-clock"
-            src={globe1}
-          ></img>
-          <img
-            className="absolute -left-5 -top-6 rotating-image-anticlock"
-            src={globe2}
-          ></img>
-        </div>
+          <SignupAnimation></SignupAnimation>
       </div>
 
       {/* Signup7 is this */}

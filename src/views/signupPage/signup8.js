@@ -1,19 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import OtpIsValid from "./optIsValid";
+import SignupAnimation from "./signupAnimation";
 
-import Background from "./assets/account-background.png";
-import globe1 from "./assets/globe1.png";
-import globe2 from "./assets/globe2.png";
-import starGlow from "./assets/Glowstar.png";
-import circumcircle1 from "./assets/circumcircle.png";
-import circle from "./assets/circle.png";
 import { PhoneMissed } from "lucide-react";
 
 const Signup8 = () => {
   const [phoneOtp, setPhoneOtp] = useState("");
   const [emailOtp, setEmailOtp] = useState("");
   const [otpIsValid, setOtpIsValid] = useState(true);
+  const [otpModal, setOtpModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -81,6 +78,8 @@ const Signup8 = () => {
     const storedPhoneOtp = localStorage.getItem("mobile_otp");
     const storedEmailOtp = localStorage.getItem("email_otp");
 
+    console.log("user_id", userId);
+
     console.log("storedPhoneOtp: ", storedPhoneOtp);
     console.log("phoneOtp: ", phoneOtp);
     console.log("storedEmailOtp: ", storedEmailOtp);
@@ -89,32 +88,35 @@ const Signup8 = () => {
     if (phoneOtp === storedPhoneOtp && emailOtp === storedEmailOtp) {
       try {
         const response = await axios.post(
-          "https://example.com/api/verify-otp",
+          "https://adrox-89b6c88377f5.herokuapp.com/api/users/verify-otp/",
           {
             user_id: userId,
-            phone_otp: phoneOtp,
+            mobile_otp: phoneOtp,
             email_otp: emailOtp,
           }
         );
 
-        if (response.data.message === "OTP verification successfull.") {
+        if (response.data.message === "OTP verification successful.") {
           setOtpIsValid(true);
-          navigate("/signup9");
+          setOtpModal(true);
+          setTimeout(() => {
+            navigate("/signup9");
+          }, 2000);
         } else {
           setOtpIsValid(false);
-          // alert("Invalid OTPs.");
+          alert("Invalid OTPs.");
         }
       } catch (error) {
         setOtpIsValid(true);
         console.error("Error:", error);
         alert("Error: Unable to verify OTPs. Please try again.");
-      } finally{
+      } finally {
         setIsLoading(false);
       }
     } else {
       setOtpIsValid(false);
       setIsLoading(false);
-      // alert("Invalid OTPs. Please enter the correct OTPs.");
+      alert("Invalid OTPs. Please enter the correct OTPs.");
     }
   };
 
@@ -129,22 +131,8 @@ const Signup8 = () => {
             Just A Couple Of Clicks And We Start
           </p>
         </div>
-
-        <div className="relative">
-          <img className="absolute " src={circle}></img>
-          <img className="absolute top-20 left-20" src={starGlow}></img>
-          <img
-            className="absolute -top-4 -left-6 rotating-circle-clock opacity-30"
-            src={circumcircle1}
-          ></img>
-          <img
-            className="absolute -left-5 -top-6 rotating-image-clock"
-            src={globe1}
-          ></img>
-          <img
-            className="absolute -left-5 -top-6 rotating-image-anticlock"
-            src={globe2}
-          ></img>
+        <div className="h-[80%]">
+          <SignupAnimation></SignupAnimation>
         </div>
       </div>
 
@@ -260,8 +248,10 @@ const Signup8 = () => {
               <button
                 onClick={handleButtonClick}
                 className={`p-2 px-16 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
-                  isLoading ? "bg-gradient-to-r from-gray-800 to-gray-500 cursor-not-allowed" : ""
-                }`} 
+                  isLoading
+                    ? "bg-gradient-to-r from-gray-800 to-gray-500 cursor-not-allowed"
+                    : ""
+                }`}
               >
                 {isLoading ? "Verifying" : "Verify"}
               </button>
@@ -284,6 +274,7 @@ const Signup8 = () => {
       <div className="absolute w-[90%] bottom-[-50%] left-[-40%] ">
         <img src="/ellipse.png" alt="hello"></img>
       </div>
+      <div className="absolute top-0 left-0">{otpModal && <OtpIsValid />}</div>
     </div>
   );
 };

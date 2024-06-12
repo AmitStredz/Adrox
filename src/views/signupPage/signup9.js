@@ -4,11 +4,7 @@ import Background from "./assets/account-background.png";
 import { useNavigate } from "react-router-dom";
 import SetPassword from "./setPassword";
 
-import globe1 from "./assets/globe1.png";
-import globe2 from "./assets/globe2.png";
-import starGlow from "./assets/Glowstar.png";
-import circumcircle1 from "./assets/circumcircle.png";
-import circle from "./assets/circle.png";
+import SignupAnimation from "./signupAnimation";
 
 const Signup9 = () => {
   const [password, setPassword] = useState("");
@@ -16,7 +12,8 @@ const Signup9 = () => {
   const [referral, setReferral] = useState("");
   const [isEqual, setIsEqual] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [passwordModal, setPasswordModal] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -29,12 +26,6 @@ const Signup9 = () => {
       setIsLoading(true);
     }
   });
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    navigate("/signup10"); // Replace "/other-component" with the path of the component you want to redirect to
-  };
-  
 
   const handleButtonClick = async () => {
     if (isLoading) return; // Prevent multiple clicks
@@ -49,28 +40,33 @@ const Signup9 = () => {
     }
 
     const userId = localStorage.getItem("user_id"); // Retrieve user_id from localStorage
+    console.log("user_id", userId);
 
     // Mock API call to set password
     try {
-      const response = await fetch("your_api_endpoint_here", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id: userId,
-          password: password,
-          referral_id: referral,
-        }),
-      });
+      const response = await fetch(
+        "https://adrox-89b6c88377f5.herokuapp.com/api/users/set-password/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_id: userId,
+            password: password,
+            referral_id: referral,
+          }),
+        }
+      );
 
       const data = await response.json();
 
       // Check if API call was successful
-      if (response.ok) {
-        // Redirect to the next page
-        showModal(true);
-        // navigate("/signup10");
+      if (response.ok && data.message === "Password set successfully.") {
+        setPasswordModal(true);
+          setTimeout(() => {
+            navigate("/signup10");
+          }, 2000);
       } else {
         // Handle error response from the API
         console.error(data.error); // Log the error message
@@ -81,7 +77,6 @@ const Signup9 = () => {
       alert("An error occurred. Please try again."); // Show an alert to the user
     } finally {
       setIsLoading(false);
-      setShowModal(true);
     }
   };
 
@@ -97,21 +92,8 @@ const Signup9 = () => {
           </p>
         </div>
 
-        <div className="relative">
-          <img className="absolute " src={circle}></img>
-          <img className="absolute top-20 left-20" src={starGlow}></img>
-          <img
-            className="absolute -top-4 -left-6 rotating-circle-clock opacity-30"
-            src={circumcircle1}
-          ></img>
-          <img
-            className="absolute -left-5 -top-6 rotating-image-clock"
-            src={globe1}
-          ></img>
-          <img
-            className="absolute -left-5 -top-6 rotating-image-anticlock"
-            src={globe2}
-          ></img>
+        <div className="h-[70%]">
+          <SignupAnimation></SignupAnimation>
         </div>
       </div>
 
@@ -221,7 +203,7 @@ const Signup9 = () => {
         <img src="/ellipse.png" alt="hello"></img>
       </div>
       <div className="absolute top-0 left-0">
-        {showModal && <SetPassword closeModal={handleCloseModal} />}
+        {passwordModal && <SetPassword/>}
       </div>
     </div>
   );

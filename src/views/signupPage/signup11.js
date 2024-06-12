@@ -1,13 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import statAnimation from './assets/starAnimation.png'
-import globe1 from "./assets/globe1.png";
-import globe2 from "./assets/globe2.png";
-import starGlow from "./assets/Glowstar.png";
-import circumcircle1 from "./assets/circumcircle.png";
-import circle from "./assets/circle.png";
-
+import SignupAnimation from "./signupAnimation";
 
 const Signup11 = () => {
   const history = useNavigate();
@@ -27,13 +21,8 @@ const Signup11 = () => {
           </p>
         </div>
 
-        <div className="relative">
-          <img className="absolute " src={circle}></img>
-          <img className="absolute top-20 left-20" src={starGlow}></img>
-          <img className="absolute -top-4 -left-6 rotating-circle-clock opacity-30" src={circumcircle1}></img>
-          <img className="absolute -left-5 -top-6 rotating-image-clock" src={globe1}></img>
-          <img className="absolute -left-5 -top-6 rotating-image-anticlock" src={globe2}></img>
-        </div>
+        <SignupAnimation></SignupAnimation>
+
       </div>
 
       {/* Signup11 is this */}
