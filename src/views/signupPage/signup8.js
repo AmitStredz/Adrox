@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import OtpIsValid from "./optIsValid";
 import SignupAnimation from "./signupAnimation";
+import { Helmet } from 'react-helmet';
 
 import { PhoneMissed } from "lucide-react";
 
@@ -122,6 +123,9 @@ const Signup8 = () => {
 
   return (
     <div className="flex bg-[#0f011a] h-full text-white font-nunito p-24 justify-evenly gap-10 relative overflow-hidden">
+      <Helmet>
+        <title>Signup - Adrox</title>
+      </Helmet>
       <div className="w-[40%] items-center">
         <div className="text-center">
           <h1 className="font-700 text-[48px] text-[#C653FF]">

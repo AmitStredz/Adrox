@@ -1,18 +1,19 @@
 import React from "react";
-import { useHistory, useNavigate } from 'react-router-dom';
+import { useHistory, useNavigate } from "react-router-dom";
 import Background from "./assets/account-background.png";
-
+import { Helmet } from 'react-helmet';
 
 export default function Signup12() {
   const history = useNavigate();
 
   const handleButtonClick = () => {
-    history('/homePage');
+    history("/homePage");
   };
   return (
-    
-    
     <div className="flex bg-[#0f011a] h-screen text-white font-nunito p-24 justify-evenly gap-10 overflow-hidden relative">
+      <Helmet>
+        <title>Signup - Adrox</title>
+      </Helmet>
       <div className="w-[40%] items-center">
         <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[35rem] p-12 rounded-2xl">
           <div>
@@ -38,7 +39,10 @@ export default function Signup12() {
             </div>
           </div>
           <div className="text-center z-10 ">
-            <button onClick={handleButtonClick} className="p-2 px-16 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
+            <button
+              onClick={handleButtonClick}
+              className="p-2 px-16 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+            >
               Next
             </button>
           </div>

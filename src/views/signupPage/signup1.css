@@ -32,7 +32,7 @@
 }
 .signup01-rectangle25 {
   top: 150px;
-  left: 736px;
+  left: 50%;
   width: 541px;
   height: 592px;
   position: absolute;
@@ -42,8 +42,8 @@
 @media (max-width: 1080px) {
   .signup01-rectangle25 {
     top: 100px;
-    left: 450px;
-    width: 541px;
+    left: 45%;
+    width: 50%;
     height: 592px;
     position: absolute;
     box-sizing: content-box;
@@ -51,22 +51,22 @@
   }
   
 }
-@media (max-width: 540px) {
+@media (max-width: 800px) {
   .signup01-rectangle25 {
     top: 600px;
-    left: 30px;
-    width: 450px;
+    left: 5%;
+    width: 90%;
     height: 592px;
     position: absolute;
     box-sizing: content-box;
     border-radius: 25px;
   }
 }
-@media (max-width: 370px) {
+@media (max-width: 540px) {
   .signup01-rectangle25 {
-    top: 500px;
-    left: 20px;
-    width: 330px;
+    top: 600px;
+    left: 5%;
+    width: 90%;
     height: 592px;
     position: absolute;
     box-sizing: content-box;
@@ -91,10 +91,10 @@
     box-sizing: content-box;
   }
 }
-@media (max-width: 370px) {
+@media (max-width: 540px) {
   .signup01-adrox{
     top: 50px;
-    left: 40px;
+    left: 10%;
     width: 300px;
     /* height: 108px; */
     position: absolute;
@@ -104,7 +104,7 @@
 .signup01-frame49 {
   gap: 48px;
   top: 250px;
-  left: 819px;
+  left: 55%;
   width: 376px;
   display: flex;
   position: absolute;
@@ -115,32 +115,20 @@
   .signup01-frame49 {
     gap: 48px;
     top: 250px;
-    left: 530px;
-    width: 376px;
+    left: 45%;
+    width: 50%;
     display: flex;
     position: absolute;
     align-items: center;
     flex-direction: column;
   }
 }
-@media (max-width: 540px) {
+@media (max-width: 800px) {
   .signup01-frame49 {
     gap: 48px;
     top: 700px;
-    left: 60px;
-    width: 376px;
-    display: flex;
-    position: absolute;
-    align-items: center;
-    flex-direction: column;
-  }
-}
-@media (max-width: 540px) {
-  .signup01-frame49 {
-    gap: 48px;
-    top: 600px;
-    left: 0px;
-    width: 376px;
+    left: 25%;
+    width: 50%;
     display: flex;
     position: absolute;
     align-items: center;
@@ -275,13 +263,10 @@
     font-size: 40px;
   }
 }
-@media (max-width: 370px) {
+@media (max-width: 540px) {
   .signup01-automated-decentralized-resource-optimization-exchange {
-    top: 150px;
-    left: 50px;
-  }
-  .signup01-text08 span {
-    font-size: 40px;
+    top: 250px;
+    left: 10%;
   }
 }
 .signup01-text08 {

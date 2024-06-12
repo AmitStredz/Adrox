@@ -32,7 +32,7 @@
 .signup2-frame57 {
   gap: 10px;
   top: 126px;
-  left: 392px;
+  left: 25%;
   width: 500px;
   height: 800px;
   display: flex;
@@ -48,29 +48,21 @@
 @media (max-width: 1080px) {
   .signup2-frame57 {
     top: 100px;
-    left: 180px;
-    width: 500px;
-  }
-}
-@media (max-width: 740px) {
-  .signup2-frame57 {
-    gap: 10px;
-    top: 80px;
-    left: 50px;
-    width: 470px;
+    left: 15%;
+    width: 55%;
   }
 }
 @media (max-width: 540px) {
   .signup2-frame57 {
-    gap: 10px;
+    gap: 5px;
     top: 80px;
-    left: 30px;
-    width: 320px;
+    left: 5%;
+    width: 55%;
   }
 }
 @media (max-width: 380px) {
   .signup2-frame57 {
-    gap: 10px;
+    gap: 5px;
     top: 40px;
     left: 10px;
     width: 190px;
@@ -116,7 +108,7 @@
   .signup2-frame65 {
     gap: 64px;
     top: 188px;
-    left: 50px;
+    left: 0px;
     width: 480px;
     display: flex;
     position: absolute;
@@ -324,23 +316,25 @@
   font-stretch: normal;
   text-decoration: none;
 }
-@media (max-width: 370px) {
+@media (max-width: 500px) {
   .signup2-text {
     font-size: 14px;
+    max-width: 80%;
   }
 
   .signup2-text01 span {
     font-weight: 100;
+    top: 100px;
   }
   .signup2-text01 {
-    position: absolute;
+    /* position: absolute; */
     font-weight: 700;
-    max-width: 320px;
-    left: 10px;
+    left: 10%;
   }
   .signup2-group83 {
     top: 70px;
-    width: 490px;
+    width: 100%;
+    left: 0px;
     height: 302px;
     display: flex;
     position: relative;
@@ -468,6 +462,22 @@
     top: 50px;
   }
 }
+@media (max-width: 400px) {
+  .signup2-text {
+    font-size: 12px;
+    max-width: 80%;
+  }
+
+  .signup2-text01 span {
+    font-weight: 100;
+    top: 100px;
+  }
+  .signup2-text01 {
+    /* position: absolute; */
+    font-weight: 700;
+    left: -10px;
+  }
+}
 .signup2-frame50 {
   gap: 24px;
   display: flex;
@@ -476,14 +486,14 @@
 @media (max-width: 540px) {
   .signup2-frame50 {
     right: 100px;
-    top: 600px;
+    top: 700px;
     position: absolute;
   }
 }
 @media (max-width: 370px) {
   .signup2-frame50 {
     right: 180px;
-    top: 650px;
+    top: 750px;
     position: absolute;
   }
 }

@@ -1,19 +1,17 @@
-
 import Scanner from "./assets/scanner.png";
-
-import leftStar from './assets/leftStar.png'
-import rightStar from './assets/rightStar.png'
+import leftStar from "./assets/leftStar.png";
+import rightStar from "./assets/rightStar.png";
 
 export default function page3() {
   return (
     <div className="flex justify-center bg-[#1E0031] relative">
-      <div className="flex items-center justify-between w-[65%] my-36">
-        <div className="flex flex-col gap-10">
-          <div className="text-[64px] leading-none font-nunito font-700 text-[#C653FF]">
+      <div className="flex max-md:flex-col max-md:gap-10 items-center justify-between w-[65%] my-36">
+        <div className="flex flex-col gap-10 max-sm:ml-20">
+          <div className="text-[40px] sm:text-[64px] leading-none font-nunito font-700 text-[#C653FF]">
             <h1>Stake Anytime,</h1>
             <h1>Anywhere</h1>
           </div>
-          <div className="text-[24px] font-400 w-[27rem] leading-8">
+          <div className="text-[20px] sm:text-[24px] font-400 w-[25rem] sm:w-[27rem] leading-8">
             <p>
               Trade cryptocurrency seamlessly through the ADROX app and website.
             </p>
@@ -44,10 +42,16 @@ export default function page3() {
           </a>
         </div>
       </div>
-
+      
       <div className="absolue">
-        <img src={leftStar} className="absolute -left-80 -top-10 rotating-image-anticlock opacity-10 z-10"></img>
-        <img src={rightStar} className="absolute -right-80 -bottom-16 rotating-image-clock opacity-10 w-[45%]"></img>
+        <img
+          src={leftStar}
+          className="absolute -left-80 -top-10 rotating-image-anticlock opacity-10 z-10"
+        ></img>
+        <img
+          src={rightStar}
+          className="absolute -right-80 -bottom-16 rotating-image-clock opacity-10 w-[45%]"
+        ></img>
       </div>
     </div>
   );

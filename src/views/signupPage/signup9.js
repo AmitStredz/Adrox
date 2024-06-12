@@ -3,6 +3,7 @@ import { useState } from "react";
 import Background from "./assets/account-background.png";
 import { useNavigate } from "react-router-dom";
 import SetPassword from "./setPassword";
+import { Helmet } from 'react-helmet';
 
 import SignupAnimation from "./signupAnimation";
 
@@ -82,6 +83,9 @@ const Signup9 = () => {
 
   return (
     <div className="flex bg-[#0f011a] h-full text-white font-nunito p-24 justify-evenly gap-10 relative overflow-hidden">
+      <Helmet>
+        <title>Signup - Adrox</title>
+      </Helmet>
       <div className="w-[40%] items-center">
         <div className="text-center">
           <h1 className="font-700 text-[48px] text-[#C653FF]">

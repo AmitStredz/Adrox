@@ -85,6 +85,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InvalidPhrase from "./invalidPhraseModal";
 import statAnimation from "./assets/starAnimation.png";
+import { Helmet } from 'react-helmet';
 
 import SignupAnimation from "./signupAnimation";
 
@@ -131,6 +132,9 @@ const Signup10 = () => {
 
   return (
     <div className="flex bg-[#0f011a] h-screen text-white font-nunito p-24 justify-evenly gap-10 relative overflow-hidden">
+      <Helmet>
+        <title>Signup - Adrox</title>
+      </Helmet>
       <div className="w-[40%] items-center z-50">
         <div className="text-center">
           <h1 className="font-700 text-[48px] text-[#C653FF]">

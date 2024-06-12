@@ -311,7 +311,7 @@ const Signup5 = () => {
   return (
     <div className="signup5-container">
       <Helmet>
-        <title>exported project</title>
+        <title>Secret Recovery Phrase</title>
       </Helmet>
       <div className="signup5-signup5">
         <div className="signup5-frame57"></div>

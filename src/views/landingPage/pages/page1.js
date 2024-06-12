@@ -31,11 +31,11 @@ export default function page1() {
   return (
     <div className="relative">
       <div
-        className="flex items-center bg-center bg-no-repeat h-[100vh] mt-40 justify-center gap-10 "
+        className="flex max-sm:flex-col items-center bg-center bg-no-repeat h-[100vh] mt-20 sm:mt-40 justify-center gap-10 "
         // style={{ backgroundImage: `url(${svg})` }}
       >
         <img src={Scanner} alt="scanner" className="w-56 z-50" />
-        <div className="flex flex-col leading-tight text-[56px] font-700 gap-7 z-50">
+        <div className="flex flex-col max-sm:text-center leading-tight text-[56px] font-700 gap-7 z-50 max-sm:items-center">
           <div>
             <h1 className="gradient-text ">
               Lorem <span>ipsum</span>
@@ -66,36 +66,38 @@ export default function page1() {
       {/* <div className="flex justify-center items-center top-0  absolute w-full">
         <img src={globe} alt="Animation" className="w-[80%]" />
         </div> */}
-      <div className="absolute top-20 left-0 flex justify-center items-center w-full">
-        <img src={svg2} className=""></img>
-      </div>
-      <div className="absolute top-10 -left-10 flex justify-center items-center w-full">
-        <img
-          src={vector1}
-          alt="Animation"
-          className="w-[45%] rotating-image-clock opacity-50"
-        />
-      </div>
-      <div className="absolute top-10 -left-10 flex justify-center items-center w-full">
-        <img
-          src={vector2}
-          alt="Animation"
-          className="w-[45%] scale-[-1] rotating-image-clock rotating-scale  opacity-50"
-        />
-      </div>
-      <div className="absolute top-10 -left-10 flex justify-center items-center w-full">
+      <div className="absolute flex justify-center items-center h-screen w-screen top-0 left-0">
+        <div className="absolute -top-10 left-0 flex justify-center items-center w-full">
+          <img src={svg2} className=""></img>
+        </div>
+        <div className="absolute scale-100 max-md:scale-[2] max-lg:scale-150 flex justify-center items-center w-full">
+          <img
+            src={vector1}
+            alt="Animation"
+            className="w-[45%] rotating-image-clock opacity-50"
+          />
+        </div>
+        <div className="absolute scale-100 max-md:scale-[2] max-lg:scale-150 flex justify-center items-center w-full">
+          <img
+            src={vector2}
+            alt="Animation"
+            className="w-[45%] rotating-image-clock rotating-scale  opacity-50"
+          />
+        </div>
+        <div className="absolute scale-100 max-md:scale-[2] max-lg:scale-150 flex justify-center items-center w-full">
         <img
           src={vector3}
           alt="Animation"
           className="w-[45%] rotating-image-anticlock opacity-50"
         />
       </div>
-      <div className="absolute top-10 -left-10 flex justify-center items-center w-full">
+      <div className="absolute scale-100 max-md:scale-[2] max-lg:scale-150 flex justify-center items-center w-full">
         <img
           src={vector4}
           alt="Animation"
           className="w-[45%] rotating-image-anticlock opacity-50"
         />
+      </div>
       </div>
       {/* <div>
           <img src={vector6} alt="Animation" className="w-[80%]" />

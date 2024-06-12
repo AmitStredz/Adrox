@@ -12,7 +12,7 @@ const Signup6 = (props) => {
   };  return (
     <div className="signup6-container">
       <Helmet>
-        <title>exported project</title>
+        <title>Secret Recovery Phrase</title>
       </Helmet>
       <div className="signup6-signup6">
         <div className="signup6-frame57"></div>

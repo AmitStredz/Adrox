@@ -9,14 +9,14 @@ export default function page4() {
     <div className="relative">
       <div className="mt-52">
         {/* Heading */}
-        <div className="text-center text-[56px] font-800 leading-14">
+        <div className="text-center text-[40px] sm:text-[56px] font-800 leading-14">
           <h1>Explore Adrox</h1>
           <h1 className="text-[#C653FF]">Products & Services</h1>
         </div>
 
         {/* Grid container */}
         <div className="flex justify-center p-24 ">
-          <div className="grid grid-cols-2 gap-24">
+          <div className="flex flex-col gap-5 md:grid md:grid-cols-2 md:gap-24">
             {/* Grid 1 */}
             <div className="bg-slate-500 bg-opacity-20 w-[22rem] rounded-2xl p-9 px-16 items-center flex flex-col gap-4 z-50">
               <img src={grid1} alt="" className="object-cover w-24" />
