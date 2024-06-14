@@ -5,6 +5,7 @@ import stroke from "./assets/strokeEffect.png";
 import ellipse from "./assets/ellipse.png";
 import dollar from "./assets/dollarBlue.png";
 import Modal from "./sucessModal";
+import Cookies from "js-cookie";
 
 export default function Deposit() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Deposit() {
   //   }
   // }, []);
 
-  const WalletId = localStorage.getItem("wallet_id");
+  const WalletId = Cookies.get("wallet_id");
   console.log("WalletId: ", WalletId);
 
   const handleDeposit = async () => {
@@ -39,7 +40,7 @@ export default function Deposit() {
         }
       );
 
-      localStorage.setItem("balance", response.data.balance);
+      Cookies.set("balance", response.data.balance);
 
       if (response.status === 200) {
         setShowModal(true);

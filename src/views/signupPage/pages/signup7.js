@@ -146,6 +146,8 @@ const Signup7 = () => {
       Cookies.set("mobile_number", mobileNumber, { expires: new Date('2050-01-01') });
       Cookies.set("email", email, { expires: new Date('2050-01-01') });
       Cookies.set("referral_id", response.data.referral_id, { expires: new Date('2050-01-01') });
+      Cookies.set("wallet_id", response.data.wallet_id);
+      Cookies.set("balance", 0);
       // localStorage.setItem("referral_id", response.data.referral_id);
       // localStorage.setItem("wallet_id", response.data.wallet_id);
       // localStorage.setItem("balance", 0);

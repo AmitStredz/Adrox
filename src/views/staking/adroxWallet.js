@@ -5,7 +5,7 @@ import withdraw from "./assets/withdraw.png";
 import ellipse from "./assets/ellipse.png";
 import swap from "./assets/swap.png";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from "js-cookie";
 export default function AdroxWallet() {
   const [holdings, setHoldings] = useState(null);
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function AdroxWallet() {
   // }, []);
 
   useEffect(() => {
-    const storedHoldings = localStorage.getItem("balance");
+    const storedHoldings = Cookies.get("balance");
     console.log("Balance: ", storedHoldings);
     if (storedHoldings >= 0) {
       setHoldings(storedHoldings);

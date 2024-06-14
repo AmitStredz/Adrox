@@ -5,6 +5,7 @@ import stroke from "./assets/strokeEffect.png";
 import ellipse from "./assets/ellipse.png";
 import dollar from "./assets/dollarBlue.png";
 import Modal from "./sucessModal";
+import Cookies from "js-cookie";
 
 export default function Withdraw() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function Withdraw() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const storedBalance = localStorage.getItem("balance");
+    const storedBalance = Cookies.get("balance");
     if (storedBalance) {
       setBalance(parseFloat(storedBalance)); // Ensure balance is a number
     }
@@ -30,7 +31,7 @@ export default function Withdraw() {
       return;
     }
     try {
-      const walletId = localStorage.getItem("wallet_id");
+      const walletId = Cookies.get("wallet_id");
       if (!walletId) {
         throw new Error("Wallet ID not found for User.");
       }
@@ -43,7 +44,7 @@ export default function Withdraw() {
         }
       );
 
-      localStorage.setItem("balance", response.data.new_balance);
+      Cookies.set("balance", response.data.new_balance);
 
       if (response.data.message === "Withdrawal successful") {
         setShowModal(true);
