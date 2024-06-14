@@ -7,17 +7,18 @@ import dollarBlue from "./assets/dollarBlue.png";
 import starBlue from "./assets/starBlue.png";
 import swap from "./assets/swapBlue.png";
 
-export default function Swap() {
+const Swap = ({ onClose }) => {
   const history = useNavigate();
   return (
-    <div className="bg-[#0F011A]  font-nunito text-white overflow-hidden flex items-center justify-center relative">
-      <div className="flex justify-center w-full z-[1000] backdrop:blur-sm">
-        <div className="flex flex-col gap-10 my-20 bg-slate-600 bg-opacity-15 p-14 rounded-3xl w-5/12 z-50">
+    // <div className="bg-[#0F011A]  font-nunito text-white overflow-hidden flex items-center justify-center relative">
+    <div className="flex justify-center h-full w-full z-[1000] backdrop:blur-sm fixed top-0 left-0 backdrop-blur-xl">
+      <div className="w-full h-full flex justify-center overflow-auto">
+        <div className="flex flex-col gap-10 my-20  bg-gradient-to-r from-[#210F34] to-[#170D25] p-14 rounded-3xl w-5/12 z-[5000] h-full">
           <div className="flex items-center justify-between">
             <h1 className="font-700 text-[48px]">Swap Tokens</h1>
             <i
               className="ri-close-fill text-4xl cursor-pointer hover:scale-105"
-              onClick={() => history("/wallet")}
+              onClick={onClose}
             ></i>
           </div>
 
@@ -69,13 +70,16 @@ export default function Swap() {
           </div>
         </div>
       </div>
-
-      <div className="absolute right-0 top-[25rem]">
-        <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
-      </div>
-      <div className="absolute left-[-30%] w-[80%] top-[5rem]">
-        <img src={ellipse} alt="ellipse" />
-      </div>
     </div>
+
+    //   <div className="absolute right-0 top-[25rem]">
+    //     <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
+    //   </div>
+    //   <div className="absolute left-[-30%] w-[80%] top-[5rem]">
+    //     <img src={ellipse} alt="ellipse" />
+    //   </div>
+    // </div>
   );
-}
+};
+
+export default Swap;

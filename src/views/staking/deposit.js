@@ -7,7 +7,7 @@ import dollar from "./assets/dollarBlue.png";
 import Modal from "./sucessModal";
 import Cookies from "js-cookie";
 
-export default function Deposit() {
+const Deposit = ({ onClose }) => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState(""); // State for deposit amount
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
@@ -40,12 +40,15 @@ export default function Deposit() {
         }
       );
 
+      console.log("Amount: ", amount);
       Cookies.set("balance", response.data.balance);
 
       if (response.status === 200) {
         setShowModal(true);
         setTimeout(() => {
-          navigate("/wallet");
+          setShowModal(false);
+          onClose();
+          // navigate("/wallet");
         }, 2000);
       } else {
         alert("No response");
@@ -59,52 +62,55 @@ export default function Deposit() {
   };
 
   return (
-    <div className="bg-[#0F011A] h-screen font-nunito text-slate-300 overflow-hidden flex items-center justify-center relative">
-      <div className="flex justify-center w-full">
-        <div className="flex flex-col gap-10 my-20 bg-slate-600 bg-opacity-15 p-14 rounded-3xl w-5/12 z-50">
-          <div className="flex justify-end">
-            <i
-              className="ri-close-fill text-3xl cursor-pointer hover:scale-105"
-              onClick={() => navigate("/wallet")}
-            ></i>
+    // <div className="bg-[#0F011A] h-screen font-nunito text-slate-300 overflow-hidden flex items-center justify-center relative">
+    <div className="flex justify-center w-full fixed top-0 left-0 backdrop-blur-xl z-[100] h-screen">
+      <div className="flex flex-col gap-10 my-20 bg-gradient-to-r from-[#210F34] to-[#170D25] p-14 rounded-3xl w-5/12 z-50">
+        <div className="flex justify-end">
+          <i
+            className="ri-close-fill text-3xl cursor-pointer hover:scale-105"
+            onClick={onClose}
+          ></i>
+        </div>
+        <div>
+          <div className="flex justify-between p-2 px-5 ">
+            <p>Deposit Amount</p>
           </div>
-          <div>
-            <div className="flex justify-between p-2 px-5 ">
-              <p>Deposit Amount</p>
-            </div>
-            <div className="flex justify-between gap-5 border border-slate-600 rounded-2xl p-14">
-              <img src={dollar}></img>
-              <input
-                placeholder="Minimum 20 $"
-                type="number"
-                required
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                className="bg-transparent outline- text-4xl font-light w-full text-center outline-none"
-              ></input>
-            </div>
-          </div>
-          <div className="flex justify-center">
-            <button
-              className={`p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
-                isLoading ? "cursor-not-allowed" : ""
-              }`}
-              onClick={handleDeposit}
-              disabled={isLoading} // Disable button when loading
-            >
-              {isLoading ? "Depositing..." : "Deposit"}
-            </button>
+          <div className="flex justify-between gap-5 border border-slate-600 rounded-2xl p-14">
+            <img src={dollar}></img>
+            <input
+              placeholder="Minimum 20 $"
+              type="number"
+              required
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="bg-transparent outline- text-4xl font-light w-full text-center outline-none"
+            ></input>
           </div>
         </div>
+        <div className="flex justify-center">
+          <button
+            className={`p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
+              isLoading ? "cursor-not-allowed" : ""
+            }`}
+            onClick={handleDeposit}
+            disabled={isLoading} // Disable button when loading
+          >
+            {isLoading ? "Depositing..." : "Deposit"}
+          </button>
+        </div>
       </div>
-      <div className="absolute right-0 top-[25rem]">
-        <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
-      </div>
-      <div className="absolute left-[-30%] w-[80%] top-[5rem]">
-        <img src={ellipse} alt="ellipse" />
-      </div>
-
       {showModal && <Modal message="Deposit Successful" />}
     </div>
+    //   <div className="absolute right-0 top-[25rem]">
+    //     <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
+    //   </div>
+    //   <div className="absolute left-[-30%] w-[80%] top-[5rem]">
+    //     <img src={ellipse} alt="ellipse" />
+    //   </div>
+
+    //   {showModal && <Modal message="Deposit Successful" />}
+    // </div>
   );
-}
+};
+
+export default Deposit;

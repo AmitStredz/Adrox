@@ -7,7 +7,7 @@ import dollar from "./assets/dollarBlue.png";
 import Modal from "./sucessModal";
 import Cookies from "js-cookie";
 
-export default function Withdraw() {
+const Withdraw = ({ onClose }) => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState(""); // State for withdrawal amount
   const [withdrawalAddress, setWithdrawalAddress] = useState(""); // State for withdrawal address
@@ -49,7 +49,9 @@ export default function Withdraw() {
       if (response.data.message === "Withdrawal successful") {
         setShowModal(true);
         setTimeout(() => {
-          navigate("/wallet");
+          // navigate("/wallet");
+          onClose();
+          setShowModal(false);
         }, 2000);
       } else {
         alert("No response");
@@ -60,7 +62,7 @@ export default function Withdraw() {
         alert("Wallet not found");
       } else if (error.message === "Insufficient balance") {
         alert("Insufficient balance");
-      }else{
+      } else {
         alert("ami");
       }
       // alert("An error occurred. Please try again.");
@@ -70,13 +72,14 @@ export default function Withdraw() {
   };
 
   return (
-    <div className="bg-[#0F011A] font-nunito text-slate-300 overflow-hidden flex items-center justify-center relative">
-      <div className="flex justify-center w-full">
-        <div className="flex flex-col gap-10 my-20 bg-slate-600 bg-opacity-15 p-14 rounded-3xl w-5/12 z-50">
+    // <div className="bg-[#0F011A] font-nunito text-slate-300 overflow-hidden flex items-center justify-center relative">
+    <div className="flex justify-center w-full h-full fixed top-0 left-0 backdrop-blur-xl z-[100]">
+      <div className="w-full h-full flex items-center justify-center overflow-auto">
+        <div className="flex flex-col gap-10 my-20 p-14 rounded-3xl w-5/12 bg-gradient-to-r from-[#210F34] to-[#170D25] backdrop-blur-lg mt-[30rem]">
           <div className="flex justify-end">
             <i
               className="ri-close-fill text-3xl cursor-pointer hover:scale-105"
-              onClick={() => navigate("/wallet")}
+              onClick={onClose}
             ></i>
           </div>
           <div>
@@ -152,15 +155,19 @@ export default function Withdraw() {
           </div>
         </div>
       </div>
-
-      <div className="absolute right-0 top-[25rem]">
-        <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
-      </div>
-      <div className="absolute left-[-30%] w-[80%] top-[5rem]">
-        <img src={ellipse} alt="ellipse" />
-      </div>
-
       {showModal && <Modal message="Withdrawal Successful" />}
     </div>
+
+    //   <div className="absolute right-0 top-[25rem]">
+    //     <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
+    //   </div>
+    //   <div className="absolute left-[-30%] w-[80%] top-[5rem]">
+    //     <img src={ellipse} alt="ellipse" />
+    //   </div>
+
+    //   {showModal && <Modal message="Withdrawal Successful" />}
+    // </div>
   );
-}
+};
+
+export default Withdraw;
