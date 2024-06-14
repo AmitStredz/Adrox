@@ -606,25 +606,10 @@ import stroke from "./assets/strokeEffect.png";
 import ellipse from "./assets/ellipse.png";
 import Cookies from "js-cookie";
 
-const setInitialData = () => {
-  const currentStakeDate = new Date();
-  const currentRewardDate = new Date(currentStakeDate);
-  currentRewardDate.setMonth(currentStakeDate.getMonth() + 1); // Set reward collection date to one month later
-
-  const initialData = {
-    staked_usdt: "123",
-    lock_in_period: 1,
-    start_date: currentStakeDate.toISOString(),
-    end_date: currentRewardDate.toISOString(),
-  };
-
-  Cookies.set("stakingData", JSON.stringify(initialData));
-};
-
 export default function Staking1Month() {
-  useEffect(() => {
-    setInitialData();
-  }, []);
+//   useEffect(() => {
+//     setInitialData();
+//   }, []);
 
   const [usdt, setUsdt] = useState(150); // Initial value of USDT
   const [adx, setAdx] = useState(150 * 20.83); // Initial value of ADX based on conversion ratio
@@ -635,6 +620,21 @@ export default function Staking1Month() {
   const navigate = useNavigate();
 
   const handleButtonClick = async () => {
+    
+      const currentStakeDate = new Date();
+      const currentRewardDate = new Date(currentStakeDate);
+      currentRewardDate.setMonth(currentStakeDate.getMonth() + 1); // Set reward collection date to one month later
+
+      const initialData = {
+        staked_usdt: "123",
+        lock_in_period: 1,
+        start_date: currentStakeDate.toISOString(),
+        end_date: currentRewardDate.toISOString(),
+      };
+
+      Cookies.set("stakingData", JSON.stringify(initialData));
+    
+
     const userId = Cookies.get("user_id"); // Retrieve user_id from Cookies
 
     if (!userId) {
@@ -642,9 +642,9 @@ export default function Staking1Month() {
       return;
     }
 
-    const currentStakeDate = new Date();
+    // const currentStakeDate = new Date();
     console.log("CurrentStakeDate: ", currentStakeDate);
-    const currentRewardDate = new Date(currentStakeDate);
+    // const currentRewardDate = new Date(currentStakeDate);
     console.log("CurrentRewardDate: ", currentRewardDate);
     currentRewardDate.setMonth(currentStakeDate.getMonth() + 1); // Set reward collection date to one month later
 

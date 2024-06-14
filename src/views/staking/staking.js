@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 export default function Staking() {
-  const [stakingData, setStakingData] = useState(null);
+  // const [stakingData, setStakingData] = useState(null);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -15,16 +15,21 @@ export default function Staking() {
     seconds: 0,
     weeks: 0,
     months: 0,
-  });
+  }); 
 
+  const stakingData = JSON.parse(Cookies.get("stakingData"));
   useEffect(() => {
-    const data = JSON.parse(Cookies.get("stakingData"));
-    if (data) {
-      setStakingData(data);
+    if (stakingData) {
+      // setStakingData(data);
+      console.log("data: ", stakingData);
+    }else{
+      alert("stakingData not found.");
     }
   }, []);
 
   useEffect(() => {
+    const stakingData = JSON.parse(Cookies.get("stakingData"));
+
     if (stakingData) {
       const interval = setInterval(() => {
         const endDate = new Date(stakingData.end_date);
@@ -46,6 +51,9 @@ export default function Staking() {
       }, 1000);
 
       return () => clearInterval(interval);
+    }else{
+      console.log("StakingData: ", stakingData);
+      alert("No stakingData found.");
     }
   }, [stakingData]);
 
