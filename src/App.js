@@ -1,20 +1,24 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch, Routes } from "react-router-dom";
+import React, {useEffect} from "react";
+import { BrowserRouter as Router, Route, Switch, Routes, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
+import Cookies from "js-cookie";
 import LandingPage from "./views/landingPage/landingPage";
-import NotFound from './views/signupPage/not-found';
-import Signup1 from './views/signupPage/signup1';
-import Signup2 from './views/signupPage/signup2';
-import Signup3 from './views/signupPage/signup3';
-import Signup4 from './views/signupPage/signup4';
-import Signup5 from './views/signupPage/signup5';
-import Signup6 from './views/signupPage/signup6';
-import Signup7 from './views/signupPage/signup7';
-import Signup8 from './views/signupPage/signup8';
-import Signup9 from './views/signupPage/signup9';
-import Signup10 from './views/signupPage/signup10';
-import Signup11 from './views/signupPage/signup11';
-import Signup12 from "./views/signupPage/signup12";
+import NotFound from './views/signupPage/pages/not-found';
+import Signup1 from './views/signupPage/pages/signup1';
+import Signup2 from './views/signupPage/pages/signup2';
+import Signup3 from './views/signupPage/pages/signup3';
+import Signup4 from './views/signupPage/pages/signup4';
+import Signup5 from './views/signupPage/pages/signup5';
+import Signup6 from './views/signupPage/pages/signup6';
+import Signup7 from './views/signupPage/pages/signup7';
+import Signup8 from './views/signupPage/pages/signup8';
+import Signup9 from './views/signupPage/pages/signup9';
+import Signup10 from './views/signupPage/pages/signup10';
+import Signup11 from './views/signupPage/pages/signup11';
+import Signup12 from "./views/signupPage/pages/signup12";
+
+import Signup from "./views/signupPage/signupFlow";
 
 import LoginRecovery from "./views/loginPage/loginRecovery";
 import LoginEmail from "./views/loginPage/loginEmail";
@@ -34,7 +38,29 @@ import Deposit from "./views/staking/deposit";
 import Swap from "./views/staking/swap";
 import Account from "./views/staking/account";
 
-export default function App() {
+const App = () => {
+
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const userId = Cookies.get('user_id');
+  //   const signupDone = Cookies.get('signupDone');
+
+  //   if (userId) {
+  //     if (signupDone === 'true') {
+  //       // Redirect to homepage if signup is done
+  //       navigate('/homePage');
+  //     } else {
+  //       // Redirect to signup flow if signup is not done
+  //       navigate('/signup');
+  //     }
+  //   } else {
+  //     // Redirect new users to the landing page
+  //     navigate('/landingPage');
+  //   }
+  // }, [navigate]); // Include navigate in the dependency array to fix eslint warning
+
+
   return (
     <Router>
       <Routes>
@@ -52,6 +78,8 @@ export default function App() {
         <Route path="/signup10" element={<Signup10/>} />
         <Route path="/signup11" element={<Signup11/>} />
         <Route path="/signup12" element={<Signup12/>} />
+
+        <Route path="/signup" element={<Signup/>} />
 
         <Route path="/LoginRecovery" element={<LoginRecovery/>} />
         <Route path="/LoginEmail" element={<LoginEmail/>} />
@@ -76,3 +104,5 @@ export default function App() {
     </Router>
   );
 }
+
+export default App;

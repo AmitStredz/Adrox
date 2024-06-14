@@ -7,7 +7,7 @@
 // const Signup5 = (props) => {
 //   return (
 //     <div className="signup5-container">
-//       <Helmet> 
+//       <Helmet>
 //         <title>exported project</title>
 //       </Helmet>
 //       <div className="signup5-signup5">
@@ -286,21 +286,24 @@ import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import "./signup5.css";
 import CopiedModal from "./copiedModal";
+import Cookies from "js-cookie";
 
-const Signup5 = () => {
+const Signup5 = ({onNextStep}) => {
   const [recoveryPhrase, setRecoveryPhrase] = useState([]);
   const navigate = useNavigate();
   const [clipBoard, setClipBoard] = useState("Copy to Clipboard");
   const [showModal, setShowModal] = useState(false);
 
+
   useEffect(() => {
-    const phrase = JSON.parse(localStorage.getItem("recoveryPhrase"));
+    const phrase = JSON.parse(Cookies.get("recoveryPhrase"));
     if (phrase) {
       setRecoveryPhrase(phrase);
     } else {
-      navigate("/signup4"); // Redirect to signup4 if no phrase found
+      // navigate("/signup4"); Redirect to signup4 if no phrase found
+      console.log("No phrase found");
     }
-  }, [navigate]); 
+  }, [navigate]);
 
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(recoveryPhrase.join(" "));
@@ -367,7 +370,7 @@ const Signup5 = () => {
           <div className="signup5-group91">
             <button
               className="signup5-buttons"
-              onClick={() => navigate("/signup7")}
+              onClick={onNextStep}
             >
               <span className="signup5-text14">
                 <span>Next</span>
@@ -405,7 +408,7 @@ const Signup5 = () => {
       </div>
 
       <div>
-        {showModal && <CopiedModal closeModal={() => setShowModal(false)}/>}
+        {showModal && <CopiedModal closeModal={() => setShowModal(false)} />}
       </div>
     </div>
   );

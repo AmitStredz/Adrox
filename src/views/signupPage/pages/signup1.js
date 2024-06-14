@@ -3,7 +3,7 @@ import { useHistory, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import './signup1.css';
 
-const Signup1 = (props) => {
+const Signup1 = ({onNextStep}) => {
   const [isChecked, setIsChecked] = useState(false);
   const history = useNavigate();
 
@@ -13,7 +13,7 @@ const Signup1 = (props) => {
 
   const handleButtonClick = () => {
     if (isChecked) {
-      history('/signup2');
+      onNextStep();
     }
   };
 

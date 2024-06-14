@@ -4,24 +4,32 @@ import deposit from "./assets/deposit.png";
 import withdraw from "./assets/withdraw.png";
 import ellipse from "./assets/ellipse.png";
 import swap from "./assets/swap.png";
-import Withdraw from "./withdraw";
 import { useNavigate } from "react-router-dom";
 
 export default function AdroxWallet() {
-  const [showModal, setShowModal] = useState(false);
   const [holdings, setHoldings] = useState(null);
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   // Replace this URL with the actual endpoint you are using
+  //   fetch("https://api.example.com/holdings")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setHoldings(data.holdings); // Adjust the property to match your API response
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching holdings data:", error);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    // Replace this URL with the actual endpoint you are using
-    fetch("https://api.example.com/holdings")
-      .then((response) => response.json())
-      .then((data) => {
-        setHoldings(data.holdings); // Adjust the property to match your API response
-      })
-      .catch((error) => {
-        console.error("Error fetching holdings data:", error);
-      });
+    const storedHoldings = localStorage.getItem("balance");
+    console.log("Balance: ", storedHoldings);
+    if (storedHoldings >= 0) {
+      setHoldings(storedHoldings);
+    } else {
+      setHoldings(0); // Default value if no holdings are found in localStorage
+    }
   }, []);
 
   return (
@@ -35,7 +43,7 @@ export default function AdroxWallet() {
           </div>
           <div>
             <p className="font-800 text-[52px]">
-              {holdings !== null ? `$${holdings} USD` : "Loading..."}
+              {holdings !== null ? `$${parseFloat(holdings).toFixed(2)} USD` : "Loading..."}
             </p>
           </div>
           <div className="flex gap-5 z-50">

@@ -1,29 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import stroke from "./assets/strokeEffect.png";
 import ellipse from "./assets/ellipse.png";
 import dollar from "./assets/dollarBlue.png";
+import Modal from "./sucessModal";
 
-export default function Deposit({ closeModal }) {
+export default function Deposit() {
   const navigate = useNavigate();
-  const [walletId, setWalletId] = useState(""); // State for wallet ID
   const [amount, setAmount] = useState(""); // State for deposit amount
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
+  const [showModal, setShowModal] = useState(false);
+
+  // useEffect(() => {
+  //   const storedWalletId = localStorage.getItem("wallet_id");
+  //   if (storedWalletId) {
+  //     setWalletId(storedWalletId);
+  //   }
+  // }, []);
+
+  const WalletId = localStorage.getItem("wallet_id");
+  console.log("WalletId: ", WalletId);
 
   const handleDeposit = async () => {
-    setIsLoading(true); // Set loading to true while API call is made
+    setIsLoading(true);
 
+    if (amount < 20) {
+      alert("Minimum Deposit Amount: 20$");
+      setIsLoading(false);
+      return;
+    }
     try {
-      const response = await axios.post("https://adrox-89b6c88377f5.herokuapp.com/api/wallet/deposit/", {
-        wallet_id: walletId,
-        amount: amount,
-      });
+      const response = await axios.post(
+        "https://adrox-89b6c88377f5.herokuapp.com/api/wallet/deposit/",
+        {
+          wallet_id: WalletId,
+          amount: amount,
+        }
+      );
+
+      localStorage.setItem("balance", response.data.balance);
 
       if (response.status === 200) {
-        navigate("/wallet");
+        setShowModal(true);
+        setTimeout(() => {
+          navigate("/wallet");
+        }, 2000);
       } else {
-        alert("Deposit failed. Please try again.");
+        alert("No response");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -40,7 +64,7 @@ export default function Deposit({ closeModal }) {
           <div className="flex justify-end">
             <i
               className="ri-close-fill text-3xl cursor-pointer hover:scale-105"
-              onClick={() => navigate('/wallet')}
+              onClick={() => navigate("/wallet")}
             ></i>
           </div>
           <div>
@@ -61,7 +85,9 @@ export default function Deposit({ closeModal }) {
           </div>
           <div className="flex justify-center">
             <button
-              className={`p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${(isLoading) ? "cursor-not-allowed" : ""}`}
+              className={`p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
+                isLoading ? "cursor-not-allowed" : ""
+              }`}
               onClick={handleDeposit}
               disabled={isLoading} // Disable button when loading
             >
@@ -76,6 +102,8 @@ export default function Deposit({ closeModal }) {
       <div className="absolute left-[-30%] w-[80%] top-[5rem]">
         <img src={ellipse} alt="ellipse" />
       </div>
+
+      {showModal && <Modal message="Deposit Successful" />}
     </div>
   );
 }

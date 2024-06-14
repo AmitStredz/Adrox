@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory, useNavigate } from "react-router-dom";
-import Background from "./assets/account-background.png";
+import Background from "../assets/account-background.png";
 import { Helmet } from 'react-helmet';
 
 export default function Signup12() {

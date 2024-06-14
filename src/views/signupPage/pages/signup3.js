@@ -127,11 +127,10 @@ import { useHistory, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet'; 
 import './signup3.css';
 
-const Signup3 = (props) => {
-  const history = useNavigate();
+const Signup3 = ({onNextStep}) => {
 
   const handleSecureMyWalletClick = () => {
-    history('/signup4');
+    onNextStep();
   };
 
   return (

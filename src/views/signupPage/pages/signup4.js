@@ -178,8 +178,10 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import "./signup4.css";
+import Cookies from "js-cookie";
 
-const Signup4 = () => { 
+
+const Signup4 = ({onNextStep}) => { 
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -212,11 +214,17 @@ const Signup4 = () => {
 
       if (data.phrase && data.user_id) {
         const phraseArray = data.phrase.split(" ");
-        localStorage.setItem("recoveryPhrase", JSON.stringify(phraseArray));
-        localStorage.setItem("user_id", data.user_id); // Store user_id in localStorage
+
+        Cookies.set("recoveryPhrase", JSON.stringify(phraseArray), { secure: true, sameSite: 'Strict' });
+        Cookies.set("user_id", data.user_id, { secure: true, sameSite: 'Strict' });
+        Cookies.set("signupDone", false);
+
+        // localStorage.setItem("recoveryPhrase", JSON.stringify(phraseArray));
+        // localStorage.setItem("user_id", data.user_id); // Store user_id in localStorage
+
         console.log("Phrase and user_id stored in localStorage", phraseArray, data.user_id);
         console.log('User_Id: ', data.user_id);
-        navigate("/signup5");
+        onNextStep();
         console.log("Navigated to signup5");
       } else {
         console.error("Phrase or user_id is missing in the response:", data);

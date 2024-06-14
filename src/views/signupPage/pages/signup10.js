@@ -84,9 +84,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InvalidPhrase from "./invalidPhraseModal";
-import statAnimation from "./assets/starAnimation.png";
+import statAnimation from "../assets/starAnimation.png";
 import { Helmet } from 'react-helmet';
-
+import Cookies from "js-cookie";
 import SignupAnimation from "./signupAnimation";
 
 const Signup10 = () => {
@@ -113,9 +113,9 @@ const Signup10 = () => {
   };
 
   const handleButtonClick = () => {
-    const storedPhrase = JSON.parse(localStorage.getItem("recoveryPhrase"));
+    const storedPhrase = JSON.parse(Cookies.get("recoveryPhrase"));
     const inputPhrase = phraseInputs.join(" ");
-    const userId = localStorage.getItem("user_id");
+    const userId = Cookies.get("user_id");
 
     console.log("user_id", userId);
 

@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import Background from "./assets/account-background.png";
+import Background from "../assets/account-background.png";
 import { useNavigate } from "react-router-dom";
 import SetPassword from "./setPassword";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
+import Cookies from "js-cookie";
 
 import SignupAnimation from "./signupAnimation";
 
@@ -14,7 +15,6 @@ const Signup9 = () => {
   const [isEqual, setIsEqual] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [passwordModal, setPasswordModal] = useState(false);
-
 
   const navigate = useNavigate();
 
@@ -40,7 +40,9 @@ const Signup9 = () => {
       return;
     }
 
-    const userId = localStorage.getItem("user_id"); // Retrieve user_id from localStorage
+    const userId = Cookies.get("user_id");
+    // const userId = localStorage.getItem("user_id"); // Retrieve user_id from localStorage
+
     console.log("user_id", userId);
 
     // Mock API call to set password
@@ -65,9 +67,9 @@ const Signup9 = () => {
       // Check if API call was successful
       if (response.ok && data.message === "Password set successfully.") {
         setPasswordModal(true);
-          setTimeout(() => {
-            navigate("/signup10");
-          }, 2000);
+        setTimeout(() => {
+          navigate("/signup10");
+        }, 2000);
       } else {
         // Handle error response from the API
         console.error(data.error); // Log the error message
@@ -117,7 +119,7 @@ const Signup9 = () => {
             <h1 className="font-700 text-[36px]">Create Account</h1>
             <input
               type="text"
-              value={localStorage.getItem("full_name")}
+              value={Cookies.get("full_name")}
               placeholder="Name"
               readOnly
               className="bg-transparent border-b-2 pb-2 outline-none"
@@ -125,7 +127,7 @@ const Signup9 = () => {
             <div className=" flex justify-between border-b-2 pb-2 ">
               <input
                 type="text"
-                value={localStorage.getItem("mobile_number")}
+                value={Cookies.get("mobile_number")}
                 placeholder="Mobile Number"
                 readOnly
                 className="bg-transparent outline-none"
@@ -135,7 +137,7 @@ const Signup9 = () => {
             <div className=" flex justify-between border-b-2 pb-2">
               <input
                 type="email"
-                value={localStorage.getItem("email")}
+                value={Cookies.get("email")}
                 placeholder="Email Id"
                 readOnly
                 className="bg-transparent outline-none"
@@ -180,7 +182,7 @@ const Signup9 = () => {
                 If you don't have a referral code, please use the one below
               </p>
               <span className="text-[16px] font-500 text-[#C653FF]">
-                {localStorage.getItem("referral_id")}
+                {Cookies.get("referral_id")}
               </span>
             </div>
 
@@ -207,7 +209,7 @@ const Signup9 = () => {
         <img src="/ellipse.png" alt="hello"></img>
       </div>
       <div className="absolute top-0 left-0">
-        {passwordModal && <SetPassword/>}
+        {passwordModal && <SetPassword />}
       </div>
     </div>
   );

@@ -1,25 +1,65 @@
-import React from "react";
-import { useHistory, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Background from "./assets/account-background.png";
 import logo from "./assets/adrox-logo2.png";
+import InvalidPopup from "./incorrectPhraseModal"; // Assuming you have a Popup component
+import ValidPopup from "./correctPhraseModal"; // Assuming you have a Popup component
 
 export default function Login1() {
-  const history = useNavigate();
+  const navigate = useNavigate();
+  const [phrase, setPhrase] = useState(Array(12).fill(""));
+  const [showInvalidPopup, setShowInvalidPopup] = useState(false);
+  const [showValidPopup, setShowValidPopup] = useState(false);
 
-  const handleEmailClick = () => {
-    history("/loginEmail");
+  const handlePaste = (event) => {
+    event.preventDefault();
+    const paste = event.clipboardData.getData("text");
+    const words = paste.split(/\s+/).slice(0, 12);
+
+    if (words.length === 12) {
+      setPhrase(words);
+    } else {
+      alert("Please paste exactly 12 words.");
+    }
   };
-  const handlePhoneClick = () => {
-    history("/loginPhone");
+
+  const handleInputChange = (index, value) => {
+    const newPhrase = [...phrase];
+    newPhrase[index] = value;
+    setPhrase(newPhrase);
   };
-  const handleSignUp = () => {
-    history("/signup1");
+
+  const handleLoginClick = async () => {
+    const recoveryPhrase = phrase.join(" ");
+    try {
+      const response = await fetch(
+        "https://adrox-89b6c88377f5.herokuapp.com/api/users/login/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ phrase: recoveryPhrase }),
+        }
+      );
+
+      if (response.ok) {
+        setShowValidPopup(true);
+        setTimeout(() => {
+          navigate("/homePage");
+        }, 2000);
+      } else {
+        setShowInvalidPopup(true);
+      }
+    } catch (error) {
+      setShowInvalidPopup(true);
+    }
   };
-  const handleLoginClick = () => {
-    history("/homePage");
-  };
+
   return (
     <div className="flex bg-[#0f011a] h-full text-white font-nunito p-24 justify-center overflow-hidden relative">
+      {showInvalidPopup && <InvalidPopup closeModal={() => setShowInvalidPopup(false)} />}
+      {showValidPopup && <ValidPopup />}
       <div className="">
         <div className="flex flex-col items-center bg-slate-400 bg-opacity-10 w-[40rem] p-16 rounded-2xl">
           <div className="flex justify-between w-full items-end z-50">
@@ -32,24 +72,24 @@ export default function Login1() {
               Enter Your Recovery Phrase
             </h1>
 
-            <div className="grid grid-cols-4 gap-8 border border-slate-500 p-5 justify-center items-center text-center rounded-2xl z-50">
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
-              <input className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"></input>
+            <div
+              className="grid grid-cols-4 gap-8 border border-slate-500 p-5 justify-center items-center text-center rounded-2xl z-50"
+              onPaste={handlePaste}
+            >
+              {phrase.map((word, index) => (
+                <input
+                  key={index}
+                  value={word}
+                  onChange={(e) => handleInputChange(index, e.target.value)}
+                  className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"
+                />
+              ))}
             </div>
 
             <div className="text-center z-50">
               <button
-                className="p-2 px-20 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer " onClick={handleLoginClick}
+                className="p-2 px-20 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+                onClick={handleLoginClick}
               >
                 Login
               </button>
@@ -57,20 +97,38 @@ export default function Login1() {
           </div>
 
           <div className="text-center gap-5 flex flex-col z-50">
-            <h1 className="font-100">---------------<span className="font-400">Alternative login methods</span>----------------</h1>
+            <h1 className="font-100">
+              ---------------
+              <span className="font-400">Alternative login methods</span>
+              ----------------
+            </h1>
             <div className="flex text-center justify-between">
-              <div className="flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer " onClick={handleEmailClick}>
-                <i class="ri-mail-line"></i>
+              <div
+                className="flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer"
+                onClick={() => navigate("/loginEmail")}
+              >
+                <i className="ri-mail-line"></i>
                 <p>Email</p>
               </div>
-              <div className="flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer" onClick={handlePhoneClick}>
-                <i class="ri-smartphone-line"></i>
+              <div
+                className="flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer"
+                onClick={() => navigate("/loginPhone")}
+              >
+                <i className="ri-smartphone-line"></i>
                 <p>Phone Number</p>
               </div>
             </div>
 
             <div className="text-[16px] font-300">
-              <p>Don't have an account? <span className="underline font-700 hover:font-800 cursor-pointer" onClick={handleSignUp}>Sign up now</span></p>
+              <p>
+                Don't have an account?{" "}
+                <span
+                  className="underline font-700 hover:font-800 cursor-pointer"
+                  onClick={() => navigate("/signup1")}
+                >
+                  Sign up now
+                </span>
+              </p>
             </div>
           </div>
         </div>

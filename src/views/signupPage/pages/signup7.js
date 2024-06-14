@@ -86,10 +86,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./animateLogo.css";
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet";
+import Cookies from "js-cookie";
 
-import Background from "./assets/account-background.png";
-import statAnimation from "./assets/starAnimation.png";
+import Background from "../assets/account-background.png";
+import statAnimation from "../assets/starAnimation.png";
 
 import SignupAnimation from "./signupAnimation";
 
@@ -105,18 +106,22 @@ const Signup7 = () => {
     const validateForm = () => {
       const phoneRegex = /^[0-9]{10}$/;
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const isNameValid = fullName.trim() !== "";
 
-      setIsFormValid(phoneRegex.test(mobileNumber) && emailRegex.test(email));
+      setIsFormValid(
+        phoneRegex.test(mobileNumber) && emailRegex.test(email) && isNameValid
+      );
     };
 
     validateForm();
-  }, [mobileNumber, email]);
+  }, [mobileNumber, email, fullName]);
 
   const handleButtonClick = async () => {
     if (isLoading) return; // Prevent multiple clicks
     setIsLoading(true);
 
-    const userId = localStorage.getItem("user_id");
+    // const userId = localStorage.getItem("user_id");
+    const userId = Cookies.get("user_id");
 
     const data = {
       full_name: fullName,
@@ -125,22 +130,30 @@ const Signup7 = () => {
       user_id: userId,
     };
 
-    console.log("user_id", userId);
+    console.log("user_id: ", userId);
 
     try {
       const response = await axios.post(
         "https://adrox-89b6c88377f5.herokuapp.com/api/users/store-profile/",
         data
       );
-      localStorage.setItem("mobile_otp", response.data.mobile_otp);
-      localStorage.setItem("email_otp", response.data.email_otp);
-      localStorage.setItem("full_name", fullName);
-      localStorage.setItem("mobile_number", mobileNumber);
-      localStorage.setItem("email", email);
-      localStorage.setItem("referral_id", response.data.referral_id);
+      // localStorage.setItem("mobile_otp", response.data.mobile_otp);
+      // localStorage.setItem("email_otp", response.data.email_otp);
+      // localStorage.setItem("full_name", fullName);
+      // localStorage.setItem("mobile_number", mobileNumber);
+      // localStorage.setItem("email", email);
+      Cookies.set("full_name", fullName, { expires: new Date('2050-01-01') });
+      Cookies.set("mobile_number", mobileNumber, { expires: new Date('2050-01-01') });
+      Cookies.set("email", email, { expires: new Date('2050-01-01') });
+      Cookies.set("referral_id", response.data.referral_id, { expires: new Date('2050-01-01') });
+      // localStorage.setItem("referral_id", response.data.referral_id);
+      // localStorage.setItem("wallet_id", response.data.wallet_id);
+      // localStorage.setItem("balance", 0);
 
-      console.log("mobile_otp", response.data.mobile_otp);
-      console.log("email_otp", response.data.email_otp);
+      // Cookies.set("mobile_otp: ", response.data.mobile_otp, { secure: true, sameSite: 'Strict' });
+      // Cookies.set("email_otp: ", response.data.email_otp, { secure: true, sameSite: 'Strict' });
+      console.log("mobile_otp: ", response.data.mobile_otp);
+      console.log("email_otp: ", response.data.email_otp);
       // alert(JSON.stringify(response.data));
 
       navigate("/signup8");
@@ -166,7 +179,7 @@ const Signup7 = () => {
             Just A Couple Of Clicks And We Start
           </p>
         </div>
-          <SignupAnimation></SignupAnimation>
+        <SignupAnimation></SignupAnimation>
       </div>
 
       {/* Signup7 is this */}

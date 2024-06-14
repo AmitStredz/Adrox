@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import OtpIsValid from "./optIsValid";
 import SignupAnimation from "./signupAnimation";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
+import Cookies from "js-cookie";
 
-import { PhoneMissed } from "lucide-react";
+import InvalidOtp from "./invalidOtp";
+
+import { CookieIcon, PhoneMissed } from "lucide-react";
 
 const Signup8 = () => {
   const [phoneOtp, setPhoneOtp] = useState("");
@@ -71,53 +74,51 @@ const Signup8 = () => {
     }
   };
 
+  const userId = Cookies.get("user_id");
+
   const handleButtonClick = async () => {
     if (isLoading) return; // Prevent multiple clicks
     setIsLoading(true);
 
-    const userId = localStorage.getItem("user_id");
-    const storedPhoneOtp = localStorage.getItem("mobile_otp");
-    const storedEmailOtp = localStorage.getItem("email_otp");
+    // const userId = localStorage.getItem("user_id");
+    // const storedPhoneOtp = localStorage.getItem("mobile_otp");
+    // const storedEmailOtp = localStorage.getItem("email_otp");
+    // const storedPhoneOtp = Cookies.get("mobile_otp");
+    // const storedEmailOtp = Cookies.get("email_otp");
 
-    console.log("user_id", userId);
+    // console.log("storedPhoneOtp: ", storedPhoneOtp);
+    // console.log("storedEmailOtp: ", storedEmailOtp);
+    console.log("user_id: ", userId);
+    console.log("PhoneOtp: ", phoneOtp);
+    console.log("EmailOtp: ", emailOtp);
 
-    console.log("storedPhoneOtp: ", storedPhoneOtp);
-    console.log("phoneOtp: ", phoneOtp);
-    console.log("storedEmailOtp: ", storedEmailOtp);
-    console.log('emailOtp" ', emailOtp);
-
-    if (phoneOtp === storedPhoneOtp && emailOtp === storedEmailOtp) {
-      try {
-        const response = await axios.post(
-          "https://adrox-89b6c88377f5.herokuapp.com/api/users/verify-otp/",
-          {
-            user_id: userId,
-            mobile_otp: phoneOtp,
-            email_otp: emailOtp,
-          }
-        );
-
-        if (response.data.message === "OTP verification successful.") {
-          setOtpIsValid(true);
-          setOtpModal(true);
-          setTimeout(() => {
-            navigate("/signup9");
-          }, 2000);
-        } else {
-          setOtpIsValid(false);
-          alert("Invalid OTPs.");
+    try {
+      const response = await axios.post(
+        "https://adrox-89b6c88377f5.herokuapp.com/api/users/verify-otp/",
+        {
+          user_id: userId,
+          mobile_otp: phoneOtp,
+          email_otp: emailOtp,
         }
-      } catch (error) {
+      );
+
+      if (response.data.message === "OTP verification successful.") {
         setOtpIsValid(true);
-        console.error("Error:", error);
-        alert("Error: Unable to verify OTPs. Please try again.");
-      } finally {
-        setIsLoading(false);
+        setOtpModal(true);
+        setTimeout(() => {
+          navigate("/signup9");
+        }, 2000);
+      } else {
+        setOtpIsValid(false);
+        alert("Invalid OTPs.");
       }
-    } else {
+    } catch (error) {
+      setOtpIsValid(true);
       setOtpIsValid(false);
+      console.error("Error:", error);
+      // alert("Error: Invalid OTPs");
+    } finally {
       setIsLoading(false);
-      alert("Invalid OTPs. Please enter the correct OTPs.");
     }
   };
 
@@ -158,14 +159,14 @@ const Signup8 = () => {
               type="text"
               readOnly
               placeholder="Name"
-              value={localStorage.getItem("full_name")}
+              value={Cookies.get("full_name")}
               className="bg-transparent border-b-2 pb-2 outline-none cursor-not-allowed"
             ></input>
 
             <input
               type="text"
               readOnly
-              value={localStorage.getItem("mobile_number")}
+              value={Cookies.get("mobile_number")}
               placeholder="Mobile Number"
               className="bg-transparent border-b-2 pb-2 outline-none cursor-not-allowed"
             ></input>
@@ -207,7 +208,7 @@ const Signup8 = () => {
             <input
               type="email"
               readOnly
-              value={localStorage.getItem("email")}
+              value={Cookies.get("email")}
               placeholder="Email Id"
               className="bg-transparent border-b-2 pb-2 outline-none cursor-not-allowed"
             ></input>
@@ -279,6 +280,7 @@ const Signup8 = () => {
         <img src="/ellipse.png" alt="hello"></img>
       </div>
       <div className="absolute top-0 left-0">{otpModal && <OtpIsValid />}</div>
+      <div className="absolute top-0 left-0">{!otpIsValid && <InvalidOtp closeModal={() => setOtpIsValid(true)} />}</div>
     </div>
   );
 };

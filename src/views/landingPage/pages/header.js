@@ -19,7 +19,7 @@ export default function Header() {
           />
         </div>
         <a
-          onClick={() => navigate('/signup1')}
+          onClick={() => navigate('/signup')}
           className=" p-1 md:p-2 px-4 md:px-8 rounded-xl md:rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
         >
           Sign Up

@@ -326,9 +326,10 @@ export default function page2() {
           <h1 className="text-center text-[#C653FF]">Secure Crypto Exchange</h1>
         </div>  
         <div className="flex justify-center text-center">
-          <p className="p-2 px-14 rounded-2xl  text-[18px] font-400 bg-gradient-to-t from-[#4C127C] to-[#AA00FE]">
+          <button className="p-2 px-14 rounded-2xl  text-[18px] font-400 bg-gradient-to-t from-[#4C127C] to-[#AA00FE] cursor-pointer">
             Learn More
-          </p>
+          </button>
+          
         </div>
       </div>
     </div>
