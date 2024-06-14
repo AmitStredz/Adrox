@@ -677,7 +677,7 @@ export default function Staking1Month() {
         })
       );
 
-      alert(JSON.stringify(response.data));
+      // alert(JSON.stringify(response.data));
       setStakeDate(currentStakeDate);
       setRewardDate(currentRewardDate);
       navigate("/staking2"); // Navigate to staking2 on successful response
