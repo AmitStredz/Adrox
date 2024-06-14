@@ -121,7 +121,8 @@ const Signup2 = ({onNextStep}) => {
   };
 
   const handleIAgreeClick = () => {
-    onNextStep();
+    // onNextStep();
+    navigate('/signup3');
   };
 
   return (

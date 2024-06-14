@@ -224,7 +224,8 @@ const Signup4 = ({onNextStep}) => {
 
         console.log("Phrase and user_id stored in localStorage", phraseArray, data.user_id);
         console.log('User_Id: ', data.user_id);
-        onNextStep();
+        // onNextStep();
+        navigate('/signup5');
         console.log("Navigated to signup5");
       } else {
         console.error("Phrase or user_id is missing in the response:", data);

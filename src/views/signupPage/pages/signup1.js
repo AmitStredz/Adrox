@@ -5,7 +5,7 @@ import './signup1.css';
 
 const Signup1 = ({onNextStep}) => {
   const [isChecked, setIsChecked] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -13,7 +13,7 @@ const Signup1 = ({onNextStep}) => {
 
   const handleButtonClick = () => {
     if (isChecked) {
-      onNextStep();
+      navigate('/signup2');
     }
   };
 

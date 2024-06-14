@@ -4,6 +4,7 @@ import ellipse from "./assets/ellipse.png";
 import dollar from "./assets/dollar.png";
 import star from "./assets/star.png";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 export default function Staking() {
   const [stakingData, setStakingData] = useState(null);
@@ -17,7 +18,7 @@ export default function Staking() {
   });
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("stakingData"));
+    const data = JSON.parse(Cookies.get("stakingData"));
     if (data) {
       setStakingData(data);
     }

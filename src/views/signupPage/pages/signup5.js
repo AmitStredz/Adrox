@@ -370,7 +370,7 @@ const Signup5 = ({onNextStep}) => {
           <div className="signup5-group91">
             <button
               className="signup5-buttons"
-              onClick={onNextStep}
+              onClick={() => navigate('/signup7')}
             >
               <span className="signup5-text14">
                 <span>Next</span>

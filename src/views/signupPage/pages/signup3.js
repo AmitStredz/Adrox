@@ -123,14 +123,17 @@
 
 // export default Signup3
 import React from 'react';
-import { useHistory, useNavigate } from 'react-router-dom';
+import { Navigate, useHistory, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet'; 
 import './signup3.css';
 
 const Signup3 = ({onNextStep}) => {
 
+  const navigate = useNavigate();
+  
   const handleSecureMyWalletClick = () => {
-    onNextStep();
+    // onNextStep();
+  navigate('/signup4');
   };
 
   return (

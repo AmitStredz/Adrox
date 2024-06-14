@@ -1,10 +1,15 @@
-import React, {useEffect} from "react";
-import { BrowserRouter as Router, Route, Switch, Routes, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 
 import Cookies from "js-cookie";
 import LandingPage from "./views/landingPage/landingPage";
-import NotFound from './views/signupPage/pages/not-found';
+import NotFound from "./views/signupPage/pages/not-found";
 import Signup1 from './views/signupPage/pages/signup1';
 import Signup2 from './views/signupPage/pages/signup2';
 import Signup3 from './views/signupPage/pages/signup3';
@@ -39,34 +44,31 @@ import Swap from "./views/staking/swap";
 import Account from "./views/staking/account";
 
 const App = () => {
+//   const navigate = useNavigate();
 
-  // const navigate = useNavigate();
+//   useEffect(() => {
+//     const userId = Cookies.get("user_id");
+//     const signupDone = Cookies.get("signupDone");
 
-  // useEffect(() => {
-  //   const userId = Cookies.get('user_id');
-  //   const signupDone = Cookies.get('signupDone');
-
-  //   if (userId) {
-  //     if (signupDone === 'true') {
-  //       // Redirect to homepage if signup is done
-  //       navigate('/homePage');
-  //     } else {
-  //       // Redirect to signup flow if signup is not done
-  //       navigate('/signup');
-  //     }
-  //   } else {
-  //     // Redirect new users to the landing page
-  //     navigate('/landingPage');
-  //   }
-  // }, [navigate]); // Include navigate in the dependency array to fix eslint warning
-
+//     if (userId) {
+//       if (signupDone === "true") {
+//         // Redirect to homepage if signup is done
+//         navigate("/homePage");
+//       } else {
+//         // Redirect to signup flow if signup is not done  
+//         navigate("/signup");
+//       }
+//     } else {
+//       // Redirect new users to the landing page
+//       navigate("/landingPage");
+//     }
+//   }, [navigate]); // Include navigate in the dependency array to fix eslint warning
 
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element ={<LandingPage/>} />
-        <Route path="/landingPage" element ={<LandingPage/>} />
-        <Route path="/signup1" element={<Signup1/>} />
+    <Routes>
+      <Route exact path="/" element={<LandingPage />} />
+      <Route path="/landingPage" element={<LandingPage />} />
+      <Route path="/signup1" element={<Signup1/>} />
         <Route path="/signup2" element={<Signup2/>} />
         <Route path="/signup3" element={<Signup3/>} />
         <Route path="/signup4" element={<Signup4/>} />
@@ -79,30 +81,29 @@ const App = () => {
         <Route path="/signup11" element={<Signup11/>} />
         <Route path="/signup12" element={<Signup12/>} />
 
-        <Route path="/signup" element={<Signup/>} />
+      <Route path="/signup" element={<Signup />} />
 
-        <Route path="/LoginRecovery" element={<LoginRecovery/>} />
-        <Route path="/LoginEmail" element={<LoginEmail/>} />
-        <Route path="/LoginPhone" element={<LoginPhone/>} />
+      <Route path="/LoginRecovery" element={<LoginRecovery />} />
+      <Route path="/LoginEmail" element={<LoginEmail />} />
+      <Route path="/LoginPhone" element={<LoginPhone />} />
 
-        <Route path="/homePage" element={<HomePage/>} />
-        <Route path="/staking1" element={<Staking1/>} />
-        <Route path="/staking2" element={<Staking2/>} />
-        <Route path="/staking1Month" element={<Staking1Month/>} />
-        <Route path="/staking3Month" element={<Staking3Month/>} />
-        <Route path="/staking6Month" element={<Staking6Month/>} />
-        <Route path="/staking1Year" element={<Staking1Year/>} />
+      <Route path="/homePage" element={<HomePage />} />
+      <Route path="/staking1" element={<Staking1 />} />
+      <Route path="/staking2" element={<Staking2 />} />
+      <Route path="/staking1Month" element={<Staking1Month />} />
+      <Route path="/staking3Month" element={<Staking3Month />} />
+      <Route path="/staking6Month" element={<Staking6Month />} />
+      <Route path="/staking1Year" element={<Staking1Year />} />
 
-        <Route path="/wallet" element={<Wallet/>} />
-        <Route path="/withdraw" element={<Withdraw/>} />
-        <Route path="/deposit" element={<Deposit/>} />
-        <Route path="/swap" element={<Swap/>} />
-        <Route path="/account" element={<Account/>} />
+      <Route path="/wallet" element={<Wallet />} />
+      <Route path="/withdraw" element={<Withdraw />} />
+      <Route path="/deposit" element={<Deposit />} />
+      <Route path="/swap" element={<Swap />} />
+      <Route path="/account" element={<Account />} />
 
-        <Route element={<NotFound/>} />
-      </Routes>
-    </Router>
+      <Route element={<NotFound />} />
+    </Routes>
   );
-}
+};
 
 export default App;

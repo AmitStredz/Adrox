@@ -97,11 +97,9 @@
 //         <img src={ellipse}></img>
 //       </div>
 
-
 //     </div>
 //   );
 // }
-
 
 //second
 // import React, { useState } from "react";
@@ -254,7 +252,6 @@
 //     </div>
 //   );
 // }
-
 
 // second two
 // import React, { useState } from "react";
@@ -426,7 +423,6 @@
 //     </div>
 //   );
 // }
-
 
 // import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
@@ -603,13 +599,12 @@
 //   );
 // }
 
-
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import stroke from "./assets/strokeEffect.png";
 import ellipse from "./assets/ellipse.png";
+import Cookies from "js-cookie";
 
 const setInitialData = () => {
   const currentStakeDate = new Date();
@@ -617,19 +612,16 @@ const setInitialData = () => {
   currentRewardDate.setMonth(currentStakeDate.getMonth() + 1); // Set reward collection date to one month later
 
   const initialData = {
-    user_id: "exampleUserId",
     staked_usdt: "123",
     lock_in_period: 1,
     start_date: currentStakeDate.toISOString(),
     end_date: currentRewardDate.toISOString(),
   };
 
-  localStorage.setItem("stakingData", JSON.stringify(initialData));
+  Cookies.set("stakingData", JSON.stringify(initialData));
 };
 
-
 export default function Staking1Month() {
-
   useEffect(() => {
     setInitialData();
   }, []);
@@ -637,11 +629,13 @@ export default function Staking1Month() {
   const [usdt, setUsdt] = useState(150); // Initial value of USDT
   const [adx, setAdx] = useState(150 * 20.83); // Initial value of ADX based on conversion ratio
   const [stakeDate, setStakeDate] = useState(new Date());
-  const [rewardDate, setRewardDate] = useState(new Date(new Date().setMonth(new Date().getMonth() + 1)));
+  const [rewardDate, setRewardDate] = useState(
+    new Date(new Date().setMonth(new Date().getMonth() + 1))
+  );
   const navigate = useNavigate();
 
   const handleButtonClick = async () => {
-    const userId = localStorage.getItem("user_id"); // Retrieve user_id from localStorage
+    const userId = Cookies.get("user_id"); // Retrieve user_id from Cookies
 
     if (!userId) {
       alert("User ID is not available. Please sign up or log in first.");
@@ -649,9 +643,9 @@ export default function Staking1Month() {
     }
 
     const currentStakeDate = new Date();
-    console.log('CurrentStakeDate: ', currentStakeDate);
+    console.log("CurrentStakeDate: ", currentStakeDate);
     const currentRewardDate = new Date(currentStakeDate);
-    console.log('CurrentRewardDate: ', currentRewardDate);
+    console.log("CurrentRewardDate: ", currentRewardDate);
     currentRewardDate.setMonth(currentStakeDate.getMonth() + 1); // Set reward collection date to one month later
 
     const data = {
@@ -662,18 +656,26 @@ export default function Staking1Month() {
 
     try {
       console.log("Sending data to API:", data);
-      const response = await axios.post("https://adrox-0ad3c3933d0d.herokuapp.com/api/staking/create-stake/", data, {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        "https://adrox-89b6c88377f5.herokuapp.com/api/staking/create-stake/",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
 
-      // Store the response data in localStorage
-      localStorage.setItem("stakingData", JSON.stringify({
-        ...response.data,
-        start_date: currentStakeDate,
-        end_date: currentRewardDate
-      }));
+      Cookies.set("balance", Cookies.get("balance") - usdt);
+      // Store the response data in Cookies
+      Cookies.set(
+        "stakingData",
+        JSON.stringify({
+          ...response.data,
+          start_date: currentStakeDate,
+          end_date: currentRewardDate,
+        })
+      );
 
       alert(JSON.stringify(response.data));
       setStakeDate(currentStakeDate);
@@ -713,7 +715,7 @@ export default function Staking1Month() {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
-      hour12: false
+      hour12: false,
     };
     return new Intl.DateTimeFormat("en-GB", options).format(date);
   };
@@ -741,8 +743,20 @@ export default function Staking1Month() {
               <div className="flex items-center">
                 <p className="font-400">USDT</p>
                 <div className="ml-2 flex flex-col">
-                  <button onClick={() => handleUsdtChange({ target: { value: usdt + 1 } })}>+</button>
-                  <button onClick={() => handleUsdtChange({ target: { value: usdt - 1 } })}>-</button>
+                  <button
+                    onClick={() =>
+                      handleUsdtChange({ target: { value: usdt + 1 } })
+                    }
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() =>
+                      handleUsdtChange({ target: { value: usdt - 1 } })
+                    }
+                  >
+                    -
+                  </button>
                 </div>
               </div>
             </div>
@@ -770,7 +784,7 @@ export default function Staking1Month() {
             </div>
             <div className="flex justify-between">
               <p>Projected Monthly Reward</p>
-              <p>{(usdt * 20.83 * 0.365 / 12).toFixed(2)} ADX</p>
+              <p>{((usdt * 20.83 * 0.365) / 12).toFixed(2)} ADX</p>
             </div>
           </div>
 
@@ -796,14 +810,14 @@ export default function Staking1Month() {
               className="p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
               onClick={handleButtonClick}
             >
-              Stake 
+              Stake
             </a>
           </div>
         </div>
       </div>
 
       <div className="absolute right-0 top-[25rem]">
-        <img src='/external/ellipse32356-aujk-700w.png' alt="ellipse" />
+        <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
       </div>
       <div className="absolute left-[-30%] w-[80%] top-[5rem]">
         <img src={ellipse} alt="ellipse" />
