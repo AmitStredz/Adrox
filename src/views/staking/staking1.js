@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import HomeHeader from "../homePage/pages/homeHeader";
 import starLogo from "./assets/star-logo.png";
 import img1 from "./assets/img1.png";
 import { useNavigate } from "react-router-dom";
 import ellipse from "./assets/ellipse.png";
+import Staking1Month from "./staking1Month";
+import Staking3Month from "./staking3Month";
+import Staking6Month from "./staking6Month";
+import Staking1Year from "./staking1Year";
 
 export default function Staking() {
+  const [stakingType, setStakingType] = useState();
+
   const history = useNavigate();
   return (
     <div className="bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden relative">
@@ -91,7 +97,7 @@ export default function Staking() {
 
                 <div
                   className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
-                  onClick={() => {history('/staking1Month')}}
+                  onClick={() => setStakingType("1month")}
                 >
                   <button>Stake Now</button>
                 </div>
@@ -130,7 +136,7 @@ export default function Staking() {
                 </div>
 
                 <div className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
-                  onClick={() => {history('/staking3Month')}}
+                  onClick={() => setStakingType("3month")}
                   >
                   <button>Stake Now</button>
                 </div>
@@ -169,7 +175,7 @@ export default function Staking() {
                 </div>
 
                 <div className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
-                  onClick={() => {history('/staking6Month')}}
+                  onClick={() => setStakingType("6month")}
                   >
                   <button>Stake Now</button>
                 </div>
@@ -208,7 +214,7 @@ export default function Staking() {
                 </div>
 
                 <div className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
-                  onClick={() => {history('/staking1Year')}}
+                  onClick={() => setStakingType("1year")}
                   >
                   <button>Stake Now</button>
                 </div>
@@ -224,6 +230,31 @@ export default function Staking() {
       <div className="absolute left-[-30%] w-[80%] top-[50rem]">
         <img src={ellipse}></img>
       </div>
+
+
+      {stakingType == "1month" ? (
+        <Staking1Month onClose={() => setStakingType("")} />
+      ) : (
+        <></>
+      )}
+      {stakingType == "3month" ? (
+        <Staking3Month onClose={() => setStakingType("")} />
+      ) : (
+        <></>
+      )}
+      {stakingType == "6month" ? (
+        <Staking6Month onClose={() => setStakingType("")} />
+      ) : (
+        <></>
+      )}
+      {stakingType == "1year" ? (
+        <Staking1Year onClose={() => setStakingType("")} />
+      ) : (
+        <></>
+      )}
+
+
+
     </div>
   );
 }

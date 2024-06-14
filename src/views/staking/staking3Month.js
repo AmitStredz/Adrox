@@ -605,11 +605,12 @@ import axios from "axios";
 import stroke from "./assets/strokeEffect.png";
 import ellipse from "./assets/ellipse.png";
 import Cookies from "js-cookie";
+import SuccessModal from "./sucessModal";
 
-export default function Staking3Month() {
-//   useEffect(() => {
-//     setInitialData();
-//   }, []);
+const Staking3Month = ({ onClose }) => {
+  //   useEffect(() => {
+  //     setInitialData();
+  //   }, []);
 
   const [usdt, setUsdt] = useState(150); // Initial value of USDT
   const [adx, setAdx] = useState(150 * 20.83); // Initial value of ADX based on conversion ratio
@@ -617,23 +618,23 @@ export default function Staking3Month() {
   const [rewardDate, setRewardDate] = useState(
     new Date(new Date().setMonth(new Date().getMonth() + 1))
   );
+
+  const [successModal, setSuccessModal] = useState(false);
   const navigate = useNavigate();
 
   const handleButtonClick = async () => {
-    
-      const currentStakeDate = new Date();
-      const currentRewardDate = new Date(currentStakeDate);
-      currentRewardDate.setMonth(currentStakeDate.getMonth() + 1); // Set reward collection date to one month later
+    const currentStakeDate = new Date();
+    const currentRewardDate = new Date(currentStakeDate);
+    currentRewardDate.setMonth(currentStakeDate.getMonth() + 1); // Set reward collection date to one month later
 
-      const initialData = {
-        staked_usdt: "123",
-        lock_in_period: 1,
-        start_date: currentStakeDate.toISOString(),
-        end_date: currentRewardDate.toISOString(),
-      };
+    const initialData = {
+      staked_usdt: "123",
+      lock_in_period: 1,
+      start_date: currentStakeDate.toISOString(),
+      end_date: currentRewardDate.toISOString(),
+    };
 
-      Cookies.set("stakingData", JSON.stringify(initialData));
-    
+    Cookies.set("stakingData", JSON.stringify(initialData));
 
     const userId = Cookies.get("user_id"); // Retrieve user_id from Cookies
 
@@ -680,7 +681,11 @@ export default function Staking3Month() {
       // alert(JSON.stringify(response.data));
       setStakeDate(currentStakeDate);
       setRewardDate(currentRewardDate);
-      navigate("/staking2"); // Navigate to staking2 on successful response
+      setSuccessModal(true);
+      setTimeout(() => {
+        navigate("/staking2"); // Navigate to staking2 on successful response
+        setSuccessModal(false);
+      }, 2000);
     } catch (error) {
       console.error("There was an error!", error);
 
@@ -721,13 +726,20 @@ export default function Staking3Month() {
   };
 
   return (
-    <div className="bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden flex items-center justify-center relative">
-      <div className="flex justify-center w-full">
-        <div className="flex flex-col gap-10 mt-40 bg-slate-600 bg-opacity-15 p-14 rounded-3xl w-5/12 z-50">
+    // <div className="bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden flex items-center justify-center relative">
+    <div className="flex justify-center w-full h-full fixed top-0 left-0 backdrop-blur-xl z-[100]">
+      <div className="w-full h-full flex items-center justify-center overflow-auto">
+        <div className="flex flex-col gap-10 mt-60 p-14 rounded-3xl w-5/12 z-50 bg-gradient-to-r from-[#210F34] to-[#170D25]">
+          <div className="flex justify-end">
+            <i
+              className="ri-close-fill text-3xl cursor-pointer hover:scale-105"
+              onClick={onClose}
+            ></i>
+          </div>
           <div>
             <h1 className="text-[48px] font-700">Stake USDT</h1>
             <a className="text-[20px] font-300 bg-slate-600 bg-opacity-20 p-1 px-3 rounded-xl">
-              1 Month Plan
+              3 Month Plan
             </a>
           </div>
 
@@ -816,12 +828,17 @@ export default function Staking3Month() {
         </div>
       </div>
 
-      <div className="absolute right-0 top-[25rem]">
-        <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
-      </div>
-      <div className="absolute left-[-30%] w-[80%] top-[5rem]">
-        <img src={ellipse} alt="ellipse" />
-      </div>
+      {successModal && <SuccessModal message="Staking Successfull" />}
     </div>
+
+    //   <div className="absolute right-0 top-[25rem]">
+    //     <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
+    //   </div>
+    //   <div className="absolute left-[-30%] w-[80%] top-[5rem]">
+    //     <img src={ellipse} alt="ellipse" />
+    //   </div>
+    // </div>
   );
-}
+};
+
+export default Staking3Month;
