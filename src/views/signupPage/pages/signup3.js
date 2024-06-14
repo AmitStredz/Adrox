@@ -132,8 +132,8 @@ const Signup3 = ({onNextStep}) => {
   const navigate = useNavigate();
   
   const handleSecureMyWalletClick = () => {
-    // onNextStep();
-  navigate('/signup4');
+    onNextStep();
+  // navigate('/signup4');
   };
 
   return (

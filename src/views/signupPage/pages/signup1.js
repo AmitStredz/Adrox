@@ -13,7 +13,8 @@ const Signup1 = ({onNextStep}) => {
 
   const handleButtonClick = () => {
     if (isChecked) {
-      navigate('/signup2');
+      // navigate('/signup2');
+      onNextStep();
     }
   };
 

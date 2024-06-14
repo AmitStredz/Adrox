@@ -2,11 +2,13 @@ import React from "react";
 import { useHistory, useNavigate } from "react-router-dom";
 import Background from "../assets/account-background.png";
 import { Helmet } from 'react-helmet';
+import Cookies from "js-cookie";
 
-export default function Signup12() {
+const Signup12 = ({onNextStep}) => {
   const history = useNavigate();
 
   const handleButtonClick = () => {
+    Cookies.set("signupDone", true);
     history("/homePage");
   };
   return (
@@ -58,6 +60,8 @@ export default function Signup12() {
     </div>
   );
 }
+
+export default Signup12;
 
 <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[35rem] p-12 rounded-2xl">
   <div>

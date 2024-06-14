@@ -94,7 +94,7 @@ import statAnimation from "../assets/starAnimation.png";
 
 import SignupAnimation from "./signupAnimation";
 
-const Signup7 = () => {
+const Signup7 = ({onNextStep}) => {
   const [fullName, setFullName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -158,7 +158,8 @@ const Signup7 = () => {
       console.log("email_otp: ", response.data.email_otp);
       // alert(JSON.stringify(response.data));
 
-      navigate("/signup8");
+      // navigate("/signup8");
+      onNextStep();
     } catch (error) {
       console.error("There was an error!", error);
       alert("Error: " + (error.response?.data || error.message));

@@ -26,7 +26,7 @@ export default function Header() {
         </a>
         <a
           className="border p-1 md:p-2 px-4 md:px-8 rounded-xl cursor-pointer"
-          onClick={() =>navigate('/LoginRecovery')}
+          onClick={() =>navigate('/login')}
         >
           Log in
         </a>

@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 import SignupAnimation from "./signupAnimation";
 
-const Signup9 = () => {
+const Signup9 = ({onNextStep}) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [referral, setReferral] = useState("");
@@ -68,7 +68,8 @@ const Signup9 = () => {
       if (response.ok && data.message === "Password set successfully.") {
         setPasswordModal(true);
         setTimeout(() => {
-          navigate("/signup10");
+          // navigate("/signup10");
+          onNextStep();
         }, 2000);
       } else {
         // Handle error response from the API

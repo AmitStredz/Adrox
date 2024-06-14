@@ -89,7 +89,7 @@ import { Helmet } from 'react-helmet';
 import Cookies from "js-cookie";
 import SignupAnimation from "./signupAnimation";
 
-const Signup10 = () => {
+const Signup10 = ({onNextStep}) => {
   const [phraseInputs, setPhraseInputs] = useState(Array(12).fill(""));
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
@@ -123,7 +123,8 @@ const Signup10 = () => {
     console.log('inputPhrase: ', inputPhrase);
     
     if (storedPhrase.join(" ") === inputPhrase) {
-      navigate("/signup11");
+      // navigate("/signup11");
+      onNextStep();
     } else {
       // alert("Secret recovery phrase does not match");
       setShowModal(true);

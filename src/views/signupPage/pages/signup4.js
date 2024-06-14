@@ -219,13 +219,14 @@ const Signup4 = ({onNextStep}) => {
         Cookies.set("user_id", data.user_id, { secure: true, sameSite: 'Strict' });
         Cookies.set("signupDone", false);
 
+        Cookies.set("recoveryPhraseDate", new Date().toISOString());
         // localStorage.setItem("recoveryPhrase", JSON.stringify(phraseArray));
         // localStorage.setItem("user_id", data.user_id); // Store user_id in localStorage
 
         console.log("Phrase and user_id stored in localStorage", phraseArray, data.user_id);
         console.log('User_Id: ', data.user_id);
-        // onNextStep();
-        navigate('/signup5');
+        onNextStep();
+        // navigate('/signup5');
         console.log("Navigated to signup5");
       } else {
         console.error("Phrase or user_id is missing in the response:", data);

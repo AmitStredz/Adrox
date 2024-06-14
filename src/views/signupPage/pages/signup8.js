@@ -10,7 +10,7 @@ import InvalidOtp from "./invalidOtp";
 
 import { CookieIcon, PhoneMissed } from "lucide-react";
 
-const Signup8 = () => {
+const Signup8 = ({onNextStep}) => {
   const [phoneOtp, setPhoneOtp] = useState("");
   const [emailOtp, setEmailOtp] = useState("");
   const [otpIsValid, setOtpIsValid] = useState(true);
@@ -106,7 +106,8 @@ const Signup8 = () => {
         setOtpIsValid(true);
         setOtpModal(true);
         setTimeout(() => {
-          navigate("/signup9");
+          // navigate("/signup9");
+          onNextStep();
         }, 2000);
       } else {
         setOtpIsValid(false);

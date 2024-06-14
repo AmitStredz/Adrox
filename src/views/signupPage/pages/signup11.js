@@ -4,10 +4,11 @@ import { Helmet } from 'react-helmet';
 
 import SignupAnimation from "./signupAnimation";
 
-const Signup11 = () => {
-  const history = useNavigate();
+const Signup11 = ({onNextStep}) => {
+  const navigate = useNavigate();
   const handleButtonClick = () => {
-    history("/signup12");
+    // navigate("/signup12");
+    onNextStep();
   };
 
   return (
