@@ -12,12 +12,12 @@ const Signup12 = ({onNextStep}) => {
     history("/homePage");
   };
   return (
-    <div className="flex bg-[#0f011a] h-screen text-white font-nunito p-24 justify-evenly gap-10 overflow-hidden relative">
+    <div className="flex bg-[#0f011a] h-screen  w-screen text-white font-nunito p-10 sm:p-24 justify-evenly gap-10 overflow-hidden relative">
       <Helmet>
         <title>Signup - Adrox</title>
       </Helmet>
-      <div className="w-[40%] items-center">
-        <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[35rem] p-12 rounded-2xl">
+      <div className="flex items-center w-full justify-center">
+        <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[35rem] p-5 sm:p-8 md:p-12 rounded-2xl">
           <div>
             <h1 className="font-700 text-[36px] text-center text-[#C653FF]">
               Congratulations!

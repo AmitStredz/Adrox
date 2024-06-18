@@ -49,7 +49,6 @@
     box-sizing: content-box;
     border-radius: 25px;
   }
-  
 }
 @media (max-width: 800px) {
   .signup01-rectangle25 {
@@ -82,7 +81,7 @@
   box-sizing: content-box;
 }
 @media (max-width: 1080px) {
-  .signup01-adrox{
+  .signup01-adrox {
     top: 100px;
     left: 100px;
     width: 300px;
@@ -92,7 +91,7 @@
   }
 }
 @media (max-width: 540px) {
-  .signup01-adrox{
+  .signup01-adrox {
     top: 50px;
     left: 10%;
     width: 300px;
@@ -202,6 +201,18 @@
   justify-content: center;
   background-color: rgba(96, 96, 96, 0.5);
 }
+@media (max-width: 450px) {
+  .signup01-frame46 {
+    width: 40vh;
+  }
+}
+@media (max-width: 400px) {
+  .signup01-frame46 {
+    width: 30vh;
+    height: 50px;
+    border-radius: 16px;
+  }
+}
 .signup01-text04 {
   color: rgba(255, 255, 255, 0.5);
   height: auto;
@@ -213,6 +224,11 @@
   line-height: 150%;
   font-stretch: normal;
   text-decoration: none;
+}
+@media (max-width: 400px) {
+  .signup01-text04 {
+    font-size: 20px;
+  }
 }
 .signup01-frame47 {
   gap: 8px;
@@ -232,6 +248,12 @@
   border-width: 0.925203263759613px;
   border-radius: 5px;
 }
+@media (max-width: 400px) {
+  .signup01-frame-checkboxbase {
+    width: 15px;
+    height: 15px;
+  }
+}
 .signup01-text06 {
   color: rgba(255, 255, 255, 1);
   height: auto;
@@ -243,6 +265,11 @@
   line-height: 150%;
   font-stretch: normal;
   text-decoration: none;
+}
+@media (max-width: 400px) {
+.signup01-text06 {
+  font-size: 12px;
+}
 }
 .signup01-automated-decentralized-resource-optimization-exchange {
   top: 250px;

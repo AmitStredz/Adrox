@@ -124,27 +124,27 @@ const Signup8 = ({onNextStep}) => {
   };
 
   return (
-    <div className="flex bg-[#0f011a] h-full text-white font-nunito p-24 justify-evenly gap-10 relative overflow-hidden">
+    <div className="flex bg-[#0f011a] h-full text-white font-nunito p-5 sm:p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
       <Helmet>
         <title>Signup - Adrox</title>
       </Helmet>
-      <div className="w-[40%] items-center">
-        <div className="text-center">
-          <h1 className="font-700 text-[48px] text-[#C653FF]">
+      <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">
+        <div className="text-center z-50">
+          <h1 className="font-700 text-[48px] text-[#C653FF]  max-sm:leading-11">
             Welcome Aboard
           </h1>
           <p className="font-300 text-[16px]">
             Just A Couple Of Clicks And We Start
           </p>
         </div>
-        <div className="h-[80%]">
+        <div className="md:h-[80%] left-0 top-[40vw] sm:left-[10vw] sm:top-[60vw] md:-left-[16vw] md:top-[7vw] max-lg:absolute">
           <SignupAnimation></SignupAnimation>
         </div>
       </div>
 
       {/* Signup8 is this */}
       <div className="z-10">
-        <div className="flex flex-col gap-10 ">
+        <div className="flex flex-col gap-10  max-lg:max-w-[45vw] max-md:max-w-[100%] justify-center items-center">
           <div className="flex items-center gap-1 justify-center">
             <div className="circle bg-[#C653FF] rounded-full w-3 h-3"></div>
             <div className="line w-10 h-[2px] bg-[#C653FF]"></div>
@@ -154,8 +154,8 @@ const Signup8 = ({onNextStep}) => {
             <div className="line w-10 h-[2px] bg-white"></div>
             <div className="circle bg-white rounded-full w-3 h-3"></div>
           </div>
-          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[30rem] p-20 rounded-2xl">
-            <h1 className="font-700 text-[36px]">Create Account</h1>
+          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10  max-lg:bg-slate-700 max-lg:bg-opacity-30 w-[30rem] max-w-[100%] p-10 md:p-20 rounded-2xl">
+            <h1 className="font-700  text-[28px] sm:text-[36px]">Create Account</h1>
             <input
               type="text"
               readOnly

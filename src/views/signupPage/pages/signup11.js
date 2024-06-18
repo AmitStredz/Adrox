@@ -12,13 +12,13 @@ const Signup11 = ({onNextStep}) => {
   };
 
   return (
-    <div className="flex bg-[#0f011a] h-screen text-white font-nunito p-24 justify-evenly gap-10 relative overflow-hidden">
+    <div className="flex bg-[#0f011a] h-full text-white font-nunito p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
       <Helmet>
         <title>Signup - Adrox</title>
       </Helmet>
-      <div className="w-[40%] items-center z-50">
+      <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">
         <div className="text-center">
-          <h1 className="font-700 text-[48px] text-[#C653FF]">
+          <h1 className="font-700 text-[48px] text-[#C653FF] max-sm:leading-11">
             Welcome Aboard
           </h1>
           <p className="font-300 text-[16px]">
@@ -31,8 +31,8 @@ const Signup11 = ({onNextStep}) => {
       </div>
 
       {/* Signup11 is this */}
-      <div className="z-50">
-        <div className="flex flex-col gap-10 ">
+      <div className="z-50 flex justify-center">
+        <div className="flex flex-col gap-10 max-md:w-[100%] max-lg:max-w-[55vw] max-w-[100%] items-center justify-center ">
           <div className="flex items-center gap-1 justify-center">
             <div className="circle bg-[#C653FF] rounded-full w-3 h-3"></div>
             <div className="line w-10 h-[2px] bg-[#C653FF]"></div>
@@ -42,21 +42,21 @@ const Signup11 = ({onNextStep}) => {
             <div className="line w-10 h-[2px] bg-[#C653FF]"></div>
             <div className="circle bg-[#C653FF] rounded-full w-3 h-3"></div>
           </div>
-          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[35rem] p-12 rounded-2xl">
+          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[35rem]  max-md:w-[80vw] p-12 rounded-2xl">
             <h1 className="font-400 text-[20px] text-center">
               Your Recovery Phrase Has Been Successfully Verified
             </h1>
 
             <div className="flex justify-center border p-8 rounded-2xl">
               <i
-                className="ri-checkbox-circle-line text-9xl text-[#C653FF]"
+                className="ri-checkbox-circle-line text-7xl sm:text-9xl text-[#C653FF]"
                 data-aos="zoom-in"
               ></i>
             </div>
 
-            <div className="flex text-center justify-center gap-2">
-              <input type="checkbox" className="size-5"></input>
-              <label className="text-[16px] font-400" for="checkbox">
+            <div className="flex text-center sm:justify-center gap-1 sm:gap-2 max-sm:w-96">
+              <input type="checkbox" className="size-3 sm:size-5 max-sm:mt-1"></input>
+              <label className="text-[14px] sm:text-[16px] font-400" for="checkbox">
                 Send Recovery Phrase To My Email
               </label>
             </div>

@@ -94,7 +94,7 @@ import statAnimation from "../assets/starAnimation.png";
 
 import SignupAnimation from "./signupAnimation";
 
-const Signup7 = ({onNextStep}) => {
+const Signup7 = ({ onNextStep }) => {
   const [fullName, setFullName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -142,10 +142,14 @@ const Signup7 = ({onNextStep}) => {
       // localStorage.setItem("full_name", fullName);
       // localStorage.setItem("mobile_number", mobileNumber);
       // localStorage.setItem("email", email);
-      Cookies.set("full_name", fullName, { expires: new Date('2050-01-01') });
-      Cookies.set("mobile_number", mobileNumber, { expires: new Date('2050-01-01') });
-      Cookies.set("email", email, { expires: new Date('2050-01-01') });
-      Cookies.set("referral_id", response.data.referral_id, { expires: new Date('2050-01-01') });
+      Cookies.set("full_name", fullName, { expires: new Date("2050-01-01") });
+      Cookies.set("mobile_number", mobileNumber, {
+        expires: new Date("2050-01-01"),
+      });
+      Cookies.set("email", email, { expires: new Date("2050-01-01") });
+      Cookies.set("referral_id", response.data.referral_id, {
+        expires: new Date("2050-01-01"),
+      });
       Cookies.set("wallet_id", response.data.wallet_id);
       Cookies.set("balance", 0);
       // localStorage.setItem("referral_id", response.data.referral_id);
@@ -169,13 +173,13 @@ const Signup7 = ({onNextStep}) => {
   };
 
   return (
-    <div className="flex bg-[#0f011a] h-screen text-white font-nunito p-24 justify-evenly gap-10 relative overflow-hidden">
+    <div className="flex   bg-[#0f011a] h-screen text-white font-nunito p-5 sm:p-14 lg:p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
       <Helmet>
         <title>Signup - Adrox</title>
       </Helmet>
-      <div className="w-[40%] items-center z-50">
-        <div className="text-center">
-          <h1 className="font-700 text-[48px] text-[#C653FF]">
+      <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">
+        <div className="text-center z-50 max-lg:-left-40">
+          <h1 className="font-700 text-[48px] text-[#C653FF] max-sm:leading-11">
             Welcome Aboard
           </h1>
           <p className="font-300 text-[16px]">
@@ -187,7 +191,7 @@ const Signup7 = ({onNextStep}) => {
 
       {/* Signup7 is this */}
       <div className="z-50">
-        <div className="flex flex-col gap-10 ">
+        <div className="flex flex-col gap-10 max-lg:max-w-[45vw] max-md:max-w-[100%] justify-center items-center">
           <div className="flex items-center gap-1 justify-center">
             <div className="circle bg-[#C653FF] rounded-full w-3 h-3"></div>
             <div className="line w-10 h-[2px] bg-white"></div>
@@ -197,8 +201,10 @@ const Signup7 = ({onNextStep}) => {
             <div className="line w-10 h-[2px] bg-white"></div>
             <div className="circle bg-white rounded-full w-3 h-3"></div>
           </div>
-          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 w-[30rem] p-20 rounded-2xl">
-            <h1 className="font-700 text-[36px]">Create Account</h1>
+          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10 max-lg:bg-slate-700 max-lg:bg-opacity-30 w-[30rem] max-w-[100%] p-10 md:p-20 rounded-2xl">
+            <h1 className="font-700  text-[28px] sm:text-[36px]">
+              Create Account
+            </h1>
             <input
               type="text"
               required

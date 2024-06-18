@@ -180,8 +180,7 @@ import { useNavigate } from "react-router-dom";
 import "./signup4.css";
 import Cookies from "js-cookie";
 
-
-const Signup4 = ({onNextStep}) => { 
+const Signup4 = ({ onNextStep }) => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -215,16 +214,26 @@ const Signup4 = ({onNextStep}) => {
       if (data.phrase && data.user_id) {
         const phraseArray = data.phrase.split(" ");
 
-        Cookies.set("recoveryPhrase", JSON.stringify(phraseArray), { secure: true, sameSite: 'Strict' });
-        Cookies.set("user_id", data.user_id, { secure: true, sameSite: 'Strict' });
+        Cookies.set("recoveryPhrase", JSON.stringify(phraseArray), {
+          secure: true,
+          sameSite: "Strict",
+        });
+        Cookies.set("user_id", data.user_id, {
+          secure: true,
+          sameSite: "Strict",
+        });
         Cookies.set("signupDone", false);
 
         Cookies.set("recoveryPhraseDate", new Date().toISOString());
         // localStorage.setItem("recoveryPhrase", JSON.stringify(phraseArray));
         // localStorage.setItem("user_id", data.user_id); // Store user_id in localStorage
 
-        console.log("Phrase and user_id stored in localStorage", phraseArray, data.user_id);
-        console.log('User_Id: ', data.user_id);
+        console.log(
+          "Phrase and user_id stored in localStorage",
+          phraseArray,
+          data.user_id
+        );
+        console.log("User_Id: ", data.user_id);
         onNextStep();
         // navigate('/signup5');
         console.log("Navigated to signup5");

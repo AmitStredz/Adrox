@@ -107,17 +107,16 @@
 
 // export default Signup2
 
+import React from "react";
+import { useHistory, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import "./signup2.css";
 
-import React from 'react';
-import { useHistory, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-import './signup2.css';
-
-const Signup2 = ({onNextStep}) => {
+const Signup2 = ({ onNextStep }) => {
   const navigate = useNavigate();
 
   const handleNoThanksClick = () => {
-    navigate('/');
+    navigate("/");
   };
 
   const handleIAgreeClick = () => {
@@ -147,8 +146,8 @@ const Signup2 = ({onNextStep}) => {
             <div className="signup2-frame63">
               <div className="signup2-frame62">
                 <span className="signup2-text">
-                  <span className="signup2-text01">ADROX</span>
                   <p>
+                    <span className="signup2-text01">ADROX </span>
                     aims to enhance its service by gathering usage data to
                     better understand user interactions. this information will
                     be used to improve the overall user experience.
@@ -156,34 +155,36 @@ const Signup2 = ({onNextStep}) => {
                 </span>
                 <div className="signup2-group83">
                   <span className="signup2-text03">
-                    <span>Here&apos;s what ADROX will do:</span>
+                    <span>Here's what ADROX will do:</span>
                   </span>
                   <div className="signup2-frame51">
                     <span className="signup2-text05">
-                      <span>
-                        Always provide an opt-out option in the Settings menu.
-                      </span>
+                      <li>
+                        Always Provide An Opt-Out Option In The Settings Menu.
+                      </li>
                     </span>
                     <span className="signup2-text07">
-                      <span>Send anonymized click and pageview events.</span>
+                      <li>Send Anonymized Click And Pageview Events.</li>
                     </span>
                     <span className="signup2-text09">
-                      <span>
-                        Never collect unnecessary information such as keys,
-                        addresses, transaction hashes, or balances.
-                      </span>
+                      <li>
+                        Never Collect Unnecessary Information Such As Keys,
+                        
+                      </li>
+                      <span>Addresses, Transaction Hashes, or Balances.</span>
                     </span>
                     <span className="signup2-text11">
-                      <span>Never capture your complete IP address.</span>
+                      <li>Never Capture Your Complete IP Address.</li>
                     </span>
                     <span className="signup2-text13">
-                      <span>Never engage in data selling.</span>
+                      <li>Never Engage in Data Selling.</li>
                     </span>
                     <span className="signup2-text15">
-                      <span>
-                        The collected data is aggregated and anonymized to
-                        comply with GDPR regulations.
-                      </span>
+                      <li>
+                        The collected Data Is Aggregated And Anonymized To
+                        
+                      </li>
+                      <span>Comply With GDPR Regulations.</span>
                     </span>
                   </div>
                 </div>
@@ -221,7 +222,7 @@ const Signup2 = ({onNextStep}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Signup2;

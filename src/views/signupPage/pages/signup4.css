@@ -40,9 +40,9 @@
 .signup4-frame57 {
   gap: 10px;
   top: 126px;
-  left: 392px;
+  left: 27%;
   width: 500px;
-  height: 795px;
+  height: 700px;
   display: flex;
   padding: 64px 80px;
   overflow: hidden;
@@ -56,7 +56,7 @@
 
 .signup4-group93 {
   top: 225px;
-  left: 475px;
+  left: 32%;
   width: 490px;
   height: 596px;
   display: flex;
@@ -66,37 +66,45 @@
 }
 @media (max-width: 1080px) {
   .signup4-frame57 {
-    left: 200px;
+    left: 15%;
   }
   .signup4-group93 {
-    left: 300px;
+    left: 25%;
   }
 }
-@media (max-width: 670px) {
+@media (max-width: 800px) {
   .signup4-frame57 {
-    left: 60px;
+    left: 10%;
     width: 400px;
   }
   .signup4-group93 {
-    left: 100px;
+    left: 15%;
   }
 }
-@media (max-width: 540px) {
+@media (max-width: 700px) {
   .signup4-frame57 {
-    left: 30px;
-    width: 310px;
+    left: 5%;
+    width: 65%;
   }
   .signup4-group93 {
     left: 50px;
   }
 }
-@media (max-width: 370px) {
+@media (max-width: 500px) {
   .signup4-frame57 {
-    left: 10px;
-    width: 190px;
+    top: 80px;
+    left: 5%;
+    width: 55%;
   }
   .signup4-group93 {
     left: 20px;
+  }
+}
+@media (max-width: 400px) {
+  .signup4-frame57 {
+    left: 5%;
+    width: 45vw;
+    /* height: 50%; */
   }
 }
 .signup4-buttons {
@@ -121,12 +129,18 @@
 }
 @media (max-width: 540px) {
   .signup4-buttons {
-    left: 40px;
+    left: 10vw;
   }
 }
-@media (max-width: 370px) {
+@media (max-width: 500px) {
   .signup4-buttons {
-    left: -10px;
+    top: 450px;
+  }
+}
+@media (max-width: 400px) {
+  .signup4-buttons {
+    left: 3vw;
+    width: 300px;
   }
 }
 .signup4-buttons:disabled {
@@ -145,6 +159,11 @@
   font-stretch: normal;
   text-decoration: none;
 }
+@media (max-width: 400px) {
+.signup4-text {
+  font-size: 16px;
+}
+}
 .signup4-frame90 {
   gap: 32px;
   top: 0px;
@@ -153,6 +172,13 @@
   position: absolute;
   align-items: flex-start;
   flex-direction: column;
+}
+
+@media (max-width: 500px) {
+  .signup4-frame90 {
+    left: 5%;
+    top: -100px;
+  }
 }
 .signup4-frame71 {
   gap: 24px;
@@ -172,11 +198,7 @@
   font-stretch: normal;
   text-decoration: none;
 }
-@media (max-width: 370px) {
-  .signup4-text02 {
-    font-size: 30px;
-  }
-}
+
 .signup4-text06 {
   color: rgba(255, 255, 255, 1);
   width: 462px;
@@ -190,14 +212,6 @@
   font-stretch: normal;
   text-decoration: none;
 }
-@media (max-width: 370px) {
-  .signup4-text02 {
-    font-size: 30px;
-  }
-  .signup4-text06 {
-    width: 330px;
-  }
-}
 .signup4-group85 {
   width: 490px;
   height: 159px;
@@ -205,6 +219,11 @@
   position: relative;
   align-items: flex-start;
   flex-shrink: 1;
+}
+@media (max-width: 500px) {
+  .signup4-group85 {
+    left: -10px;
+  }
 }
 .signup4-text08 {
   left: 32px;
@@ -235,14 +254,11 @@
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.05000000074505806);
 }
-@media (max-width: 540px) {
+@media (max-width: 500px) {
   .signup4-frame70 {
-    width: 430px;
-  }
-}
-@media (max-width: 370px) {
-  .signup4-frame70 {
-    width: 330px;
+    gap: 0px;
+    width: 80vw;
+    padding: 10px 15px;
   }
 }
 .signup4-frame69 {
@@ -292,7 +308,14 @@
   font-stretch: normal;
   text-decoration: none;
 }
-@media (max-width: 540px) {
+@media (max-width: 500px) {
+  .signup4-text02 {
+    font-size: 30px;
+  }
+  .signup4-text06 {
+    /* font-size: 16px; */
+    width: 80vw;
+  }
   .signup4-text10 {
     font-size: 14px;
   }
@@ -304,10 +327,23 @@
     width: 330px;
   }
 }
+@media (max-width: 400px) {
+  .signup4-text02 {
+    font-size: 25px;
+    line-height: 30px;
+  }
+  .signup4-text06 {
+    font-size: 14px;
+  }
+  .signup4-text08 {
+    left: 15px;
+  }
+}
 .signup4-group89 {
   width: 490px;
   height: 124px;
   display: flex;
+  justify-content: center;
   position: relative;
   align-items: flex-start;
   flex-shrink: 1;
@@ -326,9 +362,15 @@
   border-radius: 20px;
   border-color: rgba(184, 182, 182, 0.37);
 }
-@media (max-width: 540px) {
+@media (max-width: 600px) {
   .signup4-group86 {
-    width: 430px;
+    width: 80vw;
+  }
+}
+@media (max-width: 400px) {
+  .signup4-group86 {
+    left: -10px;
+    width: 80vw;
   }
 }
 
@@ -341,13 +383,15 @@
   align-items: center;
   flex-direction: column;
 }
-@media (max-width: 370px) {
-  .signup4-group86 {
-    width: 330px;
+@media (max-width: 600px) {
+  .signup4-frame89 {
+    left: 5vw;
   }
-.signup4-frame89 {
-  left: 0px;
 }
+@media (max-width: 400px) {
+  .signup4-frame89 {
+    left: -10vw;
+  }
 }
 .signup4-group88 {
   width: 48px;

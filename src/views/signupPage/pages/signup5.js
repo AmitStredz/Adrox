@@ -288,12 +288,11 @@ import "./signup5.css";
 import CopiedModal from "./copiedModal";
 import Cookies from "js-cookie";
 
-const Signup5 = ({onNextStep}) => {
+const Signup5 = ({ onNextStep }) => {
   const [recoveryPhrase, setRecoveryPhrase] = useState([]);
   const navigate = useNavigate();
   const [clipBoard, setClipBoard] = useState("Copy to Clipboard");
   const [showModal, setShowModal] = useState(false);
-
 
   useEffect(() => {
     const phrase = JSON.parse(Cookies.get("recoveryPhrase"));
@@ -368,10 +367,7 @@ const Signup5 = ({onNextStep}) => {
             </div>
           </div>
           <div className="signup5-group91">
-            <button
-              className="signup5-buttons"
-              onClick={onNextStep}
-            >
+            <button className="signup5-buttons" onClick={onNextStep}>
               <span className="signup5-text14">
                 <span>Next</span>
               </span>
