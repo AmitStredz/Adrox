@@ -41,30 +41,30 @@ export default function AdroxWallet() {
 
   return (
     <div className="relative">
-      <div className="flex justify-evenly items-center p-14 h-72 mt-20 bg-slate-500 bg-opacity-10 rounded-3xl border border-slate-600">
-        <div className="flex flex-col gap-10">
+      <div className="flex max-md:flex-col max-md:gap-10 justify-evenly md:items-center p-8 sm:p-10 lg:p-14 mt-5 sm:mt-20 bg-slate-500 bg-opacity-10 rounded-3xl border border-slate-600">
+        <div className="flex flex-col gap-5 md:gap-10">
           <div>
             <a className="p-2 px-6 bg-slate-400 bg-opacity-15 rounded-xl">
               Holdings
             </a>
           </div>
           <div>
-            <p className="font-800 text-[52px]">
+            <p className="font-800 text-[40px] sm:text-[52px]">
               {holdings !== null
                 ? `$${parseFloat(holdings).toFixed(2)} USD`
                 : "Loading..."}
             </p>
           </div>
-          <div className="flex gap-5 z-50">
+          <div className="flex gap-2 sm:gap-5 z-50">
             <div
-              className="flex p-2 px-12 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+              className="flex p-1 sm:p-2 px-5 sm:px-12 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer items-center"
               onClick={() => setTransactionType("deposit")}
             >
               <img src={depositImg} className="w-5" alt="Deposit"></img>
               <p>Deposit</p>
             </div>
             <div
-              className="flex border border-slate-500 cursor-pointer p-2 px-12 rounded-2xl"
+              className="flex border border-slate-500 cursor-pointer p-1 sm:p-2 px-5 sm:px-12 rounded-xl sm:rounded-2xl items-center"
               onClick={() => setTransactionType("withdraw")}
             >
               <img src={withdrawImg} className="w-5" alt="Withdraw"></img>
@@ -72,7 +72,7 @@ export default function AdroxWallet() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-end h-full">
+        <div className="flex flex-col md:justify-center md:items-end h-full">
           <div className="flex gap-10">
             <div
               className="flex gap-2 p-2 px-12 items-center rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer z-50"

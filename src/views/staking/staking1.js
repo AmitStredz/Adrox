@@ -19,23 +19,29 @@ export default function Staking() {
         <HomeHeader></HomeHeader>
       </div>
 
-      <div className="flex p-10 items-center justify-evenly h-screen">
-        <div className="flex flex-col">
+      <div className="flex gap-10 max-md:flex-col p-10 items-center justify-evenly my-20 md:my-40">
+        <div className="flex flex-col max-md:items-center">
           <img src={img1} className="w-28"></img>
-          <h1 className="font-700 text-[64px] text-[#C653FF]">ADROX</h1>
-          <h1 className="font-800 text-[88px] text-[#C653FF]">STAKING</h1>
-          <p className="font-300 text-[16px] w-96">
+          <div className="max-sm:flex-col max-md:flex gap-5 max-md:items-center">
+            <h1 className="font-700  text-[40px] lg:text-[64px] max-lg:leading-10 text-[#C653FF]">
+              ADROX
+            </h1>
+            <h1 className="font-800 text-[60px] lg:text-[88px] max-lg:leading-14 text-[#C653FF]">
+              STAKING
+            </h1>
+          </div>
+          <p className="font-300 text-[16px] w-[70vw] sm:w-[60vw] md:w-64 lg:w-96 max-md:text-center">
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
             officia deserunt mollit anim id est laborum
           </p>
         </div>
-        <div className="flex items-center justify-evenly w-[30rem] h-80 bg-slate-600 bg-opacity-15 rounded-xl border-l z-50 border-slate-500">
-          <div>
+        <div className="flex max-sm:flex-col items-center justify-evenly p-5 sm:p-20 sm:px-10 lg:px-20 max-sm:w-[80vw] bg-slate-600 bg-opacity-15 rounded-xl border-l z-50 border-slate-500">
+          <div className="flex flex-col max-sm:items-center">
             <div>
               <img></img>
               <p className="text-[20px] font-400">Adrox001</p>
             </div>
-            <div>
+            <div className="flex flex-col max-sm:items-center">
               <p className="font-300 text-[20px]">Holdings</p>
               <span className="text-[36px] font-800 text-[#C653FF]">
                 1,000 ADR
@@ -57,14 +63,14 @@ export default function Staking() {
       {/* Adrox Staking Plans */}
       <div>
         <div className="text-center">
-          <h1 className="text-[56px] font-700 text-[#C653FF]">
+          <h1 className="text-[40px] sm:text-[56px] font-700 text-[#C653FF]">
             ADROX Staking plans
           </h1>
         </div>
 
         <div className="flex justify-center items-center my-20">
-          <div className="grid grid-cols-2 grid-rows-2 gap-14">
-            <div className="flex justify-center items-center bg-slate-600 bg-opacity-15 p-14 rounded-xl z-50">
+          <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-2 gap-14">
+            <div className="flex justify-center items-center bg-slate-600 bg-opacity-15 p-5 sm:p-14 rounded-xl z-50">
               <div className="flex flex-col gap-8">
                 <div className="flex gap-5 justify-between">
                   <div className="bg-slate-600 bg-opacity-20 p-3 rounded-lg">
@@ -135,9 +141,10 @@ export default function Staking() {
                   </div>
                 </div>
 
-                <div className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+                <div
+                  className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
                   onClick={() => setStakingType("3month")}
-                  >
+                >
                   <button>Stake Now</button>
                 </div>
               </div>
@@ -174,9 +181,10 @@ export default function Staking() {
                   </div>
                 </div>
 
-                <div className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+                <div
+                  className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
                   onClick={() => setStakingType("6month")}
-                  >
+                >
                   <button>Stake Now</button>
                 </div>
               </div>
@@ -213,9 +221,10 @@ export default function Staking() {
                   </div>
                 </div>
 
-                <div className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+                <div
+                  className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
                   onClick={() => setStakingType("1year")}
-                  >
+                >
                   <button>Stake Now</button>
                 </div>
               </div>
@@ -230,7 +239,6 @@ export default function Staking() {
       <div className="absolute left-[-30%] w-[80%] top-[50rem]">
         <img src={ellipse}></img>
       </div>
-
 
       {stakingType == "1month" ? (
         <Staking1Month onClose={() => setStakingType("")} />
@@ -252,9 +260,6 @@ export default function Staking() {
       ) : (
         <></>
       )}
-
-
-
     </div>
   );
 }

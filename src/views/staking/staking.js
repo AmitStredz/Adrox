@@ -73,20 +73,22 @@ export default function Staking() {
   };
 
   return (
-    <div className="">
-      <div className="p-20 flex flex-col items-center">
-        <div className="flex items-center justify-center w-4/5 p-16 px-20 rounded-xl bg-gradient-to-b from-[#22122F] to-[#10031B]">
+    <div>
+      <div className="sm:p-20 flex flex-col items-center">
+
+        <div className="flex items-center justify-center w-[80vw] sm:w-[70vw] md:w-4/5 p-5 sm:p-10 md:p-16 px-5 sm:px-8 md:px-12 rounded-xl bg-gradient-to-b from-[#22122F] to-[#10031B]">
           <div className="flex flex-col text-center gap-5">
             <div>
               <a className="bg-[#AB00FF] shadow-[2px 2px 4px rgb(171,0,255)] shadow rounded-lg p-1 px-6">
                 Token Rate
               </a>
             </div>
-            <div className="flex text-[32px] gap-3 items-center">
+            <div className="flex text-[20px] sm:text-[32px] gap-3 items-center">
               <img src={dollar} className="w-10 h-10"></img>
               <p>
-                1 <span className="font-100">USD</span> =
+                1 <span className="font-100">USD</span>
               </p>
+              <p>=</p>
               <img src={star} className="w-10 h-10"></img>
               <p>
                 20.83 <span className="font-100">ADX</span>
@@ -95,8 +97,8 @@ export default function Staking() {
           </div>
         </div>
         {stakingData ? (
-          <div className="flex items-center justify-between w-4/5 my-20">
-            <div className="box1 flex flex-col gap-10">
+          <div className="flex max-lg:flex-col gap-5 items-center justify-between w-4/5 my-20">
+            <div className="box1 flex flex-col gap-10 max-sm:w-[90vw]">
               <div className="flex flex-col gap-3 text-center rounded-xl p-5 bg-gradient-to-b from-[#22122F] to-[#10031B]">
                 <div className="flex flex-col gap-5 text-center p-5 px-10">
                   <div>
@@ -124,12 +126,12 @@ export default function Staking() {
                   <p className="font-100 text-[16px]">Tokens Generated</p>
                   <p>150 ADX</p>
                 </div>
-                <div className="flex gap-3 items-center justify-between">
-                  <div className="rounded-xl p-5 px-10 bg-gradient-to-b from-[#22122F] to-[#10031B]">
+                <div className="flex gap-3 items-center justify-evenly sm:justify-between">
+                  <div className="rounded-xl p-5 sm:px-10 bg-gradient-to-b from-[#22122F] to-[#10031B]">
                     <p className="font-100 text-[16px]">APY</p>
                     <p>36.5%</p>
                   </div>
-                  <div className="rounded-xl p-5 px-10 bg-gradient-to-b from-[#22122F] to-[#10031B]">
+                  <div className="rounded-xl p-5 sm:px-10 bg-gradient-to-b from-[#22122F] to-[#10031B]">
                     <p className="font-100 text-[16px]">DPY</p>
                     <p>10.5%</p>
                   </div>
@@ -137,8 +139,8 @@ export default function Staking() {
               </div>
             </div>
 
-            <div className="box2 py-20 w-[30rem] flex items-center justify-center rounded-xl bg-gradient-to-b from-[#22122F] to-[#10031B]">
-              <div className="font-100 text-[20px] text-center flex flex-col gap-10  w-2/3">
+            <div className="box2 py-10 sm:py-20 max-sm:w-[90vw] w-[30rem] flex items-center justify-center rounded-xl bg-gradient-to-b from-[#22122F] to-[#10031B]">
+              <div className="font-100 text-[20px] text-center flex flex-col gap-10 max-sm:w-[90vw] w-[2/3]">
                 <div>
                   <a className="text-[16px] bg-[#AB00FF] shadow-2xl rounded-lg p-1 px-4">
                     Holding Period
@@ -157,7 +159,7 @@ export default function Staking() {
                   </div>
                 </div>
 
-                <div className="flex justify-between">
+                <div className="flex justify-evenly sm:justify-between">
                   <div className="border border-slate-500 p-1 px-4 rounded-xl ">
                     <p className="font-700 text-[32px]">{timeLeft.days}</p>
                     <p className="">Day</p>
@@ -196,11 +198,11 @@ export default function Staking() {
       {/* Page2 */}
 
       <div className="px-10">
-        <div className="flex justify-between p-10 px-28">
-          <h1 className="font-700 text-[40px]">Staking History</h1>
-          <div className="flex border items-center rounded-3xl border-slate-600  p-0 px-5 gap-2">
+        <div className="flex justify-between md:p-10 py-3 md:px-20 lg:px-28">
+          <h1 className="font-700 text-[24px] sm:text-[40px]">Staking History</h1>
+          <div className="flex border items-center rounded-3xl border-slate-600 px-3 sm:px-5 gap-1 sm:gap-2">
             <i className="ri-calendar-2-line font-100"></i>
-            <p className="text-[20px] font-100">Date</p>
+            <p className="text-[14px] sm:text-[20px] font-100">Date</p>
           </div>
         </div>
 

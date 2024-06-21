@@ -729,7 +729,7 @@ const Staking1Month = ({ onClose }) => {
     // <div className="bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden flex items-center justify-center relative">
     <div className="flex justify-center w-full h-full fixed top-0 left-0 backdrop-blur-xl z-[100]">
       <div className="w-full h-full flex items-center justify-center overflow-auto">
-        <div className="flex flex-col gap-10 mt-60 p-14 rounded-3xl w-5/12 z-50 bg-gradient-to-r from-[#210F34] to-[#170D25]">
+        <div className="flex flex-col gap-5 sm:gap-10 mt-60 p-4 sm:p-14 rounded-3xl w-[95vw] sm:w-[40rem] z-50 bg-gradient-to-r from-[#210F34] to-[#170D25]">
           <div className="flex justify-end">
             <i
               className="ri-close-fill text-3xl cursor-pointer hover:scale-105"
@@ -737,8 +737,8 @@ const Staking1Month = ({ onClose }) => {
             ></i>
           </div>
           <div>
-            <h1 className="text-[48px] font-700">Stake USDT</h1>
-            <a className="text-[20px] font-300 bg-slate-600 bg-opacity-20 p-1 px-3 rounded-xl">
+            <h1 className="text-[30px] sm:text-[48px] font-700">Stake USDT</h1>
+            <a className="text-[14px] sm:text-[20px] font-300 bg-slate-600 bg-opacity-20 p-1 px-3 rounded-xl">
               1 Month Plan
             </a>
           </div>

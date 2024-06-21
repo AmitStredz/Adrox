@@ -11,7 +11,7 @@ import ellipse from "./assets/ellipse.png";
 export default function link() {
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="w-8/12 ">
+      <div className="w-[90vw] lg:w-8/12 ">
         <div className="upper flex justify-center p-10 items-start">
           <div className="flex justify-evenly w-full">
             <img src={leftLink} className="w-64 h-40"></img>
