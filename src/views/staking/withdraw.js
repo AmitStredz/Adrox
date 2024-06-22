@@ -74,8 +74,8 @@ const Withdraw = ({ onClose }) => {
   return (
     // <div className="bg-[#0F011A] font-nunito text-slate-300 overflow-hidden flex items-center justify-center relative">
     <div className="flex justify-center w-full h-full fixed top-0 left-0 backdrop-blur-xl z-[100]">
-      <div className="w-full h-full flex items-center justify-center overflow-auto">
-        <div className="flex flex-col gap-10 my-20 p-14 rounded-3xl w-5/12 bg-gradient-to-r from-[#210F34] to-[#170D25] backdrop-blur-lg mt-[30rem]">
+      <div className="w-full h-full px-3 flex items-center justify-center overflow-auto">
+        <div className="flex flex-col gap-10 my-20 p-7 sm:p-14 rounded-3xl max-w-xl bg-gradient-to-r from-[#210F34] to-[#170D25] backdrop-blur-lg mt-[30rem]">
           <div className="flex justify-end">
             <i
               className="ri-close-fill text-3xl cursor-pointer hover:scale-105"
@@ -89,15 +89,15 @@ const Withdraw = ({ onClose }) => {
                 Available Balance: {balance} $
               </p>
             </div>
-            <div className="flex justify-between gap-5 border border-slate-600 rounded-2xl p-14">
-              <img src={dollar} alt="Dollar" />
+            <div className="flex justify-between gap-[2vw] sm:gap-5 border border-slate-600 rounded-2xl p-5 sm:p-14">
+              <img src={dollar} alt="Dollar" className="w-10 sm:w-16"/>
               <input
                 placeholder="Minimum 20 $"
                 type="number"
                 required
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="bg-transparent outline-none text-4xl font-light w-full text-center"
+                className="bg-transparent outline-none text-2xl sm:text-4xl font-light w-full text-center"
               ></input>
             </div>
           </div>
@@ -144,7 +144,7 @@ const Withdraw = ({ onClose }) => {
 
           <div className="flex justify-center">
             <button
-              className={`p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
+              className={`p-2 px-14 sm:px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
                 isLoading ? "cursor-not-allowed" : ""
               }`}
               onClick={handleWithdraw}

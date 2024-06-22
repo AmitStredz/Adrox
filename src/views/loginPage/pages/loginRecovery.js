@@ -11,6 +11,7 @@ export default function Login1() {
   const [phrase, setPhrase] = useState(Array(12).fill(""));
   const [showInvalidPopup, setShowInvalidPopup] = useState(false);
   const [showValidPopup, setShowValidPopup] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePaste = (event) => {
     event.preventDefault();
@@ -31,6 +32,7 @@ export default function Login1() {
   };
 
   const handleLoginClick = async () => {
+    setIsLoading(true);
     const recoveryPhrase = phrase.join(" ");
     try {
       const response = await fetch(
@@ -52,11 +54,16 @@ export default function Login1() {
         setTimeout(() => {
           navigate("/homePage");
         }, 2000);
+        setIsLoading(false);
       } else {
         setShowInvalidPopup(true);
+        setIsLoading(false);
       }
     } catch (error) {
       setShowInvalidPopup(true);
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -71,13 +78,13 @@ export default function Login1() {
     //         <h1 className="font-700 text-[48px]">Log in</h1>
     //       </div>
 
-    <div className="flex flex-col gap-5  w-[35rem] p-12 rounded-2xl">
+    <div className="flex flex-col gap-5 w-[85vw] sm:w-[70vw] md:w-[35rem] py-12 md:p-12 rounded-2xl">
       <h1 className="font-400 text-[16px] text-center">
         Enter Your Recovery Phrase
       </h1>
 
       <div
-        className="grid grid-cols-4 gap-8 border border-slate-500 p-5 justify-center items-center text-center rounded-2xl z-50"
+        className="grid grid-cols-3 sm:grid-cols-4 gap-[2vw] gap-y-[4vw] sm:gap-8 border border-slate-500 p-3 sm:p-5 justify-center items-center text-center rounded-2xl z-50 w-full"
         onPaste={handlePaste}
       >
         {phrase.map((word, index) => (
@@ -85,27 +92,25 @@ export default function Login1() {
             key={index}
             value={word}
             onChange={(e) => handleInputChange(index, e.target.value)}
-            className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1"
+            className="w-[82px] h-[32px] bg-slate-400 bg-opacity-15 rounded-md outline-none p-1 items-center flex justify-center "
           />
         ))}
       </div>
 
       <div className="text-center z-50">
         <button
-          className="p-2 px-20 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+          className={`p-2 px-20 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${(isLoading)? "bg-gray-500": ""}`}
+          disabled={isLoading}
           onClick={handleLoginClick}
         >
-          Login
+          {(isLoading)? "Loading..." : "Login"}
         </button>
       </div>
-
 
       {showInvalidPopup && (
         <InvalidPopup closeModal={() => setShowInvalidPopup(false)} />
       )}
       {showValidPopup && <ValidPopup />}
-
-
     </div>
 
     //       <div className="text-center gap-5 flex flex-col z-50">

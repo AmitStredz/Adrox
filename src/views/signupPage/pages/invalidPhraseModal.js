@@ -11,7 +11,7 @@ function InvalidPhrase({ closeModal }) {
   };
   return (
     <div ref={modalRef} onClick={bgModal}
-      className="flex fixed justify-center w-screen h-screen left-0 top-0 text-white items-center backdrop-blur-lg"
+      className="flex fixed justify-center w-screen h-screen left-0 top-0 text-white items-center backdrop-blur-lg z-[1000]"
       data-aos="zoom-in"
     >
       <Helmet>

@@ -8,13 +8,14 @@ import Cookies from "js-cookie";
 
 import SignupAnimation from "./signupAnimation";
 
-const Signup9 = ({onNextStep}) => {
+const Signup9 = ({ onNextStep }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [referral, setReferral] = useState("");
   const [isEqual, setIsEqual] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [passwordModal, setPasswordModal] = useState(false);
+  const [invalidReferral, setInvalidRefferal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -71,10 +72,12 @@ const Signup9 = ({onNextStep}) => {
           // navigate("/signup10");
           onNextStep();
         }, 2000);
+        setInvalidRefferal(false);
       } else {
         // Handle error response from the API
         console.error(data.error); // Log the error message
-        alert("Failed to set password. Please try again."); // Show an alert to the user
+        // alert("Failed to set password. Please try again."); // Show an alert to the user
+        setInvalidRefferal(true);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -117,7 +120,9 @@ const Signup9 = ({onNextStep}) => {
             <div className="circle bg-white rounded-full w-3 h-3"></div>
           </div>
           <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10  max-lg:bg-slate-700 max-lg:bg-opacity-30 w-[30rem] max-w-[100%] p-10 md:p-20  rounded-2xl">
-            <h1 className="font-700 text-[28px] sm:text-[36px]">Create Account</h1>
+            <h1 className="font-700 text-[28px] sm:text-[36px]">
+              Create Account
+            </h1>
             <input
               type="text"
               value={Cookies.get("full_name")}
@@ -170,14 +175,17 @@ const Signup9 = ({onNextStep}) => {
                 Password does not match
               </p>
             </div>
-            <input
-              type="text"
-              required
-              value={referral}
-              placeholder="Referral Code"
-              onChange={(e) => setReferral(e.target.value)}
-              className="bg-transparent border-b-2 pb-2 outline-none"
-            ></input>
+            <div className="w-full">
+              <input
+                type="text"
+                required
+                value={referral}
+                placeholder="Referral Code"
+                onChange={(e) => setReferral(e.target.value)}
+                className="bg-transparent border-b-2 pb-2 outline-none w-full"
+              ></input>
+              <p className={`text-red-500 text-[14px] ${(invalidReferral)? "" : "hidden"}`}>Invalid refferal id...</p>
+            </div>
             <div className="mt-[-30px]">
               <p className="text-[12px] font-300">
                 If you don't have a referral code, please use the one below
@@ -196,7 +204,7 @@ const Signup9 = ({onNextStep}) => {
                     : ""
                 }`}
               >
-                Next
+                {isLoading ? "Loading..." : "Next"}
               </button>
             </div>
           </div>

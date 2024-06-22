@@ -13,25 +13,30 @@ export default function Login() {
   const [loginType, setLoginType] = useState("loginPhrase");
 
   return (
-    <div className="flex bg-[#0f011a] h-full text-white font-nunito p-10 justify-center overflow-hidden relative">
-      <div className="">
-        <div className="flex flex-col items-center bg-slate-400 bg-opacity-10 w-[40rem] p-16 rounded-2xl">
+    <div className="flex bg-[#0f011a] w-full h-full text-white font-nunito p-5 sm:p-10 justify-center overflow-hidden relative">
+      <div className="flex justify-center w-full h-screen">
+        <div className="flex flex-col items-center bg-slate-400 bg-opacity-10 px-5 py-10 sm:p-10 md:p-16 rounded-2xl w-full sm:w-auto">
           <div className="flex justify-between w-full items-end z-50">
-            <img src={logo} className="w-28"></img>
-            <h1 className="font-700 text-[48px]">Log in</h1>
+            <img src={logo} className="w-20 sm:w-28"></img>
+            <h1 className="font-700 text-[40px] sm:text-[48px]">Log in</h1>
           </div>
 
           {loginType === "loginPhrase" ? <LoginPhrase /> : <></>}
 
-          <div className={`text-center gap-5 flex flex-col z-50 mb-5 ${(loginType == "loginPhrase")? "" : "mt-10"}`}>
-            <h1 className="font-100">
+          <div className={`text-center gap-5 flex flex-col z-50 mb-5 overflow-hidden w-full ${(loginType == "loginPhrase")? "" : "mt-10"}`}>
+            <h1 className="font-100 max-sm:hidden">
               ---------------
               <span className="font-400">Alternative login methods</span>
-              ----------------
+              ---------------
+            </h1>
+            <h1 className="font-100 sm:hidden">
+              ----
+              <span className="font-400">Alternative login methods</span>
+              ----
             </h1>
           </div>
 
-          <div className="flex text-center justify-evenly  w-full z-50">
+          <div className="flex max-sm:flex-col items-center gap-5 text-center justify-evenly  w-full z-50">
             <div
               className={`flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer ${(loginType == "loginEmail")? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]" : ""}`}
               onClick={() => setLoginType("loginEmail")}

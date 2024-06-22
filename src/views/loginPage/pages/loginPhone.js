@@ -40,7 +40,7 @@ export default function LoginPhone() {
     //         </div>            
     //       </div>
 
-          <div className="flex flex-col w-full gap-10 p-10 z-50 my-10">
+          <div className="flex flex-col w-full gap-10 py-5 sm:p-10 z-50 my-10">
               <input
                 type="email"
                 required
