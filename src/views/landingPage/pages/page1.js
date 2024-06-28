@@ -85,19 +85,19 @@ export default function page1() {
           />
         </div>
         <div className="absolute scale-100 max-md:scale-[2] max-lg:scale-150 flex justify-center items-center w-full">
-        <img
-          src={vector3}
-          alt="Animation"
-          className="w-[45%] rotating-image-anticlock opacity-50"
-        />
-      </div>
-      <div className="absolute scale-100 max-md:scale-[2] max-lg:scale-150 flex justify-center items-center w-full">
-        <img
-          src={vector4}
-          alt="Animation"
-          className="w-[45%] rotating-image-anticlock opacity-50"
-        />
-      </div>
+          <img
+            src={vector3}
+            alt="Animation"
+            className="w-[45%] rotating-image-anticlock opacity-50"
+          />
+        </div>
+        <div className="absolute scale-100 max-md:scale-[2] max-lg:scale-150 flex justify-center items-center w-full">
+          <img
+            src={vector4}
+            alt="Animation"
+            className="w-[45%] rotating-image-anticlock opacity-50"
+          />
+        </div>
       </div>
       {/* <div>
           <img src={vector6} alt="Animation" className="w-[80%]" />
