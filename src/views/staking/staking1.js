@@ -8,6 +8,7 @@ import Staking1Month from "./staking1Month";
 import Staking3Month from "./staking3Month";
 import Staking6Month from "./staking6Month";
 import Staking1Year from "./staking1Year";
+import { Helmet } from "react-helmet";
 
 export default function Staking() {
   const [stakingType, setStakingType] = useState();
@@ -18,6 +19,9 @@ export default function Staking() {
       <div>
         <HomeHeader></HomeHeader>
       </div>
+      <Helmet>
+        <title>Adrox - Staking</title>
+      </Helmet>
 
       <div className="flex gap-10 max-md:flex-col p-10 items-center justify-evenly my-20 md:my-40">
         <div className="flex flex-col max-md:items-center">

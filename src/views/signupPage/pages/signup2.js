@@ -126,9 +126,9 @@ const Signup2 = ({ onNextStep }) => {
 
   return (
     <div className="signup2-container">
-      <Helmet>
+      {/* <Helmet>
         <title>Adrox - Privacy Terms</title>
-      </Helmet>
+      </Helmet> */}
       <div className="signup2-signup2">
         <img
           src="/external/ellipse23212-y26r-1000w.png"

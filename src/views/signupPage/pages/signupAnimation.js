@@ -7,7 +7,7 @@ import circle from "../assets/circle.png";
 
 export default function SignupAnimation() {
   return (
-    <div className="relative w-full h-full max-lg:absolute  max-lg:top-[5vw]" > {/* Maintains aspect ratio */}
+    <div className="relative w-full h-full max-lg:absolute  max-lg:top-[5vw] max-sm:top-[20vw]" > {/* Maintains aspect ratio */}
       <div className="absolute inset-0 flex justify-center items-center max-lg:w-[70vw] max-lg:left-16 max-lg:opacity-40">
         <img className="absolute" src={circle} alt="Circle" />
         <img className="absolute w-[45%] h-auto" src={starGlow} alt="Star Glow" />

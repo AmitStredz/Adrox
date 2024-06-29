@@ -86,7 +86,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./animateLogo.css";
-import { Helmet } from "react-helmet";
 import Cookies from "js-cookie";
 
 import Background from "../assets/account-background.png";
@@ -174,9 +173,7 @@ const Signup7 = ({ onNextStep }) => {
 
   return (
     <div className="flex   bg-[#0f011a] h-screen text-white font-nunito p-5 sm:p-14 lg:p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
-      <Helmet>
-        <title>Signup - Adrox</title>
-      </Helmet>
+     
       <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">
         <div className="text-center z-50 max-lg:-left-40">
           <h1 className="font-700 text-[48px] text-[#C653FF] max-sm:leading-11">
@@ -186,7 +183,9 @@ const Signup7 = ({ onNextStep }) => {
             Just A Couple Of Clicks And We Start
           </p>
         </div>
-        <SignupAnimation></SignupAnimation>
+        <div>
+        </div>
+          <SignupAnimation></SignupAnimation>
       </div>
 
       {/* Signup7 is this */}

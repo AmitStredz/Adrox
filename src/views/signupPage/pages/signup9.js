@@ -3,7 +3,6 @@ import { useState } from "react";
 import Background from "../assets/account-background.png";
 import { useNavigate } from "react-router-dom";
 import SetPassword from "./setPassword";
-import { Helmet } from "react-helmet";
 import Cookies from "js-cookie";
 
 import SignupAnimation from "./signupAnimation";
@@ -89,9 +88,7 @@ const Signup9 = ({ onNextStep }) => {
 
   return (
     <div className="flex bg-[#0f011a] h-full text-white font-nunito p-5 sm:p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
-      <Helmet>
-        <title>Signup - Adrox</title>
-      </Helmet>
+     
       <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">
         <div className="text-center z-50">
           <h1 className="font-700 text-[48px] text-[#C653FF]  max-sm:leading-11">
@@ -102,7 +99,7 @@ const Signup9 = ({ onNextStep }) => {
           </p>
         </div>
 
-        <div className="md:h-[80%] left-0 top-[40vw] sm:left-[10vw] sm:top-[60vw] md:-left-[16vw] md:top-[7vw] max-lg:absolute">
+        <div className="md:h-[80%] left-0 top-[20rem] sm:left-[10vw] sm:top-[60vw] md:-left-[16vw] md:top-[7vw] max-lg:absolute">
           <SignupAnimation></SignupAnimation>
         </div>
       </div>

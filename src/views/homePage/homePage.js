@@ -7,6 +7,7 @@ import Page3 from "./pages/page3";
 import Page4 from "./pages/page4";
 import Footer from "./pages/footer";
 import StarAnimation from "../landingPage/pages/starAnimation";
+import { Helmet } from "react-helmet";
 
 export default function homePage() {
   return (
@@ -17,6 +18,10 @@ export default function homePage() {
       <Page3></Page3>
       <Page4></Page4>
       <Footer></Footer>
+
+      <Helmet>
+        <title>Adrox - Homepage</title>
+      </Helmet>
 
       <div className="absolute right-[-40%] w-[90%] top-[60rem]">
         <img src="/ellipse.png"></img>
@@ -31,11 +36,10 @@ export default function homePage() {
       <div className="absolute left-[-30%] w-[80%] top-[130rem]">
         <img src="/ellipse.png"></img>
       </div>
-      
+
       <div className="absolute w-screen h-screen top-0 left-0  z-10">
         <StarAnimation></StarAnimation>
       </div>
-
     </div>
   );
 }

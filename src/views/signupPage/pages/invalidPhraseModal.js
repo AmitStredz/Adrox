@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { Helmet } from 'react-helmet';
 
 function InvalidPhrase({ closeModal }) {
   const modalRef = useRef();
@@ -14,9 +13,6 @@ function InvalidPhrase({ closeModal }) {
       className="flex fixed justify-center w-screen h-screen left-0 top-0 text-white items-center backdrop-blur-lg z-[1000]"
       data-aos="zoom-in"
     >
-      <Helmet>
-        <title>Adrox - Privacy Terms</title>
-      </Helmet>
       <div className="flex flex-col items-center gap-10 bg-opacity-100 p-10 rounded-3xl z-[1000000] bg-gradient-to-r from-[#34104A] to-[#250939]">
         <div className="items-end justify-end flex w-full">
           <button className="items-end justify-end flex ">

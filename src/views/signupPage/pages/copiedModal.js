@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { CopyCheck } from "lucide-react";
-import { Helmet } from 'react-helmet';
 
 function CopiedModal({ closeModal }) {
   const modalRef = useRef();
@@ -15,9 +14,6 @@ function CopiedModal({ closeModal }) {
       className="flex fixed justify-center w-screen h-screen left-0 top-0 p-5 text-white items-center backdrop-blur-lg z-[1000]"
       data-aos="zoom-in"
     >
-      <Helmet>
-        <title>Copied Phrase - Adrox</title>
-      </Helmet>
       <div className="flex flex-col items-center gap-5 sm:gap-10 bg-gradient-to-r from-[#34104A] to-[#250939] p-8 sm:p-10 rounded-3xl">
         <div className="items-end justify-end flex w-full">
           <button className="items-end justify-end flex ">

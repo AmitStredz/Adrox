@@ -312,9 +312,9 @@ const Signup5 = ({ onNextStep }) => {
 
   return (
     <div className="signup5-container">
-      <Helmet>
+      {/* <Helmet>
         <title>Secret Recovery Phrase</title>
-      </Helmet>
+      </Helmet> */}
       <div className="signup5-signup5">
         <div className="signup5-frame57"></div>
         <div className="signup5-group92">

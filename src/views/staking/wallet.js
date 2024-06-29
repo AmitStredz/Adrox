@@ -3,6 +3,7 @@ import HomeHeader from "../homePage/pages/homeHeader";
 import AdroxWallet from "./adroxWallet";
 import TokenWallet from "./tokenWallet";
 import adam3 from "./assets/adam3.png";
+import { Helmet } from "react-helmet";
 
 export default function Wallet() {
   const [activeComponent, setactiveComponent] = useState("adroxWallet");
@@ -16,6 +17,9 @@ export default function Wallet() {
       <div>
         <HomeHeader></HomeHeader>
       </div>
+      <Helmet>
+        <title>Adrox - Wallet</title>
+      </Helmet>
 
       <div className="flex-col flex mt-20 md:mt-44 p-5 sm:p-10 md:p-20 z-50 gap-8 mx-0 sm:mx-10">
         <div className="flex items-center gap-1">

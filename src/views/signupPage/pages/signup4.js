@@ -250,9 +250,9 @@ const Signup4 = ({ onNextStep }) => {
 
   return (
     <div className="signup4-container">
-      <Helmet>
+      {/* <Helmet>
         <title>Reveal Secret Recovery Phrase</title>
-      </Helmet>
+      </Helmet> */}
       <div className="signup4-signup4">
         <img
           src="/external/ellipse22356-fwl-1000w.png"

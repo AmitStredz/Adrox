@@ -10,6 +10,7 @@ import HomeHeader from "../homePage/pages/homeHeader";
 import { Home } from "lucide-react";
 import adam2 from "./assets/adam3.png";
 import Footer from "../landingPage/pages/footer";
+import { Helmet } from "react-helmet";
 
 export default function Account({ closeModal }) {
   const history = useNavigate();
@@ -18,12 +19,15 @@ export default function Account({ closeModal }) {
       <div>
         <HomeHeader></HomeHeader>
       </div>
+      <Helmet>
+        <title>Adrox - Account</title>
+      </Helmet>
 
       <div className="flex justify-center items-center  w-screen relative mb-20">
-        <div className="flex h-9/12 gap-56 mt-40">
-          <div className="left flex flex-col gap-20 z-50">
+        <div className="flex max-md:flex-col h-9/12 gap-20 lg:gap-56 mt-40 p-10 w-">
+          <div className="left flex flex-col gap-20 p- z-50 max-md:items-center">
             <div className="top flex justify-start">
-              <div className="flex flex-col gap-3 items-start ">
+              <div className="flex flex-col gap-3 md:items-start items-center">
                 <img src={adam2} className="w-20"></img>
                 <p className="text-[52px] font-700">Adrox001</p>
                 <div className="flex items-center gap-2  p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
@@ -32,8 +36,8 @@ export default function Account({ closeModal }) {
                 </div>
               </div>
             </div>
-            <div className="bottom flex flex-col gap-3">
-              <div className="w-full">
+            <div className="bottom flex flex-col gap-3 max-md:items-center">
+              <div className="w-full max-md:text-center">
                 <a className="p-1 px-3 rounded-lg bg-slate-600 bg-opacity-20">
                   UID
                 </a>
@@ -50,8 +54,8 @@ export default function Account({ closeModal }) {
             </div>
           </div>
 
-          <div className="right flex flex-col gap-20">
-            <div className="up flex gap-8">
+          <div className="right flex flex-col gap-20 max-md:items-center">
+            <div className="up flex gap-8 max-sm:flex-col">
               <div className="p-7 px-10 flex flex-col gap-5 border border-slate-600 rounded-2xl bg-slate-500 bg-opacity-5">
                 <p className="p-1 px-2 rounded-lg bg-slate-600 bg-opacity-20 text-[15px] font-200 w-32">
                   ADROX Wallet
@@ -75,7 +79,7 @@ export default function Account({ closeModal }) {
               </div>
             </div>
 
-            <div className="down flex flex-col gap-8 text-slate-300">
+            <div className="down flex max-sm:flex-col md:flex-col gap-8 text-slate-300 max-sm:items-start max-md:items-center sm:justify-center z-50">
               <div className="flex flex-col gap-3">
                 <div className="flex p-2 px-2 bg-slate-600 bg-opacity-15 w-20 items-center justify-center rounded-md gap-2">
                   <i class="fa-regular fa-envelope"></i>
@@ -94,15 +98,13 @@ export default function Account({ closeModal }) {
             </div>
           </div>
         </div>
-        <div className="absolute right-0 top-[-2rem]">
-        <img src="/external/ellipse32356-aujk-700w.png" alt="ellipse" />
+        <div className="absolute -right-[80%] sm:-right-[60%] top-[50%] sm:top-[20%]">
+          <img src="/ellipse.png" alt="ellipse" />
+        </div>
+        <div className="absolute -left-[110%] sm:-left-[80%] md:-left-[40%] w-[80rem] -top-[30%]">
+          <img src="/ellipse.png" alt="ellipse" />
+        </div>
       </div>
-      <div className="absolute left-[-30%] w-[80%] top-[-15rem]">
-        <img src={ellipse} alt="ellipse" />
-      </div>
-      </div>
-
-     
 
       <div className="bg-[#0F011A] z-[1000]">
         <Footer></Footer>

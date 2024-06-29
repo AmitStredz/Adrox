@@ -133,9 +133,9 @@ const Signup10 = ({ onNextStep }) => {
 
   return (
     <div className="flex bg-[#0f011a] h-screen text-white font-nunito p-5 lg:p-24 justify-evenly gap-10 relative overflow-hidden  max-md:flex-col">
-      <Helmet>
+      {/* <Helmet>
         <title>Signup - Adrox</title>
-      </Helmet>
+      </Helmet> */}
       <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">
         <div className="text-center">
           <h1 className="font-700 text-[48px] text-[#C653FF] max-sm:leading-11">

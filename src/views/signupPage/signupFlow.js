@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Helmet } from "react-helmet";
 
 import Signup1 from "./pages/signup1";
 import Signup2 from "./pages/signup2";
@@ -153,7 +154,12 @@ const SignupFlow = () => {
     }
   };
 
-  return <div>{renderStep()}</div>;
+  return (
+    <div>
+      <Helmet>Hello</Helmet>
+      <div>{renderStep()}</div>
+    </div>
+  );
 };
 
 export default SignupFlow;

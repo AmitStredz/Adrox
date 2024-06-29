@@ -11,9 +11,9 @@ const Signup6 = (props) => {
     history('/signup7');
   };  return (
     <div className="signup6-container">
-      <Helmet>
+      {/* <Helmet>
         <title>Secret Recovery Phrase</title>
-      </Helmet>
+      </Helmet> */}
       <div className="signup6-signup6">
         <div className="signup6-frame57"></div>
         <div className="signup6-group92">

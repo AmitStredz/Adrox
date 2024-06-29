@@ -138,9 +138,9 @@ const Signup3 = ({onNextStep}) => {
 
   return (
     <div className="signup3-container">
-      <Helmet>
+      {/* <Helmet>
         <title>Adrox - Secure My Wallet</title>
-      </Helmet>
+      </Helmet> */}
       <div className="signup3-signup3">
         <img
           src="/external/ellipse22356-sa34-1000w.png"
