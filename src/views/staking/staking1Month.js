@@ -7,18 +7,19 @@ import Cookies from "js-cookie";
 import SuccessModal from "./sucessModal";
 
 const Staking1Month = ({ onClose }) => {
-
   const [usdt, setUsdt] = useState(150); // Initial value of USDT
   const [adx, setAdx] = useState(150 * 20.83); // Initial value of ADX based on conversion ratio
   const [stakeDate, setStakeDate] = useState(new Date());
   const [rewardDate, setRewardDate] = useState(
     new Date(new Date().setMonth(new Date().getMonth() + 1))
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   const [successModal, setSuccessModal] = useState(false);
   const navigate = useNavigate();
 
   const handleButtonClick = async () => {
+    setIsLoading(true);
     const currentStakeDate = new Date();
     const currentRewardDate = new Date(currentStakeDate);
     currentRewardDate.setMonth(currentStakeDate.getMonth() + 1); // Set reward collection date to one month later
@@ -36,9 +37,10 @@ const Staking1Month = ({ onClose }) => {
 
     if (!userId) {
       alert("User ID is not available. Please sign up or log in first.");
+      setIsLoading(false);
       return;
     }
-    
+
     // console.log("CurrentStakeDate: ", currentStakeDate);
     // console.log("CurrentRewardDate: ", currentRewardDate);
 
@@ -62,7 +64,7 @@ const Staking1Month = ({ onClose }) => {
       );
 
       Cookies.set("balance", Cookies.get("balance") - usdt);
-      
+
       // Store the response data in Cookies
       Cookies.set(
         "stakingData",
@@ -77,13 +79,15 @@ const Staking1Month = ({ onClose }) => {
       setStakeDate(currentStakeDate);
       setRewardDate(currentRewardDate);
       setSuccessModal(true);
+      setIsLoading(false);
+
       setTimeout(() => {
         navigate("/staking2"); // Navigate to staking2 on successful response
         setSuccessModal(false);
       }, 2000);
     } catch (error) {
       console.error("There was an error!", error);
-
+      setIsLoading(false);
       if (error.response) {
         // Server responded with a status other than 200 range
         console.error("Server Response:", error.response.data);
@@ -97,6 +101,8 @@ const Staking1Month = ({ onClose }) => {
         console.error("Error Message:", error.message);
         alert("Error: " + error.message);
       }
+    }finally{
+      setIsLoading(false);
     }
   };
 
@@ -217,7 +223,7 @@ const Staking1Month = ({ onClose }) => {
               className="p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
               onClick={handleButtonClick}
             >
-              Stake
+              {isLoading? "Staking..." : "Stake"}
             </a>
           </div>
         </div>
