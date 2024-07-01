@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { CopyCheck } from "lucide-react";
 
 function IncorrectPhraseModal({ closeModal }) {
   const modalRef = useRef();

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import './signup1.css';
 

@@ -6,10 +6,12 @@ import Page4 from './pages/page4'
 import Page5 from './pages/page5'
 import Footer from './pages/footer'
 import './landingPage.css'
+import { Helmet } from "react-helmet";
 
 const LandingPage= () => {
   return (
     <div className='bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden'>
+      <Helmet>Adrox - Landing Page</Helmet>
       <Header></Header>
       <Page1></Page1>
       <Page2></Page2>

@@ -1,10 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from 'react-helmet';
 
 import SignupAnimation from "./signupAnimation";
 
-const Signup11 = ({onNextStep}) => {
+const Signup11 = ({ onNextStep }) => {
   const navigate = useNavigate();
   const handleButtonClick = () => {
     // navigate("/signup12");
@@ -27,7 +26,6 @@ const Signup11 = ({onNextStep}) => {
         </div>
 
         <SignupAnimation></SignupAnimation>
-
       </div>
 
       {/* Signup11 is this */}
@@ -54,9 +52,15 @@ const Signup11 = ({onNextStep}) => {
               ></i>
             </div>
 
-            <div className="flex text-center sm:justify-center gap-1 sm:gap-2 max-sm:w-[55vw]">
-              <input type="checkbox" className="size-3 sm:size-5 max-sm:mt-1"></input>
-              <label className="text-[14px] sm:text-[16px] font-400" for="checkbox">
+            <div className="flex justify-center text-center max-sm:w-[55vw]">
+              <label
+                className="text-[14px] sm:text-[16px] font-400 items- flex gap-1 sm:items-center"
+                // for="checkbox"
+              >
+                <input
+                  type="checkbox"
+                  className="size-3 sm:size-4 max-sm:mt-1"
+                ></input>
                 Send Recovery Phrase To My Email
               </label>
             </div>
@@ -79,7 +83,7 @@ const Signup11 = ({onNextStep}) => {
       <div className="absolute w-[80%] bottom-[-50%] left-[-40%] z-10 ">
         <img src="/ellipse.png" alt="hello"></img>
       </div>
-      
+
       {/* <div className="absolute left-0 w-[100%] h-[10%] top-0 ">
         <img src={statAnimation}></img>
       </div> */}

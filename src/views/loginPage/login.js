@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Background from "./assets/account-background.png";
 import logo from "./assets/adrox-logo2.png";
-import InvalidPopup from "./pages/incorrectPhraseModal"; // Assuming you have a Popup component
-import ValidPopup from "./pages/correctPhraseModal"; // Assuming you have a Popup component
-
 import LoginPhrase from "./pages/loginRecovery";
 import LoginEmail from "./pages/loginEmail";
 import LoginPhone from "./pages/loginPhone";
@@ -23,7 +18,7 @@ export default function Login() {
 
           {loginType === "loginPhrase" ? <LoginPhrase /> : <></>}
 
-          <div className={`text-center gap-5 flex flex-col z-50 mb-5 overflow-hidden w-full ${(loginType == "loginPhrase")? "" : "mt-10"}`}>
+          <div className={`text-center gap-5 flex flex-col z-50 mb-5 w-full ${(loginType == "loginPhrase")? "" : "mt-10"}`}>
             <h1 className="font-100 max-sm:hidden">
               ---------------
               <span className="font-400">Alternative login methods</span>

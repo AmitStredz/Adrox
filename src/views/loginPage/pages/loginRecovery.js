@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Background from "../assets/account-background.png";
-import logo from "../assets/adrox-logo2.png";
-import InvalidPopup from "./incorrectPhraseModal"; // Assuming you have a Popup component
-import ValidPopup from "./correctPhraseModal"; // Assuming you have a Popup component
 import Cookies from "js-cookie";
+
+import InvalidPopup from "./incorrectPhraseModal"; // popup to show invalid input
+import ValidPopup from "./correctPhraseModal"; // popup to show success
 
 export default function Login1() {
   const navigate = useNavigate();

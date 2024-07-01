@@ -9,7 +9,7 @@ export default function Wallet() {
   const [activeComponent, setactiveComponent] = useState("adroxWallet");
 
   const handleButtonClick = (button) => {
-    console.log("button", button);
+    // console.log("button", button);
     setactiveComponent(button);
   };
   return (

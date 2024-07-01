@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import stroke from "./assets/strokeEffect.png";
-import ellipse from "./assets/ellipse.png";
 import dollar from "./assets/dollarBlue.png";
 import Modal from "./sucessModal";
 import Cookies from "js-cookie";
@@ -21,7 +20,7 @@ const Deposit = ({ onClose }) => {
   // }, []);
 
   const WalletId = Cookies.get("wallet_id");
-  console.log("WalletId: ", WalletId);
+  // console.log("WalletId: ", WalletId);
 
   const handleDeposit = async () => {
     setIsLoading(true);
@@ -40,7 +39,7 @@ const Deposit = ({ onClose }) => {
         }
       );
 
-      console.log("Amount: ", amount);
+      // console.log("Amount: ", amount);
       Cookies.set("balance", response.data.balance);
 
       if (response.status === 200) {

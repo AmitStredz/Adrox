@@ -1,33 +1,17 @@
 import React from "react";
-import svg from "./assets/globe-effect.svg";
+import "..//landingPage.css";
+
 import Scanner from "./assets/scanner.png";
-import globe from "./assets/globeGIF.gif";
-import Lottie from "react-lottie";
 import svg2 from "./assets/sngAnimation.svg";
-import svg3 from "./assets/svgAnimation3.svg";
 import vector1 from "./assets/vector1.svg";
 import vector2 from "./assets/vector2.svg";
 import vector3 from "./assets/vector3.svg";
 import vector4 from "./assets/vector4.svg";
-import vector6 from "./assets/vector6.svg";
-import vector7 from "./assets/vector7.svg";
-import vector8 from "./assets/vector8.svg";
 
 import StarAnimation from "./starAnimation";
 
-import "..//landingPage.css";
 
 export default function page1() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: globe,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-  const svgURL = "./assets/globe-effect.svg";
-
   return (
     <div className="relative">
       <div
@@ -56,16 +40,6 @@ export default function page1() {
         </div>
       </div>
 
-      {/* <div>
-        <Lottie 
-          options={defaultOptions}
-          height={400}
-          width={400}
-        />
-      </div> */}
-      {/* <div className="flex justify-center items-center top-0  absolute w-full">
-        <img src={globe} alt="Animation" className="w-[80%]" />
-        </div> */}
       <div className="absolute flex justify-center items-center h-screen w-screen top-0 left-0">
         <div className="absolute -top-10 left-0 flex justify-center items-center w-full">
           <img src={svg2} className=""></img>

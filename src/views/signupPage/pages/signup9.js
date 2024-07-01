@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import Background from "../assets/account-background.png";
 import { useNavigate } from "react-router-dom";
 import SetPassword from "./setPassword";
 import Cookies from "js-cookie";
@@ -21,10 +20,8 @@ const Signup9 = ({ onNextStep }) => {
   useEffect(() => {
     if (password == confirmPassword) {
       setIsEqual(true);
-      setIsLoading(false);
     } else {
       setIsEqual(false);
-      setIsLoading(true);
     }
   });
 
@@ -34,16 +31,15 @@ const Signup9 = ({ onNextStep }) => {
 
     if (password !== confirmPassword) {
       alert("Passwords do not match. Please enter matching passwords.");
+      setIsLoading(false);
       return;
     } else if (password == "" || confirmPassword == "") {
       alert("Enter valid Password");
+      setIsLoading(false);
       return;
     }
 
     const userId = Cookies.get("user_id");
-    // const userId = localStorage.getItem("user_id"); // Retrieve user_id from localStorage
-
-    console.log("user_id", userId);
 
     // Mock API call to set password
     try {
@@ -83,12 +79,12 @@ const Signup9 = ({ onNextStep }) => {
       alert("An error occurred. Please try again."); // Show an alert to the user
     } finally {
       setIsLoading(false);
+      // setInvalidRefferal(false);
     }
   };
 
   return (
     <div className="flex bg-[#0f011a] h-full text-white font-nunito p-5 sm:p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
-     
       <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">
         <div className="text-center z-50">
           <h1 className="font-700 text-[48px] text-[#C653FF]  max-sm:leading-11">
@@ -105,7 +101,7 @@ const Signup9 = ({ onNextStep }) => {
       </div>
 
       {/* Signup9 is this */}
-      <div className="z-10">
+      <div className="z-50">
         <div className="flex flex-col gap-10 max-lg:max-w-[45vw] max-md:max-w-[100%] justify-center items-center">
           <div className="flex items-center gap-1 justify-center">
             <div className="circle bg-[#C653FF] rounded-full w-3 h-3"></div>
@@ -172,7 +168,7 @@ const Signup9 = ({ onNextStep }) => {
                 Password does not match
               </p>
             </div>
-            <div className="w-full">
+            <div className="w-full z-[1000000]">
               <input
                 type="text"
                 required
@@ -181,7 +177,13 @@ const Signup9 = ({ onNextStep }) => {
                 onChange={(e) => setReferral(e.target.value)}
                 className="bg-transparent border-b-2 pb-2 outline-none w-full"
               ></input>
-              <p className={`text-red-500 text-[14px] ${(invalidReferral)? "" : "hidden"}`}>Invalid refferal id...</p>
+              <p
+                className={`text-red-500 text-[14px] ${
+                  invalidReferral ? "" : "hidden"
+                }`}
+              >
+                Invalid refferal id...
+              </p>
             </div>
             <div className="mt-[-30px]">
               <p className="text-[12px] font-300">
@@ -194,9 +196,10 @@ const Signup9 = ({ onNextStep }) => {
 
             <div className="text-center">
               <button
+                disabled={isLoading || !isEqual}
                 onClick={handleButtonClick}
                 className={`p-2 px-16 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] ${
-                  isLoading
+                  isLoading || !isEqual
                     ? "bg-gradient-to-r from-gray-800 to-gray-500 cursor-not-allowed"
                     : ""
                 }`}

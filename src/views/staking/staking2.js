@@ -7,7 +7,6 @@ export default function Staking2() {
   const [activeComponent, setactiveComponent] = useState("Staking");
 
   const handleButtonClick = (button) => {
-    console.log("button", button);
     setactiveComponent(button);
   };
   return (

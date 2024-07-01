@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import { CopyCheck } from "lucide-react";
 
-function CorrectPhraseModal({ closeModal }) {
+function CorrectPhraseModal() {
   return (
     <div 
       className="flex fixed justify-center w-screen h-screen left-0 top-0 text-white items-center backdrop-blur-lg z-[100]"

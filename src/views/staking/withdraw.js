@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import stroke from "./assets/strokeEffect.png";
-import ellipse from "./assets/ellipse.png";
 import dollar from "./assets/dollarBlue.png";
 import Modal from "./sucessModal";
 import Cookies from "js-cookie";

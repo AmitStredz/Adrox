@@ -10,7 +10,6 @@ import Cookies from "js-cookie";
 import DepositModal from "./deposit";
 import WithdrawModal from "./withdraw";
 import SwapModal from "./swap";
-import Swap from "./swap";
 
 export default function AdroxWallet() {
   const [holdings, setHoldings] = useState(null);
@@ -31,7 +30,7 @@ export default function AdroxWallet() {
 
   useEffect(() => {
     const storedHoldings = Cookies.get("balance");
-    console.log("Balance: ", storedHoldings);
+    // console.log("Balance: ", storedHoldings);
     if (storedHoldings >= 0) {
       setHoldings(storedHoldings);
     } else {
@@ -97,7 +96,7 @@ export default function AdroxWallet() {
         <></>
       )}
       {transactionType == "swap" ? (
-        <Swap onClose={() => setTransactionType("")} />
+        <SwapModal onClose={() => setTransactionType("")} />
       ) : (
         <></>
       )}

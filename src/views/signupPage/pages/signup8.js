@@ -7,13 +7,12 @@ import Cookies from "js-cookie";
 
 import InvalidOtp from "./invalidOtp";
 
-import { CookieIcon, PhoneMissed } from "lucide-react";
-
 const Signup8 = ({onNextStep}) => {
   const [phoneOtp, setPhoneOtp] = useState("");
   const [emailOtp, setEmailOtp] = useState("");
-  const [otpIsValid, setOtpIsValid] = useState(true);
-  const [otpModal, setOtpModal] = useState(false);
+  const [otpIsValid, setOtpIsValid] = useState(true); // for invalid OTP statement
+  const [otpModal, setOtpModal] = useState(false); // for valid OTP modal/popup
+  const [invalidOtpModal, setInvalidOtpModal] = useState(false); // for invalid OTP modal/popup
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -56,6 +55,7 @@ const Signup8 = ({onNextStep}) => {
     const updatedOtp = phoneOtp.split("");
     updatedOtp[index] = value;
     setPhoneOtp(updatedOtp.join(""));
+
     // Move cursor backward if deleting a digit
     if (value === "" && index > 0) {
       phoneOtpRefs.current[index - 1].focus();
@@ -78,18 +78,11 @@ const Signup8 = ({onNextStep}) => {
   const handleButtonClick = async () => {
     if (isLoading) return; // Prevent multiple clicks
     setIsLoading(true);
+    setOtpIsValid(true);
 
-    // const userId = localStorage.getItem("user_id");
-    // const storedPhoneOtp = localStorage.getItem("mobile_otp");
-    // const storedEmailOtp = localStorage.getItem("email_otp");
-    // const storedPhoneOtp = Cookies.get("mobile_otp");
-    // const storedEmailOtp = Cookies.get("email_otp");
-
-    // console.log("storedPhoneOtp: ", storedPhoneOtp);
-    // console.log("storedEmailOtp: ", storedEmailOtp);
-    console.log("user_id: ", userId);
-    console.log("PhoneOtp: ", phoneOtp);
-    console.log("EmailOtp: ", emailOtp);
+    // console.log("user_id: ", userId);
+    // console.log("PhoneOtp: ", phoneOtp);
+    // console.log("EmailOtp: ", emailOtp);
 
     try {
       const response = await axios.post(
@@ -104,17 +97,20 @@ const Signup8 = ({onNextStep}) => {
       if (response.data.message === "OTP verification successful.") {
         setOtpIsValid(true);
         setOtpModal(true);
+        setInvalidOtpModal(false);
         setTimeout(() => {
           // navigate("/signup9");
           onNextStep();
         }, 2000);
       } else {
         setOtpIsValid(false);
+        setInvalidOtpModal(true);
         alert("Invalid OTPs.");
       }
     } catch (error) {
-      setOtpIsValid(true);
+      // setOtpIsValid(true);
       setOtpIsValid(false);
+      setInvalidOtpModal(true);
       console.error("Error:", error);
       // alert("Error: Invalid OTPs");
     } finally {
@@ -140,8 +136,8 @@ const Signup8 = ({onNextStep}) => {
       </div>
 
       {/* Signup8 is this */}
-      <div className="z-10">
-        <div className="flex flex-col gap-10  max-lg:max-w-[45vw] max-md:max-w-[100%] justify-center items-center">
+      <div className="z-50">
+        <div className="flex flex-col gap-10  max-lg:max-w-[45vw] max-md:max-w-[100%] justify-center items-center z-50">
           <div className="flex items-center gap-1 justify-center">
             <div className="circle bg-[#C653FF] rounded-full w-3 h-3"></div>
             <div className="line w-10 h-[2px] bg-[#C653FF]"></div>
@@ -151,7 +147,7 @@ const Signup8 = ({onNextStep}) => {
             <div className="line w-10 h-[2px] bg-white"></div>
             <div className="circle bg-white rounded-full w-3 h-3"></div>
           </div>
-          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10  max-lg:bg-slate-700 max-lg:bg-opacity-30 w-[30rem] max-w-[100%] p-10 md:p-20 rounded-2xl">
+          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10  max-lg:bg-slate-700 max-lg:bg-opacity-30 w-[30rem] max-w-[100%] p-10 md:p-20 rounded-2xl z-[1000]">
             <h1 className="font-700  text-[28px] sm:text-[36px]">Create Account</h1>
             <input
               type="text"
@@ -278,7 +274,7 @@ const Signup8 = ({onNextStep}) => {
         <img src="/ellipse.png" alt="hello"></img>
       </div>
       <div className="absolute top-0 left-0">{otpModal && <OtpIsValid />}</div>
-      <div className="absolute top-0 left-0">{!otpIsValid && <InvalidOtp closeModal={() => setOtpIsValid(true)} />}</div>
+      <div className="absolute top-0 left-0">{invalidOtpModal && <InvalidOtp closeModal={() => setInvalidOtpModal(false)} />}</div>
     </div>
   );
 };

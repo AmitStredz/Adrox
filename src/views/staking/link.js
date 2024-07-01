@@ -3,7 +3,6 @@ import leftLink from "./assets/leftLink.png";
 import rightLink from "./assets/rightLink.png";
 import doubleLink1 from "./assets/doubleLink1.png";
 import doubleLink2 from "./assets/doubleLink2.png";
-import adam from "./assets/adam.png";
 import adam2 from "./assets/adam2.png";
 import adam3 from "./assets/adam3.png";
 import ellipse from "./assets/ellipse.png";

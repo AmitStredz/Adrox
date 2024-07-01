@@ -18,17 +18,18 @@ export default function Staking() {
   }); 
 
   const stakingData = JSON.parse(Cookies.get("stakingData"));
+
   useEffect(() => {
     if (stakingData) {
       // setStakingData(data);
-      console.log("data: ", stakingData);
+      console.log("Staking Data found");
     }else{
-      alert("stakingData not found.");
+      alert("Staking Data not found.");
     }
   }, []);
 
   useEffect(() => {
-    const stakingData = JSON.parse(Cookies.get("stakingData"));
+    // const stakingData = JSON.parse(Cookies.get("stakingData"));
 
     if (stakingData) {
       const interval = setInterval(() => {
@@ -52,7 +53,7 @@ export default function Staking() {
 
       return () => clearInterval(interval);
     }else{
-      console.log("StakingData: ", stakingData);
+      console.log("StakingData not found");
       alert("No stakingData found.");
     }
   }, [stakingData]);
