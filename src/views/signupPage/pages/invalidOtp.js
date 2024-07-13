@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { CopyCheck } from "lucide-react";
 
 function InvalidOtp({ closeModal }) {
   const modalRef = useRef();
