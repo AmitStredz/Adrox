@@ -1,0 +1,341 @@
+.signup01-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.signup01-signup01 {
+  width: 100%;
+  height: 1127px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: #0f011a;
+}
+.signup01-ellipse2 {
+  top: 377px;
+  left: -708px;
+  width: 989px;
+  height: 989px;
+  position: absolute;
+}
+.signup01-ellipse3 {
+  top: -77px;
+  left: 960px;
+  width: 691px;
+  height: 691px;
+  position: absolute;
+}
+.signup01-rectangle25 {
+  top: 150px;
+  left: 50%;
+  width: 541px;
+  height: 592px;
+  position: absolute;
+  box-sizing: content-box;
+  border-radius: 25px;
+}
+@media (max-width: 1080px) {
+  .signup01-rectangle25 {
+    top: 100px;
+    left: 45%;
+    width: 50%;
+    height: 592px;
+    position: absolute;
+    box-sizing: content-box;
+    border-radius: 25px;
+  }
+}
+@media (max-width: 800px) {
+  .signup01-rectangle25 {
+    top: 600px;
+    left: 5%;
+    width: 90%;
+    height: 592px;
+    position: absolute;
+    box-sizing: content-box;
+    border-radius: 25px;
+  }
+}
+@media (max-width: 540px) {
+  .signup01-rectangle25 {
+    top: 600px;
+    left: 5%;
+    width: 90%;
+    height: 592px;
+    position: absolute;
+    box-sizing: content-box;
+    border-radius: 25px;
+  }
+}
+.signup01-adrox {
+  top: 120px;
+  left: 48px;
+  width: 541px;
+  height: 108px;
+  position: absolute;
+  box-sizing: content-box;
+}
+@media (max-width: 1080px) {
+  .signup01-adrox {
+    top: 100px;
+    left: 100px;
+    width: 300px;
+    /* height: 108px; */
+    position: absolute;
+    box-sizing: content-box;
+  }
+}
+@media (max-width: 540px) {
+  .signup01-adrox {
+    top: 50px;
+    left: 10%;
+    width: 300px;
+    /* height: 108px; */
+    position: absolute;
+    box-sizing: content-box;
+  }
+}
+.signup01-frame49 {
+  gap: 48px;
+  top: 250px;
+  left: 55%;
+  width: 376px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+}
+@media (max-width: 1080px) {
+  .signup01-frame49 {
+    gap: 48px;
+    top: 250px;
+    left: 45%;
+    width: 50%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+@media (max-width: 800px) {
+  .signup01-frame49 {
+    gap: 48px;
+    top: 700px;
+    left: 25%;
+    width: 50%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+.signup01-group79 {
+  width: 230px;
+  height: 196.7808074951172px;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.signup01-text {
+  top: 158.45245361328125px;
+  color: rgba(255, 255, 255, 1);
+  width: 230px;
+  height: auto;
+  position: absolute;
+  font-size: 61.546287536621094px;
+  font-style: Bold;
+  text-align: center;
+  font-family: Kanit;
+  font-weight: 700;
+  line-height: 30.773143768310547px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.signup01-text01 {
+  font-weight: 700;
+}
+.signup01-text02 {
+  font-weight: 600;
+}
+.signup01-text03 {
+  font-weight: 500;
+}
+.signup01-group2 {
+  top: 0px;
+  left: 47.91044616699219px;
+  width: 134.1492462158203px;
+  height: 134.4524383544922px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.signup01-layer1 {
+  top: 0px;
+  left: 0px;
+  width: 134px;
+  height: 134px;
+  position: absolute;
+}
+.signup01-frame48 {
+  gap: 24px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.signup01-frame46 {
+  gap: 10px;
+  width: 376px;
+  height: 70px;
+  display: flex;
+  padding: 16px 48px;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 25px;
+  justify-content: center;
+  background-color: rgba(96, 96, 96, 0.5);
+}
+@media (max-width: 450px) {
+  .signup01-frame46 {
+    width: 40vh;
+  }
+}
+@media (max-width: 400px) {
+  .signup01-frame46 {
+    width: 30vh;
+    height: 50px;
+    border-radius: 16px;
+  }
+}
+.signup01-text04 {
+  color: rgba(255, 255, 255, 0.5);
+  height: auto;
+  font-size: 24px;
+  font-style: SemiBold;
+  text-align: center;
+  font-family: Nunito Sans;
+  font-weight: 600;
+  line-height: 150%;
+  font-stretch: normal;
+  text-decoration: none;
+}
+@media (max-width: 400px) {
+  .signup01-text04 {
+    font-size: 20px;
+  }
+}
+.signup01-frame47 {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+.signup01-frame-checkboxbase {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-color: rgba(151, 71, 255, 1);
+  border-style: solid;
+  border-width: 0.925203263759613px;
+  border-radius: 5px;
+}
+@media (max-width: 400px) {
+  .signup01-frame-checkboxbase {
+    width: 15px;
+    height: 15px;
+  }
+}
+.signup01-text06 {
+  color: rgba(255, 255, 255, 1);
+  height: auto;
+  font-size: 16px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Nunito Sans;
+  font-weight: 400;
+  line-height: 150%;
+  font-stretch: normal;
+  text-decoration: none;
+}
+@media (max-width: 400px) {
+.signup01-text06 {
+  font-size: 12px;
+}
+}
+.signup01-automated-decentralized-resource-optimization-exchange {
+  top: 250px;
+  left: 163px;
+  width: 445px;
+  height: 280px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+@media (max-width: 1080px) {
+  .signup01-automated-decentralized-resource-optimization-exchange {
+    top: 250px;
+    left: 100px;
+  }
+  .signup01-text08 span {
+    font-size: 40px;
+  }
+}
+@media (max-width: 540px) {
+  .signup01-automated-decentralized-resource-optimization-exchange {
+    top: 250px;
+    left: 10%;
+  }
+}
+.signup01-text08 {
+  color: rgba(255, 255, 255, 1);
+  width: 445px;
+  height: auto;
+  position: absolute;
+  font-size: 48px;
+  font-style: ExtraLight;
+  text-align: left;
+  font-family: Nunito Sans;
+  font-weight: 200;
+  line-height: 56px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.signup01-frame46 {
+  background-color: grey; /* Default disabled state */
+  cursor: not-allowed;
+  padding: 10px;
+  text-align: center;
+}
+
+.signup01-frame46.enabled {
+  background: linear-gradient(
+    0deg,
+    rgba(171, 0, 255, 1) 0%,
+    rgba(75, 17, 123, 1) 100%
+  ); /* Change to your desired enabled state color */
+  cursor: pointer;
+}
+
+.signup01-frame46.enabled .signup01-text04 {
+  color: white; /* Text color for enabled state */
+}
+
+.signup01-frame46.disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.signup01-frame46.disabled .signup01-text04 {
+  color: darkgrey; /* Text color for disabled state */
+}

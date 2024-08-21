@@ -1,0 +1,475 @@
+.signup4-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.signup4-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.signup4-signup4 {
+  width: 100%;
+  height: 1127px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(15, 1, 26, 1);
+}
+.signup4-ellipse2 {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+}
+.signup4-ellipse3 {
+  /* top: 0px; */
+  right: 0px;
+  bottom: 0px;
+  width: 70%;
+  height: 100%;
+  position: absolute;
+}
+.signup4-frame57 {
+  gap: 10px;
+  top: 126px;
+  left: 27%;
+  width: 500px;
+  height: 700px;
+  display: flex;
+  padding: 64px 80px;
+  overflow: hidden;
+  position: absolute;
+  box-sizing: content-box;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.03999999910593033);
+}
+
+.signup4-group93 {
+  top: 225px;
+  left: 32%;
+  width: 490px;
+  height: 596px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+@media (max-width: 1080px) {
+  .signup4-frame57 {
+    left: 15%;
+  }
+  .signup4-group93 {
+    left: 25%;
+  }
+}
+@media (max-width: 800px) {
+  .signup4-frame57 {
+    left: 10%;
+    width: 400px;
+  }
+  .signup4-group93 {
+    left: 15%;
+  }
+}
+@media (max-width: 700px) {
+  .signup4-frame57 {
+    left: 5%;
+    width: 65%;
+  }
+  .signup4-group93 {
+    left: 50px;
+  }
+}
+@media (max-width: 500px) {
+  .signup4-frame57 {
+    top: 80px;
+    left: 5%;
+    width: 55%;
+  }
+  .signup4-group93 {
+    left: 20px;
+  }
+}
+@media (max-width: 400px) {
+  .signup4-frame57 {
+    left: 5%;
+    width: 45vw;
+    height: 100vh;
+  }
+}
+.signup4-buttons {
+  gap: 16px;
+  top: 541px;
+  left: 138px;
+  width: 352px;
+  height: 55px;
+  display: flex;
+  padding: 8px 24px;
+  position: absolute;
+  background: linear-gradient(
+    0deg,
+    rgba(171, 0, 255, 1) 0%,
+    rgba(75, 17, 123, 1) 100%
+  );
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 15px;
+  justify-content: center;
+  cursor: pointer;
+}
+@media (max-width: 540px) {
+  .signup4-buttons {
+    left: 10vw;
+  }
+}
+@media (max-width: 500px) {
+  .signup4-buttons {
+    top: 450px;
+  }
+}
+@media (max-width: 400px) {
+  .signup4-buttons {
+    left: 3vw;
+    width: 300px;
+  }
+}
+.signup4-buttons:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.signup4-text {
+  color: rgba(255, 255, 255, 1);
+  height: auto;
+  font-size: 20px;
+  font-style: Regular;
+  text-align: center;
+  font-family: Nunito Sans;
+  font-weight: 400;
+  line-height: 24px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+@media (max-width: 400px) {
+.signup4-text {
+  font-size: 16px;
+}
+}
+.signup4-frame90 {
+  gap: 32px;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+@media (max-width: 500px) {
+  .signup4-frame90 {
+    left: 5%;
+    top: -100px;
+  }
+}
+.signup4-frame71 {
+  gap: 24px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.signup4-text02 {
+  color: rgba(171, 0, 255, 1);
+  height: auto;
+  font-size: 36px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Nunito Sans;
+  font-weight: 700;
+  line-height: 40px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.signup4-text06 {
+  color: rgba(255, 255, 255, 1);
+  width: 462px;
+  height: auto;
+  font-size: 16px;
+  font-style: Light;
+  text-align: left;
+  font-family: Nunito Sans;
+  font-weight: 300;
+  line-height: 20px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.signup4-group85 {
+  width: 490px;
+  height: 159px;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+@media (max-width: 500px) {
+  .signup4-group85 {
+    left: -10px;
+  }
+}
+.signup4-text08 {
+  left: 32px;
+  color: rgba(255, 255, 255, 1);
+  width: 160px;
+  height: auto;
+  position: absolute;
+  font-size: 16px;
+  font-style: Light;
+  text-align: left;
+  font-family: Nunito Sans;
+  font-weight: 300;
+  line-height: 20px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.signup4-frame70 {
+  gap: 10px;
+  top: 31px;
+  left: 0px;
+  width: 490px;
+  display: flex;
+  padding: 16px 32px;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+  border-radius: 15px;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.05000000074505806);
+}
+@media (max-width: 500px) {
+  .signup4-frame70 {
+    gap: 0px;
+    width: 80vw;
+    padding: 10px 15px;
+  }
+}
+.signup4-frame69 {
+  gap: 16px;
+  width: 490px;
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  flex-direction: column;
+}
+.signup4-text10 {
+  color: rgba(255, 255, 255, 1);
+  width: 253px;
+  height: auto;
+  font-size: 16px;
+  font-style: Light;
+  text-align: left;
+  font-family: Nunito Sans;
+  font-weight: 300;
+  line-height: 20px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.signup4-text12 {
+  color: rgba(255, 255, 255, 1);
+  width: 253px;
+  height: auto;
+  font-size: 16px;
+  font-style: Light;
+  text-align: left;
+  font-family: Nunito Sans;
+  font-weight: 300;
+  line-height: 20px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.signup4-text14 {
+  color: rgba(255, 255, 255, 1);
+  width: 443px;
+  height: auto;
+  font-size: 16px;
+  font-style: Light;
+  text-align: left;
+  font-family: Nunito Sans;
+  font-weight: 300;
+  line-height: 20px;
+  font-stretch: normal;
+  text-decoration: none;
+}
+@media (max-width: 500px) {
+  .signup4-text02 {
+    font-size: 30px;
+  }
+  .signup4-text06 {
+    /* font-size: 16px; */
+    width: 80vw;
+  }
+  .signup4-text10 {
+    font-size: 14px;
+  }
+  .signup4-text12 {
+    font-size: 14px;
+  }
+  .signup4-text14 {
+    font-size: 14px;
+    width: 330px;
+  }
+}
+@media (max-width: 400px) {
+  .signup4-text02 {
+    font-size: 25px;
+    line-height: 30px;
+  }
+  .signup4-text06 {
+    font-size: 14px;
+  }
+  .signup4-text08 {
+    left: 15px;
+  }
+}
+.signup4-group89 {
+  width: 490px;
+  height: 124px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.signup4-group86 {
+  top: 0px;
+  left: 0px;
+  width: 490px;
+  height: 124px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border: solid;
+  border-width: 1px;
+  border-radius: 20px;
+  border-color: rgba(184, 182, 182, 0.37);
+}
+@media (max-width: 600px) {
+  .signup4-group86 {
+    width: 80vw;
+  }
+}
+@media (max-width: 400px) {
+  .signup4-group86 {
+    left: -10px;
+    width: 80vw;
+  }
+}
+
+.signup4-frame89 {
+  gap: 16px;
+  top: 21px;
+  left: 77px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+}
+@media (max-width: 600px) {
+  .signup4-frame89 {
+    left: 5vw;
+  }
+}
+@media (max-width: 400px) {
+  .signup4-frame89 {
+    left: -10vw;
+  }
+}
+.signup4-group88 {
+  width: 48px;
+  height: 35px;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.signup4-ellipse14 {
+  top: 7px;
+  left: 0px;
+  width: 48px;
+  height: 28px;
+  position: absolute;
+}
+.signup4-component15 {
+  top: 0px;
+  left: 5px;
+  width: 38.235294342041016px;
+  height: 26px;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.signup4-frame88 {
+  top: 0px;
+  left: 4px;
+  width: 31px;
+  height: 26px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.signup4-group87 {
+  top: 0px;
+  left: 0px;
+  width: 31px;
+  height: 26px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.signup4-vector {
+  top: 0px;
+  left: 0px;
+  width: 31px;
+  height: 26px;
+  position: absolute;
+}
+.signup4-ellipse12 {
+  top: 10px;
+  left: 1px;
+  width: 7px;
+  height: 7px;
+  position: absolute;
+}
+.signup4-ellipse13 {
+  top: 10px;
+  left: 16px;
+  width: 7px;
+  height: 7px;
+  position: absolute;
+}
+.signup4-text16 {
+  color: rgba(255, 251, 251, 1);
+  width: 336px;
+  height: auto;
+  font-size: 16px;
+  font-style: Light;
+  text-align: center;
+  font-family: Nunito Sans;
+  font-weight: 300;
+  line-height: 20px;
+  font-stretch: normal;
+  text-decoration: none;
+}
