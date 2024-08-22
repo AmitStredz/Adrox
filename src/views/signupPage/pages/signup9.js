@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import SetPassword from "./setPassword";
 import Cookies from "js-cookie";
 
@@ -31,7 +31,6 @@ const Signup9 = ({ onNextStep }) => {
 
     const userId = Cookies.get("user_id");
 
-    
     if (password == confirmPassword) {
       try {
         const response = await fetch(
@@ -54,20 +53,24 @@ const Signup9 = ({ onNextStep }) => {
         // Check if API call was successful
         if (response.ok && data.message === "Password set successfully.") {
           setPasswordModal(true);
+          console.log("password set successfully.");
+
           setTimeout(() => {
             // navigate("/signup10");
-            onNextStep();
-          }, 2000);
-          setInvalidRefferal(false);
+            // onNextStep();
+            setPasswordModal(false);
+          }, 1000);
+          // setInvalidRefferal(false);
         } else {
           // Handle error response from the API
           console.error(data.error); // Log the error message
           // alert("Failed to set password. Please try again."); // Show an alert to the user
-          setInvalidRefferal(true);
+          // setInvalidRefferal(true);
         }
       } catch (error) {
         console.error("Error:", error);
         alert("An error occurred. Please try again."); // Show an alert to the user
+        return;
       } finally {
         setIsLoading(false);
         // setInvalidRefferal(false);
@@ -83,12 +86,12 @@ const Signup9 = ({ onNextStep }) => {
     }
 
     if (referral == Cookies.get("referral_id")) {
-
+      setIsLoading(true);
       // Mock API call to set password
       try {
         const response = await fetch(
           "https://adrox-89b6c88377f5.herokuapp.com/api/users/set-password/",
-          {
+          { 
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -102,6 +105,7 @@ const Signup9 = ({ onNextStep }) => {
         );
 
         const data = await response.json();
+        console.log("response: ", response);
 
         // Check if API call was successful
         if (response.ok && data.message === "Password set successfully.") {
@@ -124,8 +128,50 @@ const Signup9 = ({ onNextStep }) => {
         setIsLoading(false);
         // setInvalidRefferal(false);
       }
-    }else{
+    } else {
+      setIsLoading(true);
 
+      try {
+        const response = await fetch(
+          "https://adrox-89b6c88377f5.herokuapp.com/referrals/add-referral/",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              sponsor_referral_id: referral,
+              recruit_referral_id: Cookies.get("referral_id"),
+              recruit_user_id: userId,
+            }),
+          }
+        );
+
+        console.log("response: ", response );
+
+        const data = await response.json();
+
+        // Check if API call was successful
+        if (response.ok ) {
+          setPasswordModal(true);
+          setTimeout(() => {
+            // navigate("/signup10");
+            onNextStep();
+          }, 2000);
+          setInvalidRefferal(false);
+        } else {
+          // Handle error response from the API
+          console.error(data.error); // Log the error message
+          // alert("Failed to set password. Please try again."); // Show an alert to the user
+          setInvalidRefferal(true);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again."); // Show an alert to the user
+      } finally {
+        setIsLoading(false);
+        // setInvalidRefferal(false);
+      }
     }
   };
 

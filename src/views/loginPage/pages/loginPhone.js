@@ -15,16 +15,9 @@ export default function LoginEmail() {
   const [error, setError] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
 
-  // const handleLoginClick = () => {
-  //   navigate("/homePage");
-  // };
-
   useEffect(() => {
     const validateForm = () => {
       const phoneRegex = /^[0-9]{10}$/;
-      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      // const isNameValid = fullName.trim() !== "";
-
       setIsFormValid(phoneRegex.test(phoneNo));
     };
 
@@ -33,20 +26,18 @@ export default function LoginEmail() {
 
   const handlePhoneNoChange = (e) => {
     const value = e.target.value;
-  
     if (!isNaN(value) && value.length <= 10) {
       setPhoneNo(value);
     }
-    return;
-  };  
+  };
 
   const handleLoginClick = async () => {
     if (isLoading) return;
     setIsLoading(true);
     setError("");
 
-    if (!isFormValid) {
-      setError("enter valid phoneNo");
+    if (!isFormValid || !password) {
+      setError("Enter a valid phone number and password");
       setIsLoading(false);
       return;
     }
@@ -65,31 +56,29 @@ export default function LoginEmail() {
           headers: {
             "Content-Type": "application/json",
           },
-          data,
+          body: JSON.stringify(data),
         }
       );
 
-      Cookies.set(response.data);
-      console.log("Login responseData: ", response);
-
       if (response.ok) {
+        const responseData = await response.json();
+        // Cookies.set("userToken", responseData.token); // Store token in cookie
+        console.log("Login responseData: ", responseData);
+
         setShowValidPopup(true);
         setTimeout(() => {
           navigate("/homePage");
         }, 2000);
-        setIsLoading(false);
       } else {
         setShowInvalidPopup(true);
-        setIsLoading(false);
       }
     } catch (error) {
       setShowInvalidPopup(true);
-      setIsLoading(false);
+      console.error("Error during login: ", error);
     } finally {
       setIsLoading(false);
     }
   };
-
   return (
     <div className="flex flex-col w-full gap-10 py-5 sm:p-10 z-50 my-10">
       <div className="w-full">
@@ -128,7 +117,7 @@ export default function LoginEmail() {
           closeModal={() => setShowInvalidPopup(false)}
         />
       )}
-      {showValidPopup && <ValidPopup text="phoneNo successfully verified..." />}
+      {showValidPopup && <ValidPopup text="PhoneNo successfully verified..." />}
     </div>
   );
 }

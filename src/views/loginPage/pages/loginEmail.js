@@ -8,7 +8,7 @@ import ValidPopup from "./correctPhraseModal"; // popup to show success
 export default function LoginEmail() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [showInvalidPopup, setShowInvalidPopup] = useState(false);
+  const [showInvalidPopup, setShowInvalidPopup] = useState(false); 
   const [showValidPopup, setShowValidPopup] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,11 +56,11 @@ export default function LoginEmail() {
           headers: {
             "Content-Type": "application/json",
           },
-          data,
+          body: JSON.stringify(data),
         }
       );
 
-      Cookies.set(response.data);
+      // Cookies.set(response.me);
       console.log("Login responseData: ", response);
 
       if (response.ok) {
@@ -119,7 +119,7 @@ export default function LoginEmail() {
           closeModal={() => setShowInvalidPopup(false)}
         />
       )}
-      {showValidPopup && <ValidPopup text="email successfully verified..." />}
+      {showValidPopup && <ValidPopup text="Email successfully verified..." />}
     </div>
   );
 }
