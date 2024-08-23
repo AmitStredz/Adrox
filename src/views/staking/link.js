@@ -9,176 +9,71 @@ import adam3 from "./assets/adam3.png";
 import ellipse from "./assets/ellipse.png";
 
 import Cookies from "js-cookie";
+import axios from "axios";
 
 export default function Link() {
-  const referralTree = {
-    name: "Shafeeq Test",
-    directCommission: "100",
-    binaryCommission: "500",
-    children: [
-      {
-        name: "Raj Test",
-        directCommission: "700",
-        binaryCommission: "300",
-        children: [
-          {
-            name: "A",
-            directCommission: "500",
-            binaryCommission: "200",
-          },
-          {
-            name: "B",
-            directCommission: "600",
-            binaryCommission: "250",
-          },
-        ],
-      },
-      {
-        name: "Shiva Test",
-        directCommission: "800",
-        binaryCommission: "400",
-        children: [
-          {
-            name: "C",
-            directCommission: "400",
-            binaryCommission: "150",
-          },
-          {
-            name: "D",
-            directCommission: "350",
-            binaryCommission: "150",
-          },
-        ],
-      },
-    ],
-  };
+  const [referralTree, setReferralTree] = useState([]);
 
-  const [currentNode, setCurrentNode] = useState(referralTree);
-  // const [nodeNo, setNodeNo] = useState(3);
-
+  // Fetch the referral tree data when the component loads
   useEffect(() => {
-    console.log("Logged....");
+    async function fetchReferralTree() {
+      try {
+        const response = await axios.get(
+          "https://adrox-89b6c88377f5.herokuapp.com/referrals/list-hierarchy/"
+        ); // Replace with your API endpoint
+        if (response?.data) {
+          console.log("response: ", response?.data);
+          setReferralTree(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching referral tree:", error);
+      }
+    }
+    fetchReferralTree();
 
-    const nodeIndex = parseInt(localStorage.getItem("nodeIndex") || 1);
-    // setNodeNo(localStorage.getItem("nodeNo") || 0);
-
-    const nextNode = getNextNode(referralTree, nodeIndex);
-    console.log("nextNode: ", nextNode);
-    console.log("nodeIndex: ", nodeIndex);
-
-    setCurrentNode(nextNode);
-    // setNodeNo(nodeNo + 1);
-
-    localStorage.setItem("nodeIndex", nodeIndex + 1);
-    // localStorage.setItem("nodeNo", nodeNo +1);
+    // if (referralTree != []) {
+    //   const tree = buildTree(referralTree);
+    //   console.log(JSON.stringify(tree, null, 2));
+    // }
   }, []);
 
-  const getNextNode = (node, index) => {
-    if (!node) return null; // Handle null or undefined node
+  // const data = [/* your JSON data here */];
 
-    if (index === 1) {
-      // Return only the parent node's details
-      return {
-        name: node.name,
-        directCommission: node.directCommission,
-        binaryCommission: node.binaryCommission,
-        children: [],
-      };
-    }
-    if (index == 2) {
-      return {
-        ...node,
-        children: [
-          null,
-          {
-            ...node.children?.[1],
-            children: [], // Ensuring no further children are returned
-          } || null,
-        ],
-      };
-    }
-    if (index == 3) {
-      return {
-        ...node,
-        children: [
-          {
-            ...node.children?.[0],
-            children: [], // Ensuring no further children are returned
-          } || null,
-          {
-            ...node.children?.[1],
-            children: [], // Ensuring no further children are returned
-          } || null,
-        ],
-      };
-    }
-    if (index == 4) {
-      return {
-        ...node,
-        children: [
-          {
-            ...node.children?.[0],
-            children: [
-              { ...node.children?.[0]?.children?.[0], children: [] } || null,
-              null, // Ensuring no further children are returned
-            ],
-          } || null,
-          {
-            ...node.children?.[1],
-            children: [], // Ensuring no further children are returned
-          } || null,
-        ],
-      };
-    }
-    if (index == 5) {
-      return {
-        ...node,
-        children: [
-          {
-            ...node.children?.[0],
-          } || null,
-          {
-            ...node.children?.[1],
-            children: [], // Ensuring no further children are returned
-          } || null,
-        ],
-      };
-    }
+  // Helper function to build the tree
+  function buildTree(nodes) {
+    const nodeMap = new Map();
 
-    if (index == 6) {
-      return {
-        ...node,
-        children: [
-          {
-            ...node.children?.[0],
-          } || null,
-          {
-            ...node.children?.[1],
-            children: [
-              { ...node.children?.[1]?.children?.[0], children: [] } || null,
-              null, // Ensuring no further children are returned
-            ],
-          } || null,
-        ],
-      };
-    }
-    if (index == 7) {
-      return {
-        ...node,
-        children: [
-          {
-            ...node.children?.[0],
-          } || null,
-          {
-            ...node.children?.[1],
-           
-          } || null,
-        ],
-      };
-    }
+    // Create node entries
+    nodes.forEach((node) => {
+      nodeMap.set(node.user_id, { ...node, children: [] });
+    });
 
-    return node; // Default case, though it may not be needed
-  };
+    const root = nodeMap.get(nodes.find((node) => node.level === 0).user_id);
+
+    // Assign children to parents
+    nodes.forEach((node) => {
+      if (node.level > 0) {
+        const parentNodeId = findParentNodeId(node);
+        const parentNode = nodeMap.get(parentNodeId);
+        parentNode.children.push(nodeMap.get(node.user_id));
+      }
+    });
+
+    return root;
+  }
+
+  // Find the parent node ID for a given node
+  function findParentNodeId(node) {
+    const parentLevel = node.level - 1;
+    const parentPairNumber = Math.floor(node.pair_number / 2);
+    const position = node.position === "left" ? "left" : "right";
+
+    return node.find(
+      (n) => n.level === parentLevel && n.pair_number === parentPairNumber
+    ).user_id;
+  }
+
+  // Build the tree
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -282,7 +177,7 @@ export default function Link() {
 
       {/* Referral Tree starts here */}
       <div className="py-40">
-        <TreeNode node={currentNode} />
+        <TreeNode node={referralTree} />
       </div>
 
       {/* <div className="mt-56">
@@ -390,22 +285,135 @@ export default function Link() {
 }
 
 const TreeNode = ({ node }) => {
+  console.log("node: ", node);
+
+  const [level, setLevel] = useState();
+
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col gap-5 justify-center items-center p-5 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border ">
-        {node ? (
-          <img src={adam2} className="w-20"></img>
-        ) : (
-          <img src={userImg} className="w-20 mx-14"></img>
-        )}
+      {node.map((node) => (
+        <>
+          {node?.level == 0 && (
+            <div className="flex flex-col gap-5 justify-center items-center p-5 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border ">
+              {node ? (
+                <img src={adam2} className="w-20"></img>
+              ) : (
+                <img src={userImg} className="w-20 mx-14"></img>
+              )}
 
-        <h3 className="text-[20px] font-700">
-          {node?.name || "Refer a friend"}
-        </h3>
-        <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
-          <p className=" p-1 px-4">{node?.directCommission || "0"}</p>|
-          <p className=" p-1 px-4">{node?.binaryCommission || "0"}</p>
-        </div>
+              <h3 className="text-[20px] font-700">
+                {node?.full_name || "Refer a friend"}
+              </h3>
+              <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
+                <p className=" p-1 px-4">
+                  {node?.direct_commission_usdt || "0"}
+                </p>
+                |
+                <p className=" p-1 px-4">
+                  {Math.floor(node?.binary_commission_usdt) || "0"}
+                </p>
+              </div>
+            </div>
+          )}
+        </>
+      ))}
+      <img src={doubleLink1} className="w-[40rem]"></img>
+      <div className="flex justify-evenly w-full">
+        {node.map((node) => (
+          <>
+            {node?.level == 1 && (
+              <div className="flex flex-col gap-5 justify-center items-center p-5 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border ">
+                {node ? (
+                  <img src={adam2} className="w-20"></img>
+                ) : (
+                  <img src={userImg} className="w-20 mx-14"></img>
+                )}
+
+                <h3 className="text-[20px] font-700">
+                  {node?.full_name || "Refer a friend"}
+                </h3>
+                <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
+                  <p className=" p-1 px-4">
+                    {node?.direct_commission_usdt || "0"}
+                  </p>
+                  |
+                  <p className=" p-1 px-4">
+                    {Math.floor(node?.binary_commission_usdt) || "0"}
+                  </p>
+                </div>
+              </div>
+            )}
+          </>
+        ))}
+      </div>
+      <div className="flex justify-evenly w-full">
+        <img src={doubleLink2} className="w-80"></img>
+        <img src={doubleLink2} className="w-80"></img>
+      </div>
+
+      <div className="flex justify-evenly w-full">
+        {node.map((node) => (
+          <>
+            {node?.level == 2 && (
+              <div className="flex flex-col gap-5 justify-center items-center p-5 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border ">
+                {node ? (
+                  <img src={adam2} className="w-20"></img>
+                ) : (
+                  <img src={userImg} className="w-20 mx-14"></img>
+                )}
+
+                <h3 className="text-[20px] font-700">
+                  {node?.full_name || "Refer a friend"}
+                </h3>
+                <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
+                  <p className=" p-1 px-4">
+                    {node?.direct_commission_usdt || "0"}
+                  </p>
+                  |
+                  <p className=" p-1 px-4">
+                    {Math.floor(node?.binary_commission_usdt) || "0"}
+                  </p>
+                </div>
+              </div>
+            )}
+          </>
+        ))}
+      </div>
+
+      <div className="flex justify-evenly w-full">
+        <img src={doubleLink2} className="w-72"></img>
+        <img src={doubleLink2} className="w-72"></img>
+        <img src={doubleLink2} className="w-72"></img>
+        <img src={doubleLink2} className="w-72"></img>
+      </div>
+
+      <div className="flex justify-between gap-3 w-full">
+        {node.map((node) => (
+          <>
+            {node?.level == 3 && (
+              <div className="flex flex-col gap-5 justify-center items-center p-5 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border ">
+                {node ? (
+                  <img src={adam2} className="w-20"></img>
+                ) : (
+                  <img src={userImg} className="w-20 mx-14"></img>
+                )}
+
+                <h3 className="text-[20px] font-700">
+                  {node?.full_name || "Refer a friend"}
+                </h3>
+                <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
+                  <p className=" p-1 px-4">
+                    {node?.direct_commission_usdt || "0"}
+                  </p>
+                  |
+                  <p className=" p-1 px-4">
+                    {Math.floor(node?.binary_commission_usdt) || "0"}
+                  </p>
+                </div>
+              </div>
+            )}
+          </>
+        ))}
       </div>
 
       {/* {node?.children == null && level < 3 && (
@@ -417,7 +425,6 @@ const TreeNode = ({ node }) => {
           </div>
         </div>
       )} */}
-
       {node?.children && node.children?.length > 0 && (
         <div className="flex flex-col items-center justify-center">
           <img src={doubleLink2} className="w-96 h-64 "></img>
