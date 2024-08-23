@@ -62,7 +62,7 @@ const Deposit = ({ onClose }) => {
 
   return (
     // <div className="bg-[#0F011A] h-screen font-nunito text-slate-300 overflow-hidden flex items-center justify-center relative">
-    <div className="flex justify-center w-full fixed top-0 left-0 px-3 backdrop-blur-xl z-[100] h-screen">
+    <div className="flex justify-center w-full fixed top-0 left-0 px-3 backdrop-blur-xl z-[100] h-screen" data-aos="fade-in">
       <div className="flex flex-col gap-10 my-20 bg-gradient-to-r from-[#210F34] to-[#170D25] p-8 sm:p-14 rounded-3xl max-w-xl z-50">
         <div className="flex justify-end">
           <i

@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import graph from "../assets/graph.png";
-export default function homePage1() {
+
+import Deposit from "../../staking/deposit";
+
+export default function HomePage1() {
+  const [showDepositModal, setShowDepositModal] = useState(false);
   return (
     <div className="flex justify-center pt-20 m-5 md:m-10 lg:m-20">
       <div>
         <div className="flex max-sm:flex-col max-sm:gap-10 justify-around">
           <div className="flex flex-col gap justify-center max-sm:text-center">
             <h1 className="text-[28px] md:text-[32px] font-300">ADROX Price</h1>
-            <h1 className="text-[44px] md:text-[56px] font-800">$ 0.25 USD</h1>
+            <h1 className="text-[44px] md:text-[56px] font-800">$ 0.25 USDT</h1>
             <div className="text-[16px] md:text-[24px] font-200 leading-7">
               <p>Click here to deposit funds</p>
               <p>into your account.</p>
             </div>
-            <div className="mt-3 cursor-pointer z-50">
-            <a className="text-[14px] md:text-[18px] font-300 p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA]">
-              Deposit Fund
-            </a>
+            <div className="mt-3 z-50">
+              <a
+                className="text-[14px] md:text-[18px] font-300 p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+                onClick={() => setShowDepositModal(true)}
+              >
+                Deposit Fund
+              </a>
             </div>
           </div>
 
@@ -43,6 +50,8 @@ export default function homePage1() {
           <img src={graph}></img>
         </div>
       </div>
+
+      {showDepositModal && <Deposit onClose={()=>setShowDepositModal(false)}/>}
     </div>
   );
 }

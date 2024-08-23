@@ -9,7 +9,7 @@ const Swap = ({ onClose }) => {
   const history = useNavigate();
   return (
     // <div className="bg-[#0F011A]  font-nunito text-white overflow-hidden flex items-center justify-center relative">
-    <div className="flex justify-center h-full w-full z-[1000] backdrop:blur-sm fixed top-0 left-0 backdrop-blur-xl">
+    <div className="flex justify-center h-full w-full z-[1000] backdrop:blur-sm fixed top-0 left-0 backdrop-blur-xl" data-aos="fade-in">
       <div className="w-full h-full p-3 flex justify-center overflow-auto">
         <div className="flex flex-col gap-10 bg-gradient-to-r from-[#210F34] to-[#170D25] p-14 rounded-3xl max-w-xl z-[5000] h-[100vh]">
           <div className="flex items-center justify-between">

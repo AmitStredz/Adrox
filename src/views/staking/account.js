@@ -80,7 +80,7 @@ export default function Account({ closeModal }) {
                 <div className="flex flex-col gap-2">
                   <p className="text-[14px] font-100">Holdings</p>
                   <div className="h-[1px] w-full bg-white bg-opacity-15 "></div>
-                  <p className="font-700 text-[32px]">$ 1,000 USD</p>
+                  <p className="font-700 text-[32px]">$ 1,000 USDT</p>
                 </div>
               </div>
 
@@ -91,7 +91,7 @@ export default function Account({ closeModal }) {
                 <div className="flex flex-col gap-2">
                   <p className="text-[14px] font-100">Holdings</p>
                   <div className="h-[1px] w-full bg-white bg-opacity-15 "></div>
-                  <p className="font-700 text-[32px]">$ 1,000 USD</p>
+                  <p className="font-700 text-[32px]">$ 1,000 USDT</p>
                 </div>
               </div>
             </div>

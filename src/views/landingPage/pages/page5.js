@@ -10,7 +10,7 @@ export default function Page5() {
           Begin Your Crypto Journey Today!
         </h1>
         <div>
-          <a className=" p-2 px-10 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer" onClick={() => history('/signup1')}>
+          <a className=" p-2 px-10 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer" onClick={() => history('/signup')}>
             Sign Up Now
           </a>
         </div>

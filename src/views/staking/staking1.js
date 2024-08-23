@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 import HomeHeader from "../homePage/pages/homeHeader";
 import starLogo from "./assets/star-logo.png";
 import img1 from "./assets/img1.png";
-import { useNavigate } from "react-router-dom";
 import ellipse from "./assets/ellipse.png";
+import adam from "./assets/adam3.png";
 import Staking1Month from "./staking1Month";
 import Staking3Month from "./staking3Month";
 import Staking6Month from "./staking6Month";
 import Staking1Year from "./staking1Year";
-import { Helmet } from "react-helmet";
 
 export default function Staking() {
   const [stakingType, setStakingType] = useState();
@@ -26,7 +28,7 @@ export default function Staking() {
       <div className="flex gap-10 max-md:flex-col p-10 items-center justify-evenly my-20 md:my-40">
         <div className="flex flex-col max-md:items-center">
           <img src={img1} className="w-28"></img>
-          <div className="max-sm:flex-col max-md:flex gap-5 max-md:items-center">
+          <div className="max-sm:flex-col max-md:flex gap-10 max-md:items-center">
             <h1 className="font-700  text-[40px] lg:text-[64px] max-lg:leading-10 text-[#C653FF]">
               ADROX
             </h1>
@@ -39,27 +41,30 @@ export default function Staking() {
             officia deserunt mollit anim id est laborum
           </p>
         </div>
-        <div className="flex max-sm:flex-col items-center justify-evenly p-5 sm:p-20 sm:px-10 lg:px-20 max-sm:w-[80vw] bg-slate-600 bg-opacity-15 rounded-xl border-l z-50 border-slate-500">
-          <div className="flex flex-col max-sm:items-center">
-            <div>
-              <img></img>
-              <p className="text-[20px] font-400">Adrox001</p>
+        <div className="flex max-sm:flex-col items-center justify-between p-5 w-[80vw] sm:w-[30rem] sm:h-[16rem] bg-slate-600 bg-opacity-15 rounded-3xl border-l z-50 border-slate-500">
+          <div className="flex flex-col justify-between gap-2 p-2 h-full max-sm:items-center">
+            <div className="flex flex-col sm:flex-row sm:gap-2 items-center">
+              <img src={adam} className="w-10"></img>
+              <p className="text-[18px] font-300">Adrox001</p>
             </div>
-            <div className="flex flex-col max-sm:items-center">
-              <p className="font-300 text-[20px]">Holdings</p>
-              <span className="text-[36px] font-800 text-[#C653FF]">
+            <div className="flex flex-col leading-8 max-sm:items-center">
+              <p className="font-300 text-[18px]">Holdings</p>
+              <div className="bg-gradient-to-r from-white to-slate-900 h-[0.1px] w-full mb-2"></div>
+              <span className="text-[30px] font-800 text-[#C653FF]">
                 1,000 ADR
               </span>
-              <p className="font-300 text-[20px]">$ 250 USD</p>
+              <p className="font-300 text-[18px]">$ 250 USDT</p>
             </div>
           </div>
 
-          <div className="text-center flex flex-col gap-2 items-center">
-            <img src={starLogo} className="w-24"></img>
-            <h1>ADROX</h1>
-            <a className=" p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
-              My Wallet
-            </a>
+          <div className="flex items-end p-5 h-full">
+            <div className="text-center flex flex-col gap-2 items-center">
+              <img src={starLogo} className="w-16"></img>
+              <h1 className="font-800">ADROX</h1>
+              <a className="text-[14px] p-2 px-7 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
+                My Wallet
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -82,10 +87,10 @@ export default function Staking() {
                   </div>
                   <div className="text-[16px] font-100 flex flex-col justify-between">
                     <p>
-                      Min. Deposit : <span className="font-400">100USD</span>
+                      Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
                     <p>
-                      Max. Deposit : <span className="font-400">100USD</span>
+                      Max. Deposit : <span className="font-400">100USDT</span>
                     </p>
                   </div>
                 </div>
@@ -122,10 +127,10 @@ export default function Staking() {
                   </div>
                   <div className="text-[16px] font-100 flex flex-col justify-between">
                     <p>
-                      Min. Deposit : <span className="font-400">100USD</span>
+                      Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
                     <p>
-                      Max. Deposit : <span className="font-400">100USD</span>
+                      Max. Deposit : <span className="font-400">100USDT</span>
                     </p>
                   </div>
                 </div>
@@ -162,10 +167,10 @@ export default function Staking() {
                   </div>
                   <div className="text-[16px] font-100 flex flex-col justify-between">
                     <p>
-                      Min. Deposit : <span className="font-400">100USD</span>
+                      Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
                     <p>
-                      Max. Deposit : <span className="font-400">100USD</span>
+                      Max. Deposit : <span className="font-400">100USDT</span>
                     </p>
                   </div>
                 </div>
@@ -202,10 +207,10 @@ export default function Staking() {
                   </div>
                   <div className="text-[16px] font-100 flex flex-col justify-between">
                     <p>
-                      Min. Deposit : <span className="font-400">100USD</span>
+                      Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
                     <p>
-                      Max. Deposit : <span className="font-400">100USD</span>
+                      Max. Deposit : <span className="font-400">100USDT</span>
                     </p>
                   </div>
                 </div>

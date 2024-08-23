@@ -91,7 +91,7 @@ export default function Staking() {
             <div className="flex text-[20px] sm:text-[32px] gap-3 items-center">
               <img src={dollar} className="w-10 h-10"></img>
               <p>
-                1 <span className="font-100">USD</span>
+                1 <span className="font-100">USDT</span>
               </p>
               <p>=</p>
               <img src={star} className="w-10 h-10"></img>
@@ -123,7 +123,7 @@ export default function Staking() {
                   <p className="">
                     {(stakingData.staked_usdt * 20.83).toFixed(4)} ADX{" "}
                     <span className="font-100">
-                      ({stakingData.staked_usdt} USD)
+                      ({stakingData.staked_usdt} USDT)
                     </span>
                   </p>
                 </div>

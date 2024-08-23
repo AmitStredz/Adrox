@@ -71,7 +71,10 @@ const Withdraw = ({ onClose }) => {
 
   return (
     // <div className="bg-[#0F011A] font-nunito text-slate-300 overflow-hidden flex items-center justify-center relative">
-    <div className="flex justify-center w-full h-full fixed top-0 left-0 backdrop-blur-xl z-[100]">
+    <div
+      className="flex justify-center w-full h-full fixed top-0 left-0 backdrop-blur-xl z-[100]"
+      data-aos="fade-in"
+    >
       <div className="w-full h-full px-3 flex items-center justify-center overflow-auto">
         <div className="flex flex-col gap-10 my-20 p-7 sm:p-14 rounded-3xl max-w-xl bg-gradient-to-r from-[#210F34] to-[#170D25] backdrop-blur-lg mt-[30rem]">
           <div className="flex justify-end">
@@ -88,7 +91,7 @@ const Withdraw = ({ onClose }) => {
               </p>
             </div>
             <div className="flex justify-between gap-[2vw] sm:gap-5 border border-slate-600 rounded-2xl p-5 sm:p-14">
-              <img src={dollar} alt="Dollar" className="w-10 sm:w-16"/>
+              <img src={dollar} alt="Dollar" className="w-10 sm:w-16" />
               <input
                 placeholder="Minimum 20 $"
                 type="number"

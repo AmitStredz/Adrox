@@ -727,7 +727,7 @@ const Staking3Month = ({ onClose }) => {
 
   return (
     // <div className="bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden flex items-center justify-center relative">
-    <div className="flex justify-center w-full h-full fixed top-0 left-0 backdrop-blur-xl z-[100]">
+    <div className="flex justify-center w-full h-full fixed top-0 left-0 backdrop-blur-xl z-[100]" data-aos="fade-in">
       <div className="w-full h-full flex items-center justify-center overflow-auto">
         <div className="flex flex-col gap-10 mt-60 p-14 rounded-3xl w-5/12 z-50 bg-gradient-to-r from-[#210F34] to-[#170D25]">
           <div className="flex justify-end">
