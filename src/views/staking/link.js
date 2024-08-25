@@ -692,7 +692,7 @@ const TreeNode = ({ node }) => {
           <img
             src={doubleLink2}
             className={` ${
-              node?.level == 0 ? "w-[50rem] h-80" : node?.level == 1 ? "w-96 h-40" : node?.level == 2 ? "w-48 h-24" : ""
+              node?.level == 0 ? "w-[50rem] h-80" : node?.level == 1 ? "w-96 h-52" : node?.level == 2 ? "w-48 h-24" : ""
             }`}
           ></img>
 
