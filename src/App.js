@@ -11,6 +11,7 @@ import LandingPage from "./views/landingPage/landingPage";
 import NotFound from "./views/signupPage/pages/not-found";
 import SignupFlow from "./views/signupPage/signupFlow";
 import Login from "./views/loginPage/login";
+import ChangePassword from "./views/components/changePassword";
 
 import Wallet from "./views/staking/wallet";
 import HomePage from "./views/homePage/homePage";
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/landingPage" element={<LandingPage />} />
         <Route path="/signup" element={<SignupFlow />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/changePassword" element={<ChangePassword />} />
 
         <Route path="/homePage" element={<HomePage />} />
         <Route path="/staking1" element={<Staking1 />} />

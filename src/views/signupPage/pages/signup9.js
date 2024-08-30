@@ -91,7 +91,7 @@ const Signup9 = ({ onNextStep }) => {
       try {
         const response = await fetch(
           "https://adrox-89b6c88377f5.herokuapp.com/api/users/set-password/",
-          { 
+          {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -147,12 +147,12 @@ const Signup9 = ({ onNextStep }) => {
           }
         );
 
-        console.log("response: ", response );
+        console.log("response: ", response);
 
         const data = await response.json();
 
         // Check if API call was successful
-        if (response.ok ) {
+        if (response.ok) {
           setPasswordModal(true);
           setTimeout(() => {
             // navigate("/signup10");
