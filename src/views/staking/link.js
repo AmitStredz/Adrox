@@ -11,37 +11,86 @@ import ellipse from "./assets/ellipse.png";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-export default function Link() {
-  const [newTree, setNewTree] = useState([]);
-  const [referralTree, setReferralTree] = useState(null);
+
+import dummyData from "../dummyData.json";
+
+export default function Link ()
+{
+  const [ newTree, setNewTree ] = useState( [] );
+  const [ referralTree, setReferralTree ] = useState( null );
+
+
+
+  const generateDummyTree = ( node, currentLevel = 0 ) =>
+  {
+    // Base case: Stop at level 3
+    if ( currentLevel >= 3 ) {
+      return {
+        ...node,
+        children: [] // No further children beyond Level 3
+      };
+    }
+
+    // Ensure the node has a children array
+    node.children = node.children || [];
+
+    while ( node.children.length < 2 ) {
+      node.children.push( {
+        full_name: "",
+        user_id: null,
+        referral_id: null,
+        level: currentLevel + 1,
+        position: node.children.length === 0 ? "right" : "left", // fuirst righ then left
+        pair_number: node.pair_number,
+        total_commission_adrx: 0,
+        total_commission_usdt: 0,
+        direct_commission_adrx: 0,
+        direct_commission_usdt: 0,
+        left_commission_adrx: 0,
+        left_commission_usdt: 0,
+        right_commission_adrx: 0,
+        right_commission_usdt: 0,
+        binary_commission_adrx: 0,
+        binary_commission_usdt: 0,
+        children: [] // Start with no children
+      } );
+    }
+
+    node.children = node.children.map( child => generateDummyTree( child, currentLevel + 1 ) );
+
+    return node;
+  };
+
 
   // Fetch the referral tree data when the component loads
-  useEffect(() => {
-    async function fetchReferralTree() {
+  useEffect( () =>
+  {
+    async function fetchReferralTree ()
+    {
       try {
         const response = await axios.get(
           "https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy/"
-        ); // Replace with your API endpoint
-        if (response?.data) {
-          console.log("response: ", response?.data);
-          // const tree = buildTree(response?.data);
+        );
+        if ( response?.data ) {
+          console.log( "response: ", response?.data );
 
-          // console.log("tree: ", tree);
+          const balancedReferralTree = generateDummyTree( response?.data );
+          console.log( balancedReferralTree )
 
-          setReferralTree(response?.data);
-          // if (tree) {
-          // }
+          setReferralTree( balancedReferralTree );
+
         }
-      } catch (error) {
-        console.error("Error fetching referral tree:", error);
+      } catch ( error ) {
+        console.error( "Error fetching referral tree:", error );
       }
     }
     fetchReferralTree();
-  }, []);
+  }, [] );
 
-  useEffect(() => {
-    console.log("Updated referralTree: ", referralTree);
-  }, [referralTree]);
+  useEffect( () =>
+  {
+    console.log( "Updated referralTree: ", referralTree );
+  }, [ referralTree ] );
 
   // if (referralTree.length > 0) {
   //   const tree = buildTree(referralTree);
@@ -165,7 +214,7 @@ export default function Link() {
               </a>
             </div>
             <div className="flex gap-1 px-3">
-              <p>{Cookies.get("referral_id") || "referral_id"}</p>
+              <p>{ Cookies.get( "referral_id" ) || "referral_id" }</p>
               <i className="ri-file-copy-line cursor-pointer"></i>
             </div>
             {/* <div className="flex gap-1">
@@ -182,7 +231,7 @@ export default function Link() {
             </div>
             <div className="flex gap-1 px-3">
               <p>120 USDT</p>
-              {/* <i className="ri-file-copy-line"></i> */}
+              {/* <i className="ri-file-copy-line"></i> */ }
             </div>
             {/* <div className="flex gap-1">
               <i className="ri-link-m"></i>
@@ -194,9 +243,9 @@ export default function Link() {
         <div className="flex flex-col p-10 mt-10 bg-white bg-opacity-5">
           <div className="upper flex justify-center p-10 items-start ">
             <div className="flex justify-evenly w-full">
-              <img src={leftLink} className="w-64 h-40"></img>
-              <img src={adam3} className="w-32 h-32"></img>
-              <img src={rightLink} className="w-64 h-40"></img>
+              <img src={ leftLink } className="w-64 h-40"></img>
+              <img src={ adam3 } className="w-32 h-32"></img>
+              <img src={ rightLink } className="w-64 h-40"></img>
             </div>
           </div>
           <div className="lower flex justify-between">
@@ -254,9 +303,9 @@ export default function Link() {
         </div>
       </div>
 
-      {/* Referral Tree starts here */}
+      {/* Referral Tree starts here */ }
       <div className="py-40 p-20">
-        <TreeNode node={referralTree} />
+        <TreeNode node={ referralTree } />
       </div>
 
       {/* <div className="mt-56">
@@ -354,10 +403,10 @@ export default function Link() {
       </div> */}
 
       <div className="absolute right-[-30%] w-[80%] top-[40rem]">
-        <img src={ellipse}></img>
+        <img src={ ellipse }></img>
       </div>
       <div className="absolute left-[-30%] w-[80%] top-0">
-        <img src={ellipse}></img>
+        <img src={ ellipse }></img>
       </div>
     </div>
   );
@@ -662,27 +711,28 @@ export default function Link() {
 // export default HierarchyTree;
 
 // Recursive component to render the tree
-const TreeNode = ({ node }) => {
+const TreeNode = ( { node } ) =>
+{
   // if(!node) return null;
 
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-col gap-5 justify-center items-center p-3 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border">
-        {node ? (
-          <img src={adam2} className="w-20"></img>
+        { node ? (
+          <img src={ adam2 } className="w-20"></img>
         ) : (
-          <img src={userImg} className="w-20 mx-14"></img>
-        )}
+          <img src={ userImg } className="w-20 mx-14"></img>
+        ) }
         <h3 className="text-[20px] font-700">
-          {node?.full_name || "Refer a friend"}
+          { node?.full_name || "Refer a friend" }
         </h3>
-        {/* <p className="font-bold">{node?.full_name}</p> */}
+        {/* <p className="font-bold">{node?.full_name}</p> */ }
         <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
-          <p className=" p-1 px-4">{node?.left_commission_adrx || "0"}</p>|
-          <p className=" p-1 px-4">{node?.right_commission_adrx || "0"}</p>
+          <p className=" p-1 px-4">{ node?.left_commission_adrx || "0" }</p>|
+          <p className=" p-1 px-4">{ node?.right_commission_adrx || "0" }</p>
         </div>
       </div>
-      {node?.children && node?.children.length > 0 && (
+      { node?.children && node?.children.length > 0 && (
         // <div className="flex space-x-8">
         //   {node.children.map((child) => (
         //     <TreeNode key={child.user_id} node={child} />
@@ -690,19 +740,18 @@ const TreeNode = ({ node }) => {
         // </div>
         <div className="flex flex-col items-center justify-center">
           <img
-            src={doubleLink2}
-            className={` ${
-              node?.level == 0 ? "w-[50rem] h-80" : node?.level == 1 ? "w-96 h-52" : node?.level == 2 ? "w-48 h-24" : ""
-            }`}
+            src={ doubleLink2 }
+            className={ ` ${ node?.level == 0 ? "w-[50rem] h-80" : node?.level == 1 ? "w-96 h-52" : node?.level == 2 ? "w-48 h-24" : ""
+              }` }
           ></img>
 
           <div className="flex gap-5 justify-between w-full">
-            {node?.children?.map((child, index) => (
-              <TreeNode key={index} node={child} />
-            ))}
+            { node?.children?.map( ( child, index ) => (
+              <TreeNode key={ index } node={ child } />
+            ) ) }
           </div>
         </div>
-      )}
+      ) }
     </div>
   );
 };
