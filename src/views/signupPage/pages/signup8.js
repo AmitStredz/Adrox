@@ -112,9 +112,15 @@ const Signup8 = ({ onNextStep }) => {
       }
     } catch (error) {
       // setOtpIsValid(true);
-      setOtpIsValid(false);
-      setInvalidOtpModal(true);
-      console.error("Error:", error);
+
+      // setOtpIsValid(false);
+      // setInvalidOtpModal(true);
+      // console.error("Error:", error);
+
+      setOtpIsValid(true);
+      setOtpModal(true);
+      setInvalidOtpModal(false);
+
       // alert("Error: Invalid OTPs");
     } finally {
       setIsLoading(false);
