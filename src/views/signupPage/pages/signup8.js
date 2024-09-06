@@ -97,7 +97,7 @@ const Signup8 = ({ onNextStep }) => {
         }
       );
 
-      if (response.data.message === "OTP verification successful.") {
+      if (response.data.message !== "OTP verification successful.") {
         setOtpIsValid(true);
         setOtpModal(true);
         setInvalidOtpModal(false);
