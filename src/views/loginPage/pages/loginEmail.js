@@ -60,8 +60,9 @@ export default function LoginEmail() {
         }
       );
 
-      // Cookies.set(response.me);
-      console.log("Login responseData: ", response);
+      const responseData = await response.json();
+
+      Cookies.set("user_id", responseData.user_id);
 
       if (response.ok) {
         setShowValidPopup(true);

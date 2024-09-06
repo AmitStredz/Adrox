@@ -62,8 +62,8 @@ export default function LoginEmail() {
 
       if (response.ok) {
         const responseData = await response.json();
-        // Cookies.set("userToken", responseData.token); // Store token in cookie
-        console.log("Login responseData: ", responseData);
+        Cookies.set("user_id", responseData.token); // Store token in cookie
+        // console.log("Login responseData: ", responseData);
 
         setShowValidPopup(true);
         setTimeout(() => {
