@@ -20,10 +20,9 @@ export default function Link ()
   const [ referralTree, setReferralTree ] = useState( null );
 
 
-
   const generateDummyTree = ( node, currentLevel = 0 ) =>
   {
-    // Base case: Stop at level 3
+    // Base case: Stop at level 3, no children should be added beyond this level
     if ( currentLevel >= 3 ) {
       return {
         ...node,
@@ -31,35 +30,41 @@ export default function Link ()
       };
     }
 
-    // Ensure the node has a children array
     node.children = node.children || [];
 
-    while ( node.children.length < 2 ) {
-      node.children.push( {
-        full_name: "",
-        user_id: null,
-        referral_id: null,
-        level: currentLevel + 1,
-        position: node.children.length === 0 ? "right" : "left", // fuirst righ then left
-        pair_number: node.pair_number,
-        total_commission_adrx: 0,
-        total_commission_usdt: 0,
-        direct_commission_adrx: 0,
-        direct_commission_usdt: 0,
-        left_commission_adrx: 0,
-        left_commission_usdt: 0,
-        right_commission_adrx: 0,
-        right_commission_usdt: 0,
-        binary_commission_adrx: 0,
-        binary_commission_usdt: 0,
-        children: [] // Start with no children
-      } );
+    const realChildren = node.children.filter( child => child.user_id !== null );
+
+
+
+    if ( realChildren.length > 0 ) {
+      while ( node.children.length < 2 ) {
+        node.children.push( {
+          full_name: "",
+          user_id: null,
+          referral_id: null,
+          level: currentLevel + 1,
+          position: node.children.length === 0 ? "right" : "left", // Balance the tree
+          pair_number: node.pair_number,
+          total_commission_adrx: 0,
+          total_commission_usdt: 0,
+          direct_commission_adrx: 0,
+          direct_commission_usdt: 0,
+          left_commission_adrx: 0,
+          left_commission_usdt: 0,
+          right_commission_adrx: 0,
+          right_commission_usdt: 0,
+          binary_commission_adrx: 0,
+          binary_commission_usdt: 0,
+          children: []
+        } );
+      }
+      node.children = node.children.map( child => generateDummyTree( child, currentLevel + 1 ) );
     }
 
-    node.children = node.children.map( child => generateDummyTree( child, currentLevel + 1 ) );
-
-    return node;
+    return node; // Return the processed node
   };
+
+
 
 
   // Fetch the referral tree data when the component loads
@@ -75,6 +80,7 @@ export default function Link ()
           console.log( "response: ", response?.data );
 
           const balancedReferralTree = generateDummyTree( response?.data );
+
           console.log( balancedReferralTree )
 
           setReferralTree( balancedReferralTree );
@@ -304,7 +310,8 @@ export default function Link ()
       </div>
 
       {/* Referral Tree starts here */ }
-      <div className="py-40 p-20">
+      <div className="py-40 p-20" style={ {
+      } }>
         <TreeNode node={ referralTree } />
       </div>
 
@@ -716,8 +723,16 @@ const TreeNode = ( { node } ) =>
   // if(!node) return null;
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex flex-col gap-5 justify-center items-center p-3 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border">
+    <div className="flex flex-col items-center" style={ {
+      width: node?.level === 0 ? "100%" : "50%",
+      order: node?.position === "right" ? 1 : 0
+    } }>
+      <div
+        className="flex flex-col gap-5 justify-center items-center p-3 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border"
+
+        style={ {
+          background: "red",
+        } }>
         { node ? (
           <img src={ adam2 } className="w-20"></img>
         ) : (
@@ -725,6 +740,8 @@ const TreeNode = ( { node } ) =>
         ) }
         <h3 className="text-[20px] font-700">
           { node?.full_name || "Refer a friend" }
+          <br />
+          { node?.position }
         </h3>
         {/* <p className="font-bold">{node?.full_name}</p> */ }
         <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
@@ -738,14 +755,18 @@ const TreeNode = ( { node } ) =>
         //     <TreeNode key={child.user_id} node={child} />
         //   ))}
         // </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center"        >
           <img
             src={ doubleLink2 }
-            className={ ` ${ node?.level == 0 ? "w-[50rem] h-80" : node?.level == 1 ? "w-96 h-52" : node?.level == 2 ? "w-48 h-24" : ""
-              }` }
+            // className={ ` ${ node?.level == 0 ?
+            //   "w-[50rem] h-80" : node?.level == 1 ?
+            //     "w-96 h-52" : node?.level == 2 ? "w-48 h-24" : ""
+            //   }` }
+
+            style={ { maxHeight: "10em", width: `calc(100% - 45%)`, margin: "auto" } }
           ></img>
 
-          <div className="flex gap-5 justify-between w-full">
+          <div className="flex gap-5 justify-between w-full" >
             { node?.children?.map( ( child, index ) => (
               <TreeNode key={ index } node={ child } />
             ) ) }

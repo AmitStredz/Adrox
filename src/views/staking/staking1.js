@@ -12,8 +12,9 @@ import Staking3Month from "./staking3Month";
 import Staking6Month from "./staking6Month";
 import Staking1Year from "./staking1Year";
 
-export default function Staking() {
-  const [stakingType, setStakingType] = useState();
+export default function Staking ()
+{
+  const [ stakingType, setStakingType ] = useState();
 
   const history = useNavigate();
   return (
@@ -27,7 +28,7 @@ export default function Staking() {
 
       <div className="flex gap-10 max-md:flex-col p-10 items-center justify-evenly my-20 md:my-40">
         <div className="flex flex-col max-md:items-center">
-          <img src={img1} className="w-28"></img>
+          <img src={ img1 } className="w-28"></img>
           <div className="max-sm:flex-col max-md:flex gap-10 max-md:items-center">
             <h1 className="font-700  text-[40px] lg:text-[64px] max-lg:leading-10 text-[#C653FF]">
               ADROX
@@ -44,7 +45,7 @@ export default function Staking() {
         <div className="flex max-sm:flex-col items-center justify-between p-5 w-[80vw] sm:w-[30rem] sm:h-[16rem] bg-slate-600 bg-opacity-15 rounded-3xl border-l z-50 border-slate-500">
           <div className="flex flex-col justify-between gap-2 p-2 h-full max-sm:items-center">
             <div className="flex flex-col sm:flex-row sm:gap-2 items-center">
-              <img src={adam} className="w-10"></img>
+              <img src={ adam } className="w-10"></img>
               <p className="text-[18px] font-300">Adrox001</p>
             </div>
             <div className="flex flex-col leading-8 max-sm:items-center">
@@ -59,7 +60,7 @@ export default function Staking() {
 
           <div className="flex items-end p-5 h-full">
             <div className="text-center flex flex-col gap-2 items-center">
-              <img src={starLogo} className="w-16"></img>
+              <img src={ starLogo } className="w-16"></img>
               <h1 className="font-800">ADROX</h1>
               <a className="text-[14px] p-2 px-7 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
                 My Wallet
@@ -69,7 +70,7 @@ export default function Staking() {
         </div>
       </div>
 
-      {/* Adrox Staking Plans */}
+      {/* Adrox Staking Plans */ }
       <div>
         <div className="text-center">
           <h1 className="text-[40px] sm:text-[56px] font-700 text-[#C653FF]">
@@ -112,7 +113,7 @@ export default function Staking() {
 
                 <div
                   className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
-                  onClick={() => setStakingType("1month")}
+                  onClick={ () => setStakingType( "1month" ) }
                 >
                   <button>Stake Now</button>
                 </div>
@@ -152,7 +153,7 @@ export default function Staking() {
 
                 <div
                   className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
-                  onClick={() => setStakingType("3month")}
+                  onClick={ () => setStakingType( "3month" ) }
                 >
                   <button>Stake Now</button>
                 </div>
@@ -192,7 +193,7 @@ export default function Staking() {
 
                 <div
                   className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
-                  onClick={() => setStakingType("6month")}
+                  onClick={ () => setStakingType( "6month" ) }
                 >
                   <button>Stake Now</button>
                 </div>
@@ -232,7 +233,7 @@ export default function Staking() {
 
                 <div
                   className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
-                  onClick={() => setStakingType("1year")}
+                  onClick={ () => setStakingType( "1year" ) }
                 >
                   <button>Stake Now</button>
                 </div>
@@ -243,32 +244,32 @@ export default function Staking() {
       </div>
 
       <div className="absolute right-[-30%] w-[80%] top-[20rem]">
-        <img src={ellipse}></img>
+        <img src={ ellipse }></img>
       </div>
       <div className="absolute left-[-30%] w-[80%] top-[50rem]">
-        <img src={ellipse}></img>
+        <img src={ ellipse }></img>
       </div>
 
-      {stakingType == "1month" ? (
-        <Staking1Month onClose={() => setStakingType("")} />
+      { stakingType === "1month" ? (
+        <Staking1Month onClose={ () => setStakingType( "" ) } />
       ) : (
         <></>
-      )}
-      {stakingType == "3month" ? (
-        <Staking3Month onClose={() => setStakingType("")} />
+      ) }
+      { stakingType === "3month" ? (
+        <Staking3Month onClose={ () => setStakingType( "" ) } />
       ) : (
         <></>
-      )}
-      {stakingType == "6month" ? (
-        <Staking6Month onClose={() => setStakingType("")} />
+      ) }
+      { stakingType === "6month" ? (
+        <Staking6Month onClose={ () => setStakingType( "" ) } />
       ) : (
         <></>
-      )}
-      {stakingType == "1year" ? (
-        <Staking1Year onClose={() => setStakingType("")} />
+      ) }
+      { stakingType === "1year" ? (
+        <Staking1Year onClose={ () => setStakingType( "" ) } />
       ) : (
         <></>
-      )}
+      ) }
     </div>
   );
 }
