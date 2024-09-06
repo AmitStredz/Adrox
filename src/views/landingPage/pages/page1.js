@@ -10,33 +10,47 @@ import vector4 from "./assets/vector4.svg";
 
 import StarAnimation from "./starAnimation";
 
-
 export default function page1() {
   return (
     <div className="relative">
       <div
-        className="flex max-sm:flex-col items-center bg-center bg-no-repeat h-[100vh] mt-20 sm:mt-40 justify-center gap-10 "
+        className="flex max-sm:flex-col-reverse items-center bg-center bg-no-repeat h-[100vh] mt-20 sm:mt-40 justify-center gap-10 "
         // style={{ backgroundImage: `url(${svg})` }}
       >
-        <img src={Scanner} alt="scanner" className="w-56 z-50" />
-        <div className="flex flex-col max-sm:text-center leading-tight text-[56px] font-700 gap-7 z-50 max-sm:items-center">
-          <div>
-            <h1 className="gradient-text ">
-              Lorem <span>ipsum</span>
-            </h1>
-            <h1>
-              dolor <span className="gradient-text">sit</span>
-            </h1>
-            <h1>
-              amet, <span className="gradient-text">consectetur</span>
-            </h1>
-          </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1em",
+          }}
+        >
+          <img src={Scanner} alt="scanner" className="w-56 z-50" />
           <a
             href="#"
             className="font-400 text-lg border-slate-600 border rounded-xl p-2 justify-center flex w-72 bg-gradient-to-t from-[#0F011A] to-[#210134]"
           >
             Scan to Download
           </a>
+        </div>
+        <div className="flex flex-col max-sm:text-center leading-tight text-[56px] font-700 gap-7 z-50 max-sm:items-center">
+          <div>
+            <h1 className="gradient-text ">
+              <span>Automated</span>
+            </h1>
+            <h1>
+              <span className="gradient-text">Decentralized</span>
+            </h1>
+            <h1>
+              <span className="gradient-text">Resource</span>
+            </h1>
+            <h1>
+              <span className="gradient-text">Optimization</span>
+            </h1>
+            <h1>
+              <span className="gradient-text">Exchange&nbsp;Wallet</span>
+            </h1>
+          </div>
         </div>
       </div>
 
