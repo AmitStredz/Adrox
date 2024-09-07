@@ -73,12 +73,21 @@ export default function HomeHeader() {
             onClick={() => setShowMenu(!showMenu)}
           ></i>
 
-          <div className="flex flex-col items-end">
+          <div
+            className="flex flex-col items-end"
+            style={{
+              gap: "10px",
+              alignItems: "center",
+              textAlign: "right",
+              fontWeight: "bold",
+              fontSize: "1.5em",
+            }}
+          >
             <img src={adam}></img>
             <span>{Cookies.get("full_name")}</span>
-            <p className="flex gap-1 items-center">
+            {/* <p className="flex gap-1 items-center">
               UID: 0x2999dc <FaRegCopy />
-            </p>
+            </p> */}
           </div>
         </div>
 
