@@ -29,8 +29,9 @@ export default function page1() {
           <a
             href="#"
             className="font-400 text-lg border-slate-600 border rounded-xl p-2 justify-center flex w-72 bg-gradient-to-t from-[#0F011A] to-[#210134]"
+            style={{ width: "100%" }}
           >
-            Scan to Download
+            Coming&nbsp;Soon
           </a>
         </div>
         <div className="flex flex-col max-sm:text-center leading-tight text-[56px] font-700 gap-7 z-50 max-sm:items-center">

@@ -1,12 +1,13 @@
 import React, { useRef } from "react";
 
-function InvalidOtp({ closeModal }) {
+const DownloadPopup = ({ closeModal }) => {
   const modalRef = useRef();
   const bgModal = (e) => {
     if (modalRef.current === e.target) {
       closeModal();
     }
   };
+
   return (
     <div
       ref={modalRef}
@@ -21,12 +22,10 @@ function InvalidOtp({ closeModal }) {
           </button>
         </div>
         <i className="ri-close-circle-line text-7xl sm:text-8xl text-red-600"></i>
-        <p className="text-center text-[14px] sm:text-[18px]">
-          Invalid OTPs. Please try again.
-        </p>
+        <p className="text-center text-[14px] sm:text-[18px]">Coming Soon</p>
       </div>
     </div>
   );
-}
+};
 
-export default InvalidOtp;
+export default DownloadPopup;

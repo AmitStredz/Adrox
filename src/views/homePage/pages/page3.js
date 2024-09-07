@@ -14,7 +14,9 @@ export default function Page3() {
     <div>
       <div className="mb-20">
         <div className="text-center">
-          <h1 className="text-[36px] sm:text-[44px] md:text-[56px] font-700 sm:font-800">Earn with ADROX</h1>
+          <h1 className="text-[36px] sm:text-[44px] md:text-[56px] font-700 sm:font-800">
+            Earn with ADROX
+          </h1>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-3 gap-20 py-20 justify-center items-center">
@@ -26,7 +28,7 @@ export default function Page3() {
             <div className="flex flex-col max-sm:items-center">
               <div className="flex gap-10 items-center">
                 <h1 className="font-700 text-[36px] group-hover:underline">
-                  ADROX Staking
+                  ADROX Landing
                 </h1>
                 <i className="ri-arrow-right-s-line px-1 text-2xl font-100 border rounded-full cursor-pointer"></i>
               </div>

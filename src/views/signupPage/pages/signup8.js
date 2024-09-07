@@ -121,7 +121,6 @@ const Signup8 = ({ onNextStep }) => {
       setOtpModal(true);
       setInvalidOtpModal(false);
       setTimeout(() => {
-        // navigate("/signup9");
         onNextStep();
       }, 2000);
 

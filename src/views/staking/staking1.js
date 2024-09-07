@@ -11,6 +11,7 @@ import Staking1Month from "./staking1Month";
 import Staking3Month from "./staking3Month";
 import Staking6Month from "./staking6Month";
 import Staking1Year from "./staking1Year";
+import Cookies from "js-cookie";
 
 export default function Staking() {
   const [stakingType, setStakingType] = useState();
@@ -45,7 +46,7 @@ export default function Staking() {
           <div className="flex flex-col justify-between gap-2 p-2 h-full max-sm:items-center">
             <div className="flex flex-col sm:flex-row sm:gap-2 items-center">
               <img src={adam} className="w-10"></img>
-              <p className="text-[18px] font-300">Adrox001</p>
+              <p className="text-[18px] font-300">{Cookies.get("full_name")}</p>
             </div>
             <div className="flex flex-col leading-8 max-sm:items-center">
               <p className="font-300 text-[18px]">Holdings</p>

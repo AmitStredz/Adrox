@@ -5,6 +5,9 @@ import Deposit from "../../staking/deposit";
 
 export default function HomePage1() {
   const [showDepositModal, setShowDepositModal] = useState(false);
+
+  const [selectedTime, setSelectedTime] = useState("1W");
+
   return (
     <div className="flex justify-center pt-20 m-5 md:m-10 lg:m-20">
       <div>
@@ -28,11 +31,36 @@ export default function HomePage1() {
 
           <div className="flex flex-col justify-center sm:justify-end gap-7">
             <div className="flex text-[18px] font-400 justify-center sm:justify-end gap-6">
-              <a className="p-2 rounded-lg border cursor-pointer z-50">1D</a>
-              <a className="p-2 bg-gradient-to-r from-[#4F0F81] to-[#A702FA] rounded-lg cursor-pointer z-50">
+              <a
+                className={`p-2 rounded-lg cursor-pointer z-50 ${
+                  selectedTime === "1D"
+                    ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
+                    : "border"
+                }`}
+                onClick={() => setSelectedTime("1D")}
+              >
+                1D
+              </a>
+              <a
+                className={`p-2 rounded-lg cursor-pointer z-50 ${
+                  selectedTime === "1W"
+                    ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
+                    : "border"
+                }`}
+                onClick={() => setSelectedTime("1W")}
+              >
                 1W
               </a>
-              <a className="p-2 rounded-lg border z-50 cursor-pointer">1M</a>
+              <a
+                className={`p-2 rounded-lg cursor-pointer z-50 ${
+                  selectedTime === "1M"
+                    ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
+                    : "border"
+                }`}
+                onClick={() => setSelectedTime("1M")}
+              >
+                1M
+              </a>
             </div>
             <div className="flex justify-center text-[18px] font-300 gap-3">
               <p>
@@ -51,7 +79,9 @@ export default function HomePage1() {
         </div>
       </div>
 
-      {showDepositModal && <Deposit onClose={()=>setShowDepositModal(false)}/>}
+      {showDepositModal && (
+        <Deposit onClose={() => setShowDepositModal(false)} />
+      )}
     </div>
   );
 }
