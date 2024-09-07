@@ -772,21 +772,21 @@ const TreeNode = ({ node, setUser }) => {
     let interval;
 
     const updateReferralTree = async () => {
-      if (node?.level === 0) {
-        const userID = node.user_id;
-        if (userID) {
-          try {
-            const response = await fetch(
-              `https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy-live-profit-from-user/${userID}`
-            );
-            const reposnseData = await response.json();
-            setFirstLevelBComm(reposnseData?.binary_commission);
-          } catch (error) {
-            console.error("Error fetching referral tree:", error);
-          }
+      // if (node?.level === 0) {
+      const userID = node.user_id;
+      if (userID) {
+        try {
+          const response = await fetch(
+            `https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy-live-profit-from-user/${userID}`
+          );
+          const responseData = await response.json();
+          setFirstLevelBComm(responseData?.binary_commission);
+        } catch (error) {
+          console.error("Error fetching referral tree:", error);
         }
       }
     };
+    // };
 
     if (node) {
       updateReferralTree(); // Fetch the data immediately on mount
@@ -859,22 +859,22 @@ const TreeNode = ({ node, setUser }) => {
             )
           </p>
         </div>
-        {node?.level === 0 && (
-          <div
-            style={{
-              display: "flex",
-              fontSize: "0.9em",
-              gap: "1em",
-              border: "1px solid #475569",
-              fontWeight: "500",
-              padding: "0.5em",
-              borderRadius: "0.25em",
-              background: "#0F011A",
-            }}
-          >
-            {Math.round(firstLevelBComm)}&nbsp;Paired
-          </div>
-        )}
+        {/* {node?.level === 0 && ( */}
+        <div
+          style={{
+            display: "flex",
+            fontSize: "0.9em",
+            gap: "1em",
+            border: "1px solid #475569",
+            fontWeight: "500",
+            padding: "0.5em",
+            borderRadius: "0.25em",
+            background: "#0F011A",
+          }}
+        >
+          {Math.round(firstLevelBComm)}&nbsp;Paired
+        </div>
+        {/* )} */}
       </div>
       {node?.children && node?.children.length > 0 && (
         // <div className="flex space-x-8">

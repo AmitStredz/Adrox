@@ -10,6 +10,8 @@ import styles from "./staking.module.css";
 export default function Staking() {
   const [stakingData, setStakingData] = useState(null);
 
+  const [data, setData] = useState();
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -18,6 +20,41 @@ export default function Staking() {
     weeks: 0,
     months: 0,
   });
+
+  useEffect(() => {
+    let interval;
+
+    const updateReferralTree = async () => {
+      const userID = Cookies.get("user_id");
+      if (userID) {
+        try {
+          const response = await fetch(
+            `https://adrox-89b6c88377f5.herokuapp.com/api/staking/live-profit/${userID}`
+          );
+          const responseData = await response.json();
+          setData(responseData);
+
+          const { days_completed, hours_completed, minutes_completed } =
+            responseData;
+
+          setTimeLeft((prev) => ({
+            ...prev,
+            days: days_completed || 0,
+            hours: hours_completed || 0,
+            minutes: minutes_completed || 0,
+            // You can compute the seconds dynamically if needed, or set a default
+          }));
+        } catch (error) {
+          console.error("Error fetching referral tree:", error);
+        }
+      }
+    };
+
+    updateReferralTree(); // Fetch the data immediately on mount
+    interval = setInterval(updateReferralTree, 10000); // Fetch the data every 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   // useEffect(() => {
   //   if (Cookies.get("stakingData")) {
@@ -85,10 +122,16 @@ export default function Staking() {
         <div className={`${styles.dataStyles}`}>
           <div className={styles.firstRow}>
             <div className={styles.eachRow}>
-              <Heading Name={"Today's Reward"} />
-              <span className={`${styles.heading} ${styles.highLighted}`}>
-                800&nbsp;ADX
-              </span>
+              <Heading Name={"Live Profit"} />
+              {data && data.live_profit ? (
+                <span className={`${styles.heading} ${styles.highLighted}`}>
+                  {Number(data.live_profit).toFixed(2) || 0}&nbsp;ADX
+                </span>
+              ) : (
+                <span className={`${styles.heading} ${styles.highLighted}`}>
+                  0&nbsp;ADX
+                </span>
+              )}
             </div>
             <div className={styles.eachRow}>
               <Heading Name={"Total Value Locked"} />
@@ -138,11 +181,43 @@ export default function Staking() {
               <div className={styles.letterTimeCont}>
                 <div className={styles.letterTime}>
                   <span>From</span>
-                  <span>2024-5-31 21:30</span>
+                  {data && data.stake_start_time ? (
+                    <span>
+                      {new Date(data.stake_start_time)
+                        .toLocaleString("en-GB", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: false, // Ensures 24-hour format
+                        })
+                        .replace(/\//g, "-")
+                        .replace(",", "")}
+                    </span>
+                  ) : (
+                    <span>Loading...</span>
+                  )}
                 </div>
                 <div className={styles.letterTime}>
                   <span>To</span>
-                  <span>2024-5-31 21:30</span>
+                  {data && data.stake_start_time ? (
+                    <span>
+                      {new Date(Date.now())
+                        .toLocaleString("en-GB", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: false, // Ensures 24-hour format
+                        })
+                        .replace(/\//g, "-")
+                        .replace(",", "")}
+                    </span>
+                  ) : (
+                    <span>Loading...</span>
+                  )}
                 </div>
               </div>
 
