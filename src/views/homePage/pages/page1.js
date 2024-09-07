@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import graph from "../assets/graph.png";
+import graph1W from "../assets/graph1W.png";
+import graph1D from "../assets/graph1D.png";
+import graph1M from "../assets/graph1M.png";
 
 import Deposit from "../../staking/deposit";
 
@@ -75,7 +77,13 @@ export default function HomePage1() {
         </div>
 
         <div className="w-full object-contain scale-125 sm:scale-110 lg:scale-100">
-          <img src={graph}></img>
+          {selectedTime === "1D" ? (
+            <img src={graph1D} />
+          ) : selectedTime === "1W" ? (
+            <img src={graph1W} />
+          ) : (
+            <img src={graph1M} />
+          )}
         </div>
       </div>
 

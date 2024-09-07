@@ -28,7 +28,7 @@ export default function Page3() {
             <div className="flex flex-col max-sm:items-center">
               <div className="flex gap-10 items-center">
                 <h1 className="font-700 text-[36px] group-hover:underline">
-                  ADROX Landing
+                  ADROX Lending
                 </h1>
                 <i className="ri-arrow-right-s-line px-1 text-2xl font-100 border rounded-full cursor-pointer"></i>
               </div>

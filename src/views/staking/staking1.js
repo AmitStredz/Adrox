@@ -52,7 +52,7 @@ export default function Staking() {
               <p className="font-300 text-[18px]">Holdings</p>
               <div className="bg-gradient-to-r from-white to-slate-900 h-[0.1px] w-full mb-2"></div>
               <span className="text-[30px] font-800 text-[#C653FF]">
-                1,000 ADR
+                1,000 ADX
               </span>
               <p className="font-300 text-[18px]">$ 250 USDT</p>
             </div>
