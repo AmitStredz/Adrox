@@ -64,7 +64,7 @@ export default function footer() {
         }}
       >
         <h1>Community</h1>
-        <div className="flex gap-10 text-black">
+        {/* <div className="flex gap-10 text-black">
           <i className="ri-facebook-circle-fill bg-white px-2 rounded-lg cursor-pointer"></i>
           <i className="ri-twitter-x-line bg-white px-2 rounded-lg font-100 cursor-pointer"></i>
           <i className="ri-telegram-fill bg-white px-2 rounded-lg cursor-pointer"></i>
@@ -72,6 +72,65 @@ export default function footer() {
           <i className="ri-github-fill bg-white px-2 rounded-lg font-200 cursor-pointer"></i>
           <i className="ri-linkedin-fill bg-white px-2 rounded-lg font-200 cursor-pointer"></i>
           <i className="ri-instagram-line bg-white px-2 rounded-lg font-100 cursor-pointer"></i>
+        </div> */}
+
+        <div className="flex gap-10 text-black">
+          <a
+            href="https://www.facebook.com"
+            style={{ all: "unset", cursor: "pointer" }}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ri-facebook-circle-fill bg-white px-2 rounded-lg"></i>
+          </a>
+          <a
+            href="https://x.com/adroxorg?s=21"
+            style={{ all: "unset", cursor: "pointer" }}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ri-twitter-x-line bg-white px-2 rounded-lg font-100"></i>
+          </a>
+          <a
+            href="https://t.me"
+            style={{ all: "unset", cursor: "pointer" }}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ri-telegram-fill bg-white px-2 rounded-lg"></i>
+          </a>
+          <a
+            href="https://youtube.com/@adroxorg?si=CXNoQlpgZWyfDcBM"
+            style={{ all: "unset", cursor: "pointer" }}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ri-youtube-fill bg-white px-2 rounded-lg"></i>
+          </a>
+          <a
+            href="https://github.com"
+            style={{ all: "unset", cursor: "pointer" }}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ri-github-fill bg-white px-2 rounded-lg font-200"></i>
+          </a>
+          <a
+            href="https://linkedin.com"
+            style={{ all: "unset", cursor: "pointer" }}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ri-linkedin-fill bg-white px-2 rounded-lg font-200"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/adroxmarket?igsh=MTQ5aW9sbTgxa2VqYg=="
+            style={{ all: "unset", cursor: "pointer" }}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="ri-instagram-line bg-white px-2 rounded-lg font-100"></i>
+          </a>
         </div>
       </div>
     </div>
