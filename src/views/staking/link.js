@@ -872,7 +872,7 @@ const TreeNode = ({ node, setUser }) => {
             background: "#0F011A",
           }}
         >
-          {Math.round(firstLevelBComm)}&nbsp;Paired
+          {Math.round(firstLevelBComm)}&nbsp;ADX Paired
         </div>
         {/* )} */}
       </div>
