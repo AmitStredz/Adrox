@@ -46,8 +46,11 @@ export default function Login1() {
       );
 
       const responseData = await response.json();
-
       Cookies.set("user_id", responseData.user_id);
+      Cookies.set("full_name", responseData.full_name);
+      Cookies.set("email", responseData.email);
+      Cookies.set("mobile_number", responseData.mobile_number);
+      Cookies.set("referral_id", responseData.referral_id);
 
       if (response.ok) {
         setShowValidPopup(true);

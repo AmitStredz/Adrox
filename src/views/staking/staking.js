@@ -6,6 +6,7 @@ import star from "./assets/star.png";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
+import styles from "./staking.module.css";
 export default function Staking() {
   const [stakingData, setStakingData] = useState(null);
 
@@ -33,8 +34,8 @@ export default function Staking() {
   useEffect(() => {
     // const stakingData = JSON.parse(Cookies.get("stakingData"));
     if (Cookies.get("stakingData")) {
-          setStakingData(JSON.parse(Cookies.get("stakingData")));
-        }
+      setStakingData(JSON.parse(Cookies.get("stakingData")));
+    }
 
     if (stakingData) {
       const interval = setInterval(() => {
@@ -81,123 +82,99 @@ export default function Staking() {
   return (
     <div>
       <div className="sm:p-20 flex flex-col items-center">
-        <div className="flex items-center justify-center w-[80vw] sm:w-[70vw] md:w-4/5 p-5 sm:p-10 md:p-16 px-5 sm:px-8 md:px-12 rounded-xl bg-gradient-to-b from-[#22122F] to-[#10031B]">
-          <div className="flex flex-col text-center gap-5">
-            <div>
-              <a className="bg-[#AB00FF] shadow-[2px 2px 4px rgb(171,0,255)] shadow rounded-lg p-1 px-6">
-                Token Rate
-              </a>
+        <div className={`${styles.dataStyles}`}>
+          <div className={styles.firstRow}>
+            <div className={styles.eachRow}>
+              <Heading Name={"Today's Reward"} />
+              <span className={`${styles.heading} ${styles.highLighted}`}>
+                800&nbsp;ADX
+              </span>
             </div>
-            <div className="flex text-[20px] sm:text-[32px] gap-3 items-center">
-              <img src={dollar} className="w-10 h-10"></img>
-              <p>
-                1 <span className="font-100">USDT</span>
-              </p>
-              <p>=</p>
-              <img src={star} className="w-10 h-10"></img>
-              <p>
-                20.83 <span className="font-100">ADX</span>
-              </p>
+            <div className={styles.eachRow}>
+              <Heading Name={"Total Value Locked"} />
+              <span className={`${styles.heading}`}>150000 ADX (100 USD)</span>
+            </div>
+            <div className={styles.eachRow}>
+              <Heading Name={"Tokens Genarted"} />
+              <span className={`${styles.heading}`}>150 ADX</span>
+            </div>
+            <div className={styles.firstBottomRow}>
+              <div className={styles.eachRow}>
+                <Heading Name={"APY"} />
+                <span className={`${styles.heading}`}>10.5%</span>
+              </div>
+              <div className={styles.eachRow}>
+                <Heading Name={"DPY"} />
+                <span className={`${styles.heading}`}>35.5%</span>
+              </div>
             </div>
           </div>
-        </div>
-        {stakingData ? (
-          <div className="flex max-lg:flex-col gap-5 items-center justify-between w-4/5 my-20">
-            <div className="box1 flex flex-col gap-10 max-sm:w-[90vw]">
-              <div className="flex flex-col gap-3 text-center rounded-xl p-5 bg-gradient-to-b from-[#22122F] to-[#10031B]">
-                <div className="flex flex-col gap-5 text-center p-5 px-10">
-                  <div>
-                    <a className="text-[16px] bg-[#AB00FF] shadow-2xl rounded-lg p-1 px-4">
-                      Today's Reward
-                    </a>
-                  </div>
-                  <a className="font-800 text-[64px] border border-slate-500 rounded-xl">
-                    0 ADX
-                  </a>
-                </div>
-              </div>
 
-              <div className="text-center font-700 text-[32px] flex flex-col gap-5">
-                <div className="rounded-xl p-5 bg-gradient-to-b from-[#22122F] to-[#10031B]">
-                  <p className="font-100 text-[16px]">Total Value Locked</p>
-                  <p className="">
-                    {(stakingData.staked_usdt * 20.83).toFixed(4)} ADX{" "}
-                    <span className="font-100">
-                      ({stakingData.staked_usdt} USDT)
-                    </span>
-                  </p>
-                </div>
-                <div className="rounded-xl p-5 bg-gradient-to-b from-[#22122F] to-[#10031B]">
-                  <p className="font-100 text-[16px]">Tokens Generated</p>
-                  <p>150 ADX</p>
-                </div>
-                <div className="flex gap-3 items-center justify-evenly sm:justify-between">
-                  <div className="rounded-xl p-5 sm:px-10 bg-gradient-to-b from-[#22122F] to-[#10031B]">
-                    <p className="font-100 text-[16px]">APY</p>
-                    <p>36.5%</p>
-                  </div>
-                  <div className="rounded-xl p-5 sm:px-10 bg-gradient-to-b from-[#22122F] to-[#10031B]">
-                    <p className="font-100 text-[16px]">DPY</p>
-                    <p>10.5%</p>
-                  </div>
-                </div>
-              </div>
+          <div className={styles.secondRow}>
+            <div className={styles.eachRow}>
+              <div
+                style={{
+                  display: "flex",
+                  width: "fit-content",
+                  padding: "0.25em 1em",
+                  borderRadius: "0.5em",
+                  backgroundColor: "#3B254A",
+                  fontWeight: 300,
+                  marginLeft: "1.5em",
+                  alignSelf: "flex-start",
+                  fontFamily: "Nunito Sans",
+                  lineHeight: "1.5em",
+                  letterSpacing: "-0.032px",
+                }}
+              >
+                Token Data
+              </div>{" "}
+              <span className={`${styles.heading}`}>
+                01&nbsp;&nbsp;USD&nbsp;&nbsp;=&nbsp;&nbsp;20&nbsp;&nbsp;ADX
+              </span>
             </div>
+            <div className={styles.eachRow}>
+              <Heading Name={"Holding Period"} />
+              <div className={styles.letterTimeCont}>
+                <div className={styles.letterTime}>
+                  <span>From</span>
+                  <span>2024-5-31 21:30</span>
+                </div>
+                <div className={styles.letterTime}>
+                  <span>To</span>
+                  <span>2024-5-31 21:30</span>
+                </div>
+              </div>
 
-            <div className="box2 py-10 sm:py-20 max-sm:w-[90vw] w-[30rem] flex items-center justify-center rounded-xl bg-gradient-to-b from-[#22122F] to-[#10031B]">
-              <div className="font-100 text-[20px] text-center flex flex-col gap-10 max-sm:w-[90vw] w-[2/3]">
-                <div>
-                  <a className="text-[16px] bg-[#AB00FF] shadow-2xl rounded-lg p-1 px-4">
-                    Holding Period
-                  </a>
+              <div className={styles.timeCounterCont}>
+                <div className={styles.timeCounter}>
+                  <span className={styles.time}>{timeLeft.days}</span>
+                  <span>Day{timeLeft.days >= 1 ? "s" : ""}</span>
                 </div>
-                <div className="flex gap-3 justify-center">
-                  <div className="p-3 text-start bg-slate-400 bg-opacity-10 rounded-2xl">
-                    <p>From</p>
-                    <p>{formatDate(stakingData.start_date)}</p>
-                    <p>{formatTime(stakingData.start_date)}</p>
-                  </div>
-                  <div className="p-3 text-start bg-slate-400 bg-opacity-10 rounded-2xl">
-                    <p>To</p>
-                    <p>{formatDate(stakingData.end_date)}</p>
-                    <p>{formatTime(stakingData.end_date)}</p>
-                  </div>
+                <div className={styles.timeCounter}>
+                  <span className={styles.time}>{timeLeft.hours}</span>
+                  <span>Hour{timeLeft.hours >= 1 ? "s" : ""}</span>
                 </div>
-
-                <div className="flex justify-evenly sm:justify-between">
-                  <div className="border border-slate-500 p-1 px-4 rounded-xl ">
-                    <p className="font-700 text-[32px]">{timeLeft.days}</p>
-                    <p className="">Day</p>
-                  </div>
-                  <div className="border border-slate-500 p-1 px-4 rounded-xl">
-                    <p className="font-700 text-[32px]">{timeLeft.hours}</p>
-                    <p>Hour</p>
-                  </div>
-                  <div className="border border-slate-500 p-1 px-4 rounded-xl">
-                    <p className="font-700 text-[32px]">{timeLeft.minutes}</p>
-                    <p>Min</p>
-                  </div>
-                  <div className="border border-slate-500 p-1 px-4 rounded-xl">
-                    <p className="font-700 text-[32px]">{timeLeft.seconds}</p>
-                    <p>Sec</p>
-                  </div>
+                <div className={styles.timeCounter}>
+                  <span className={styles.time}>{timeLeft.minutes}</span>
+                  <span>Min{timeLeft.minutes >= 1 ? "s" : ""}</span>
                 </div>
-                <div className="flex items-center justify-center gap-5">
-                  <div className="border border-slate-500 p-1 px-4 rounded-xl">
-                    <p className="font-700 text-[32px]">{timeLeft.weeks}</p>
-                    <p>Weeks</p>
-                  </div>
-                  <div className="border border-slate-500 p-1 px-4 rounded-xl">
-                    <p className="font-700 text-[32px]">{timeLeft.months}</p>
-                    <p>Months</p>
-                  </div>
+                <div className={styles.timeCounter}>
+                  <span className={styles.time}>{timeLeft.seconds}</span>
+                  <span>Sec{timeLeft.seconds >= 1 ? "s" : ""}</span>
+                </div>
+                <div className={styles.timeCounter}>
+                  <span className={styles.time}>{timeLeft.weeks}</span>
+                  <span>Week{timeLeft.weeks >= 1 ? "s" : ""}</span>
+                </div>
+                <div className={styles.timeCounter}>
+                  <span className={styles.time}>{timeLeft.months}</span>
+                  <span>Month{timeLeft.months >= 1 ? "s" : ""}</span>
                 </div>
               </div>
             </div>
           </div>
-        ) : (
-          <p>Loading Staking Data...</p>
-        )}
+        </div>
       </div>
 
       {/* Page2 */}
@@ -205,7 +182,7 @@ export default function Staking() {
       <div className="px-10">
         <div className="flex justify-between md:p-10 py-3 md:px-20 lg:px-28">
           <h1 className="font-700 text-[24px] sm:text-[40px]">
-            Staking History
+            Staking Profit History
           </h1>
           <div className="flex border items-center rounded-3xl border-slate-600 px-3 sm:px-5 gap-1 sm:gap-2">
             <i className="ri-calendar-2-line font-100"></i>
@@ -244,3 +221,23 @@ export default function Staking() {
     </div>
   );
 }
+
+const Heading = ({ Name }) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "fit-content",
+        padding: "0.25em 1em",
+        borderRadius: "0.5em",
+        backgroundColor: "#3B254A",
+        fontWeight: 300,
+        fontFamily: "Nunito Sans",
+        lineHeight: "1.5em",
+        letterSpacing: "-0.032px",
+      }}
+    >
+      {Name}
+    </div>
+  );
+};

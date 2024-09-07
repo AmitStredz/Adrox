@@ -62,7 +62,11 @@ export default function LoginEmail() {
 
       if (response.ok) {
         const responseData = await response.json();
-        Cookies.set("user_id", responseData.token); // Store token in cookie
+        Cookies.set("user_id", responseData.user_id);
+        Cookies.set("full_name", responseData.full_name);
+        Cookies.set("email", responseData.email);
+        Cookies.set("mobile_number", responseData.mobile_number);
+        Cookies.set("referral_id", responseData.referral_id);
         // console.log("Login responseData: ", responseData);
 
         setShowValidPopup(true);

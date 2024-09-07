@@ -281,9 +281,23 @@ export default function Link() {
         <div className="flex flex-col p-10 mt-10 bg-white bg-opacity-5">
           <div className="upper flex justify-center p-10 items-start ">
             <div className="flex justify-evenly w-full">
-              <img src={leftLink} className="w-64 h-40"></img>
-              <img src={adam3} className="w-32 h-32"></img>
-              <img src={rightLink} className="w-64 h-40"></img>
+              <img
+                src={leftLink}
+                style={{
+                  maxHeight: "10em",
+                  width: `calc(100% - 60%)`,
+                  margin: "auto",
+                }}
+              />
+              <img src={adam3} className="w-32 h-32" />
+              <img
+                src={rightLink}
+                style={{
+                  maxHeight: "10em",
+                  width: `calc(100% - 60%)`,
+                  margin: "auto",
+                }}
+              />
             </div>
           </div>
           <div className="lower flex justify-between">
@@ -752,6 +766,36 @@ export default function Link() {
 const TreeNode = ({ node, setUser }) => {
   // if(!node) return null;
 
+  const [firstLevelBComm, setFirstLevelBComm] = useState(0);
+
+  useEffect(() => {
+    let interval;
+
+    const updateReferralTree = async () => {
+      if (node?.level === 0) {
+        const userID = node.user_id;
+        if (userID) {
+          try {
+            const response = await fetch(
+              `https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy-live-profit-from-user/${userID}`
+            );
+            const reposnseData = await response.json();
+            setFirstLevelBComm(reposnseData?.binary_commission);
+          } catch (error) {
+            console.error("Error fetching referral tree:", error);
+          }
+        }
+      }
+    };
+
+    if (node) {
+      updateReferralTree(); // Fetch the data immediately on mount
+      interval = setInterval(updateReferralTree, 10000); // Fetch the data every 10 seconds
+    }
+
+    return () => clearInterval(interval); // Clean up the interval on unmount
+  }, [node]);
+
   return (
     <div
       className="flex flex-col items-center"
@@ -761,7 +805,8 @@ const TreeNode = ({ node, setUser }) => {
       }}
     >
       <div
-        className="flex flex-col gap-5 justify-center items-center p-3 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border"
+        className="flex flex-col gap-5 justify-center items-center p-3 bg-slate-600 bg-opacity-20 rounded-2xl"
+        // border-slate-600 border
         onClick={() => setUser(node?.user_id)}
       >
         {node ? (
@@ -771,8 +816,8 @@ const TreeNode = ({ node, setUser }) => {
         )}
         <h3 className="text-[20px] font-700">
           {node?.full_name || "Refer a friend"}
-          <br />
-          {node?.position}
+          {/* <br />
+          {node?.position} */}
         </h3>
         {/* <p className="font-bold">{node?.full_name}</p> */}
         <div
@@ -814,6 +859,22 @@ const TreeNode = ({ node, setUser }) => {
             )
           </p>
         </div>
+        {node?.level === 0 && (
+          <div
+            style={{
+              display: "flex",
+              fontSize: "0.9em",
+              gap: "1em",
+              border: "1px solid #475569",
+              fontWeight: "500",
+              padding: "0.5em",
+              borderRadius: "0.25em",
+              background: "#0F011A",
+            }}
+          >
+            {Math.round(firstLevelBComm)}&nbsp;Paired
+          </div>
+        )}
       </div>
       {node?.children && node?.children.length > 0 && (
         // <div className="flex space-x-8">
@@ -835,7 +896,6 @@ const TreeNode = ({ node, setUser }) => {
               margin: "auto",
             }}
           ></img>
-
           <div className="flex gap-5 justify-between w-full">
             {node?.children?.map((child, index) => (
               <TreeNode key={index} node={child} setUser={setUser} />

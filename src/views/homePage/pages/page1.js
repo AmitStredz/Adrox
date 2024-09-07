@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import graph1W from "../assets/graph1W.png";
-import graph1D from "../assets/graph1D.png";
-import graph1M from "../assets/graph1M.png";
+import graph from "../assets/graph.png";
 
 import Deposit from "../../staking/deposit";
 
@@ -16,7 +14,7 @@ export default function HomePage1() {
         <div className="flex max-sm:flex-col max-sm:gap-10 justify-around">
           <div className="flex flex-col gap justify-center max-sm:text-center">
             <h1 className="text-[28px] md:text-[32px] font-300">ADROX Price</h1>
-            <h1 className="text-[44px] md:text-[56px] font-800">$ 0.25 USDT</h1>
+            <h1 className="text-[44px] md:text-[56px] font-800">$ 0.05 USDT</h1>
             <div className="text-[16px] md:text-[24px] font-200 leading-7">
               <p>Click here to deposit funds</p>
               <p>into your account.</p>
@@ -77,13 +75,12 @@ export default function HomePage1() {
         </div>
 
         <div className="w-full object-contain scale-125 sm:scale-110 lg:scale-100">
-          {selectedTime === "1D" ? (
-            <img src={graph1D} />
-          ) : selectedTime === "1W" ? (
-            <img src={graph1W} />
-          ) : (
-            <img src={graph1M} />
-          )}
+          <img
+            src={graph}
+            style={{
+              aspectRatio: "3/2",
+            }}
+          />
         </div>
       </div>
 
