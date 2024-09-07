@@ -120,6 +120,10 @@ const Signup8 = ({ onNextStep }) => {
       setOtpIsValid(true);
       setOtpModal(true);
       setInvalidOtpModal(false);
+      setTimeout(() => {
+        // navigate("/signup9");
+        onNextStep();
+      }, 2000);
 
       // alert("Error: Invalid OTPs");
     } finally {
