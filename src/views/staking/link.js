@@ -306,7 +306,7 @@ export default function Link() {
                 <div className="flex flex-col gap-3 p-3 px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
                   <p className="font-400 text-[24px]">Left</p>
                   <p className="font-800 text-[64px] text-[#AB00FF] text-sha">
-                    800
+                    0
                   </p>
                 </div>
               </div>
@@ -331,7 +331,7 @@ export default function Link() {
               <div className="flex justify-center">
                 <div className="flex flex-col gap-3 p-3 px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
                   <p className="font-400 text-[24px]">Right</p>
-                  <p className="font-800 text-[64px] text-[#AB00FF]">910</p>
+                  <p className="font-800 text-[64px] text-[#AB00FF]">0</p>
                 </div>
               </div>
               {/* <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">

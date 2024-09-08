@@ -172,9 +172,7 @@ export default function Staking() {
               >
                 Token Data
               </div>{" "}
-              <span className={`${styles.heading}`}>
-                01&nbsp;&nbsp;USD&nbsp;&nbsp;=&nbsp;&nbsp;20&nbsp;&nbsp;ADX
-              </span>
+              <span className={`${styles.heading}`}>01 USDT = 20 ADX</span>
             </div>
             <div className={styles.eachRow}>
               <Heading Name={"Holding Period"} />
