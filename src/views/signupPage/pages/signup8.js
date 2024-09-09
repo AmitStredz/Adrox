@@ -131,7 +131,7 @@ const Signup8 = ({ onNextStep }) => {
   };
 
   return (
-    <div className="flex bg-[#0f011a] h-screen md:h-full text-white font-nunito p-5 sm:p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
+    <div className="flex bg-[#0f011a] h-full text-white font-nunito p-5 sm:p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
       <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">
         <div className="text-center z-50">
           <h1 className="font-700 text-[48px] text-[#C653FF]  max-sm:leading-11">
@@ -298,7 +298,7 @@ const Signup8 = ({ onNextStep }) => {
           <InvalidOtp closeModal={() => setInvalidOtpModal(false)} />
         )}
       </div>
-      <div className="bg-black fixed top-0 left-0 -z-10 h-screen w-screen"></div>
+      <div className="bg-[#0f011a] fixed top-0 left-0 -z-10 h-screen w-screen"></div>
     </div>
   );
 };
