@@ -1,7 +1,6 @@
-
 import Scanner from "../assets/scanner.png";
-import leftStar from '../assets/leftStar.png'
-import rightStar from '../assets/rightStar.png'
+import leftStar from "../assets/leftStar.png";
+import rightStar from "../assets/rightStar.png";
 
 export default function page4() {
   return (
@@ -22,7 +21,9 @@ export default function page4() {
               <i className="ri-apple-fill text-xl sm:text-4xl"></i>
               <div>
                 <p className="text-[12px] sm:text-xs">Download on the</p>
-                <p className="text-sm sm:text-xl font-semibold leading-5">App Store</p>
+                <p className="text-sm sm:text-xl font-semibold leading-5">
+                  App Store
+                </p>
               </div>
             </div>
 
@@ -30,7 +31,9 @@ export default function page4() {
               <i className="ri-google-play-fill text-xl sm:text-4xl"></i>{" "}
               <div>
                 <p className="text-[12px] sm:text-xs">GET IT ON</p>
-                <p className="text-sm sm:text-xl font-semibold leading-5">Google Play</p>
+                <p className="text-sm sm:text-xl font-semibold leading-5">
+                  Google Play
+                </p>
               </div>
             </div>
           </div>
@@ -38,17 +41,25 @@ export default function page4() {
 
         <div className="text-center flex flex-col gap-7 items-center">
           <img src={Scanner} alt="Scanner" className="w-60 sm:w-80" />
-          <a className="font-400 text-[18px] border-slate-600 border rounded-xl p-2 w-11/12 bg-gradient-to-t from-[#0F011A] to-[#210134] cursor-pointer">
-            Scan to Download
+          <a
+            className="font-400 text-[18px] border-slate-600 border rounded-xl p-2 w-11/12 bg-gradient-to-t from-[#0F011A] to-[#210134] cursor-pointer"
+            style={{ width: "100%" }}
+          >
+            Coming&nbsp;Soon
           </a>
         </div>
       </div>
 
       <div className="absolue">
-        <img src={leftStar} className="absolute -left-80 -top-10 rotating-image-anticlock opacity-10 z-10"></img>
-        <img src={rightStar} className="absolute -right-80 -bottom-16 rotating-image-clock opacity-10 w-[45%]"></img>
+        <img
+          src={leftStar}
+          className="absolute -left-80 -top-10 rotating-image-anticlock opacity-10 z-10"
+        ></img>
+        <img
+          src={rightStar}
+          className="absolute -right-80 -bottom-16 rotating-image-clock opacity-10 w-[45%]"
+        ></img>
       </div>
-
     </div>
   );
 }

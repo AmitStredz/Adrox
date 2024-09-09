@@ -4,12 +4,15 @@ import Staking from "./staking";
 import Link from "./link";
 
 export default function Staking2() {
-  const [activeComponent, setactiveComponent] = useState(localStorage.getItem("op") || "Staking");
+  const [activeComponent, setactiveComponent] = useState(
+    localStorage.getItem("op") || "Staking"
+  );
 
   const handleButtonClick = (button) => {
     setactiveComponent(button);
     localStorage.setItem("op", button);
   };
+
   return (
     <div className="bg-[#0F011A] max-w-screen font-nunito text-white overflow-x-hidden relative">
       <div className="h-40">

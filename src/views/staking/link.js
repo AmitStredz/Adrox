@@ -11,32 +11,119 @@ import ellipse from "./assets/ellipse.png";
 import Cookies from "js-cookie";
 import axios from "axios";
 
+import dummyData from "../dummyData.json";
+
 export default function Link() {
   const [newTree, setNewTree] = useState([]);
   const [referralTree, setReferralTree] = useState(null);
 
+  const [userID, setUserID] = useState("");
+  const [maxLevel, setMaxLevel] = useState(3); // default value
+
+  const generateDummyTree = (node, currentLevel = 0) => {
+    // Base case: Stop at level 3, no children should be added beyond this level
+    if (currentLevel >= maxLevel) {
+      return {
+        ...node,
+        children: [], // No further children beyond Level 3
+      };
+    }
+
+    node.children = node.children || [];
+
+    const realChildren = node.children.filter(
+      (child) => child.user_id !== null
+    );
+
+    if (realChildren.length > 0) {
+      while (node.children.length < 2) {
+        node.children.push({
+          full_name: "",
+          user_id: null,
+          referral_id: null,
+          level: currentLevel + 1,
+          position: node.children.length === 0 ? "right" : "left", // Balance the tree
+          pair_number: node.pair_number,
+          total_commission_adrx: 0,
+          total_commission_usdt: 0,
+          direct_commission_adrx: 0,
+          direct_commission_usdt: 0,
+          left_commission_adrx: 0,
+          left_commission_usdt: 0,
+          right_commission_adrx: 0,
+          right_commission_usdt: 0,
+          binary_commission_adrx: 0,
+          binary_commission_usdt: 0,
+          children: [],
+        });
+      }
+      node.children = node.children.map((child) =>
+        generateDummyTree(child, currentLevel + 1)
+      );
+    }
+
+    return node; // Return the processed node
+  };
+  async function fetchReferralTree(user) {
+    try {
+      const response = await axios.get(
+        `https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy-from-user/${user}/`
+      );
+      if (response?.data) {
+        console.log("response: ", response?.data);
+
+        const balancedReferralTree = generateDummyTree(response?.data);
+
+        console.log(balancedReferralTree);
+
+        setReferralTree(balancedReferralTree);
+      }
+    } catch (error) {
+      console.error("Error fetching referral tree:", error);
+    }
+  }
+
+  useEffect(() => {
+    if (userID === "") {
+      return;
+    }
+    fetchReferralTree(userID);
+  }, [userID]);
+
   // Fetch the referral tree data when the component loads
   useEffect(() => {
-    async function fetchReferralTree() {
-      try {
-        const response = await axios.get(
-          "https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy/"
-        ); // Replace with your API endpoint
-        if (response?.data) {
-          console.log("response: ", response?.data);
-          // const tree = buildTree(response?.data);
+    const cookieId = Cookies.get("user_id");
 
-          // console.log("tree: ", tree);
-
-          setReferralTree(response?.data);
-          // if (tree) {
-          // }
-        }
-      } catch (error) {
-        console.error("Error fetching referral tree:", error);
-      }
+    if (cookieId) {
+      setUserID(cookieId);
+    } else {
+      window.location.href = "/landingPage";
     }
-    fetchReferralTree();
+  }, []);
+
+  useEffect(() => {
+    // Function to set the max level based on the window width
+    const updateMaxLevel = () => {
+      const width = window.innerWidth;
+      if (width > 1000) {
+        setMaxLevel(3);
+      } else if (width > 768 && width <= 1450) {
+        setMaxLevel(2);
+      } else if (width <= 768) {
+        setMaxLevel(1);
+      }
+    };
+
+    // Set the initial max level
+    updateMaxLevel();
+
+    // Add an event listener to handle window resize
+    window.addEventListener("resize", updateMaxLevel);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updateMaxLevel);
+    };
   }, []);
 
   useEffect(() => {
@@ -194,9 +281,23 @@ export default function Link() {
         <div className="flex flex-col p-10 mt-10 bg-white bg-opacity-5">
           <div className="upper flex justify-center p-10 items-start ">
             <div className="flex justify-evenly w-full">
-              <img src={leftLink} className="w-64 h-40"></img>
-              <img src={adam3} className="w-32 h-32"></img>
-              <img src={rightLink} className="w-64 h-40"></img>
+              <img
+                src={leftLink}
+                style={{
+                  maxHeight: "10em",
+                  width: `calc(100% - 60%)`,
+                  margin: "auto",
+                }}
+              />
+              <img src={adam3} className="w-32 h-32" />
+              <img
+                src={rightLink}
+                style={{
+                  maxHeight: "10em",
+                  width: `calc(100% - 60%)`,
+                  margin: "auto",
+                }}
+              />
             </div>
           </div>
           <div className="lower flex justify-between">
@@ -205,7 +306,7 @@ export default function Link() {
                 <div className="flex flex-col gap-3 p-3 px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
                   <p className="font-400 text-[24px]">Left</p>
                   <p className="font-800 text-[64px] text-[#AB00FF] text-sha">
-                    800
+                    0
                   </p>
                 </div>
               </div>
@@ -230,7 +331,7 @@ export default function Link() {
               <div className="flex justify-center">
                 <div className="flex flex-col gap-3 p-3 px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
                   <p className="font-400 text-[24px]">Right</p>
-                  <p className="font-800 text-[64px] text-[#AB00FF]">910</p>
+                  <p className="font-800 text-[64px] text-[#AB00FF]">0</p>
                 </div>
               </div>
               {/* <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
@@ -255,8 +356,8 @@ export default function Link() {
       </div>
 
       {/* Referral Tree starts here */}
-      <div className="py-40 p-20">
-        <TreeNode node={referralTree} />
+      <div className="py-40 p-20" style={{}}>
+        <TreeNode node={referralTree} setUser={setUserID} />
       </div>
 
       {/* <div className="mt-56">
@@ -662,12 +763,52 @@ export default function Link() {
 // export default HierarchyTree;
 
 // Recursive component to render the tree
-const TreeNode = ({ node }) => {
+const TreeNode = ({ node, setUser }) => {
   // if(!node) return null;
 
+  const [firstLevelBComm, setFirstLevelBComm] = useState(0);
+
+  useEffect(() => {
+    let interval;
+
+    const updateReferralTree = async () => {
+      // if (node?.level === 0) {
+      const userID = node.user_id;
+      if (userID) {
+        try {
+          const response = await fetch(
+            `https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy-live-profit-from-user/${userID}`
+          );
+          const responseData = await response.json();
+          setFirstLevelBComm(responseData?.binary_commission);
+        } catch (error) {
+          console.error("Error fetching referral tree:", error);
+        }
+      }
+    };
+    // };
+
+    if (node) {
+      updateReferralTree(); // Fetch the data immediately on mount
+      interval = setInterval(updateReferralTree, 10000); // Fetch the data every 10 seconds
+    }
+
+    return () => clearInterval(interval); // Clean up the interval on unmount
+  }, [node]);
+
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex flex-col gap-5 justify-center items-center p-3 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border">
+    <div
+      className="flex flex-col items-center"
+      style={{
+        width: node?.level === 0 ? "100%" : "50%",
+        order: node?.position === "right" ? 1 : 0,
+      }}
+    >
+      <div
+        className="flex flex-col gap-5 justify-center items-center p-3 bg-slate-600 bg-opacity-20 rounded-2xl"
+        // border-slate-600 border
+        onClick={() => setUser(node?.user_id)}
+      >
         {node ? (
           <img src={adam2} className="w-20"></img>
         ) : (
@@ -675,12 +816,65 @@ const TreeNode = ({ node }) => {
         )}
         <h3 className="text-[20px] font-700">
           {node?.full_name || "Refer a friend"}
+          {/* <br />
+          {node?.position} */}
         </h3>
         {/* <p className="font-bold">{node?.full_name}</p> */}
-        <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
-          <p className=" p-1 px-4">{node?.left_commission_adrx || "0"}</p>|
-          <p className=" p-1 px-4">{node?.right_commission_adrx || "0"}</p>
+        <div
+          className="flex text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg"
+          style={{ fontSize: "0.9em", gap: "1em" }}
+        >
+          <p className=" p-1">
+            {Math.round(node?.direct_commission_adrx_left) || "0"}&nbsp;ADX (
+            {Math.round(node?.direct_commission_usdt_left) || "0"}
+            &nbsp;
+            <img
+              src="/usdtLogo.png"
+              className="w-4 h-4"
+              alt="$"
+              style={{
+                all: "unset",
+                width: "1em",
+                margin: "auto",
+                alignSelf: "center",
+              }}
+            />
+            )
+          </p>
+          &#124;
+          <p className=" p-1">
+            {Math.round(node?.direct_commission_adrx_right) || "0"}&nbsp;ADX (
+            {Math.round(node?.direct_commission_usdt_right) || "0"}&nbsp;
+            <img
+              src="/usdtLogo.png"
+              className="w-4 h-4"
+              alt="$"
+              style={{
+                all: "unset",
+                width: "1em",
+                margin: "auto",
+                alignSelf: "center",
+              }}
+            />
+            )
+          </p>
         </div>
+        {/* {node?.level === 0 && ( */}
+        <div
+          style={{
+            display: "flex",
+            fontSize: "0.9em",
+            gap: "1em",
+            border: "1px solid #475569",
+            fontWeight: "500",
+            padding: "0.5em",
+            borderRadius: "0.25em",
+            background: "#0F011A",
+          }}
+        >
+          {Math.round(firstLevelBComm)}&nbsp;ADX Paired
+        </div>
+        {/* )} */}
       </div>
       {node?.children && node?.children.length > 0 && (
         // <div className="flex space-x-8">
@@ -691,14 +885,20 @@ const TreeNode = ({ node }) => {
         <div className="flex flex-col items-center justify-center">
           <img
             src={doubleLink2}
-            className={` ${
-              node?.level == 0 ? "w-[50rem] h-80" : node?.level == 1 ? "w-96 h-52" : node?.level == 2 ? "w-48 h-24" : ""
-            }`}
-          ></img>
+            // className={ ` ${ node?.level == 0 ?
+            //   "w-[50rem] h-80" : node?.level == 1 ?
+            //     "w-96 h-52" : node?.level == 2 ? "w-48 h-24" : ""
+            //   }` }
 
+            style={{
+              maxHeight: "10em",
+              width: `calc(100% - 45%)`,
+              margin: "auto",
+            }}
+          ></img>
           <div className="flex gap-5 justify-between w-full">
             {node?.children?.map((child, index) => (
-              <TreeNode key={index} node={child} />
+              <TreeNode key={index} node={child} setUser={setUser} />
             ))}
           </div>
         </div>
