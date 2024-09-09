@@ -96,14 +96,7 @@ const ChangePassword = ({ onNextStep }) => {
               <h1 className="font-700  text-[28px] sm:text-[36px]">
                 Change Password
               </h1>
-              <input
-                type="text"
-                required
-                placeholder="UserId"
-                className="bg-transparent outline-none border-b-2 pb-2"
-                value={userId}
-                onChange={(e) => setUserId(e.target.value)}
-              ></input>
+
               <div className="flex flex-col">
                 <input
                   type="text"

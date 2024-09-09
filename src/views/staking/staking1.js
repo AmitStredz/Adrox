@@ -11,6 +11,7 @@ import Staking1Month from "./staking1Month";
 import Staking3Month from "./staking3Month";
 import Staking6Month from "./staking6Month";
 import Staking1Year from "./staking1Year";
+import Cookies from "js-cookie";
 
 export default function Staking() {
   const [stakingType, setStakingType] = useState();
@@ -45,13 +46,13 @@ export default function Staking() {
           <div className="flex flex-col justify-between gap-2 p-2 h-full max-sm:items-center">
             <div className="flex flex-col sm:flex-row sm:gap-2 items-center">
               <img src={adam} className="w-10"></img>
-              <p className="text-[18px] font-300">Adrox001</p>
+              <p className="text-[18px] font-300">{Cookies.get("full_name")}</p>
             </div>
             <div className="flex flex-col leading-8 max-sm:items-center">
               <p className="font-300 text-[18px]">Holdings</p>
               <div className="bg-gradient-to-r from-white to-slate-900 h-[0.1px] w-full mb-2"></div>
               <span className="text-[30px] font-800 text-[#C653FF]">
-                1,000 ADR
+                1,000 ADX
               </span>
               <p className="font-300 text-[18px]">$ 250 USDT</p>
             </div>
@@ -249,22 +250,22 @@ export default function Staking() {
         <img src={ellipse}></img>
       </div>
 
-      {stakingType == "1month" ? (
+      {stakingType === "1month" ? (
         <Staking1Month onClose={() => setStakingType("")} />
       ) : (
         <></>
       )}
-      {stakingType == "3month" ? (
+      {stakingType === "3month" ? (
         <Staking3Month onClose={() => setStakingType("")} />
       ) : (
         <></>
       )}
-      {stakingType == "6month" ? (
+      {stakingType === "6month" ? (
         <Staking6Month onClose={() => setStakingType("")} />
       ) : (
         <></>
       )}
-      {stakingType == "1year" ? (
+      {stakingType === "1year" ? (
         <Staking1Year onClose={() => setStakingType("")} />
       ) : (
         <></>

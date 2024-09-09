@@ -22,7 +22,7 @@ export default function Login1() {
     } else {
       alert("Please paste exactly 12 words.");
     }
-  }; 
+  };
 
   const handleInputChange = (index, value) => {
     const newPhrase = [...phrase];
@@ -45,8 +45,12 @@ export default function Login1() {
         }
       );
 
-      Cookies.set(response.data);
-      console.log("Login responseData: ", response);
+      const responseData = await response.json();
+      Cookies.set("user_id", responseData.user_id);
+      Cookies.set("full_name", responseData.full_name);
+      Cookies.set("email", responseData.email);
+      Cookies.set("mobile_number", responseData.mobile_number);
+      Cookies.set("referral_id", responseData.referral_id);
 
       if (response.ok) {
         setShowValidPopup(true);
@@ -98,18 +102,25 @@ export default function Login1() {
 
       <div className="text-center z-50">
         <button
-          className={`p-2 px-20 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${(isLoading)? "bg-gray-500": ""}`}
+          className={`p-2 px-20 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
+            isLoading ? "bg-gray-500" : ""
+          }`}
           disabled={isLoading}
           onClick={handleLoginClick}
         >
-          {(isLoading)? "Loading..." : "Login"}
+          {isLoading ? "Loading..." : "Login"}
         </button>
       </div>
 
       {showInvalidPopup && (
-        <InvalidPopup text="Invalid Recovery Phrase. Please try again" closeModal={() => setShowInvalidPopup(false)} />
+        <InvalidPopup
+          text="Invalid Recovery Phrase. Please try again"
+          closeModal={() => setShowInvalidPopup(false)}
+        />
       )}
-      {showValidPopup && <ValidPopup text="Recovery Phrase Successfully Verified."/>}
+      {showValidPopup && (
+        <ValidPopup text="Recovery Phrase Successfully Verified." />
+      )}
     </div>
 
     //       <div className="text-center gap-5 flex flex-col z-50">

@@ -36,13 +36,16 @@ export default function page3() {
         </div>
 
         <div className="text-center flex flex-col gap-7 items-center">
-          <img src={Scanner} alt="Scanner" className="w-80" />
-          <a className="font-400 text-[18px] border-slate-600 border rounded-xl p-2 w-11/12 bg-gradient-to-t from-[#0F011A] to-[#210134] cursor-pointer">
-            Scan to Download
+          <img src={Scanner} alt="Scanner" className="w-100" />
+          <a
+            className="font-400 text-[18px] border-slate-600 border rounded-xl p-2 w-11/12 bg-gradient-to-t from-[#0F011A] to-[#210134] cursor-pointer"
+            style={{ width: "100%" }}
+          >
+            Coming&nbsp;Soon
           </a>
         </div>
       </div>
-      
+
       <div className="absolue">
         <img
           src={leftStar}

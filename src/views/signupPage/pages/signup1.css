@@ -267,9 +267,9 @@
   text-decoration: none;
 }
 @media (max-width: 400px) {
-.signup01-text06 {
-  font-size: 12px;
-}
+  .signup01-text06 {
+    font-size: 12px;
+  }
 }
 .signup01-automated-decentralized-resource-optimization-exchange {
   top: 250px;
@@ -294,6 +294,7 @@
   .signup01-automated-decentralized-resource-optimization-exchange {
     top: 250px;
     left: 10%;
+    font-size: 0.8em;
   }
 }
 .signup01-text08 {
