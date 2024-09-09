@@ -18,7 +18,10 @@ export default function Link() {
   const [referralTree, setReferralTree] = useState(null);
 
   const [userID, setUserID] = useState("");
-  const [maxLevel, setMaxLevel] = useState(3); // default value
+  const [maxLevel, setMaxLevel] = useState(3);
+  const [totReferralComm, setTotReferralComm] = useState("");
+  const [directCommLeft, setDirectCommLeft] = useState("");
+  const [directCommRight, setDirectCommRight] = useState("");
 
   const generateDummyTree = (node, currentLevel = 0) => {
     // Base case: Stop at level 3, no children should be added beyond this level
@@ -77,6 +80,10 @@ export default function Link() {
         console.log(balancedReferralTree);
 
         setReferralTree(balancedReferralTree);
+        console.log("reffComm: ", response?.data?.direct_commission_usdt);
+        setTotReferralComm(response?.data?.direct_commission_usdt);
+        setDirectCommLeft(response?.data?.direct_commission_usdt_left);
+        setDirectCommRight(response?.data?.direct_commission_usdt_right);
       }
     } catch (error) {
       console.error("Error fetching referral tree:", error);
@@ -268,7 +275,7 @@ export default function Link() {
               </a>
             </div>
             <div className="flex gap-1 px-3">
-              <p>120 USDT</p>
+              <p>{totReferralComm} USDT</p>
               {/* <i className="ri-file-copy-line"></i> */}
             </div>
             {/* <div className="flex gap-1">
@@ -278,23 +285,25 @@ export default function Link() {
             </div> */}
           </div>
         </div>
-        <div className="flex flex-col p-10 mt-10 bg-white bg-opacity-5">
-          <div className="upper flex justify-center p-10 items-start ">
-            <div className="flex justify-evenly w-full">
+        <div className="flex flex-col p-3 sm:p-10 mt-10 bg-white bg-opacity-5 w-full">
+          <div className="upper flex justify-center p-2 sm:p-10 items-start w-full">
+            <div className="flex justify-evenly w-ful items-center ">
               <img
                 src={leftLink}
                 style={{
                   maxHeight: "10em",
-                  width: `calc(100% - 60%)`,
+                  // width: `calc(100% - 80%)`,
+
                   margin: "auto",
                 }}
+                className="w-20 h-28 sm:w-[calc(100% - 80%)]"
               />
-              <img src={adam3} className="w-32 h-32" />
+              <img src={adam3} className="w-20 sm:w-32 h-20 sm:h-32" />
               <img
                 src={rightLink}
                 style={{
                   maxHeight: "10em",
-                  width: `calc(100% - 60%)`,
+                  // width: `calc(100% - 80%)`,
                   margin: "auto",
                 }}
               />
@@ -303,10 +312,10 @@ export default function Link() {
           <div className="lower flex justify-between">
             <div className="left flex flex-col gap-10">
               <div className="flex justify-center">
-                <div className="flex flex-col gap-3 p-3 px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
-                  <p className="font-400 text-[24px]">Left</p>
+                <div className="flex flex-col gap-3 p-3 sm:px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
+                  <p className="font-400 text-[20px] sm:text-[24px]">Left</p>
                   <p className="font-800 text-[64px] text-[#AB00FF] text-sha">
-                    0
+                    {directCommLeft}
                   </p>
                 </div>
               </div>
@@ -329,9 +338,11 @@ export default function Link() {
             </div>
             <div className="right flex flex-col gap-10">
               <div className="flex justify-center">
-                <div className="flex flex-col gap-3 p-3 px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
-                  <p className="font-400 text-[24px]">Right</p>
-                  <p className="font-800 text-[64px] text-[#AB00FF]">0</p>
+                <div className="flex flex-col gap-3 p-3 sm:px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
+                  <p className="font-400 text-[20px] sm:text-[24px]">Right</p>
+                  <p className="font-800 text-[64px] text-[#AB00FF]">
+                    {directCommRight}
+                  </p>
                 </div>
               </div>
               {/* <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
@@ -767,6 +778,7 @@ const TreeNode = ({ node, setUser }) => {
   // if(!node) return null;
 
   const [firstLevelBComm, setFirstLevelBComm] = useState(0);
+  const [dataUpdated, setDataUpdated] = useState(false); //when data is updated, it is used to highlight the updating data in UI
 
   useEffect(() => {
     let interval;
@@ -795,6 +807,15 @@ const TreeNode = ({ node, setUser }) => {
 
     return () => clearInterval(interval); // Clean up the interval on unmount
   }, [node]);
+
+  useEffect(() => {
+    setDataUpdated(true);
+    console.log("dataUpdatedOut: ", dataUpdated);
+    setTimeout(() => {
+      setDataUpdated(false);
+      console.log("dataUpdatedIn: ", dataUpdated);
+    }, 200);
+  }, [firstLevelBComm]);
 
   return (
     <div
@@ -872,7 +893,15 @@ const TreeNode = ({ node, setUser }) => {
             background: "#0F011A",
           }}
         >
-          {Math.round(firstLevelBComm)}&nbsp;ADX Paired
+          <p
+            style={{
+              scale: `${dataUpdated ? "1.2" : ""}`,
+              textShadow: `${dataUpdated ? "0px 0px 10px white" : ""}`,
+              transition: "all 600ms ease",
+            }}
+          >
+            {Math.round(firstLevelBComm)}&nbsp;ADX PairedZ
+          </p>
         </div>
         {/* )} */}
       </div>

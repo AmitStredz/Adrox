@@ -12,31 +12,36 @@ import WithdrawModal from "./withdraw";
 import SwapModal from "./swap";
 
 export default function AdroxWallet() {
-  const [holdings, setHoldings] = useState(null);
+  const [holdings, setHoldings] = useState(null); //balance
   const navigate = useNavigate();
   const [transactionType, setTransactionType] = useState("");
 
-  // useEffect(() => {
-  //   // Replace this URL with the actual endpoint you are using
-  //   fetch("https://api.example.com/holdings")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setHoldings(data.holdings); // Adjust the property to match your API response
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching holdings data:", error);
-  //     });
-  // }, []);
-
   useEffect(() => {
-    const storedHoldings = Cookies.get("balance");
-    // console.log("Balance: ", storedHoldings);
-    if (storedHoldings >= 0) {
-      setHoldings(storedHoldings);
-    } else {
-      setHoldings(0); // Default value if no holdings are found in localStorage
+    const userId = Cookies.get("user_id");
+
+    if (userId) {
+      fetch(`https://adrox-89b6c88377f5.herokuapp.com/api/wallet/details/${userId}/`)
+        .then((response) => response.json())
+        .then((data) => {
+          setHoldings(data?.wallet.balance); // Adjust the property to match your API response
+          console.log("response: ", data);
+          
+        })
+        .catch((error) => {
+          console.error("Error fetching holdings data:", error);
+        });
     }
   }, []);
+
+  // useEffect(() => {
+  //   // const storedHoldings = Cookies.get("balance");
+  //   // console.log("Balance: ", storedHoldings);
+  //   if (storedHoldings >= 0) {
+  //     setHoldings(storedHoldings);
+  //   } else {
+  //     setHoldings(0); // Default value if no holdings are found in localStorage
+  //   }
+  // }, []);
 
   return (
     <div className="relative">
@@ -84,7 +89,6 @@ export default function AdroxWallet() {
         </div>
       </div>
 
-
       {transactionType == "withdraw" ? (
         <WithdrawModal onClose={() => setTransactionType("")} />
       ) : (
@@ -111,7 +115,6 @@ export default function AdroxWallet() {
       <div className="absolute left-[-30%] w-[80%] top-0">
         <img src={ellipse} alt="Ellipse"></img>
       </div>
-      
     </div>
   );
 }

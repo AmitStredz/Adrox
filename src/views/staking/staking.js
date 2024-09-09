@@ -23,8 +23,9 @@ export default function Staking() {
 
   useEffect(() => {
     let interval;
+    let tickingInterval;
 
-    const updateReferralTree = async () => {
+    const updateStakingData = async () => {
       const userID = Cookies.get("user_id");
       if (userID) {
         try {
@@ -33,15 +34,21 @@ export default function Staking() {
           );
           const responseData = await response.json();
           setData(responseData);
+          console.log("response:", responseData);
 
-          const { days_completed, hours_completed, minutes_completed } =
-            responseData;
+          const {
+            days_completed,
+            hours_completed,
+            minutes_completed,
+            seconds_completed_loop,
+          } = responseData;
 
           setTimeLeft((prev) => ({
             ...prev,
             days: days_completed || 0,
             hours: hours_completed || 0,
             minutes: minutes_completed || 0,
+            seconds: seconds_completed_loop || 0,
             // You can compute the seconds dynamically if needed, or set a default
           }));
         } catch (error) {
@@ -50,71 +57,86 @@ export default function Staking() {
       }
     };
 
-    updateReferralTree(); // Fetch the data immediately on mount
-    interval = setInterval(updateReferralTree, 10000); // Fetch the data every 10 seconds
+    updateStakingData(); // Fetch the data immediately on mount
+    interval = setInterval(updateStakingData, 10000); // Fetch the data every 10 seconds
 
-    return () => clearInterval(interval);
+    // Ticking interval to update seconds every second
+    tickingInterval = setInterval(() => {
+      setTimeLeft((prevTimeLeft) => {
+        let { days, hours, minutes, seconds } = prevTimeLeft;
+
+        // Increment seconds
+        seconds += 1;
+
+        if (seconds >= 60) {
+          seconds = 0;
+          minutes += 1;
+        }
+        if (minutes >= 60) {
+          minutes = 0;
+          hours += 1;
+        }
+        if (hours >= 24) {
+          hours = 0;
+          days += 1;
+        }
+
+        return { days, hours, minutes, seconds };
+      });
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+      clearInterval(tickingInterval);
+    };
   }, []);
 
   // useEffect(() => {
+  //   // const stakingData = JSON.parse(Cookies.get("stakingData"));
   //   if (Cookies.get("stakingData")) {
   //     setStakingData(JSON.parse(Cookies.get("stakingData")));
   //   }
+
   //   if (stakingData) {
-  //     // setStakingData(data);
-  //     console.log("Staking Data found");
+  //     const interval = setInterval(() => {
+  //       const endDate = new Date(stakingData.end_date);
+  //       const now = new Date();
+  //       const difference = endDate - now;
+
+  //       if (difference > 0) {
+  //         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  //         const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+  //         const minutes = Math.floor((difference / (1000 * 60)) % 60);
+  //         const seconds = Math.floor((difference / 1000) % 60);
+  //         const weeks = Math.floor(days / 7);
+  //         const months = Math.floor(days / 30); // Approximation
+
+  //         setTimeLeft({ days, hours, minutes, seconds, weeks, months });
+  //       } else {
+  //         clearInterval(interval);
+  //       }
+  //     }, 1000);
+
+  //     return () => clearInterval(interval);
   //   } else {
-  //     console.log("Staking Data not found.");
+  //     console.log("StakingData not found");
+  //     // alert("No stakingData found.");
   //   }
-  // }, []);
+  // }, [stakingData]);
 
-  useEffect(() => {
-    // const stakingData = JSON.parse(Cookies.get("stakingData"));
-    if (Cookies.get("stakingData")) {
-      setStakingData(JSON.parse(Cookies.get("stakingData")));
-    }
+  // const formatDate = (dateString) => {
+  //   const date = new Date(dateString);
+  //   const year = date.getFullYear();
+  //   const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+  //   const day = String(date.getDate()).padStart(2, "0");
+  //   return `${year}-${month}-${day}`;
+  // };
 
-    if (stakingData) {
-      const interval = setInterval(() => {
-        const endDate = new Date(stakingData.end_date);
-        const now = new Date();
-        const difference = endDate - now;
-
-        if (difference > 0) {
-          const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-          const minutes = Math.floor((difference / (1000 * 60)) % 60);
-          const seconds = Math.floor((difference / 1000) % 60);
-          const weeks = Math.floor(days / 7);
-          const months = Math.floor(days / 30); // Approximation
-
-          setTimeLeft({ days, hours, minutes, seconds, weeks, months });
-        } else {
-          clearInterval(interval);
-        }
-      }, 1000);
-
-      return () => clearInterval(interval);
-    } else {
-      console.log("StakingData not found");
-      // alert("No stakingData found.");
-    }
-  }, [stakingData]);
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
-
-  const formatTime = (dateString) => {
-    const date = new Date(dateString);
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    return `${hours}:${minutes}`;
-  };
+  // const formatTime = (dateString) => {
+  //   const date = new Date(dateString);
+  //   const hours = String(date.getHours()).padStart(2, "0");
+  //   const minutes = String(date.getMinutes()).padStart(2, "0");
+  //   return `${hours}:${minutes}`;
+  // };
 
   return (
     <div>
