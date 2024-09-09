@@ -298,6 +298,7 @@ const Signup8 = ({ onNextStep }) => {
           <InvalidOtp closeModal={() => setInvalidOtpModal(false)} />
         )}
       </div>
+      <div className="bg-black fixed top-0 left-0 -z-10 h-screen w-screen"></div>
     </div>
   );
 };
