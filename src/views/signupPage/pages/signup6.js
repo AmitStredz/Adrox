@@ -158,6 +158,8 @@ const Signup6 = (props) => {
           className="signup6-ellipse3"
         />
       </div>
+      <div className="bg-[#0f011a] fixed top-0 left-0 -z-10 h-screen w-screen"></div>
+
     </div>
   )
 }

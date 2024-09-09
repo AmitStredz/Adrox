@@ -18,14 +18,14 @@
   background-color: rgba(15, 1, 26, 1);
 }
 .signup3-ellipse2 {
-  bottom: 0px;
-  left: 0px;
+  bottom: -40%;
+  left: -30%;
   position: absolute;
 }
 .signup3-ellipse3 {
   /* top: 0px; */
-  right: 0px;
-  top: 0px;
+  right: -40%;
+  top: -30%;
 
   position: absolute;
 }

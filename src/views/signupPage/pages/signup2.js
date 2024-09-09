@@ -19,12 +19,12 @@ const Signup2 = ({ onNextStep }) => {
       
       <div className="signup2-signup2">
         <img
-          src="/external/ellipse23212-y26r-1000w.png"
+          src="/ellipse.png"
           alt="Ellipse23212"
           className="signup2-ellipse2"
         />
         <img
-          src="/external/ellipse33212-kjlq-700w.png"
+          src="/ellipse.png"
           alt="Ellipse33212"
           className="signup2-ellipse3"
         />

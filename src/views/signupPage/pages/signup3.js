@@ -18,12 +18,12 @@ const Signup3 = ({onNextStep}) => {
       </Helmet> */}
       <div className="signup3-signup3">
         <img
-          src="/external/ellipse22356-sa34-1000w.png"
+          src="/ellipse.png"
           alt="Ellipse22356"
           className="signup3-ellipse2"
         />
         <img
-          src="/external/ellipse32356-6m6m-700w.png"
+          src="/ellipse.png"
           alt="Ellipse32356"
           className="signup3-ellipse3"
         />
@@ -123,6 +123,8 @@ const Signup3 = ({onNextStep}) => {
           </div>
         </div>
       </div>
+      <div className="bg-[#0f011a] fixed top-0 left-0 -z-10 h-screen w-screen"></div>
+
     </div>
   )
 }

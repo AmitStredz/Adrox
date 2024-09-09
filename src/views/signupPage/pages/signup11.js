@@ -87,6 +87,8 @@ const Signup11 = ({ onNextStep }) => {
       {/* <div className="absolute left-0 w-[100%] h-[10%] top-0 ">
         <img src={statAnimation}></img>
       </div> */}
+      <div className="bg-[#0f011a] fixed top-0 left-0 -z-10 h-screen w-screen"></div>
+
     </div>
   );
 };

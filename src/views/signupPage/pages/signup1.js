@@ -25,12 +25,12 @@ const Signup1 = ({onNextStep}) => {
       </Helmet>
       <div className="signup01-signup01">
         <img
-          src="/ellipse22352-u0d-1000w.png"
+          src="/ellipse.png"
           alt="Ellipse22352"
           className="signup01-ellipse2"
         />
         <img
-          src="/ellipse32352-wf1-700w.png"
+          src="/ellipse.png"
           alt="Ellipse32352"
           className="signup01-ellipse3"
         />
