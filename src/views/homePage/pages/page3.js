@@ -11,28 +11,28 @@ export default function Page3() {
     history("/staking1");
   };
   return (
-    <div>
-      <div className="mb-20">
+    <div className="p- w-full">
+      <div className="mb-20 w-full flex flex-col">
         <div className="text-center">
           <h1 className="text-[36px] sm:text-[44px] md:text-[56px] font-700 sm:font-800">
             Earn with ADROX
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-3 gap-20 py-20 justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-3 p-5 gap-5 sm:gap-20 sm:py-20 justify-center items-center w-full">
           <div
-            className="flex max-sm:flex-col bg-slate-500 items-center max-sm:mx-16 bg-opacity-15 p-10 gap-5 rounded-2xl md:col-start-2 lg:col-start-2 col-span-8 lg:col-span-7 group cursor-pointer z-50"
+            className="flex max-sm:flex-col bg-slate-500 items-center w-full  bg-opacity-15 p-5 sm:p-10 gap-5 rounded-2xl col-start-1 md:col-start-2 lg:col-start-2 col-span-8 lg:col-span-7 group cursor-pointer z-50"
             onClick={handleClick}
           >
             <img src={img1} className="w-28 h-20"></img>
-            <div className="flex flex-col max-sm:items-center">
-              <div className="flex gap-10 items-center">
-                <h1 className="font-700 text-[36px] group-hover:underline">
+            <div className="flex flex-col max-sm:items-center w-full">
+              <div className="flex gap-2 sm:gap-10 items-center">
+                <h1 className="font-700 text-[28px] sm:text-[36px] group-hover:underline">
                   ADROX Lending
                 </h1>
                 <i className="ri-arrow-right-s-line px-1 text-2xl font-100 border rounded-full cursor-pointer"></i>
               </div>
-              <div className="text-[16px] font-400 max-md:text-center">
+              <div className="text-[12px] sm:text-[16px] font-400 max-md:text-center">
                 <p>
                   Excepteur sint occaecat cupidatat non proident, sunt in culpa
                   qui officia deserunt mollit anim id est laborum
@@ -40,16 +40,16 @@ export default function Page3() {
               </div>
             </div>
           </div>
-          <div className="flex max-sm:flex-col bg-slate-500 items-center max-sm:mx-16 bg-opacity-15 p-10 gap-5 rounded-2xl row-start-2 md:col-start-4 lg:col-start-5 col-span-8 lg:col-span-7 group cursor-pointer z-50">
+          <div className="flex max-sm:flex-col bg-slate-500 items-center w-full  bg-opacity-15 p-5 sm:p-10 gap-5 rounded-2xl col-start-1 md:col-start-2 lg:col-start-2 col-span-8 lg:col-span-7 group cursor-pointer z-50">
             <img src={img2} className="w-28 h-20"></img>
             <div className="flex flex-col max-sm:items-center">
-              <div className="flex gap-10 items-center cursor-pointer">
-                <h1 className="font-700 text-[36px] group-hover:underline">
+              <div className="flex gap-2 sm:gap-10 items-center">
+                <h1 className="font-700 text-[28px] sm:text-[36px] group-hover:underline">
                   ADROX Mining
                 </h1>
                 <i className="ri-arrow-right-s-line px-1 text-2xl font-100 border rounded-full cursor-pointer"></i>
               </div>
-              <div className="text-[16px] font-400 max-md:text-center">
+              <div className="text-[12px] sm:text-[16px] font-400 max-md:text-center">
                 <p>
                   Excepteur sint occaecat cupidatat non proident, sunt in culpa
                   qui officia deserunt mollit anim id est laborum
@@ -57,16 +57,16 @@ export default function Page3() {
               </div>
             </div>
           </div>
-          <div className="flex max-sm:flex-col bg-slate-500 items-center max-sm:mx-16 bg-opacity-15 p-10 gap-5 rounded-2xl row-start-3 md:col-start-2 lg:col-start-2 col-span-8 lg:col-span-7 group cursor-pointer z-50">
+          <div className="flex max-sm:flex-col bg-slate-500 items-center w-full  bg-opacity-15 p-5 sm:p-10 gap-5 rounded-2xl col-start-1 md:col-start-2 lg:col-start-2 col-span-8 lg:col-span-7 group cursor-pointer z-50">
             <img src={img3} className="w-28 h-20"></img>
             <div className="flex flex-col max-sm:items-center">
-              <div className="flex gap-10 items-center cursor-pointer">
-                <h1 className="font-700 text-[36px] group-hover:underline">
-                  ADROX Trading Bots
+            <div className="flex gap-2 sm:gap-10 items-center">
+            <h1 className="font-700 text-[28px] sm:text-[36px] group-hover:underline">
+            ADROX Trading Bots
                 </h1>
                 <i className="ri-arrow-right-s-line px-1 text-2xl font-100 border rounded-full cursor-pointer"></i>
               </div>
-              <div className="text-[16px] font-400 max-md:text-center">
+              <div className="text-[12px] sm:text-[16px] font-400 max-md:text-center">
                 <p>
                   Excepteur sint occaecat cupidatat non proident, sunt in culpa
                   qui officia deserunt mollit anim id est laborum

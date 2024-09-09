@@ -1,21 +1,21 @@
 export default function footer() {
   return (
-    <div className="flex flex-col justify-center p-20 py-28">
-      <div className="flex justify-evenly w-full">
-        <div className="font-100 text-[16px] gap-4 flex flex-col">
-          <h1 className="font-600 text-[20px]">Corporate</h1>
+    <div className="flex flex-col justify-center p-5 sm:p-20 sm:py-28">
+      <div className="flex justify-between w-full flex-wrap gap-1">
+        <div className="font-100 text-[12px] sm:text-[16px]  sm:gap-4 flex flex-col">
+          <h1 className="font-600 text-[14px] sm:text-[20px]">Corporate</h1>
           <ul>About Us</ul>
           <ul>Join Us</ul>
           <ul>Media Kit</ul>
           <ul>Affiliate Program</ul>
           <ul>Blog</ul>
-          <ul>News & Announcements</ul>
+          {/* <ul>News & Announcements</ul> */}
           <ul>Referral</ul>
           <ul>Security</ul>
         </div>
 
-        <div className="font-100 text-[16px] gap-4 flex flex-col">
-          <h1 className="font-600 text-[20px]">Products</h1>
+        <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col">
+          <h1 className="font-600 text-[14px] sm:text-[20px]">Products</h1>
           <ul>Trading Bot</ul>
           <ul>Staking</ul>
           <ul>Minig</ul>
@@ -24,8 +24,8 @@ export default function footer() {
           <ul>ADROX Learn</ul>
         </div>
 
-        <div className="font-100 text-[16px] gap-4 flex flex-col">
-          <h1 className="font-600 text-[20px]">Services</h1>
+        <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col">
+          <h1 className="font-600 text-[14px] sm:text-[20px]">Services</h1>
           <ul>Help Center</ul>
           <ul>Suubmit a Ticket</ul>
           <ul>Fees & VIP</ul>
@@ -36,16 +36,16 @@ export default function footer() {
           <ul>Official Verification Center</ul>
         </div>
 
-        <div className="font-100 text-[16px] gap-4 flex flex-col">
-          <h1 className="font-600 text-[20px]">Legal</h1>
+        <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col mt-5">
+          <h1 className="font-600 text-[14px] sm:text-[20px]">Legal</h1>
           <ul>Term of use</ul>
           <ul>Privacy Policy</ul>
           <ul>Risk Disclosure Statement</ul>
           <ul>Special Treatement</ul>
         </div>
 
-        <div className="font-100 text-[16px] gap-4 flex flex-col">
-          <h1 className="font-600 text-[20px]">Business</h1>
+        <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col max-sm:mt-5">
+          <h1 className="font-600 text-[14px] sm:text-[20px]">Business</h1>
           <ul>Token Listing</ul>
           <ul>ADROX Labs</ul>
           <ul>ADROX Ventures</ul>
@@ -74,7 +74,7 @@ export default function footer() {
           <i className="ri-instagram-line bg-white px-2 rounded-lg font-100 cursor-pointer"></i>
         </div> */}
 
-        <div className="flex gap-10 text-black">
+        <div className="flex flex-wrap justify-center gap-5 sm:gap-10 text-black">
           <a
             href="https://www.facebook.com"
             style={{ all: "unset", cursor: "pointer" }}

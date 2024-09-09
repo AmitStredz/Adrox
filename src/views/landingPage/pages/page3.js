@@ -8,7 +8,7 @@ export default function page3() {
       <div className="flex max-md:flex-col max-md:gap-10 items-center justify-between w-[65%] my-36">
         <div className="flex flex-col gap-10 max-sm:ml-20">
           <div className="text-[40px] sm:text-[64px] leading-none font-nunito font-700 text-[#C653FF]">
-            <h1>Stake Anytime,</h1>
+            <h1>Earn Anytime,</h1>
             <h1>Anywhere</h1>
           </div>
           <div className="text-[20px] sm:text-[24px] font-400 w-[25rem] sm:w-[27rem] leading-8">

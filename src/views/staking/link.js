@@ -7,6 +7,7 @@ import adam2 from "./assets/adam2.png";
 import userImg from "./assets/userImg.png";
 import adam3 from "./assets/adam3.png";
 import ellipse from "./assets/ellipse.png";
+import CopiedModal from "../signupPage/pages/copiedModal";
 
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -16,12 +17,24 @@ import dummyData from "../dummyData.json";
 export default function Link() {
   const [newTree, setNewTree] = useState([]);
   const [referralTree, setReferralTree] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [clipBoard, setClipBoard] = useState("Copy to Clipboard");
 
   const [userID, setUserID] = useState("");
   const [maxLevel, setMaxLevel] = useState(3);
   const [totReferralComm, setTotReferralComm] = useState("");
   const [directCommLeft, setDirectCommLeft] = useState("");
   const [directCommRight, setDirectCommRight] = useState("");
+
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(Cookies.get("referral_id")).then(
+      setShowModal(true),
+      setClipBoard("Copied..."),
+      setTimeout(() => {
+        setClipBoard("Copy to Clipboard");
+      }, 2000)
+    );
+  };
 
   const generateDummyTree = (node, currentLevel = 0) => {
     // Base case: Stop at level 3, no children should be added beyond this level
@@ -260,7 +273,10 @@ export default function Link() {
             </div>
             <div className="flex gap-1 px-3">
               <p>{Cookies.get("referral_id") || "referral_id"}</p>
-              <i className="ri-file-copy-line cursor-pointer"></i>
+              <i
+                className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
+                onClick={() => handleCopyToClipboard()}
+              ></i>
             </div>
             {/* <div className="flex gap-1">
               <i className="ri-link-m"></i>
@@ -292,29 +308,30 @@ export default function Link() {
                 src={leftLink}
                 style={{
                   maxHeight: "10em",
-                  // width: `calc(100% - 80%)`,
+                  // width: `calc(100% - 50%)`,
 
                   margin: "auto",
                 }}
-                className="w-20 h-28 sm:w-[calc(100% - 80%)]"
+                className="w-20 sm:w-60 md:w-72 lg:w-80 max-sm:h-24 "
               />
               <img src={adam3} className="w-20 sm:w-32 h-20 sm:h-32" />
               <img
                 src={rightLink}
                 style={{
                   maxHeight: "10em",
-                  // width: `calc(100% - 80%)`,
+                  // width: `calc(100% - 50%)`,
                   margin: "auto",
                 }}
+                className="w-20 sm:w-60 md:w-72 lg:w-80 max-sm:h-24 "
               />
             </div>
           </div>
-          <div className="lower flex justify-between">
-            <div className="left flex flex-col gap-10">
+          <div className="lower flex justify-between text-center">
+            <div className="left flex flex-col gap-10 ">
               <div className="flex justify-center">
                 <div className="flex flex-col gap-3 p-3 sm:px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
                   <p className="font-400 text-[20px] sm:text-[24px]">Left</p>
-                  <p className="font-800 text-[64px] text-[#AB00FF] text-sha">
+                  <p className="font-800 text-[40px] sm:text-[64px] text-[#AB00FF] text-sha">
                     {directCommLeft}
                   </p>
                 </div>
@@ -340,7 +357,7 @@ export default function Link() {
               <div className="flex justify-center">
                 <div className="flex flex-col gap-3 p-3 sm:px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
                   <p className="font-400 text-[20px] sm:text-[24px]">Right</p>
-                  <p className="font-800 text-[64px] text-[#AB00FF]">
+                  <p className="font-800 text-[40px] sm:text-[64px] text-[#AB00FF]">
                     {directCommRight}
                   </p>
                 </div>
@@ -470,6 +487,15 @@ export default function Link() {
       </div>
       <div className="absolute left-[-30%] w-[80%] top-0">
         <img src={ellipse}></img>
+      </div>
+
+      <div>
+        {showModal && (
+          <CopiedModal
+            closeModal={() => setShowModal(false)}
+            text="Refferal id Copied to clipboard"
+          />
+        )}
       </div>
     </div>
   );
@@ -932,6 +958,8 @@ const TreeNode = ({ node, setUser }) => {
           </div>
         </div>
       )}
+
+      
     </div>
   );
 };

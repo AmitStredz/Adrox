@@ -8,7 +8,7 @@ export default function page4() {
       <div className="flex max-sm:flex-col max-sm:gap-5 max-sm:text-center items-center justify-between w-[65%] my-36">
         <div className="flex flex-col gap-5 md:gap-10">
           <div className="text-[40px] md:text-[64px] leading-none font-nunito font-700 text-[#C653FF]">
-            <h1>Stake Anytime,</h1>
+            <h1>Earn Anytime,</h1>
             <h1>Anywhere</h1>
           </div>
           <div className="text-[16px] md:text-[24px] font-400 w-fit sm:w-[27rem] leading-8">

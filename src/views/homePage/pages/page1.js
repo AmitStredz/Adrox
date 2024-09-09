@@ -74,12 +74,13 @@ export default function HomePage1() {
           </div>
         </div>
 
-        <div className="w-full object-contain scale-125 sm:scale-110 lg:scale-100">
+        <div className="w-full scale-125 sm:scale-110 lg:scale-100 p-5">
           <img
             src={graph}
             style={{
               aspectRatio: "3/2",
             }}
+            className="w-full"
           />
         </div>
       </div>

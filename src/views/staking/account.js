@@ -15,23 +15,40 @@ import Footer from "../landingPage/pages/footer";
 import { Helmet } from "react-helmet";
 import CopiedModal from "../signupPage/pages/copiedModal";
 
-export default function Account ( { closeModal } )
-{
-  const [ showModal, setShowModal ] = useState( false );
-  const [ clipBoard, setClipBoard ] = useState( "Copy to Clipboard" );
+export default function Account({ closeModal }) {
+  const [showModal, setShowModal] = useState(false);
+  const [clipBoard, setClipBoard] = useState("Copy to Clipboard");
+  const [balance, setBalance] = useState(null);
+
   const history = useNavigate();
 
-  const handleCopyToClipboard = () =>
-  {
-    navigator.clipboard.writeText( Cookies.get( "referral_id" ) ).then(
-      setShowModal( true ),
-      setClipBoard( "Copied..." ),
-      setTimeout( () =>
-      {
-        setClipBoard( "Copy to Clipboard" );
-      }, 2000 )
+  const handleCopyToClipboard = () => {
+    navigator.clipboard.writeText(Cookies.get("referral_id")).then(
+      setShowModal(true),
+      setClipBoard("Copied..."),
+      setTimeout(() => {
+        setClipBoard("Copy to Clipboard");
+      }, 2000)
     );
   };
+
+  useEffect(() => {
+    const userId = Cookies.get("user_id");
+
+    if (userId) {
+      fetch(
+        `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/details/${userId}/`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setBalance(data?.wallet.balance); // Adjust the property to match your API response
+          console.log("response: ", data);
+        })
+        .catch((error) => {
+          console.error("Error fetching holdings data:", error);
+        });
+    }
+  }, []);
 
   return (
     <div className=" font-nunito bg-[#0F011A]  text-white overflow-hidden relative">
@@ -47,8 +64,10 @@ export default function Account ( { closeModal } )
           <div className="left flex flex-col gap-20 p- z-50 max-md:items-center">
             <div className="top flex justify-start">
               <div className="flex flex-col gap-2 md:items-start items-center">
-                <img src={ adam2 } className="w-20"></img>
-                <p className="text-[52px] font-700">{ Cookies.get( "full_name" ) }</p>
+                <img src={adam2} className="w-20"></img>
+                <p className="text-[52px] font-700">
+                  {Cookies.get("full_name")}
+                </p>
                 <div className="flex items-center gap-2  p-2 px-6 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
                   <p className="text-[12px]">Edit Profile Picture</p>
                   <i class="fa-regular fa-pen-to-square"></i>
@@ -60,15 +79,15 @@ export default function Account ( { closeModal } )
                 <a className="p-1 px-3 rounded-lg bg-slate-600 bg-opacity-20">
                   Referral id
                 </a>
-                <p>{ Cookies.get( "referral_id" ) }</p>
+                <p>{Cookies.get("referral_id")}</p>
               </div>
               <div className="flex items-center gap-2 ">
                 <i class="fa-regular fa-clone font-100"></i>
                 <p
                   className="underline text-[px] font-100 cursor-pointer"
-                  onClick={ handleCopyToClipboard }
+                  onClick={handleCopyToClipboard}
                 >
-                  { clipBoard }
+                  {clipBoard}
                 </p>
               </div>
             </div>
@@ -83,13 +102,15 @@ export default function Account ( { closeModal } )
                 <div className="flex flex-col gap-2">
                   <p className="text-[14px] font-100">Holdings</p>
                   <div className="h-[1px] w-full bg-white bg-opacity-15 "></div>
-                  <p className="font-700 text-[32px]">$ 1,000 USDT</p>
+                  <p className="font-700 text-[32px]">
+                    $ {parseInt(balance)?.toFixed(2) || "0.00"} USDT
+                  </p>
                 </div>
               </div>
 
               <div className="p-7 px-10 flex flex-col gap-5 border border-slate-600 rounded-2xl bg-slate-500 bg-opacity-5">
                 <p className="p-1 px-2 rounded-lg bg-slate-600 bg-opacity-20 text-[16px] font-200 w-32">
-                  ADROX Wallet
+                  PROFIT Wallet
                 </p>
                 <div className="flex flex-col gap-2">
                   <p className="text-[14px] font-100">Holdings</p>
@@ -105,16 +126,18 @@ export default function Account ( { closeModal } )
                   <i class="fa-regular fa-envelope"></i>
                   <p className="text-[12px] font-100">Email</p>
                 </div>
-                <p className="font-500 text-[24px]">{ Cookies.get( "email" ) || "email" }</p>
+                <p className="font-500 text-[24px]">
+                  {Cookies.get("email") || "email"}
+                </p>
               </div>
 
               <div className="flex flex-col gap-3">
                 <div className="flex p-2 px-2 bg-slate-600 bg-opacity-15 w-32 items-center justify-center rounded-md gap-2">
-                  <i class="ri-smartphone-line"></i>{ " " }
+                  <i class="ri-smartphone-line"></i>{" "}
                   <p className="text-[12px] font-100">Phome Number</p>
                 </div>
                 <p className="font-500 text-[24px]">
-                  { "+91 " + ( Cookies.get( "mobile_number" ) || "phoneNo" ) }
+                  {"+91 " + (Cookies.get("mobile_number") || "phoneNo")}
                 </p>
               </div>
             </div>
@@ -132,12 +155,12 @@ export default function Account ( { closeModal } )
         <Footer></Footer>
       </div>
       <div>
-        { showModal && (
+        {showModal && (
           <CopiedModal
-            closeModal={ () => setShowModal( false ) }
+            closeModal={() => setShowModal(false)}
             text="Refferal id Copied to clipboard"
           />
-        ) }
+        )}
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import styles from "./staking.module.css";
 export default function Staking() {
   const [stakingData, setStakingData] = useState(null);
+  const [historyData, setHistoryData] = useState(null);
 
   const [data, setData] = useState();
 
@@ -20,6 +21,15 @@ export default function Staking() {
     weeks: 0,
     months: 0,
   });
+
+  const dummyData = [
+    {
+      date: "2024-09-09",
+      size: 15000,
+      daily_profit_adrx: 187.5,
+      daily_profit_usdt: 9.0,
+    },
+  ];
 
   useEffect(() => {
     let interval;
@@ -41,6 +51,7 @@ export default function Staking() {
             hours_completed,
             minutes_completed,
             seconds_completed_loop,
+            daily_profit_history,
           } = responseData;
 
           setTimeLeft((prev) => ({
@@ -49,8 +60,10 @@ export default function Staking() {
             hours: hours_completed || 0,
             minutes: minutes_completed || 0,
             seconds: seconds_completed_loop || 0,
+
             // You can compute the seconds dynamically if needed, or set a default
           }));
+          setHistoryData(daily_profit_history);
         } catch (error) {
           console.error("Error fetching referral tree:", error);
         }
@@ -139,7 +152,7 @@ export default function Staking() {
   // };
 
   return (
-    <div>
+    <div className="relative overflow-hidden p-10">
       <div className="sm:p-20 flex flex-col items-center">
         <div className={`${styles.dataStyles}`}>
           <div className={styles.firstRow}>
@@ -270,14 +283,17 @@ export default function Staking() {
             </div>
           </div>
         </div>
+        <div className="fixed left-[-30%] w-[80%] -top-40">
+          <img src={ellipse}></img>
+        </div>
       </div>
 
       {/* Page2 */}
 
-      <div className="px-10">
+      <div className="">
         <div className="flex justify-between md:p-10 py-3 md:px-20 lg:px-28">
           <h1 className="font-700 text-[24px] sm:text-[40px]">
-            Staking Profit History
+            Lending Daily Profit History
           </h1>
           <div className="flex border items-center rounded-3xl border-slate-600 px-3 sm:px-5 gap-1 sm:gap-2">
             <i className="ri-calendar-2-line font-100"></i>
@@ -285,32 +301,37 @@ export default function Staking() {
           </div>
         </div>
 
-        {/* Table starts here */}
-        {/* <div className="flex justify-around bg-[#1D1027] p-2">
-            <p>Date</p>
-            <p>Token</p>
-            <p>Staking Size</p>
-            <p>Token</p>
-            <p>Daily Reward</p>
-        </div>
-
-        <div className="flex font-200 justify-between">
-            <p>2024-5-31 21:30</p>
-            <p>ADX</p>
-            <p>150000 ADX</p>
-            <p>100 USD</p>
-            <p>10.5 ADX</p>
+        {/* <div>
+          <img src={table}></img>
         </div> */}
 
-        <div>
-          <img src={table}></img>
-        </div>
+        {/* <div className=""> */}
+        <table className="w-full">
+          <thead className="">
+            <tr className="bg-white bg-opacity-10">
+              <th className="py-2 px-4 text-left">Date & Time</th>
+              <th className="py-2 px-4 text-left">Staking Size (ADX)</th>
+              <th className="py-2 px-4 text-left">Staking Size (USDT)</th>
+              <th className="py-2 px-4 text-left">Daily Reward (ADX)</th>
+              <th className="py-2 px-4 text-left">Daily Reward (USDT)</th>
+            </tr>
+          </thead>
+          <tbody className="">
+            {historyData?.map((item, index) => (
+              <tr key={index} className="border-b border-gray-700">
+                <td className="py-2 px-4">{item.date_time}</td>
+                <td className="py-2 px-4">{item.staking_size_adrx}</td>
+                <td className="py-2 px-4">{item.staking_size_usdt}</td>
+                <td className="py-2 px-4">{item.daily_reward_adrx}</td>
+                <td className="py-2 px-4">{item.daily_reward_usdt}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {/* </div> */}
       </div>
 
       <div className="absolute right-[-40%] w-[80%] top-[50rem]">
-        <img src={ellipse}></img>
-      </div>
-      <div className="absolute left-[-30%] w-[80%] top-0">
         <img src={ellipse}></img>
       </div>
     </div>
