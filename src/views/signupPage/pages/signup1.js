@@ -19,7 +19,7 @@ const Signup1 = ({onNextStep}) => {
   };
 
   return (
-    <div className="signup01-container">
+    <div className="signup01-container relative">
       <Helmet>
         <title>Adrox - Signup </title>
       </Helmet>
@@ -95,6 +95,8 @@ const Signup1 = ({onNextStep}) => {
           </span>
         </div>
       </div>
+      <div className="bg-[#0f011a] fixed top-0 left-0 -z-10 h-screen w-screen"></div>
+
     </div>
   );
 };
