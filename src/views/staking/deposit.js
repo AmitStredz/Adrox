@@ -266,8 +266,8 @@ const USDTAbi = [
 ];
 
 const Deposit = ({ onClose }) => {
-  const navigate = useNavigate();
-  const [amount, setAmount] = useState(""); // State for deposit amount
+  // const navigate = useNavigate();
+  // const [amount, setAmount] = useState(""); // State for deposit amount
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
   const [showModal, setShowModal] = useState(false);
 
@@ -319,6 +319,10 @@ const Deposit = ({ onClose }) => {
       await connectMetaMask();
       console.log("MetaMask connected, sending USDT transaction...");
       await sendUsdtTransaction();
+      console.log("Transaction is successfull...");
+      await handleSendAPI();
+      // setTransactionIsCompleted(true);
+      
     } catch (error) {
       console.error("Transaction error:", error.message);
       setErrorText(error.message || "An error occurred. Please try again.");
@@ -408,43 +412,45 @@ const Deposit = ({ onClose }) => {
   // const WalletId = Cookies.get("wallet_id");
   // // console.log("WalletId: ", WalletId);
 
-  // const handleDeposit = async () => {
-  //   setIsLoading(true);
+  //funtion to fetch the API after successfull transaction...
+  const handleSendAPI = async () => {
+    setIsLoading(true);
 
-  //   if (amount < 20) {
-  //     alert("Minimum Deposit Amount: 20$");
-  //     setIsLoading(false);
-  //     return;
-  //   }
-  //   try {
-  //     const response = await axios.post(
-  //       "https://adrox-89b6c88377f5.herokuapp.com/api/wallet/deposit/",
-  //       {
-  //         wallet_id: WalletId,
-  //         amount: amount,
-  //       }
-  //     );
+    if (dollarValue < 20) {
+      alert("Minimum Deposit Amount: 20$");
+      setIsLoading(false);
+      return;
+    }
+    try {
+      const response = await axios.post(
+        "https://adrox-89b6c88377f5.herokuapp.com/api/wallet/deposit/",
+        {
+          wallet_id: walletAddress,
+          amount: dollarValue,
+        }
+      );
 
-  //     // console.log("Amount: ", amount);
-  //     Cookies.set("balance", response.data.balance);
+      // console.log("Amount: ", amount);
+      // Cookies.set("balance", response.data.balance);
 
-  //     if (response.status === 200) {
-  //       setShowModal(true);
-  //       setTimeout(() => {
-  //         setShowModal(false);
-  //         onClose();
-  //         // navigate("/wallet");
-  //       }, 2000);
-  //     } else {
-  //       alert("No response");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     alert("An error occurred. Please try again.");
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+      if (response.status === 200) {
+        setShowModal(true);
+        setTimeout(() => {
+          setShowModal(false);
+          onClose();
+          // navigate("/wallet");
+        }, 2000);
+      } else {
+        alert("No response");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      // alert("An error occurred. Please try again.");
+      throw new Error("API fetching failed...")
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     // <div className="bg-[#0F011A] h-screen font-nunito text-slate-300 overflow-hidden flex items-center justify-center relative">
