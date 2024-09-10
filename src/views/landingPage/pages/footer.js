@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col">
           <h1 className="font-600 text-[14px] sm:text-[20px]">Products</h1>
           <ul>Trading Bot</ul>
-          <ul>Staking</ul>
+          <ul>Lending</ul>
           <ul>Minig</ul>
           <ul>Converter</ul>
           <ul>ADROX Earn</ul>

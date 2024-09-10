@@ -12,6 +12,7 @@ import Staking3Month from "./staking3Month";
 import Staking6Month from "./staking6Month";
 import Staking1Year from "./staking1Year";
 import Cookies from "js-cookie";
+import { IoIosInfinite } from "react-icons/io";
 
 export default function Staking() {
   const [stakingType, setStakingType] = useState();
@@ -23,7 +24,7 @@ export default function Staking() {
         <HomeHeader></HomeHeader>
       </div>
       <Helmet>
-        <title>Adrox - Staking</title>
+        <title>Adrox - Lending</title>
       </Helmet>
 
       <div className="flex gap-10 max-md:flex-col p-10 items-center justify-evenly my-20 md:my-40">
@@ -34,7 +35,7 @@ export default function Staking() {
               ADROX
             </h1>
             <h1 className="font-800 text-[60px] lg:text-[88px] max-lg:leading-14 text-[#C653FF]">
-              STAKING
+              LENDING
             </h1>
           </div>
           <p className="font-300 text-[16px] w-[70vw] sm:w-[60vw] md:w-64 lg:w-96 max-md:text-center">
@@ -54,7 +55,7 @@ export default function Staking() {
               <span className="text-[30px] font-800 text-[#C653FF]">
                 0 ADX
               </span>
-              <p className="font-300 text-[18px]">$ 250 USDT</p>
+              <p className="font-300 text-[18px]">$ 0 USDT</p>
             </div>
           </div>
 
@@ -74,7 +75,7 @@ export default function Staking() {
       <div>
         <div className="text-center">
           <h1 className="text-[40px] sm:text-[56px] font-700 text-[#C653FF]">
-            ADROX Staking plans
+            ADROX Lending plans
           </h1>
         </div>
 
@@ -90,8 +91,11 @@ export default function Staking() {
                     <p>
                       Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
-                    <p>
-                      Max. Deposit : <span className="font-400">100USDT</span>
+                    <p className="flex items-center gap-2">
+                      Max. Deposit : <span className="font-400">
+                      <IoIosInfinite size={20}/>
+
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -115,7 +119,7 @@ export default function Staking() {
                   className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
                   onClick={() => setStakingType("1month")}
                 >
-                  <button>Stake Now</button>
+                  <button>Lend Now</button>
                 </div>
               </div>
             </div>
@@ -130,8 +134,11 @@ export default function Staking() {
                     <p>
                       Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
-                    <p>
-                      Max. Deposit : <span className="font-400">100USDT</span>
+                    <p className="flex items-center gap-2">
+                      Max. Deposit : <span className="font-400">
+                      <IoIosInfinite size={20}/>
+                        
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -155,7 +162,7 @@ export default function Staking() {
                   className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
                   onClick={() => setStakingType("3month")}
                 >
-                  <button>Stake Now</button>
+                  <button>Lend Now</button>
                 </div>
               </div>
             </div>
@@ -170,8 +177,11 @@ export default function Staking() {
                     <p>
                       Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
-                    <p>
-                      Max. Deposit : <span className="font-400">100USDT</span>
+                    <p className="flex items-center gap-2">
+                      Max. Deposit : <span className="font-400">
+                      <IoIosInfinite size={20}/>
+
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -195,7 +205,7 @@ export default function Staking() {
                   className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
                   onClick={() => setStakingType("6month")}
                 >
-                  <button>Stake Now</button>
+                  <button>Lend Now</button>
                 </div>
               </div>
             </div>
@@ -210,8 +220,11 @@ export default function Staking() {
                     <p>
                       Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
-                    <p>
-                      Max. Deposit : <span className="font-400">100USDT</span>
+                    <p className="flex items-center gap-2">
+                      Max. Deposit : <span className="font-400">
+                      <IoIosInfinite size={20}/>
+
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -235,7 +248,7 @@ export default function Staking() {
                   className="text-center font-400 text-[18px] p-2 px-8 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
                   onClick={() => setStakingType("1year")}
                 >
-                  <button>Stake Now</button>
+                  <button>Lend Now</button>
                 </div>
               </div>
             </div>

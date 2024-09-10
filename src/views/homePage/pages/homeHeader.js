@@ -121,7 +121,7 @@ export default function HomeHeader() {
           >
             <span className="flex gap-1 items-center">
               <GiWallet />
-              My Stakes
+              My Lendings
             </span>
             <div className="w-full h-[1px] bg-gradient-to-r from-slate-300 to-slate-600"></div>
           </div>

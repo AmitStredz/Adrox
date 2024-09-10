@@ -29,7 +29,7 @@ export default function Staking2() {
             }`}
             onClick={() => handleButtonClick("Staking")}
           >
-            Staking
+            Lending
           </button>
           <button
             className={`p-1 sm:p-2 px-6 sm:px-12 rounded-2xl ${
