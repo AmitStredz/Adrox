@@ -152,7 +152,7 @@ export default function Staking() {
   // };
 
   return (
-    <div className="relative overflow-hidden p-10">
+    <div className="relative overflow-hidden p-5 sm:p-10">
       <div className="sm:p-20 flex flex-col items-center">
         <div className={`${styles.dataStyles}`}>
           <div className={styles.firstRow}>
@@ -272,11 +272,15 @@ export default function Staking() {
                   <span>Sec{timeLeft.seconds >= 1 ? "s" : ""}</span>
                 </div>
                 <div className={styles.timeCounter}>
-                  <span className={styles.time}>{timeLeft.weeks}</span>
+                  <span className={styles.time}>
+                    {timeLeft.weeks ? `${timeLeft.weeks}` : "0"}
+                  </span>
                   <span>Week{timeLeft.weeks >= 1 ? "s" : ""}</span>
                 </div>
                 <div className={styles.timeCounter}>
-                  <span className={styles.time}>{timeLeft.months}</span>
+                  <span className={styles.time}>
+                    {timeLeft.months ? `${timeLeft.months}` : "0"}
+                  </span>
                   <span>Month{timeLeft.months >= 1 ? "s" : ""}</span>
                 </div>
               </div>
@@ -290,14 +294,16 @@ export default function Staking() {
 
       {/* Page2 */}
 
-      <div className="">
+      <div className="mt-10">
         <div className="flex justify-between md:p-10 py-3 md:px-20 lg:px-28">
-          <h1 className="font-700 text-[24px] sm:text-[40px]">
+          <h1 className="font-700 text-[20px] sm:text-[40px]">
             Lending Daily Profit History
           </h1>
-          <div className="flex border items-center rounded-3xl border-slate-600 px-3 sm:px-5 gap-1 sm:gap-2">
-            <i className="ri-calendar-2-line font-100"></i>
-            <p className="text-[14px] sm:text-[20px] font-100">Date</p>
+          <div className="flex items-center">
+            <div className="flex border items-center rounded-3xl border-slate-600 px-3 sm:px-5 gap-1 sm:gap-2">
+              <i className="ri-calendar-2-line font-100"></i>
+              <p className="text-[14px] sm:text-[20px] font-100">Date</p>
+            </div>
           </div>
         </div>
 
@@ -305,18 +311,18 @@ export default function Staking() {
           <img src={table}></img>
         </div> */}
 
-        {/* <div className=""> */}
+        <div className="w-full overflow-auto">
         <table className="w-full">
           <thead className="">
-            <tr className="bg-white bg-opacity-10">
-              <th className="py-2 px-4 text-left">Date & Time</th>
-              <th className="py-2 px-4 text-left">Staking Size (ADX)</th>
-              <th className="py-2 px-4 text-left">Staking Size (USDT)</th>
-              <th className="py-2 px-4 text-left">Daily Reward (ADX)</th>
-              <th className="py-2 px-4 text-left">Daily Reward (USDT)</th>
+            <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
+              <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
+              <th className="py-2 px-2 sm:px-4 text-left">Staking Size (ADX)</th>
+              <th className="py-2 px-2 sm:px-4 text-left">Staking Size (USDT)</th>
+              <th className="py-2 px-2 sm:px-4 text-left">Daily Reward (ADX)</th>
+              <th className="py-2 px-2 sm:px-4 text-left">Daily Reward (USDT)</th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody className="text-[12px] sm:text-[16px] font-200">
             {historyData?.map((item, index) => (
               <tr key={index} className="border-b border-gray-700">
                 <td className="py-2 px-4">{item.date_time}</td>
@@ -328,7 +334,7 @@ export default function Staking() {
             ))}
           </tbody>
         </table>
-        {/* </div> */}
+        </div>
       </div>
 
       <div className="absolute right-[-40%] w-[80%] top-[50rem]">

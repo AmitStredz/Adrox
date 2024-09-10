@@ -9,8 +9,8 @@
   padding: 10vh 5vw;
   background: linear-gradient(
     129deg,
-    rgba(255, 255, 255, 0.07) -57.84%,
-    rgba(255, 255, 255, 0) 108.1%
+    #ffffff12 -57.84%,
+    #ffffff00 108.1%
   );
 }
 
@@ -109,12 +109,15 @@
   background-color: #3b254a;
   padding: 0.5em 0.75em;
   border-radius: 2em;
+  /* justify-content: center;Z */
 }
 
 @media screen and (max-width: 768px) {
   .dataStyles {
     padding: 10vh 2vw;
     gap: 1em;
+    flex-direction: column;
+    width: 100%;
   }
 
   .eachRow {
@@ -123,5 +126,23 @@
 
   .heading {
     font-size: 1.25em;
+  }
+  .firstRow{
+    width: 100%;
+  }
+  .secondRow{
+    width: 100%;
+  }
+  .letterTimeCont{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .timeCounterCont{
+    gap: 5px;
+
+  }
+  .timeCounter{
+    padding: 10px;
+  
   }
 }

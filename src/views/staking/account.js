@@ -70,7 +70,7 @@ export default function Account({ closeModal }) {
                 </p>
                 <div className="flex items-center gap-2  p-2 px-6 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
                   <p className="text-[12px]">Edit Profile Picture</p>
-                  <i class="fa-regular fa-pen-to-square"></i>
+                  <i className="fa-regular fa-pen-to-square"></i>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@ export default function Account({ closeModal }) {
                 <p>{Cookies.get("referral_id")}</p>
               </div>
               <div className="flex items-center gap-2 ">
-                <i class="fa-regular fa-clone font-100"></i>
+                <i className="fa-regular fa-clone font-100"></i>
                 <p
                   className="underline text-[px] font-100 cursor-pointer"
                   onClick={handleCopyToClipboard}
@@ -115,7 +115,7 @@ export default function Account({ closeModal }) {
                 <div className="flex flex-col gap-2">
                   <p className="text-[14px] font-100">Holdings</p>
                   <div className="h-[1px] w-full bg-white bg-opacity-15 "></div>
-                  <p className="font-700 text-[32px]">$ 1,000 USDT</p>
+                  <p className="font-700 text-[32px]">$ 0 USDT</p>
                 </div>
               </div>
             </div>
@@ -123,7 +123,7 @@ export default function Account({ closeModal }) {
             <div className="down flex max-sm:flex-col md:flex-col gap-8 text-slate-300 max-sm:items-start max-md:items-center sm:justify-center z-50">
               <div className="flex flex-col gap-3">
                 <div className="flex p-2 px-2 bg-slate-600 bg-opacity-15 w-20 items-center justify-center rounded-md gap-2">
-                  <i class="fa-regular fa-envelope"></i>
+                  <i className="fa-regular fa-envelope"></i>
                   <p className="text-[12px] font-100">Email</p>
                 </div>
                 <p className="font-500 text-[24px]">
@@ -133,7 +133,7 @@ export default function Account({ closeModal }) {
 
               <div className="flex flex-col gap-3">
                 <div className="flex p-2 px-2 bg-slate-600 bg-opacity-15 w-32 items-center justify-center rounded-md gap-2">
-                  <i class="ri-smartphone-line"></i>{" "}
+                  <i className="ri-smartphone-line"></i>{" "}
                   <p className="text-[12px] font-100">Phome Number</p>
                 </div>
                 <p className="font-500 text-[24px]">
