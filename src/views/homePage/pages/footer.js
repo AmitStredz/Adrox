@@ -1,4 +1,4 @@
-export default function footer() {
+export default function Footer() {
   return (
     <div className="flex flex-col justify-center p-5 sm:p-20 sm:py-28">
       <div className="flex justify-between w-full flex-wrap gap-1">

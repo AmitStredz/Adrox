@@ -52,7 +52,7 @@ export default function Staking() {
               <p className="font-300 text-[18px]">Holdings</p>
               <div className="bg-gradient-to-r from-white to-slate-900 h-[0.1px] w-full mb-2"></div>
               <span className="text-[30px] font-800 text-[#C653FF]">
-                1,000 ADX
+                0 ADX
               </span>
               <p className="font-300 text-[18px]">$ 250 USDT</p>
             </div>
@@ -100,13 +100,13 @@ export default function Staking() {
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">APY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      36.5%
+                      1.2%
                     </p>
                   </div>
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">DPY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      0.1%
+                      0.10%
                     </p>
                   </div>
                 </div>
@@ -140,13 +140,13 @@ export default function Staking() {
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">APY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      73.0%
+                      2.4%
                     </p>
                   </div>
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">DPY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      0.30%
+                      0.20%
                     </p>
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default function Staking() {
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">APY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      146%
+                      4.8%
                     </p>
                   </div>
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
@@ -220,13 +220,13 @@ export default function Staking() {
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">APY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      146%
+                      7.2%
                     </p>
                   </div>
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">DPY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      0.40%
+                      0.60%
                     </p>
                   </div>
                 </div>

@@ -40,7 +40,7 @@ export default function Page3() {
               </div>
             </div>
           </div>
-          <div className="flex max-sm:flex-col bg-slate-500 items-center w-full  bg-opacity-15 p-5 sm:p-10 gap-5 rounded-2xl col-start-1 md:col-start-2 lg:col-start-2 col-span-8 lg:col-span-7 group cursor-pointer z-50">
+          <div className="flex max-sm:flex-col bg-slate-500 items-center w-full  bg-opacity-15 p-5 sm:p-10 gap-5 rounded-2xl col-start-1 md:col-start-3 lg:col-start-5 col-span-8 lg:col-span-7 group cursor-pointer z-50">
             <img src={img2} className="w-28 h-20"></img>
             <div className="flex flex-col max-sm:items-center">
               <div className="flex gap-2 sm:gap-10 items-center">
