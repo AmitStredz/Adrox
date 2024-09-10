@@ -173,7 +173,7 @@ export default function Staking() {
               <span className={`${styles.heading}`}>150000 ADX (100 USD)</span>
             </div>
             <div className={styles.eachRow}>
-              <Heading Name={"Tokens Genarted"} />
+              <Heading Name={"Today's Profit"} />
               <span className={`${styles.heading}`}>150 ADX</span>
             </div>
             <div className={styles.firstBottomRow}>
@@ -299,12 +299,12 @@ export default function Staking() {
           <h1 className="font-700 text-[20px] sm:text-[40px]">
             Lending Daily Profit History
           </h1>
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <div className="flex border items-center rounded-3xl border-slate-600 px-3 sm:px-5 gap-1 sm:gap-2">
               <i className="ri-calendar-2-line font-100"></i>
               <p className="text-[14px] sm:text-[20px] font-100">Date</p>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* <div>

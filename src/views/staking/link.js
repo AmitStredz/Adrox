@@ -12,10 +12,8 @@ import CopiedModal from "../signupPage/pages/copiedModal";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-import dummyData from "../dummyData.json";
-
 export default function Link() {
-  const [newTree, setNewTree] = useState([]);
+  // const [newTree, setNewTree] = useState([]);
   const [referralTree, setReferralTree] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [clipBoard, setClipBoard] = useState("Copy to Clipboard");
@@ -25,6 +23,7 @@ export default function Link() {
   const [totReferralComm, setTotReferralComm] = useState("");
   const [directCommLeft, setDirectCommLeft] = useState("");
   const [directCommRight, setDirectCommRight] = useState("");
+  const [history, setHistory] = useState([]);
 
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(Cookies.get("referral_id")).then(
@@ -93,6 +92,11 @@ export default function Link() {
         console.log(balancedReferralTree);
 
         setReferralTree(balancedReferralTree);
+        // console.log("isTrue", Array.isArray(Object.values(referralTree))); // This will log true if it's an array, false otherwise
+        if (balancedReferralTree) {
+          setHistory([...history, balancedReferralTree?.user_id]);
+        }
+
         console.log("reffComm: ", response?.data?.direct_commission_usdt);
         setTotReferralComm(response?.data?.direct_commission_usdt);
         setDirectCommLeft(response?.data?.direct_commission_usdt_left);
@@ -148,118 +152,86 @@ export default function Link() {
 
   useEffect(() => {
     console.log("Updated referralTree: ", referralTree);
+    // setHistory([...history, referralTree?.user_id]);
+    // if (history.length == 0) {
+    //   console.log("hi...");
+    //   setHistory([...history, referralTree?.user_id]);
+    // }
   }, [referralTree]);
 
-  // if (referralTree.length > 0) {
-  //   const tree = buildTree(referralTree);
-  //   console.log(JSON.stringify(tree, null, 2));
-  //   if (tree) {
-  //     setNewTree(tree);
-  //   }
-  // }
+  useEffect(() => {
+    // setHistory(referralTree);
+    if (history.length == 0) {
+      setHistory([...history, referralTree?.user_id]);
+    }
+    console.log("Updated History: ", history);
+  }, [history]);
 
-  // const data = [/* your JSON data here */];
+  const currentNode = history?.length
+    ? history[history.length - 1]
+    : referralTree?.length > 0 &&
+      Object.values(referralTree)?.find((node) => node.parent_id === null); // Root node where parent_id is null
 
-  // Helper function to build the tree
-  // function buildTree(nodes) {
-  //   const nodeMap = new Map();
+  const handleNodeClick = (node) => {
+    console.log("node clicked...", node);
 
-  //   // Create node entries
-  //   nodes.forEach((node) => {
-  //     nodeMap.set(node.user_id, { ...node, children: [] });
-  //   });
+    if (history.length <= 0) {
+      console.log("no history...");
+      return;
+    }
 
-  //   const root = nodeMap.get(nodes.find((node) => node.level === 0).user_id);
+    if (history.length > 0) {
+      console.log("0");
 
-  //   // Assign children to parents
-  //   nodes.forEach((node) => {
-  //     if (node.level > 0) {
-  //       const parentNodeId = findParentNodeId(node);
-  //       const parentNode = nodeMap.get(parentNodeId);
-  //       parentNode.children.push(nodeMap.get(node.user_id));
-  //     }
-  //   });
+      if (history[history.length - 1] == node) {
+        //backtracking
+        console.log("1");
+        const newHistory = [...history];
+        newHistory.pop(); // Remove the current node from the history (backtracking)
+        setHistory(newHistory);
+        setUserID(newHistory[newHistory.length - 1]);
+      } else {
+        //foretracking
+        console.log("2");
+        setHistory([...history, node]);
+        console.log("history: ", history);
+        setUserID(node);
+      }
+    } else {
+      console.log("3");
+    }
 
-  //   return root;
-  // }
+    // if (referralTree && Object.keys(referralTree).length > 0) {
+    //   console.log("1");
 
-  // // Find the parent node ID for a given node
-  // function findParentNodeId(node) {
-  //   const parentLevel = node.level - 1;
-  //   const parentPairNumber = Math.floor(node.pair_number / 2);
-  //   const position = node.position === "left" ? "left" : "right";
+    //   const children = Object.values(referralTree)?.filter(
+    //     (n) => n?.parent_id === node.user_id
+    //   );
+    //   console.log("children: ", children);
 
-  //   return node.find(
-  //     (n) => n.level === parentLevel && n.pair_number === parentPairNumber
-  //   ).user_id;
-  // }
+    //   if (children?.length > 0) {
+    //     console.log("2");
 
-  // // Build the tree
+    //     // If the node has children, add it to the history and display its children
+    //     setHistory([...history, node]);
+    //     console.log("history: ", history);
+    //     setUserID(history[history.length - 1]);
+    //   } else if (history.length > 0 && currentNode.user_id === node.user_id) {
+    //     console.log("3");
 
-  // const buildTree = (data) => {
-  //   const tree = [];
-  //   const mappedArr = {};
-  //   let arrElem;
-  //   let mappedElem;
+    //     // If the node is a root node, and there is a parent node in the history, backtrack
+    //     const newHistory = [...history];
+    //     newHistory.pop(); // Remove the current node from the history (backtracking)
+    //     setHistory(newHistory);
+    //     console.log("history: ", history);
 
-  //   // First map the nodes of the array to an object -> create a hash table
-  //   for (let i = 0; i < data.length; i++) {
-  //     arrElem = data[i];
-  //     mappedArr[arrElem.user_id] = {
-  //       ...arrElem,
-  //       left: null,
-  //       right: null,
-  //       children: [],
-  //     };
-  //   }
-
-  //   for (const user_id in mappedArr) {
-  //     if (mappedArr.hasOwnProperty(user_id)) {
-  //       mappedElem = mappedArr[user_id];
-  //       // If the element is not at the root level, add it to its parent array of children
-  //       if (mappedElem.sponsor_id) {
-  //         const parent = mappedArr[mappedElem.sponsor_id];
-  //         if (mappedElem.position === "left") {
-  //           parent.left = mappedElem;
-  //         } else if (mappedElem.position === "right") {
-  //           parent.right = mappedElem;
-  //         }
-  //         parent.children.push(mappedElem); // Still add to children for easier recursive rendering
-  //       } else {
-  //         // If the element is at the root level, add it to the tree
-  //         tree.push(mappedElem);
-  //       }
-  //     }
-  //   }
-
-  //   return tree;
-  // };
-
-  // const buildTree = (data) => {
-  //   const mappedArr = {};
-
-  //   data.forEach(user => {
-  //       mappedArr[user.user_id] = { ...user, left: null, right: null, children: [] };
-  //   });
-
-  //   let root = null;
-
-  //   data.forEach(user => {
-  //       if (user.sponsor_id) {
-  //           const parent = mappedArr[user.sponsor_id];
-  //           if (user.position === 'left') {
-  //               parent.left = mappedArr[user.user_id];
-  //           } else if (user.position === 'right') {
-  //               parent.right = mappedArr[user.user_id];
-  //           }
-  //           parent.children.push(mappedArr[user.user_id]);  // Also add to children for general traversal
-  //       } else {
-  //           root = mappedArr[user.user_id];  // Root node (super parent)
-  //       }
-  //   });
-
-  //   return root;
-  // };
+    //     setUserID(newHistory[newHistory.length - 1]);
+    //   } else {
+    //     // If the node is neither root nor has children, do nothing
+    //     return;
+    //   }
+    // }
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -278,11 +250,6 @@ export default function Link() {
                 onClick={() => handleCopyToClipboard()}
               ></i>
             </div>
-            {/* <div className="flex gap-1">
-              <i className="ri-link-m"></i>
-              <p>https://www.adrox.com/invite....</p>
-              <i className="ri-file-copy-line"></i>
-            </div> */}
           </div>
           <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
             <div>
@@ -294,11 +261,6 @@ export default function Link() {
               <p>{totReferralComm} USDT</p>
               {/* <i className="ri-file-copy-line"></i> */}
             </div>
-            {/* <div className="flex gap-1">
-              <i className="ri-link-m"></i>
-              <p>https://www.adrox.com/invite....</p>
-              <i className="ri-file-copy-line"></i>
-            </div> */}
           </div>
         </div>
         <div className="flex flex-col p-3 sm:p-10 mt-10 bg-white bg-opacity-5 w-full">
@@ -336,22 +298,6 @@ export default function Link() {
                   </p>
                 </div>
               </div>
-              {/* <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
-              <div>
-                <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
-                  ADROX Left Link
-                </a>
-              </div>
-              <div className="flex gap-1">
-                <p>CDY56KASJGB</p>
-                <i className="ri-file-copy-line"></i>
-              </div>
-              <div className="flex gap-1">
-                <i className="ri-link-m"></i>
-                <p>https://www.adrox.com/invite....</p>
-                <i className="ri-file-copy-line"></i>
-              </div>
-            </div> */}
             </div>
             <div className="right flex flex-col gap-10">
               <div className="flex justify-center">
@@ -362,22 +308,6 @@ export default function Link() {
                   </p>
                 </div>
               </div>
-              {/* <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
-              <div>
-                <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
-                  ADROX Right Link
-                </a>
-              </div>
-              <div className="flex gap-1">
-                <p>CDY56KASJGB</p>
-                <i className="ri-file-copy-line"></i>
-              </div>
-              <div className="flex gap-1">
-                <i className="ri-link-m"></i>
-                <p>https://www.adrox.com/invite....</p>
-                <i className="ri-file-copy-line"></i>
-              </div>
-            </div> */}
             </div>
           </div>
         </div>
@@ -385,102 +315,8 @@ export default function Link() {
 
       {/* Referral Tree starts here */}
       <div className="py-40 p-20" style={{}}>
-        <TreeNode node={referralTree} setUser={setUserID} />
+        <TreeNode node={referralTree} setUser={(e) => handleNodeClick(e)} />
       </div>
-
-      {/* <div className="mt-56">
-        <div className="flex justify-center">
-          <div className="flex flex-col gap-10 justify-center items-center p-10 bg-slate-600 bg-opacity-20 rounded-2xl w-96 border-slate-600 border ">
-            <img src={adam2} className="w-20"></img>
-            <p className="text-[32px] font-700">ADROX 001</p>
-            <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
-              <p className=" p-1 px-4">800</p>|<p className=" p-1 px-4">910</p>
-            </div>
-            <div>
-              <span className="p-2 px-4 border border-slate-600 rounded">
-                800 Paired
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <img src={doubleLink1} className="w-6/12"></img>
-        </div>
-
-        <div className="flex justify-center">
-          <div className="flex justify-between w-4/5 p-7 px-20">
-            <div className="flex flex-col gap-5 justify-center items-center p-7 bg-slate-600 bg-opacity-20 rounded-2xl w-72 border-slate-600 border ">
-              <img src={adam2} className="w-20"></img>
-              <p className="text-[20px] font-700">ADROX 001</p>
-              <div className="flex text-[24px] font-200 justify-center w-full">
-                <p className="bg-[#AB00FF] shadow-2xl rounded-l-lg  px-7">
-                  800
-                </p>
-                <p className="bg-[#AB00FF] shadow-2xl rounded-r-lg  px-7">
-                  910
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-5 justify-center items-center p-7 bg-slate-600 bg-opacity-20 rounded-2xl w-72 border-slate-600 border ">
-              <img src={adam2} className="w-20"></img>
-              <p className="text-[20px] font-700">ADROX 001</p>
-              <div className="flex text-[24px] font-200 justify-center w-full">
-                <p className="bg-[#AB00FF] shadow-2xl rounded-l-lg px-7">800</p>
-                <p className="bg-[#AB00FF] shadow-2xl rounded-r-lg px-7">910</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex justify-center">
-          <div className="flex justify-between w-3/4">
-            <img src={doubleLink2} className="w-96"></img>
-            <img src={doubleLink2} className="w-96"></img>
-          </div>
-        </div>
-
-        <div className="flex justify-evenly p-5">
-          <div className="left flex justify-around w-1/2">
-            <div className="flex flex-col gap-5 justify-center items-center p-7 bg-slate-600 bg-opacity-20 rounded-2xl w-56 border-slate-600 border ">
-              <img src={adam2} className="w-14"></img>
-              <p className="text-[16px] font-700">ADROX 001</p>
-              <div className="flex text-[12px] font-100 justify-center w-full">
-                <p className="bg-[#AB00FF] shadow-2xl rounded-l-lg px-7">800</p>
-                <p className="bg-[#AB00FF] shadow-2xl rounded-r-lg px-7">910</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-5 justify-center items-center p-7 bg-slate-600 bg-opacity-20 rounded-2xl w-56 border-slate-600 border ">
-              <img src={adam2} className="w-14"></img>
-              <p className="text-[16px] font-700">ADROX 001</p>
-              <div className="flex text-[12px] font-100 justify-center w-full">
-                <p className="bg-[#AB00FF] shadow-2xl rounded-l-lg px-7">800</p>
-                <p className="bg-[#AB00FF] shadow-2xl rounded-r-lg px-7">910</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="right flex justify-around w-1/2">
-            <div className="flex flex-col gap-5 justify-center items-center p-7 bg-slate-600 bg-opacity-20 rounded-2xl w-56 border-slate-600 border ">
-              <img src={adam2} className="w-14"></img>
-              <p className="text-[16px] font-700">ADROX 001</p>
-              <div className="flex text-[12px] font-100 justify-center w-full">
-                <p className="bg-[#AB00FF] shadow-2xl rounded-l-lg px-7">800</p>
-                <p className="bg-[#AB00FF] shadow-2xl rounded-r-lg px-7">910</p>
-              </div>
-            </div>
-            <div className="flex flex-col gap-5 justify-center items-center p-7 bg-slate-600 bg-opacity-20 rounded-2xl w-56 border-slate-600 border ">
-              <img src={adam2} className="w-14"></img>
-              <p className="text-[16px] font-700">ADROX 001</p>
-              <div className="flex text-[12px] font-100 justify-center w-full">
-                <p className="bg-[#AB00FF] shadow-2xl rounded-l-lg px-7">800</p>
-                <p className="bg-[#AB00FF] shadow-2xl rounded-r-lg px-7">910</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
 
       <div className="absolute right-[-30%] w-[80%] top-[40rem]">
         <img src={ellipse}></img>
@@ -501,307 +337,10 @@ export default function Link() {
   );
 }
 
-// wewewee
-// // const TreeNode = ({ node }) => {
-// //   console.log("node: ", node);
-
-// //   const [level, setLevel] = useState();
-
-// //   return (
-// //     <div className="flex flex-col items-center">
-// //       {node.map((node) => (
-// //         <>
-// //           {node?.level == 0 && (
-// //             <div className="flex flex-col gap-5 justify-center items-center p-5 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border ">
-// //               {node ? (
-// //                 <img src={adam2} className="w-20"></img>
-// //               ) : (
-// //                 <img src={userImg} className="w-20 mx-14"></img>
-// //               )}
-
-// //               <h3 className="text-[20px] font-700">
-// //                 {node?.full_name || "Refer a friend"}
-// //               </h3>
-// //               <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
-// //                 <p className=" p-1 px-4">
-// //                   {node?.direct_commission_usdt || "0"}
-// //                 </p>
-// //                 |
-// //                 <p className=" p-1 px-4">
-// //                   {Math.floor(node?.binary_commission_usdt) || "0"}
-// //                 </p>
-// //               </div>
-// //             </div>
-// //           )}
-// //         </>
-// //       ))}
-// //       <img src={doubleLink1} className="w-[40rem]"></img>
-// //       <div className="flex justify-evenly w-full">
-// //         {node.map((node) => (
-// //           <>
-// //             {node?.level == 1 && (
-// //               <div className="flex flex-col gap-5 justify-center items-center p-5 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border ">
-// //                 {node ? (
-// //                   <img src={adam2} className="w-20"></img>
-// //                 ) : (
-// //                   <img src={userImg} className="w-20 mx-14"></img>
-// //                 )}
-
-// //                 <h3 className="text-[20px] font-700">
-// //                   {node?.full_name || "Refer a friend"}
-// //                 </h3>
-// //                 <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
-// //                   <p className=" p-1 px-4">
-// //                     {node?.direct_commission_usdt || "0"}
-// //                   </p>
-// //                   |
-// //                   <p className=" p-1 px-4">
-// //                     {Math.floor(node?.binary_commission_usdt) || "0"}
-// //                   </p>
-// //                 </div>
-// //               </div>
-// //             )}
-// //           </>
-// //         ))}
-// //       </div>
-// //       <div className="flex justify-evenly w-full">
-// //         <img src={doubleLink2} className="w-80"></img>
-// //         <img src={doubleLink2} className="w-80"></img>
-// //       </div>
-
-// //       <div className="flex justify-evenly w-full">
-// //         {node.map((node) => (
-// //           <>
-// //             {node?.level == 2 && (
-// //               <div className="flex flex-col gap-5 justify-center items-center p-5 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border ">
-// //                 {node ? (
-// //                   <img src={adam2} className="w-20"></img>
-// //                 ) : (
-// //                   <img src={userImg} className="w-20 mx-14"></img>
-// //                 )}
-
-// //                 <h3 className="text-[20px] font-700">
-// //                   {node?.full_name || "Refer a friend"}
-// //                 </h3>
-// //                 <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
-// //                   <p className=" p-1 px-4">
-// //                     {node?.direct_commission_usdt || "0"}
-// //                   </p>
-// //                   |
-// //                   <p className=" p-1 px-4">
-// //                     {Math.floor(node?.binary_commission_usdt) || "0"}
-// //                   </p>
-// //                 </div>
-// //               </div>
-// //             )}
-// //           </>
-// //         ))}
-// //       </div>
-
-// //       <div className="flex justify-evenly w-full">
-// //         <img src={doubleLink2} className="w-72"></img>
-// //         <img src={doubleLink2} className="w-72"></img>
-// //         <img src={doubleLink2} className="w-72"></img>
-// //         <img src={doubleLink2} className="w-72"></img>
-// //       </div>
-
-// //       <div className="flex justify-between gap-3 w-full">
-// //         {node.map((node) => (
-// //           <>
-// //             {node?.level == 3 && (
-// //               <div className="flex flex-col gap-5 justify-center items-center p-5 bg-slate-600 bg-opacity-20 rounded-2xl border-slate-600 border ">
-// //                 {node ? (
-// //                   <img src={adam2} className="w-20"></img>
-// //                 ) : (
-// //                   <img src={userImg} className="w-20 mx-14"></img>
-// //                 )}
-
-// //                 <h3 className="text-[20px] font-700">
-// //                   {node?.full_name || "Refer a friend"}
-// //                 </h3>
-// //                 <div className="flex gap-5 text-[24px] font-200 justify-evenly w-full border border-slate-600 rounded-lg">
-// //                   <p className=" p-1 px-4">
-// //                     {node?.direct_commission_usdt || "0"}
-// //                   </p>
-// //                   |
-// //                   <p className=" p-1 px-4">
-// //                     {Math.floor(node?.binary_commission_usdt) || "0"}
-// //                   </p>
-// //                 </div>
-// //               </div>
-// //             )}
-// //           </>
-// //         ))}
-// //       </div>
-
-// //       {/* {node?.children == null && level < 3 && (
-// //         <div className="flex flex-col items-center justify-center">
-// //           <img src={doubleLink2} className="w-96 h-64 "></img>
-
-// //           <div className="flex gap-5 justify-between mt-4 w-full">
-// //             Hello World
-// //           </div>
-// //         </div>
-// //       )} */}
-// //       {node?.children && node.children?.length > 0 && (
-// //         <div className="flex flex-col items-center justify-center">
-// //           <img src={doubleLink2} className="w-96 h-64 "></img>
-
-// //           <div className="flex gap-5 justify-between mt-4 w-full">
-// //             {node?.children?.map((child, index) => (
-// //               <TreeNode key={index} node={child} />
-// //             ))}
-// //           </div>
-// //         </div>
-// //       )}
-// //     </div>
-// //   );
-// // };
-
-// // const TreeNode = ({ nodes }) => {
-// //   console.log("nodes: ", nodes);
-// //   if (!nodes || nodes.length === 0) {
-// //     return null;
-// //   }
-
-// //   return (
-// //     <ul>
-// //       {nodes.map((node) => (
-// //         <li key={node.user_id}>
-// //           <div className="flex">
-// //             <strong>{node.full_name}</strong> (Level: {node.level}, Pair:{" "}
-// //             {node.pair_number})
-// //             <br />
-// //             Total Commission: {node.total_commission_adrx} ADRX (
-// //             {node.total_commission_usdt} USDT)
-// //             <br />
-// //             Direct Commission: {node.direct_commission_adrx} ADRX (
-// //             {node.direct_commission_usdt} USDT)
-// //             <br />
-// //             Left Commission: {node.left_commission_adrx} ADRX (
-// //             {node.left_commission_usdt} USDT)
-// //             <br />
-// //             Right Commission: {node.right_commission_adrx} ADRX (
-// //             {node.right_commission_usdt} USDT)
-// //             <br />
-// //             Binary Commission: {node.binary_commission_adrx} ADRX (
-// //             {node.binary_commission_usdt} USDT)
-// //           </div>
-// //           {/* Recursively render left and right children */}
-// //           <TreeNode nodes={node.left ? [node.left] : []} />
-// //           <TreeNode nodes={node.right ? [node.right] : []} />
-// //         </li>
-// //       ))}
-// //     </ul>
-// //   );
-// // };
-
-// const TreeNode = ({ node }) => {
-//   return (
-//     <div className={`flex flex-col items-center`}>
-//       <div className="bg-blue-500 text-white p-2 rounded shadow-md">
-//         {node.full_name}
-//       </div>
-//       <div className="text-sm mt-1 text-gray-500">
-//         Commission: ${node.total_commission_usdt}
-//       </div>
-//     </div>
-//   );
-// };
-// const Tree = ({ treeData }) => {
-//   if(!treeData || treeData.length == 0) return;
-
-//   console.log("TreeData: ", treeData);
-
-//   // Group nodes by level
-//   const groupedByLevel = treeData?.reduce((acc, node) => {
-//     if (!acc[node.level]) acc[node.level] = [];
-//     acc[node.level].push(node);
-//     return acc;
-//   }, {});
-
-//   return (
-//     <div className="flex flex-col items-center space-y-4">
-//       {Object.keys(groupedByLevel).map((level) => (
-//         <div key={level} className="flex justify-center space-x-4">
-//           {groupedByLevel[level]
-//             .sort((a, b) => a.pair_number - b.pair_number)
-//             .map((node) => (
-//               <div
-//                 key={node.user_id}
-//                 className={`${
-//                   node.position === 'left' ? 'mr-8' : 'ml-8'
-//                 }`} // Correct position swapping logic
-//                 style={{ order: node.pair_number }}
-//               >
-//                 <TreeNode node={node} />
-//               </div>
-//             ))}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// const TreeNode = ({ node }) => {
-//   console.log("node: ", node);
-
-//   if (!node) {
-//       return null;
-//   }
-
-//   return (
-//       <div className="tree-node">
-//           <div className="node-content">
-//               <strong>{node.full_name}</strong> (Level: {node.level}, Pair: {node.pair_number})
-//               <br />
-//               Total Commission: {node.total_commission_adrx} ADRX ({node.total_commission_usdt} USDT)
-//               <br />
-//               Direct Commission: {node.direct_commission_adrx} ADRX ({node.direct_commission_usdt} USDT)
-//               <br />
-//               Left Commission: {node.left_commission_adrx} ADRX ({node.left_commission_usdt} USDT)
-//               <br />
-//               Right Commission: {node.right_commission_adrx} ADRX ({node.right_commission_usdt} USDT)
-//               <br />
-//               Binary Commission: {node.binary_commission_adrx} ADRX ({node.binary_commission_usdt} USDT)
-//           </div>
-//           <div className="children">
-//               {/* Recursively render left and right children */}
-//               <div className="left-child">{node.left && <TreeNode node={node.left} />}</div>
-//               <div className="right-child">{node.right && <TreeNode node={node.right} />}</div>
-//           </div>
-//       </div>
-//   );
-// };
-
-// const HierarchyTree = () => {
-//   const [treeData, setTreeData] = useState(null);
-
-//   useEffect(() => {
-
-//       axios.get('/referrals/list-hierarchy/')
-//           .then(response => {
-//               const tree = buildTree(response.data);
-//               setTreeData(tree);
-//           })
-//           .catch(error => {
-//               console.error('Error fetching the hierarchy data:', error);
-//           });
-//   }, []);
-
-//   return (
-//       <div>
-//           <h1>Referral Hierarchy Tree</h1>
-//           {treeData && <TreeNode node={treeData} />}
-//       </div>
-//   );
-// };
-
-// export default HierarchyTree;
-
 // Recursive component to render the tree
 const TreeNode = ({ node, setUser }) => {
   // if(!node) return null;
+  const [parentId, setParentId] = useState(node?.user_id);
 
   const [firstLevelBComm, setFirstLevelBComm] = useState(0);
   const [dataUpdated, setDataUpdated] = useState(false); //when data is updated, it is used to highlight the updating data in UI
@@ -819,6 +358,7 @@ const TreeNode = ({ node, setUser }) => {
           );
           const responseData = await response.json();
           setFirstLevelBComm(responseData?.binary_commission);
+          // console.log("parentId: ", parentId);
         } catch (error) {
           console.error("Error fetching referral tree:", error);
         }
@@ -828,6 +368,7 @@ const TreeNode = ({ node, setUser }) => {
 
     if (node) {
       updateReferralTree(); // Fetch the data immediately on mount
+      // setParentId(node?.userID)
       interval = setInterval(updateReferralTree, 10000); // Fetch the data every 10 seconds
     }
 
@@ -836,12 +377,18 @@ const TreeNode = ({ node, setUser }) => {
 
   useEffect(() => {
     setDataUpdated(true);
-    console.log("dataUpdatedOut: ", dataUpdated);
+    // console.log("dataUpdatedOut: ", dataUpdated);
     setTimeout(() => {
       setDataUpdated(false);
-      console.log("dataUpdatedIn: ", dataUpdated);
+      // console.log("dataUpdatedIn: ", dataUpdated);
     }, 200);
   }, [firstLevelBComm]);
+
+  const handleSetUser = (user) => {
+    console.log("userId: ", user);
+    // setUser(user);
+    console.log("parentId: ", parentId);
+  };
 
   return (
     <div
@@ -852,7 +399,7 @@ const TreeNode = ({ node, setUser }) => {
       }}
     >
       <div
-        className="flex flex-col gap-5 justify-center items-center p-3 bg-slate-600 bg-opacity-20 rounded-2xl"
+        className="flex flex-col gap-5 justify-center items-center p-3 bg-slate-600 bg-opacity-20 rounded-2xl hover:scale-105 cursor-pointer transition-[1000ms] z-50 hover:shadow-[10px] shadow-sm shadow-white"
         // border-slate-600 border
         onClick={() => setUser(node?.user_id)}
       >
@@ -926,7 +473,7 @@ const TreeNode = ({ node, setUser }) => {
               transition: "all 600ms ease",
             }}
           >
-            {Math.round(firstLevelBComm)}&nbsp;ADX PairedZ
+            {Math.round(firstLevelBComm)}&nbsp;ADX Paired
           </p>
         </div>
         {/* )} */}
@@ -958,8 +505,6 @@ const TreeNode = ({ node, setUser }) => {
           </div>
         </div>
       )}
-
-      
     </div>
   );
 };
