@@ -93,8 +93,10 @@ export default function Link() {
 
         setReferralTree(balancedReferralTree);
         // console.log("isTrue", Array.isArray(Object.values(referralTree))); // This will log true if it's an array, false otherwise
-        if (balancedReferralTree) {
-          setHistory([...history, balancedReferralTree?.user_id]);
+        if (balancedReferralTree && history.length == 1) {
+          console.log("adding history...", history.length);
+
+          setHistory([balancedReferralTree?.user_id]);
         }
 
         console.log("reffComm: ", response?.data?.direct_commission_usdt);
@@ -153,85 +155,95 @@ export default function Link() {
   useEffect(() => {
     console.log("Updated referralTree: ", referralTree);
     // setHistory([...history, referralTree?.user_id]);
-    // if (history.length == 0) {
-    //   console.log("hi...");
-    //   setHistory([...history, referralTree?.user_id]);
-    // }
+    if (history?.length == 0) {
+      console.log("hi...");
+      setHistory([...history, referralTree?.user_id]);
+    }
   }, [referralTree]);
 
   useEffect(() => {
     // setHistory(referralTree);
-    if (history.length == 0) {
-      setHistory([...history, referralTree?.user_id]);
+    if (history?.length == 0) {
+      setHistory([referralTree?.user_id]);
     }
     console.log("Updated History: ", history);
   }, [history]);
 
-  const currentNode = history?.length
-    ? history[history.length - 1]
-    : referralTree?.length > 0 &&
-      Object.values(referralTree)?.find((node) => node.parent_id === null); // Root node where parent_id is null
+  // const currentNode = history?.length
+  //   ? history[history.length - 1]
+  //   : referralTree?.length > 0 &&
+  //     Object.values(referralTree)?.find((node) => node.parent_id === null); // Root node where parent_id is null
 
   const handleNodeClick = (node) => {
     console.log("node clicked...", node);
 
-    if (history.length <= 0) {
+    if(!node){
+      console.log("not node");
+      return;
+      
+    }
+    if (history?.length <= 0) {
       console.log("no history...");
       return;
     }
 
-    if (history.length > 0) {
+    if (history?.length > 0) {
       console.log("0");
 
       if (history[history.length - 1] == node) {
         //backtracking
-        console.log("1");
+        console.log("backtracking");
         const newHistory = [...history];
         newHistory.pop(); // Remove the current node from the history (backtracking)
         setHistory(newHistory);
         setUserID(newHistory[newHistory.length - 1]);
       } else {
         //foretracking
-        console.log("2");
+        console.log("foretracking");
         setHistory([...history, node]);
         console.log("history: ", history);
         setUserID(node);
       }
     } else {
       console.log("3");
+
+      console.log("foretracking");
+      setHistory([...history, node]);
+      console.log("history: ", history);
+      setUserID(node);
     }
-
-    // if (referralTree && Object.keys(referralTree).length > 0) {
-    //   console.log("1");
-
-    //   const children = Object.values(referralTree)?.filter(
-    //     (n) => n?.parent_id === node.user_id
-    //   );
-    //   console.log("children: ", children);
-
-    //   if (children?.length > 0) {
-    //     console.log("2");
-
-    //     // If the node has children, add it to the history and display its children
-    //     setHistory([...history, node]);
-    //     console.log("history: ", history);
-    //     setUserID(history[history.length - 1]);
-    //   } else if (history.length > 0 && currentNode.user_id === node.user_id) {
-    //     console.log("3");
-
-    //     // If the node is a root node, and there is a parent node in the history, backtrack
-    //     const newHistory = [...history];
-    //     newHistory.pop(); // Remove the current node from the history (backtracking)
-    //     setHistory(newHistory);
-    //     console.log("history: ", history);
-
-    //     setUserID(newHistory[newHistory.length - 1]);
-    //   } else {
-    //     // If the node is neither root nor has children, do nothing
-    //     return;
-    //   }
-    // }
   };
+
+  // if (referralTree && Object.keys(referralTree).length > 0) {
+  //   console.log("1");
+
+  //   const children = Object.values(referralTree)?.filter(
+  //     (n) => n?.parent_id === node.user_id
+  //   );
+  //   console.log("children: ", children);
+
+  //   if (children?.length > 0) {
+  //     console.log("2");
+
+  //     // If the node has children, add it to the history and display its children
+  //     setHistory([...history, node]);
+  //     console.log("history: ", history);
+  //     setUserID(history[history.length - 1]);
+  //   } else if (history.length > 0 && currentNode.user_id === node.user_id) {
+  //     console.log("3");
+
+  //     // If the node is a root node, and there is a parent node in the history, backtrack
+  //     const newHistory = [...history];
+  //     newHistory.pop(); // Remove the current node from the history (backtracking)
+  //     setHistory(newHistory);
+  //     console.log("history: ", history);
+
+  //     setUserID(newHistory[newHistory.length - 1]);
+  //   } else {
+  //     // If the node is neither root nor has children, do nothing
+  //     return;
+  //   }
+  // }
 
   return (
     <div className="flex flex-col justify-center items-center">
