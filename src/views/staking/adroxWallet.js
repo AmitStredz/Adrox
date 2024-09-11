@@ -55,7 +55,7 @@ export default function AdroxWallet() {
           <div>
             <p className="font-800 text-[40px] sm:text-[52px]">
               {holdings !== null
-                ? `$${parseFloat(holdings).toFixed(2)} USD`
+                ? `$${parseFloat(holdings).toFixed(2)} USDT`
                 : "Loading..."}
             </p>
           </div>

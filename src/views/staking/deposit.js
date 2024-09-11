@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import Web3 from "web3";
 import BigNumber from "bignumber.js";
 
+
 const USDTContractAddress = "0x55d398326f99059fF775485246999027B3197955"; // BEP-20 USDT contract address
 const USDTAbi = [
   {
@@ -264,6 +265,7 @@ const USDTAbi = [
     type: "function",
   },
 ];
+
 
 const Deposit = ({ onClose }) => {
   // const navigate = useNavigate();

@@ -99,7 +99,7 @@ export default function Staking() {
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">APY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      1.2%
+                      36.5%
                     </p>
                   </div>
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
@@ -139,7 +139,7 @@ export default function Staking() {
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">APY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      2.4%
+                      73%
                     </p>
                   </div>
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
@@ -170,7 +170,7 @@ export default function Staking() {
                       Min. Deposit : <span className="font-400">100 USDT</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      Max. Deposit :{" "}
+                      Max. Deposit :
                       <span className="font-400">
                         <IoIosInfinite size={20} />
                       </span>
@@ -182,7 +182,7 @@ export default function Staking() {
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">APY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      4.8%
+                      146%
                     </p>
                   </div>
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
@@ -213,7 +213,7 @@ export default function Staking() {
                       Min. Deposit : <span className="font-400">100 USDT</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      Max. Deposit :{" "}
+                      Max. Deposit :  
                       <span className="font-400">
                         <IoIosInfinite size={20} />
                       </span>
@@ -225,7 +225,7 @@ export default function Staking() {
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">
                     <p className="font-400">APY</p>
                     <p className="font-700 bg-[#4F0F81]  rounded-lg p-1 px-3">
-                      7.2%
+                      219%
                     </p>
                   </div>
                   <div className="flex gap-2 border border-slate-600 p-3 px-4 rounded-lg items-center">

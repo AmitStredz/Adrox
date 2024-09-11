@@ -198,7 +198,7 @@ export default function Staking() {
             </div>
             <div className={styles.eachRow}>
               <Heading Name={"Total Value Locked"} />
-              <span className={`${styles.heading}`}>150000 ADX (100 USD)</span>
+              <span className={`${styles.heading}`}>{data.total_staked_adrx || 0}</span>
             </div>
             <div className={styles.eachRow}>
               <Heading Name={"Today's Profit"} />
@@ -262,9 +262,9 @@ export default function Staking() {
                 </div>
                 <div className={styles.letterTime}>
                   <span>To</span>
-                  {data && data.stake_start_time ? (
+                  {data && data.staking_end_time ? (
                     <span>
-                      {new Date(Date.now())
+                      {new Date(data.staking_end_time)
                         .toLocaleString("en-GB", {
                           year: "numeric",
                           month: "2-digit",

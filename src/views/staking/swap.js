@@ -21,7 +21,7 @@ const Swap = ({ onClose }) => {
           </div>
 
           <div className="flex flex-col gap-6">
-            <p className="font-500">1 USD = 4 ADX</p>
+            <p className="font-500">1 USDT = 20 ADX</p>
             <div className="flex max-sm:flex-col gap-3 sm:gap-6 items-center">
               <div className="flex flex-col bg-gradient-to-tl from-[#1A0C24] to-[#251530] border border-slate-700 rounded-xl p-10 gap-10 ">
                 <div className="flex  gap-1 rounded-3xl p-2 w-24 justify-center bg-slate-500 bg-opacity-20">
@@ -29,17 +29,17 @@ const Swap = ({ onClose }) => {
                   <p className="text-24px">ADX</p>
                 </div>
                 <div className="flex justify-end border border-slate-600 rounded-lg p-1 px-3 text-[28px] font-700">
-                  <p>150000</p>
+                  <p>00</p>
                 </div>
               </div>
               <img src={swap} className="h-10"></img>
               <div className="flex flex-col border border-slate-700 bg-gradient-to-tl from-[#1A0C24] to-[#251530] rounded-xl p-10 gap-10 ">
                 <div className="flex gap-1 rounded-3xl p-2 w-24 justify-center bg-slate-500 bg-opacity-20">
                   <img src={dollarBlue} className="w-5 h-5"></img>
-                  <p className="text-24px">USD</p>
+                  <p className="text-24px">USDT</p>
                 </div>
                 <div className="flex justify-end border border-slate-600 rounded-lg p-1 px-3 text-[28px] font-700">
-                  <p>600</p>
+                  <p>00</p>
                 </div>
               </div>
             </div>
@@ -47,7 +47,7 @@ const Swap = ({ onClose }) => {
 
           <div className="flex flex-col gap-3 p-3 px-10 font-100 text-slate-300 bg-gradient-to-tl from-[#1A0C24] to-[#251530] border border-slate-700 rounded-xl">
             <div className="flex justify-between">
-              <p>USD</p>
+              <p>USDT</p>
               <p>600</p>
             </div>
             <div className="flex justify-between">
@@ -57,7 +57,7 @@ const Swap = ({ onClose }) => {
             <div className="w-full h-[1px] bg-opacity-45 bg-white"></div>
             <div className="flex justify-between">
               <p>Total</p>
-              <p>570 USD</p>
+              <p>570 USDT</p>
             </div>
           </div>
 
