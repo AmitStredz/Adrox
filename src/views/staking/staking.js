@@ -8,8 +8,9 @@ import Cookies from "js-cookie";
 
 import styles from "./staking.module.css";
 export default function Staking() {
-  const [stakingData, setStakingData] = useState(null);
+  // const [stakingData, setStakingData] = useState(null);
   const [historyData, setHistoryData] = useState(null);
+  const [todayProfit, setTodayProfit] = useState("");
 
   const [data, setData] = useState();
 
@@ -22,14 +23,14 @@ export default function Staking() {
     months: 0,
   });
 
-  const dummyData = [
-    {
-      date: "2024-09-09",
-      size: 15000,
-      daily_profit_adrx: 187.5,
-      daily_profit_usdt: 9.0,
-    },
-  ];
+  // const dummyData = [
+  //   {
+  //     date: "2024-09-09",
+  //     size: 15000,
+  //     daily_profit_adrx: 187.5,
+  //     daily_profit_usdt: 9.0,
+  //   },
+  // ];
 
   useEffect(() => {
     let interval;
@@ -103,6 +104,33 @@ export default function Staking() {
     };
   }, []);
 
+  useEffect(() => {
+    // console.log("history: ", historyData);
+
+    const getTodaysDate = () => {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+      const day = String(today.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    };
+
+    const fetchDate = () => {
+      let todaysDate = getTodaysDate();
+      // console.log("date: ", todaysDate);
+
+      historyData?.map((val) => {
+        // console.log("ex: ", val.date_time.split(' ')[0]);
+        if (val.date_time.split(' ')[0] == todaysDate) {
+          setTodayProfit(val.daily_reward_adrx);
+        }
+      });
+    };
+
+    fetchDate();
+  }, [historyData]);
+
   // useEffect(() => {
   //   // const stakingData = JSON.parse(Cookies.get("stakingData"));
   //   if (Cookies.get("stakingData")) {
@@ -174,7 +202,7 @@ export default function Staking() {
             </div>
             <div className={styles.eachRow}>
               <Heading Name={"Today's Profit"} />
-              <span className={`${styles.heading}`}>150 ADX</span>
+              <span className={`${styles.heading}`}>{todayProfit || 0}</span>
             </div>
             <div className={styles.firstBottomRow}>
               <div className={styles.eachRow}>
@@ -312,28 +340,36 @@ export default function Staking() {
         </div> */}
 
         <div className="w-full overflow-auto">
-        <table className="w-full">
-          <thead className="">
-            <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
-              <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
-              <th className="py-2 px-2 sm:px-4 text-left">Staking Size (ADX)</th>
-              <th className="py-2 px-2 sm:px-4 text-left">Staking Size (USDT)</th>
-              <th className="py-2 px-2 sm:px-4 text-left">Daily Reward (ADX)</th>
-              <th className="py-2 px-2 sm:px-4 text-left">Daily Reward (USDT)</th>
-            </tr>
-          </thead>
-          <tbody className="text-[12px] sm:text-[16px] font-200">
-            {historyData?.map((item, index) => (
-              <tr key={index} className="border-b border-gray-700">
-                <td className="py-2 px-4">{item.date_time}</td>
-                <td className="py-2 px-4">{item.staking_size_adrx}</td>
-                <td className="py-2 px-4">{item.staking_size_usdt}</td>
-                <td className="py-2 px-4">{item.daily_reward_adrx}</td>
-                <td className="py-2 px-4">{item.daily_reward_usdt}</td>
+          <table className="w-full">
+            <thead className="">
+              <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
+                <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
+                <th className="py-2 px-2 sm:px-4 text-left">
+                  Staking Size (ADX)
+                </th>
+                <th className="py-2 px-2 sm:px-4 text-left">
+                  Staking Size (USDT)
+                </th>
+                <th className="py-2 px-2 sm:px-4 text-left">
+                  Daily Reward (ADX)
+                </th>
+                <th className="py-2 px-2 sm:px-4 text-left">
+                  Daily Reward (USDT)
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="text-[12px] sm:text-[16px] font-200">
+              {historyData?.map((item, index) => (
+                <tr key={index} className="border-b border-gray-700">
+                  <td className="py-2 px-4">{item.date_time}</td>
+                  <td className="py-2 px-4">{item.staking_size_adrx}</td>
+                  <td className="py-2 px-4">{item.staking_size_usdt}</td>
+                  <td className="py-2 px-4">{item.daily_reward_adrx}</td>
+                  <td className="py-2 px-4">{item.daily_reward_usdt}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 

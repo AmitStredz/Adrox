@@ -30,6 +30,10 @@ export default function HomeHeader() {
     navigate("/");
   };
 
+  const handleReferralClick=()=>{
+    localStorage.setItem("op", "link");
+    navigate("/staking2")
+  }
   return (
     <div className=" w-screen flex items-center justify-between p-2  lg:p-5 px-5 md:px-14 xl:px-28 fixed bg-gradient-to-b from-[#150c1b] to-[#49474728] bg-opacity-15 z-[100]">
       <div className="w-[30vw] sm:w-56 cursor-pointer">
@@ -140,7 +144,7 @@ export default function HomeHeader() {
           </div>
           <div
             className="flex flex-col gap-2 max-sm:text-[12px] p-2 px-3 sm:px-8 cursor-pointer"
-            // onClick={() => handleLogout()}
+            onClick={() => handleReferralClick()}
           >
             <span className="flex gap-1 items-center">
               <FaUserPlus />

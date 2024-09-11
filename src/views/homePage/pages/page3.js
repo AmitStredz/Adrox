@@ -61,7 +61,7 @@ export default function Page3() {
             <img src={img3} className="w-28 h-20"></img>
             <div className="flex flex-col max-sm:items-center">
             <div className="flex gap-2 sm:gap-10 items-center">
-            <h1 className="font-700 text-[28px] sm:text-[36px] group-hover:underline">
+            <h1 className="font-700 text-[28px] sm:text-[36px] group-hover:underline text-center">
             ADROX Trading Bots
                 </h1>
                 <i className="ri-arrow-right-s-line px-1 text-2xl font-100 border rounded-full cursor-pointer"></i>

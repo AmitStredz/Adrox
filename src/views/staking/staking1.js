@@ -52,9 +52,7 @@ export default function Staking() {
             <div className="flex flex-col leading-8 max-sm:items-center">
               <p className="font-300 text-[18px]">Holdings</p>
               <div className="bg-gradient-to-r from-white to-slate-900 h-[0.1px] w-full mb-2"></div>
-              <span className="text-[30px] font-800 text-[#C653FF]">
-                0 ADX
-              </span>
+              <span className="text-[30px] font-800 text-[#C653FF]">0 ADX</span>
               <p className="font-300 text-[18px]">$ 0 USDT</p>
             </div>
           </div>
@@ -89,13 +87,10 @@ export default function Staking() {
                   </div>
                   <div className="text-[16px] font-100 flex flex-col justify-between">
                     <p>
-                      Min. Deposit : <span className="font-400">100USDT</span>
+                      Min. Deposit : <span className="font-400">100 USDT</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      Max. Deposit : <span className="font-400">
-                      <IoIosInfinite size={20}/>
-
-                      </span>
+                      Max. Deposit : <span className="font-400">200 USDT</span>
                     </p>
                   </div>
                 </div>
@@ -132,13 +127,10 @@ export default function Staking() {
                   </div>
                   <div className="text-[16px] font-100 flex flex-col justify-between">
                     <p>
-                      Min. Deposit : <span className="font-400">100USDT</span>
+                      Min. Deposit : <span className="font-400">100 USDT</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      Max. Deposit : <span className="font-400">
-                      <IoIosInfinite size={20}/>
-                        
-                      </span>
+                      Max. Deposit : <span className="font-400">500 USDT</span>
                     </p>
                   </div>
                 </div>
@@ -178,9 +170,9 @@ export default function Staking() {
                       Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      Max. Deposit : <span className="font-400">
-                      <IoIosInfinite size={20}/>
-
+                      Max. Deposit :{" "}
+                      <span className="font-400">
+                        <IoIosInfinite size={20} />
                       </span>
                     </p>
                   </div>
@@ -221,9 +213,9 @@ export default function Staking() {
                       Min. Deposit : <span className="font-400">100USDT</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      Max. Deposit : <span className="font-400">
-                      <IoIosInfinite size={20}/>
-
+                      Max. Deposit :{" "}
+                      <span className="font-400">
+                        <IoIosInfinite size={20} />
                       </span>
                     </p>
                   </div>
