@@ -167,7 +167,7 @@ export default function Staking() {
                   </div>
                   <div className="text-[16px] font-100 flex flex-col justify-between">
                     <p>
-                      Min. Deposit : <span className="font-400">100USDT</span>
+                      Min. Deposit : <span className="font-400">100 USDT</span>
                     </p>
                     <p className="flex items-center gap-2">
                       Max. Deposit :{" "}
@@ -210,7 +210,7 @@ export default function Staking() {
                   </div>
                   <div className="text-[16px] font-100 flex flex-col justify-between">
                     <p>
-                      Min. Deposit : <span className="font-400">100USDT</span>
+                      Min. Deposit : <span className="font-400">100 USDT</span>
                     </p>
                     <p className="flex items-center gap-2">
                       Max. Deposit :{" "}
