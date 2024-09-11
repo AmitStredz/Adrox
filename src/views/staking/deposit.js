@@ -304,14 +304,14 @@ const Deposit = ({ onClose }) => {
   const handleButtonClick = async () => {
     console.log("Button clicked - attempting transaction...");
 
-    if (!window.ethereum) {
-      setErrorText(
-        "MetaMask not detected. Please install MetaMask and try again."
-      );
-      setIsErrorModal(true);
-      console.log("Error: MetaMask not detected.");
-      return;
-    }
+    // if (!window.ethereum) {
+    //   setErrorText(
+    //     "MetaMask not detected. Please install MetaMask and try again."
+    //   );
+    //   setIsErrorModal(true);
+    //   console.log("Error: MetaMask not detected.");
+    //   return;
+    // }
 
     try {
       setIsLoading(true);
@@ -332,18 +332,51 @@ const Deposit = ({ onClose }) => {
     }
   };
 
+  // const connectMetaMask = async () => {
+  //   if (!window.ethereum) throw new Error("MetaMask not detected");
+
+  //   const accounts = await window.ethereum.request({
+  //     method: "eth_requestAccounts",
+  //   });
+  //   if (!accounts || accounts.length === 0)
+  //     throw new Error("MetaMask account not found");
+
+  //   console.log("MetaMask accounts:", accounts);
+  //   setWalletAddress(accounts[0]);
+  //   localStorage.setItem("walletAddress", accounts[0]);
+  // };
+
   const connectMetaMask = async () => {
-    if (!window.ethereum) throw new Error("MetaMask not detected");
+    if (!window.ethereum) {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    if (!accounts || accounts.length === 0)
-      throw new Error("MetaMask account not found");
+      // Check if user is on a mobile device
+      if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent)) {
+        console.log("Mobile device detected, opening MetaMask app...");
+        const deepLink = "https://metamask.app.link/dapp/adrox.vercel.app";
+        window.open(deepLink, "_blank");
+        return;
+      } else {
+        throw new Error(
+          "MetaMask not detected. Please install MetaMask and try again."
+        );
+      }
+    }
 
-    console.log("MetaMask accounts:", accounts);
-    setWalletAddress(accounts[0]);
-    localStorage.setItem("walletAddress", accounts[0]);
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      if (!accounts || accounts.length === 0)
+        throw new Error("MetaMask account not found");
+
+      console.log("MetaMask accounts:", accounts);
+      setWalletAddress(accounts[0]);
+      localStorage.setItem("walletAddress", accounts[0]);
+    } catch (error) {
+      console.error("Failed to connect MetaMask:", error);
+      throw new Error("MetaMask connection failed. Please try again.");
+    }
   };
 
   const sendUsdtTransaction = async () => {
