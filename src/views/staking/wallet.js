@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HomeHeader from "../homePage/pages/homeHeader";
 import AdroxWallet from "./adroxWallet";
-import TokenWallet from "./tokenWallet";
+import ProfitWallet from "./profitWallet";
 import adam3 from "./assets/adam3.png";
 import { Helmet } from "react-helmet";
 import Cookies from "js-cookie";
@@ -40,19 +40,19 @@ export default function Wallet() {
           </button>
           <button
             className={`p-2 px-3 sm:px-12 rounded-2xl max-sm:text-[13px] ${
-              activeComponent === "tokenWallet"
+              activeComponent === "profitWallet"
                 ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
                 : "border border-slate-500"
             }`}
-            onClick={() => handleButtonClick("tokenWallet")}
+            onClick={() => handleButtonClick("profitWallet")}
           >
-            Token Wallet
+            Profit Wallet
           </button>
         </div>
 
         <div>
           {activeComponent === "adroxWallet" && <AdroxWallet />}
-          {activeComponent === "tokenWallet" && <TokenWallet />}
+          {activeComponent === "profitWallet" && <ProfitWallet />}
         </div>
       </div>
     </div>

@@ -198,7 +198,7 @@ export default function Staking() {
             </div>
             <div className={styles.eachRow}>
               <Heading Name={"Total Value Locked"} />
-              <span className={`${styles.heading}`}>{data.total_staked_adrx || 0}</span>
+              <span className={`${styles.heading}`}>{data?.total_staked_adrx || 0}</span>
             </div>
             <div className={styles.eachRow}>
               <Heading Name={"Today's Profit"} />
@@ -323,7 +323,7 @@ export default function Staking() {
       {/* Page2 */}
 
       <div className="mt-10">
-        <div className="flex justify-between md:p-10 py-3 md:px-20 lg:px-28">
+        <div className="flex justify-between md:p-10 py-3 md:px-20 lg:px-10">
           <h1 className="font-700 text-[20px] sm:text-[40px]">
             Lending Daily Profit History
           </h1>

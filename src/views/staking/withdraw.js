@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import dollar from "./assets/dollarBlue.png";
-import Modal from "./sucessModal";
+import SuccessModal from "./sucessModal";
 import Cookies from "js-cookie";
 
 import Web3 from "web3";
@@ -268,12 +268,12 @@ const USDTAbi = [
   },
 ];
 
-const Withdraw = ({ onClose }) => {
+const Withdraw = ({ onClose, holdings }) => {
   const navigate = useNavigate();
   const [amount, setAmount] = useState(""); // State for withdrawal amount
   // const [withdrawalAddress, setWithdrawalAddress] = useState(""); // State for withdrawal address
   const [isLoading, setIsLoading] = useState(false); // State to track loading status
-  const [balance, setBalance] = useState(0); // State for available balance
+  // const [balance, setBalance] = useState(0); // State for available balance
   const [showModal, setShowModal] = useState(false);
 
   const [receiverAddress, setReceiverAddress] = useState("");
@@ -282,12 +282,19 @@ const Withdraw = ({ onClose }) => {
   const [transactionStatus, setTransactionStatus] = useState(null);
   const [errorText, setErrorText] = useState("");
 
-  useEffect(() => {
-    const storedBalance = Cookies.get("balance");
-    if (storedBalance) {
-      setBalance(parseFloat(storedBalance)); // Ensure balance is a number
+  // useEffect(() => {
+  //   const storedBalance = Cookies.get("balance");
+  //   if (storedBalance) {
+  //     setBalance(parseFloat(storedBalance)); // Ensure balance is a number
+  //   }
+  // }, []);
+
+  const handleAmountValueChange = (e) => {
+    const value = e.target.value;
+    if (!isNaN(value)) {
+      setAmount(value);
     }
-  }, []);
+  };
 
   const handleButtonClick = async () => {
     console.log("Button clicked - attempting transaction...");
@@ -430,7 +437,7 @@ const Withdraw = ({ onClose }) => {
       data-aos="fade-in"
     >
       <div className="w-full h-full px-3 flex items-center justify-center overflow-auto">
-        <div className="flex flex-col gap-10 my-20 p-7 sm:p-14 rounded-3xl max-w-xl bg-gradient-to-r from-[#210F34] to-[#170D25] backdrop-blur-lg mt-[30rem]">
+        <div className="flex flex-col gap-10 my-80 p-7 sm:p-14 rounded-3xl max-w-xl bg-gradient-to-r from-[#210F34] to-[#170D25] backdrop-blur-lg mt-[30rem]">
           <div className="flex justify-end">
             <i
               className="ri-close-fill text-3xl cursor-pointer hover:scale-105"
@@ -441,17 +448,17 @@ const Withdraw = ({ onClose }) => {
             <div className="flex justify-between p-2 px-5 ">
               <p>Withdrawal Amount</p>
               <p className="bg-slate-800 p-1 px-2 rounded-lg">
-                Available Balance: {balance} $
+                Available Balance: {holdings} $
               </p>
             </div>
             <div className="flex justify-between gap-[2vw] sm:gap-5 border border-slate-600 rounded-2xl p-5 sm:p-14">
               <img src={dollar} alt="Dollar" className="w-10 sm:w-16" />
               <input
                 placeholder="Minimum 20 $"
-                type="number"
+                type="text"
                 required
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => handleAmountValueChange(e)}
                 className="bg-transparent outline-none text-2xl sm:text-4xl font-light w-full text-center"
               ></input>
             </div>
@@ -493,7 +500,7 @@ const Withdraw = ({ onClose }) => {
 
             <div className="flex justify-between">
               <p>Total Withdrawal Amount</p>
-              <p>{amount - 0.0005} BTC</p>
+              <p>{amount - -0.0005} BTC</p>
             </div>
           </div>
 
@@ -530,7 +537,7 @@ const Withdraw = ({ onClose }) => {
           </div>
         </div>
       </div>
-      {showModal && <Modal message="Withdrawal Successful" />}
+      {showModal && <SuccessModal message="Withdrawal Successful" />}
     </div>
 
     //   <div className="absolute right-0 top-[25rem]">

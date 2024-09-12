@@ -14,7 +14,7 @@ export default function Staking2() {
   };
 
   return (
-    <div className="bg-[#0F011A] max-w-screen font-nunito text-white overflow-x-hidden relative">
+    <div className="bg-[#0F011A] max-w-screen h-screen font-nunito text-white overflow-x-hidden relative">
       <div className="h-40">
         <HomeHeader></HomeHeader>
       </div>
