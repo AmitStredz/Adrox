@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export default function LiveProfits() {
-
-    const [livePrice, setLivePrice] = useState(null);
+  const [livePrice, setLivePrice] = useState(null);
 
   useEffect(() => {
     let interval;
@@ -13,15 +12,20 @@ export default function LiveProfits() {
           `https://adrox-89b6c88377f5.herokuapp.com/api/live-prices/`
         );
         const responseData = await response.json();
-        setLivePrice(Object.entries(responseData));
         console.log("response:", Object.entries(responseData));
+        console.log("response length: ", responseData.length);
+        const arrayData = Object.entries(responseData);
+        if (arrayData.length > 3) {
+          console.log("data valid...");
+          setLivePrice(arrayData);
+        }
       } catch (error) {
         console.error("Error fetching Live Profits:", error);
       }
     };
 
     updateLiveProfits(); // Fetch the data immediately on mount
-    interval = setInterval(updateLiveProfits, 10000); // Fetch the data every 10 seconds
+    interval = setInterval(updateLiveProfits, 5000); // Fetch the data every 10 seconds
 
     return () => {
       clearInterval(interval);
@@ -31,7 +35,6 @@ export default function LiveProfits() {
   useEffect(() => {
     console.log("LivePrice: ", livePrice);
   }, [livePrice]);
-
 
   return (
     <div className="flex flex-col items-center sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  lg:grid-rows-4 xl:grid-rows-3 gap-10">
