@@ -1,7 +1,44 @@
 import React, { useEffect, useState } from "react";
 
+import ada from "./assets/ada.svg";
+import avax from "./assets/avax.svg";
+// import bnb from "./assets/avax.svg";
+import bnb from "./assets/bnb2.svg";
+import btc from "./assets/btc.svg";
+import doge from "./assets/doge.svg";
+import eth from "./assets/eth.svg";
+import link from "./assets/link.svg";
+import shib from "./assets/shib.svg";
+import sol from "./assets/sol.svg";
+import trx from "./assets/trx.svg";
+import usdc from "./assets/usdc.svg";
+import usdt from "./assets/usdt.svg";
+import wbtc from "./assets/wbtc.svg";
+import xrp from "./assets/xrp.svg";
+
 export default function LiveProfits() {
   const [livePrice, setLivePrice] = useState(null);
+  const logoName = {
+    cardano: ada,
+    "avalanche-2": avax,
+    binancecoin: bnb,
+    bitcoin: btc,
+    dogecoin: doge,
+    ethereum: eth,
+    chainlink: link,
+    "shiba-inu": shib,
+    solana: sol,
+    tron: trx,
+    "usd-coin": usdc,
+    tether: usdt,
+    "wrapped-bitcoin": wbtc,
+    ripple: xrp,
+  };
+  useEffect(() => {
+    Object.entries(logoName).forEach(([name, url]) => {
+      console.log("names: ", url); // This will log 'ada', 'avax', 'bnb', etc.
+    });
+  }, []);
 
   useEffect(() => {
     let interval;
@@ -40,40 +77,51 @@ export default function LiveProfits() {
     <div className="flex flex-col items-center sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  lg:grid-rows-4 xl:grid-rows-3 gap-10">
       {livePrice ? (
         <>
-          {livePrice?.map((crypto, index) => (
-            <div
-              className="flex sm:flex-col gap-5 bg-[#1F1229] rounded-3xl p-3 py-5 items-start w-full sm:w-56 font-700 text-[20px]"
-              key={index}
-            >
-              <div className="flex">
-                <div className="items-center flex">
-                  {/* <img
-                      src={Bitcoin}
-                      alt="bitcoin"
-                      className="w-48 sm:w-20 "
-                    /> */}
+          {livePrice.map((crypto, index) => {
+            const cryptoName = crypto[0];
+            const priceData = crypto[1];
+            const logo = logoName[cryptoName]; // Get the logo for the current crypto
+            console.log("logo: ", logo);
+
+            return (
+              <div
+                className="flex sm:flex-col gap-5 bg-[#1F1229] rounded-3xl p-3 py-5 items-start w-full sm:w-56 font-700 text-[20px]"
+                key={index}
+              >
+                <div className="flex gap-2">
+                  <div className="items-center flex">
+                    {logo && (
+                      <img
+                        src={logo} // Use the correct logo from the map
+                        alt={logoName[cryptoName]}
+                        className="w-48 sm:w-10"
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <p className="font-600">{cryptoName}</p>
+                    <p className="font-500 text-[14px]">
+                      {/* {logoName[cryptoName]?.toUpperCase()} */}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p>{crypto[0]}</p>
-                  <p className="font-600 text-[14px]">BTC</p>
+                <div className="flex flex-col w-full sm:gap-5 max-sm:pr-5">
+                  <div className="flex max-sm:justify-end">
+                    <p>$ {priceData.usd}</p>
+                  </div>
+                  <div
+                    className={`flex justify-end w-full ${
+                      priceData.usd_24h_change < 0
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }`}
+                  >
+                    <p>{priceData.usd_24h_change?.toFixed(3)}%</p>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col w-full sm:gap-5 max-sm:pr-5">
-                <div className="flex max-sm:justify-end">
-                  <p>$ {crypto[1].usd}</p>
-                </div>
-                <div
-                  className={`flex justify-end w-full  ${
-                    crypto[1].usd_24h_change < 0
-                      ? "text-red-500"
-                      : "text-green-500"
-                  }`}
-                >
-                  <p>{crypto[1]?.usd_24h_change?.toFixed(3)}%</p>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </>
       ) : (
         <span>Live Price not available</span>
