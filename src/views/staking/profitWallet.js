@@ -182,9 +182,9 @@ export default function ProfitWallet() {
         </div>
       </div>
 
-      <div className="mt-40">
+      {/* <div className="mt-40">
         <img src={table3}></img>
-      </div>
+      </div> */}
 
       {isSwapModal && (
         <SwapModal onClose={() => setIsSwapModal(false)} holdings={holdings} />
