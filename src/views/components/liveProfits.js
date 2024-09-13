@@ -25,7 +25,7 @@ export default function LiveProfits() {
     };
 
     updateLiveProfits(); // Fetch the data immediately on mount
-    interval = setInterval(updateLiveProfits, 5000); // Fetch the data every 10 seconds
+    interval = setInterval(updateLiveProfits, 60000); // Fetch the data every 10 seconds
 
     return () => {
       clearInterval(interval);
