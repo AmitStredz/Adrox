@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import ada from "./assets/ada.svg";
 import avax from "./assets/avax.svg";
-// import bnb from "./assets/avax.svg";
-import bnb from "./assets/bnb2.svg";
+import bnb from "./assets/bnb.svg";
 import btc from "./assets/btc.svg";
 import doge from "./assets/doge.svg";
 import eth from "./assets/eth.svg";
@@ -85,27 +84,27 @@ export default function LiveProfits() {
 
             return (
               <div
-                className="flex sm:flex-col gap-5 bg-[#1F1229] rounded-3xl p-3 py-5 items-start w-full sm:w-56 font-700 text-[20px]"
+                className="flex sm:flex-col gap-5 bg-[#1F1229] rounded-3xl p-3 py-5 items-start w-full h-full sm:w-56 font-700 text-[20px]"
                 key={index}
               >
-                <div className="flex gap-2">
+                <div className="flex gap-2 w-full">
                   <div className="items-center flex">
                     {logo && (
                       <img
                         src={logo} // Use the correct logo from the map
                         alt={logoName[cryptoName]}
-                        className="w-48 sm:w-10"
+                        className="w-10 sm:w-10"
                       />
                     )}
                   </div>
                   <div>
                     <p className="font-600">{cryptoName}</p>
                     <p className="font-500 text-[14px]">
-                      {/* {logoName[cryptoName]?.toUpperCase()} */}
+                      {parseInt(logo)}
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col w-full sm:gap-5 max-sm:pr-5">
+                <div className="flex flex-col justify-between h-full w-full gap-5 max-sm:pr-5 text-[14px] sm:text-[18px]">
                   <div className="flex max-sm:justify-end">
                     <p>$ {priceData.usd}</p>
                   </div>

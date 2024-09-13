@@ -60,12 +60,12 @@ export default function Account({ closeModal }) {
       </Helmet>
 
       <div className="flex justify-center items-center  w-screen relative mb-20">
-        <div className="flex max-md:flex-col h-9/12 gap-20 lg:gap-56 mt-40 p-10 w-">
+        <div className="flex max-md:flex-col h-9/12 gap-20 lg:gap-56 mt-20 sm:mt-40 p-10 w-">
           <div className="left flex flex-col gap-20 p- z-50 max-md:items-center">
             <div className="top flex justify-start">
               <div className="flex flex-col gap-2 md:items-start items-center">
                 <img src={adam2} className="w-20"></img>
-                <p className="text-[52px] font-700">
+                <p className="text-[30px] sm:text-[52px] font-700">
                   {Cookies.get("full_name")}
                 </p>
                 <div className="flex items-center gap-2  p-2 px-6 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">

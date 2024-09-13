@@ -48,7 +48,7 @@ export default function AdroxWallet() {
     <div className="relative">
       <div className="flex max-md:flex-col max-md:gap-10 justify-evenly md:items-center p-5 sm:p-10 lg:p-14 mt-5 sm:mt-20 bg-slate-500 bg-opacity-10 rounded-3xl border border-slate-600">
         <div className="flex flex-col sm:flex-row justify-evenly w-full gap-5 md:gap-10">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 z-50">
             <div>
               <a className="p-2 px-6 bg-slate-400 bg-opacity-15 rounded-xl">
                 Holdings
@@ -92,6 +92,61 @@ export default function AdroxWallet() {
         </div> */}
       </div>
 
+      <div className="mt-10 z-50">
+        <div className="flex justify-between md:p-10 py-3 md:px-20 lg:px-10">
+          <h1 className="font-700 text-[20px] sm:text-[40px] z-50">
+            Transaction History
+          </h1>
+          {/* <div className="flex items-center">
+            <div className="flex border items-center rounded-3xl border-slate-600 px-3 sm:px-5 gap-1 sm:gap-2">
+              <i className="ri-calendar-2-line font-100"></i>
+              <p className="text-[14px] sm:text-[20px] font-100">Date</p>
+            </div>
+          </div> */}
+        </div>
+
+        {/* <div>
+          <img src={table}></img>
+        </div> */}
+
+        <div className="w-full overflow-auto">
+          <table className="w-full">
+            <thead className="">
+              <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
+                <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
+                <th className="py-2 px-2 sm:px-4 text-left">
+                  Crypto
+                </th>
+                <th className="py-2 px-2 sm:px-4 text-left">
+                  Amount
+                </th>
+                <th className="py-2 px-2 sm:px-4 text-left">
+                  Type
+                </th>
+                {/* <th className="py-2 px-2 sm:px-4 text-left">
+                  Daily Reward (USDT)
+                </th> */}
+              </tr>
+            </thead>
+            <tbody className="text-[12px] sm:text-[16px] font-200">
+              {/* {historyData?.map((item, index) => (
+                <tr key={index} className="border-b border-gray-700">
+                  <td className="py-2 px-4">{item.date_time}</td>
+                  <td className="py-2 px-4">{item.staking_size_adrx}</td>
+                  <td className="py-2 px-4">{item.staking_size_usdt}</td>
+                  <td className="py-2 px-4">{item.daily_reward_adrx}</td>
+                  <td className="py-2 px-4">{item.daily_reward_usdt}</td>
+                </tr>
+              ))} */}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* <div className="mt-40">
+        <img src={table2} alt="Table"></img>
+      </div> */}
+
       {transactionType == "withdraw" ? (
         <WithdrawModal onClose={() => setTransactionType("")} />
       ) : (
@@ -107,10 +162,6 @@ export default function AdroxWallet() {
       ) : (
         <></>
       )}
-
-      <div className="mt-40">
-        <img src={table2} alt="Table"></img>
-      </div>
 
       <div className="absolute right-[-40%] w-[80%] top-[50rem]">
         <img src={ellipse} alt="Ellipse"></img>

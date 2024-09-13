@@ -75,7 +75,7 @@ export default function ProfitWallet() {
             </div>
             <div className="flex justify-center">
               <p className="font-800 text-[20px] sm:text-[30px] md:text-[52px]">
-                {holdings >= 0 ? `${holdings} ADX` : "Loading..."}
+                {holdings >= 0 ? `${parseFloat(holdings).toFixed(3)} ADX` : "Loading..."}
               </p>
             </div>
           </div>
@@ -135,7 +135,7 @@ export default function ProfitWallet() {
 
       <div className="mt-10 z-50">
         <div className="flex justify-between md:p-10 py-3 md:px-20 lg:px-10 z-50">
-          <h1 className="font-700 text-[20px] sm:text-[40px]">Swap History</h1>
+          <h1 className="font-700 text-[20px] sm:text-[40px] z-50">Swap History</h1>
           {/* <div className="flex items-center">
             <div className="flex border items-center rounded-3xl border-slate-600 px-3 sm:px-5 gap-1 sm:gap-2">
               <i className="ri-calendar-2-line font-100"></i>
