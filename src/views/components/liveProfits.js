@@ -100,7 +100,7 @@ export default function LiveProfits() {
                   <div>
                     <p className="font-600">{cryptoName}</p>
                     <p className="font-500 text-[14px]">
-                      {parseInt(logo)}
+                      {/* {parseInt(logo)} */}
                     </p>
                   </div>
                 </div>

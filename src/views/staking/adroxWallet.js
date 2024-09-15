@@ -114,15 +114,9 @@ export default function AdroxWallet() {
             <thead className="">
               <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
                 <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
-                <th className="py-2 px-2 sm:px-4 text-left">
-                  Crypto
-                </th>
-                <th className="py-2 px-2 sm:px-4 text-left">
-                  Amount
-                </th>
-                <th className="py-2 px-2 sm:px-4 text-left">
-                  Type
-                </th>
+                <th className="py-2 px-2 sm:px-4 text-left">Crypto</th>
+                <th className="py-2 px-2 sm:px-4 text-left">Amount</th>
+                <th className="py-2 px-2 sm:px-4 text-left">Type</th>
                 {/* <th className="py-2 px-2 sm:px-4 text-left">
                   Daily Reward (USDT)
                 </th> */}

@@ -9,7 +9,6 @@ import Cookies from "js-cookie";
 import Web3 from "web3";
 import BigNumber from "bignumber.js";
 
-
 const USDTContractAddress = "0x55d398326f99059fF775485246999027B3197955"; // BEP-20 USDT contract address
 const USDTAbi = [
   {
@@ -266,7 +265,6 @@ const USDTAbi = [
   },
 ];
 
-
 const Deposit = ({ onClose }) => {
   // const navigate = useNavigate();
   // const [amount, setAmount] = useState(""); // State for deposit amount
@@ -279,6 +277,8 @@ const Deposit = ({ onClose }) => {
   const [transactionStatus, setTransactionStatus] = useState(null); // To store transaction status
   const [errorText, setErrorText] = useState("");
   const [isErrorModal, setIsErrorModal] = useState(false);
+  const [phoneLoginLink, setPhoneLoginLink] = useState("");
+  // const [token, SetToken] = useState("");
 
   // useEffect(() => {
   //   const storedWalletId = localStorage.getItem("wallet_id");
@@ -306,17 +306,13 @@ const Deposit = ({ onClose }) => {
   const handleButtonClick = async () => {
     console.log("Button clicked - attempting transaction...");
 
-    // if (!window.ethereum) {
-    //   setErrorText(
-    //     "MetaMask not detected. Please install MetaMask and try again."
-    //   );
-    //   setIsErrorModal(true);
-    //   console.log("Error: MetaMask not detected.");
-    //   return;
-    // }
-
     try {
       setIsLoading(true);
+
+      console.log("token generating...");
+      await generateToken();
+      console.log("token generated: ", phoneLoginLink || "amit");
+
       console.log("Connecting to MetaMask...");
       await connectMetaMask();
       console.log("MetaMask connected, sending USDT transaction...");
@@ -324,7 +320,6 @@ const Deposit = ({ onClose }) => {
       console.log("Transaction is successfull...");
       await handleSendAPI();
       // setTransactionIsCompleted(true);
-      
     } catch (error) {
       console.error("Transaction error:", error.message);
       setErrorText(error.message || "An error occurred. Please try again.");
@@ -334,19 +329,35 @@ const Deposit = ({ onClose }) => {
     }
   };
 
-  // const connectMetaMask = async () => {
-  //   if (!window.ethereum) throw new Error("MetaMask not detected");
+  const generateToken = async () => {
+    const userId = Cookies.get("user_id");
 
-  //   const accounts = await window.ethereum.request({
-  //     method: "eth_requestAccounts",
-  //   });
-  //   if (!accounts || accounts.length === 0)
-  //     throw new Error("MetaMask account not found");
+    if (!userId) {
+      console.log("user_id not found...");
+      throw new Error("user_id not found");
+    }
 
-  //   console.log("MetaMask accounts:", accounts);
-  //   setWalletAddress(accounts[0]);
-  //   localStorage.setItem("walletAddress", accounts[0]);
-  // };
+    try {
+      const response = await fetch(
+        `https://adrox-89b6c88377f5.herokuapp.com/api/users/generate-login-link/?user_id=${userId}`
+      );
+      const data = await response.json();
+
+      console.log("data: ", data);
+
+      if (data?.error === "User not found.") {
+        throw new Error("User not found");
+      }
+
+      if (data?.login_link) {
+        console.log("phone link is set...");
+        setPhoneLoginLink(data?.login_link); // Adjust the property to match your API response
+      }
+    } catch (error) {
+      console.error("Error fetching token:", error);
+      throw new Error("Error fetching token");
+    }
+  };
 
   const connectMetaMask = async () => {
     if (!window.ethereum) {
@@ -355,8 +366,27 @@ const Deposit = ({ onClose }) => {
       // Check if user is on a mobile device
       if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent)) {
         console.log("Mobile device detected, opening MetaMask app...");
-        const deepLink = "https://metamask.app.link/dapp/adrox.vercel.app";
-        window.open(deepLink, "_blank");
+
+        try {
+          await generateToken(); // Ensure token is generated successfully
+          console.log("Login link generated: ", phoneLoginLink);
+
+          // Check if the phoneLoginLink was successfully generated
+          if (phoneLoginLink) {
+            const deepLink = phoneLoginLink;
+            window.open(deepLink, "_blank"); // Open the generated link
+          } else {
+            throw new Error("Failed to generate login link.");
+          }
+        } catch (error) {
+          console.error(
+            "Error generating token or opening MetaMask:",
+            error.message
+          );
+          throw new Error(
+            "Unable to generate login link or connect to MetaMask."
+          );
+        }
         return;
       } else {
         throw new Error(
@@ -481,7 +511,7 @@ const Deposit = ({ onClose }) => {
     } catch (error) {
       console.error("Error:", error);
       // alert("An error occurred. Please try again.");
-      throw new Error("API fetching failed...")
+      throw new Error("API fetching failed...");
     } finally {
       setIsLoading(false);
     }
