@@ -139,7 +139,6 @@ const Staking1Month = ( { onClose } ) =>
 
       style={ {
         margin: "auto",
-        maxHeight: "90vh",
         bottom: "0",
         top: "0",
       } }

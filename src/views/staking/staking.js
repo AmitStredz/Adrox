@@ -180,9 +180,9 @@ export default function Staking() {
   // };
 
   return (
-    <div className="relative overflow-hidden p-5 sm:p-10">
-      <div className="sm:p-20 flex flex-col items-center">
-        <div className={`${styles.dataStyles}`}>
+    <div className=" overflow-hidden p-5 sm:p-10">
+      <div className="sm:p-20 flex flex-col items-center z-50">
+        <div className={`z-50 ${styles.dataStyles}`}>
           <div className={styles.firstRow}>
             <div className={styles.eachRow}>
               <Heading Name={"Live Profit"} />
@@ -315,7 +315,7 @@ export default function Staking() {
             </div>
           </div>
         </div>
-        <div className="fixed left-[-30%] w-[80%] -top-40">
+        <div className="absolute left-[-30%] w-[80%] -top-40">
           <img src={ellipse}></img>
         </div>
       </div>

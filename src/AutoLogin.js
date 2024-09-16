@@ -10,7 +10,7 @@ const AutoLogin = () => {
   const token = searchParams.get("token");
 
   useEffect(() => {
-    // Extract the token from the URL
+    // Extract the token from the URL 
     console.log("Token: ", token);
 
     if (token) {
