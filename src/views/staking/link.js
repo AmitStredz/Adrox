@@ -177,10 +177,9 @@ export default function Link() {
   const handleNodeClick = (node) => {
     console.log("node clicked...", node);
 
-    if(!node){
+    if (!node) {
       console.log("not node");
       return;
-      
     }
     if (history?.length <= 0) {
       console.log("no history...");
@@ -310,6 +309,22 @@ export default function Link() {
                   </p>
                 </div>
               </div>
+                <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
+                  <div>
+                    <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
+                      ADROX Left Link
+                    </a>
+                  </div>
+                  <div className="flex gap-1">
+                    <p>CDY56KASJGB</p>
+                    <i className="ri-file-copy-line"></i>
+                  </div>
+                  <div className="flex gap-1">
+                    <i className="ri-link-m"></i>
+                    <p>https://www.adrox.com/invite....</p>
+                    <i className="ri-file-copy-line"></i>
+                  </div>
+                </div>
             </div>
             <div className="right flex flex-col gap-10">
               <div className="flex justify-center">
@@ -318,6 +333,22 @@ export default function Link() {
                   <p className="font-800 text-[40px] sm:text-[64px] text-[#AB00FF]">
                     {directCommRight}
                   </p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
+                <div>
+                  <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
+                    ADROX Right Link
+                  </a>
+                </div>
+                <div className="flex gap-1">
+                  <p>CDY56KASJGB</p>
+                  <i className="ri-file-copy-line"></i>
+                </div>
+                <div className="flex gap-1">
+                  <i className="ri-link-m"></i>
+                  <p>https://www.adrox.com/invite....</p>
+                  <i className="ri-file-copy-line"></i>
                 </div>
               </div>
             </div>
