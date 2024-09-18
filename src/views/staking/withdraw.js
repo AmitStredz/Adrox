@@ -411,8 +411,8 @@ const Withdraw = ({ onClose, holdings }) => {
           onClose();
           setShowModal(false);
         }, 2000);
-      } else {
-        alert("No response");
+      } else if(response?.data?.error == "Insufficient balance"){
+        alert("insufficient balance");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -450,7 +450,7 @@ const Withdraw = ({ onClose, holdings }) => {
             <div className="flex justify-between p-2 px-5 ">
               <p>Withdrawal Amount</p>
               <p className="bg-slate-800 p-1 px-2 rounded-lg">
-                Available Balance: {holdings} $
+                Available Balance: {parseFloat(holdings).toFixed(3)} $
               </p>
             </div>
             <div className="flex justify-between gap-[2vw] sm:gap-5 border border-slate-600 rounded-2xl p-5 sm:p-14">

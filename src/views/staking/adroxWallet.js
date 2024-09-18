@@ -16,9 +16,8 @@ export default function AdroxWallet() {
   const navigate = useNavigate();
   const [transactionType, setTransactionType] = useState("");
 
-  useEffect(() => {
-    const userId = Cookies.get("user_id");
-
+  const userId = Cookies.get("user_id");
+  const fetchAdroxWalletDetails = () => {
     if (userId) {
       fetch(
         `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/details/${userId}/`
@@ -32,7 +31,15 @@ export default function AdroxWallet() {
           console.error("Error fetching holdings data:", error);
         });
     }
+  };
+  useEffect(() => {
+    fetchAdroxWalletDetails();
   }, []);
+
+  const handledepositClose = () => {
+    fetchAdroxWalletDetails();
+    setTransactionType("");
+  };
 
   // useEffect(() => {
   //   // const storedHoldings = Cookies.get("balance");
@@ -147,7 +154,7 @@ export default function AdroxWallet() {
         <></>
       )}
       {transactionType == "deposit" ? (
-        <DepositModal onClose={() => setTransactionType("")} />
+        <DepositModal onClose={() => handledepositClose()} />
       ) : (
         <></>
       )}

@@ -36,9 +36,8 @@ export default function ProfitWallet() {
   //   }
   // }, []);
 
-  useEffect(() => {
-    const userId = Cookies.get("user_id");
-
+  const userId = Cookies.get("user_id");
+  const fetchProfitWalletDetails = () => {
     if (userId) {
       fetch(
         `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/profit-wallet/details/${userId}/`
@@ -55,8 +54,20 @@ export default function ProfitWallet() {
     } else {
       console.log("UserId not found...");
     }
+  };
+  useEffect(() => {
+    fetchProfitWalletDetails();
   }, []);
-  
+
+  const handleWithdrawalClose = () => {
+    fetchProfitWalletDetails();
+    setIsWithdrawModal(false);
+  };
+  const handleSwapClose = () => {
+    fetchProfitWalletDetails();
+    setIsSwapModal(false);
+  };
+
   useEffect(() => {
     if (swappedUsdt == "0E-8") {
       setSwappedUsdt(0);
@@ -75,7 +86,9 @@ export default function ProfitWallet() {
             </div>
             <div className="flex justify-center">
               <p className="font-800 text-[20px] sm:text-[30px] md:text-[52px]">
-                {holdings >= 0 ? `${parseFloat(holdings).toFixed(3)} ADX` : "Loading..."}
+                {holdings >= 0
+                  ? `${parseFloat(holdings).toFixed(3)} ADX`
+                  : "Loading..."}
               </p>
             </div>
           </div>
@@ -97,45 +110,50 @@ export default function ProfitWallet() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 sm:flex-row justify-between items-center sm:items-center w-full z-50">
-          <div className="flex flex-col max-sm:items-center gap-5">
-            <div>
-              <a className="p-2 px-6 bg-slate-400 bg-opacity-15 rounded-xl">
-                Swapped USDT
-              </a>
-            </div>
-            <div className="flex justify-center">
-              <p className="font-800 text-[20px] sm:text-[30px] md:text-[52px]">
-                <span className="text-font-bold">
-                  {swappedUsdt && !isNaN(swappedUsdt)
-                    ? parseFloat(swappedUsdt).toFixed(3)
-                    : 0}{" "}
-                  USDT{" "}
-                  <span className="text-slate-400 font-semibold sm:text-[40px]">(
+        {swappedUsdt > 0 && (
+          <div className="flex flex-col gap-2 sm:flex-row justify-between items-center sm:items-center w-full z-50">
+            <div className="flex flex-col max-sm:items-center gap-5">
+              <div>
+                <a className="p-2 px-6 bg-slate-400 bg-opacity-15 rounded-xl">
+                  Swapped USDT
+                </a>
+              </div>
+              <div className="flex justify-center">
+                <p className="font-800 text-[20px] sm:text-[30px] md:text-[52px]">
+                  <span className="text-font-bold">
                     {swappedUsdt && !isNaN(swappedUsdt)
-                      ? (parseFloat(swappedUsdt) * 0.05).toFixed(3)
+                      ? parseFloat(swappedUsdt).toFixed(3)
                       : 0}{" "}
-                    ADX{" "})
+                    USDT{" "}
+                    <span className="text-slate-400 font-semibold sm:text-[40px]">
+                      (
+                      {swappedUsdt && !isNaN(swappedUsdt)
+                        ? (parseFloat(swappedUsdt) * 0.05).toFixed(3)
+                        : 0}{" "}
+                      ADX )
+                    </span>
                   </span>
-                </span>
-              </p>
+                </p>
+              </div>
+            </div>
+            <div className="flex items-end justify-end lg:justify-end h-full">
+              <div
+                className="flex border border-slate-500 cursor-pointer p-1 sm:p-2 px-5 sm:px-12 rounded-xl sm:rounded-2xl items-center"
+                onClick={() => setIsWithdrawModal(true)}
+              >
+                <img src={withdrawImg} className="w-5" alt="Withdraw"></img>
+                <p>Withdraw</p>
+              </div>
             </div>
           </div>
-          <div className="flex items-end justify-end lg:justify-end h-full">
-            <div
-              className="flex border border-slate-500 cursor-pointer p-1 sm:p-2 px-5 sm:px-12 rounded-xl sm:rounded-2xl items-center"
-              onClick={() => setIsWithdrawModal(true)}
-            >
-              <img src={withdrawImg} className="w-5" alt="Withdraw"></img>
-              <p>Withdraw</p>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
 
       <div className="mt-10 z-50">
         <div className="flex justify-between md:p-10 py-3 md:px-20 lg:px-10 z-50">
-          <h1 className="font-700 text-[20px] sm:text-[40px] z-50">Swap History</h1>
+          <h1 className="font-700 text-[20px] sm:text-[40px] z-50">
+            Swap History
+          </h1>
           {/* <div className="flex items-center">
             <div className="flex border items-center rounded-3xl border-slate-600 px-3 sm:px-5 gap-1 sm:gap-2">
               <i className="ri-calendar-2-line font-100"></i>
@@ -153,9 +171,7 @@ export default function ProfitWallet() {
             <thead className="">
               <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
                 <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
-                <th className="py-2 px-2 sm:px-4 text-left">
-                  Swap Size (ADX)
-                </th>
+                <th className="py-2 px-2 sm:px-4 text-left">Swap Size (ADX)</th>
                 <th className="py-2 px-2 sm:px-4 text-left">
                   Swap Size (USDT)
                 </th>
@@ -187,12 +203,12 @@ export default function ProfitWallet() {
       </div> */}
 
       {isSwapModal && (
-        <SwapModal onClose={() => setIsSwapModal(false)} holdings={holdings} />
+        <SwapModal onClose={() => handleSwapClose()} holdings={holdings} />
       )}
       {isWithdrawModal && (
         <WithdrawModal
-          onClose={() => setIsWithdrawModal(false)}
-          holdings={holdings}
+          onClose={() => handleWithdrawalClose()}
+          holdings={swappedUsdt}
         />
       )}
 

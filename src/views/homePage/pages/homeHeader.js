@@ -27,7 +27,7 @@ export default function HomeHeader() {
     }
 
     alert("Successfully Logget Out.");
-    navigate("/");
+    navigate("/landingPage");
   };
 
   const handleReferralClick = () => {
