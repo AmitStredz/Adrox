@@ -5,14 +5,15 @@ import OtpIsValid from "./optIsValid";
 import SignupAnimation from "./signupAnimation";
 import Cookies from "js-cookie";
 
-import InvalidOtp from "./invalidOtp";
+import FailedModal from "./FailedModal";
 
 const Signup8 = ({ onNextStep }) => {
   const [phoneOtp, setPhoneOtp] = useState("");
   const [emailOtp, setEmailOtp] = useState("");
   const [otpIsValid, setOtpIsValid] = useState(true); // for invalid OTP statement
   const [otpModal, setOtpModal] = useState(false); // for valid OTP modal/popup
-  const [invalidOtpModal, setInvalidOtpModal] = useState(false); // for invalid OTP modal/popup
+  const [failedModal, setFailedModal] = useState(false); // for invalid OTP modal/popup
+  const [failedModalText, setFailedModalText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -97,32 +98,38 @@ const Signup8 = ({ onNextStep }) => {
         }
       );
 
-      if (response.data.message === "OTP verification successful.") {
+      console.log("response: ", response);
+
+      if (response?.data?.message === "OTP verification successful.") {
+        console.log("opt verified...");
+
         setOtpIsValid(true);
         setOtpModal(true);
-        setInvalidOtpModal(false);
+        // setInvalidOtpModal(false);
         setTimeout(() => {
           // navigate("/signup9");
           onNextStep();
         }, 2000);
       } else {
         setOtpIsValid(false);
-        setInvalidOtpModal(true);
+        setFailedModalText("Invalid OTPs. Please try again.");
+        setFailedModal(true);
         alert("Invalid OTPs.");
       }
     } catch (error) {
       // setOtpIsValid(true);
 
-      // setOtpIsValid(false);
-      // setInvalidOtpModal(true);
-      // console.error("Error:", error);
+      setOtpIsValid(false);
+      setFailedModalText("Invalid OTPs. Please try again.");
+      setFailedModal(true);
+      console.error("Error:", error);
 
-      setOtpIsValid(true);
-      setOtpModal(true);
-      setInvalidOtpModal(false);
-      setTimeout(() => {
-        onNextStep();
-      }, 2000);
+      // setOtpIsValid(true);
+      // setOtpModal(true);
+      // setInvalidOtpModal(false);
+      // setTimeout(() => {
+      //   onNextStep();
+      // }, 2000);
 
       // alert("Error: Invalid OTPs");
     } finally {
@@ -294,8 +301,11 @@ const Signup8 = ({ onNextStep }) => {
       </div>
       <div className="absolute top-0 left-0">{otpModal && <OtpIsValid />}</div>
       <div className="absolute top-0 left-0">
-        {invalidOtpModal && (
-          <InvalidOtp closeModal={() => setInvalidOtpModal(false)} />
+        {failedModal && (
+          <FailedModal
+            text={failedModalText}
+            closeModal={() => setFailedModal(false)}
+          />
         )}
       </div>
       <div className="bg-[#0f011a] fixed top-0 left-0 -z-10 h-screen w-screen"></div>

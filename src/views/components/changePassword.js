@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 import "../signupPage/pages/animateLogo.css";
 import SignupAnimation from "../signupPage/pages/signupAnimation";
-import SetPassword from "../signupPage/pages/setPassword";
+import SuccessModal from "../signupPage/pages/SuccessModal";
 import HomeHeader from "../homePage/pages/homeHeader";
 
 const ChangePassword = ({ onNextStep }) => {
@@ -17,6 +17,7 @@ const ChangePassword = ({ onNextStep }) => {
   const [errorText, setErrorText] = useState(false);
 
   const [passwordModal, setPasswordModal] = useState(false);
+  const [successModalText, setSuccesModalText] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
@@ -56,12 +57,11 @@ const ChangePassword = ({ onNextStep }) => {
         response &&
         response.data.message === "Password changed successfully."
       ) {
+        setSuccesModalText("Password set succeffully...");
         setPasswordModal(true);
         console.log("password set successfully.");
 
         setTimeout(() => {
-          // navigate("/signup10");
-          // onNextStep();
           setPasswordModal(false);
           navigate("/homepage");
         }, 1000);
@@ -152,7 +152,7 @@ const ChangePassword = ({ onNextStep }) => {
         <img src="/ellipse.png" alt="hello"></img>
       </div>
       <div className="absolute top-0 left-0">
-        {passwordModal && <SetPassword />}
+        {passwordModal && <SuccessModal text={successModalText} />}
       </div>
     </div>
   );

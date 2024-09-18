@@ -1,19 +1,28 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { json, useNavigate } from "react-router-dom";
-import SetPassword from "./setPassword";
 import Cookies from "js-cookie";
 
 import SignupAnimation from "./signupAnimation";
+import SuccessModal from "./SuccessModal";
+import FailedModal from "./FailedModal";
 
 const Signup9 = ({ onNextStep }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [referral, setReferral] = useState("");
+  const [referralCode, setReferralCode] = useState("");
   const [isEqual, setIsEqual] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [passwordModal, setPasswordModal] = useState(false);
   const [invalidReferral, setInvalidRefferal] = useState(false);
+  const [errorText, setErrorText] = useState("");
+
+  const [successModal, setSuccessModal] = useState(false);
+  const [successModalText, setSuccesModalText] = useState("");
+  const [failedModal, setFailedModal] = useState(false);
+  const [failedModalText, setFailedModalText] = useState("");
+
+  const [sponsorName, setSponsorName] = useState("");
+  const [sponsorCode, setSponsorCode] = useState("");
 
   const navigate = useNavigate();
 
@@ -25,12 +34,39 @@ const Signup9 = ({ onNextStep }) => {
     }
   });
 
+  useEffect(() => {
+    const sponsor_name = Cookies.get("sponsor_name");
+    const sponsor_code = Cookies.get("sponsor_code");
+    if (sponsor_name && sponsor_code) {
+      console.log("sponsor details fetched...");
+      console.log("sponsor_code", sponsor_code);
+      console.log("sponsor_name", sponsor_name);
+
+      setSponsorCode(sponsor_code);
+      setSponsorName(sponsor_name);
+      setReferralCode(sponsor_code);
+    } else {
+      console.log("sponsor not available...");
+    }
+  }, []);
+
   const handleButtonClick = async () => {
     if (isLoading) return; // Prevent multiple clicks
     setIsLoading(true);
+    setInvalidRefferal(false);
 
     const userId = Cookies.get("user_id");
 
+    if (!userId) {
+      console.log("UserId not found...");
+      setIsLoading(false);
+      return;
+    }
+    if (password == "" || confirmPassword == "") {
+      setFailedModalText("Enter valid password.");
+      setFailedModal(true);      setIsLoading(false);
+      return;
+    }
     if (password == confirmPassword) {
       try {
         const response = await fetch(
@@ -43,33 +79,32 @@ const Signup9 = ({ onNextStep }) => {
             body: JSON.stringify({
               user_id: userId,
               password: password,
-              // referral_id: referral,
             }),
           }
         );
 
         const data = await response.json();
 
-        // Check if API call was successful
         if (response.ok && data.message === "Password set successfully.") {
-          setPasswordModal(true);
           console.log("password set successfully.");
 
-          setTimeout(() => {
-            // navigate("/signup10");
-            // onNextStep();
-            setPasswordModal(false);
-          }, 1000);
-          // setInvalidRefferal(false);
+          // setTimeout(() => {
+          //   // onNextStep();
+          //   setSuccessModal(false);
+          // }, 1000);
         } else {
-          // Handle error response from the API
-          console.error(data.error); // Log the error message
+          console.error(data.error);
+          setFailedModalText("Failed to set password. Try again.");
+          setFailedModal(true);
+
           // alert("Failed to set password. Please try again."); // Show an alert to the user
           // setInvalidRefferal(true);
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("An error occurred. Please try again."); // Show an alert to the user
+        setFailedModalText("Something went wrong. Try again");
+        setFailedModal(true);
+
         return;
       } finally {
         setIsLoading(false);
@@ -79,56 +114,9 @@ const Signup9 = ({ onNextStep }) => {
       alert("Passwords do not match. Please enter matching passwords.");
       setIsLoading(false);
       return;
-    } else if (password == "" || confirmPassword == "") {
-      alert("Enter valid Password");
-      setIsLoading(false);
-      return;
     }
 
-    if (referral == Cookies.get("referral_id")) {
-      setIsLoading(true);
-      // Mock API call to set password
-      try {
-        const response = await fetch(
-          "https://adrox-89b6c88377f5.herokuapp.com/api/users/set-password/",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              user_id: userId,
-              password: password,
-              referral_id: referral,
-            }),
-          }
-        );
-
-        const data = await response.json();
-        console.log("response: ", response);
-
-        // Check if API call was successful
-        if (response.ok && data.message === "Password set successfully.") {
-          setPasswordModal(true);
-          setTimeout(() => {
-            // navigate("/signup10");
-            onNextStep();
-          }, 2000);
-          setInvalidRefferal(false);
-        } else {
-          // Handle error response from the API
-          console.error(data.error); // Log the error message
-          // alert("Failed to set password. Please try again."); // Show an alert to the user
-          setInvalidRefferal(true);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again."); // Show an alert to the user
-      } finally {
-        setIsLoading(false);
-        // setInvalidRefferal(false);
-      }
-    } else {
+    if (referralCode) {
       setIsLoading(true);
 
       try {
@@ -140,8 +128,7 @@ const Signup9 = ({ onNextStep }) => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              sponsor_referral_id: referral,
-              recruit_referral_id: Cookies.get("referral_id"),
+              sponsor_referral_id: referralCode,
               recruit_user_id: userId,
             }),
           }
@@ -151,28 +138,119 @@ const Signup9 = ({ onNextStep }) => {
 
         const data = await response.json();
 
-        // Check if API call was successful
         if (response.ok) {
-          setPasswordModal(true);
+          setSuccesModalText("Password set Successfully.");
+          setSuccessModal(true);
           setTimeout(() => {
-            // navigate("/signup10");
             onNextStep();
           }, 2000);
           setInvalidRefferal(false);
         } else {
-          // Handle error response from the API
-          console.error(data.error); // Log the error message
-          // alert("Failed to set password. Please try again."); // Show an alert to the user
+          console.error(data.error);
+          setFailedModalText("Invalid referral Code.");
+          setFailedModal(true);
+
           setInvalidRefferal(true);
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("An error occurred. Please try again."); // Show an alert to the user
+        setFailedModalText("Failed to set password. Try again.");
+        setFailedModal(true);
       } finally {
         setIsLoading(false);
-        // setInvalidRefferal(false);
       }
+    } else {
+      console.log("No referral Code found...");
     }
+
+    // if (referral == Cookies.get("referral_id")) {
+    //   setIsLoading(true);
+    //   // Mock API call to set password
+    //   try {
+    //     const response = await fetch(
+    //       "https://adrox-89b6c88377f5.herokuapp.com/api/users/set-password/",
+    //       {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //           user_id: userId,
+    //           password: password,
+    //           referral_id: referral,
+    //         }),
+    //       }
+    //     );
+
+    //     const data = await response.json();
+    //     console.log("response: ", response);
+
+    //     // Check if API call was successful
+    //     if (response.ok && data.message === "Password set successfully.") {
+    //       setPasswordModal(true);
+    //       setTimeout(() => {
+    //         // navigate("/signup10");
+    //         onNextStep();
+    //       }, 2000);
+    //       setInvalidRefferal(false);
+    //     } else {
+    //       // Handle error response from the API
+    //       console.error(data.error); // Log the error message
+    //       // alert("Failed to set password. Please try again."); // Show an alert to the user
+    //       setInvalidRefferal(true);
+    //     }
+    //   } catch (error) {
+    //     console.error("Error:", error);
+    //     alert("An error occurred. Please try again."); // Show an alert to the user
+    //   } finally {
+    //     setIsLoading(false);
+    //     // setInvalidRefferal(false);
+    //   }
+    // } else {
+    //   setIsLoading(true);
+
+    //   try {
+    //     const response = await fetch(
+    //       "https://adrox-89b6c88377f5.herokuapp.com/referrals/add-referral/",
+    //       {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //           sponsor_referral_id: referral,
+    //           recruit_referral_id: Cookies.get("referral_id"),
+    //           recruit_user_id: userId,
+    //         }),
+    //       }
+    //     );
+
+    //     console.log("response: ", response);
+
+    //     const data = await response.json();
+
+    //     // Check if API call was successful
+    //     if (response.ok) {
+    //       setPasswordModal(true);
+    //       setTimeout(() => {
+    //         // navigate("/signup10");
+    //         onNextStep();
+    //       }, 2000);
+    //       setInvalidRefferal(false);
+    //     } else {
+    //       // Handle error response from the API
+    //       console.error(data.error); // Log the error message
+    //       // alert("Failed to set password. Please try again."); // Show an alert to the user
+    //       setInvalidRefferal(true);
+    //     }
+    //   } catch (error) {
+    //     console.error("Error:", error);
+    //     alert("An error occurred. Please try again."); // Show an alert to the user
+    //   } finally {
+    //     setIsLoading(false);
+    //     // setInvalidRefferal(false);
+    //   }
+    // }
   };
 
   return (
@@ -260,31 +338,40 @@ const Signup9 = ({ onNextStep }) => {
                 Password does not match
               </p>
             </div>
-            <div className="w-full z-[1000000]">
-              <input
-                type="text"
-                required
-                value={referral}
-                placeholder="Referral Code"
-                onChange={(e) => setReferral(e.target.value)}
-                className="bg-transparent border-b-2 pb-2 outline-none w-full"
-              ></input>
-              <p
-                className={`text-red-500 text-[14px] ${
-                  invalidReferral ? "" : "hidden"
-                }`}
-              >
-                Invalid refferal id...
-              </p>
-            </div>
-            <div className="mt-[-30px]">
+            {sponsorCode && sponsorName ? (
+              <div>
+                <span className="text-green-500 border border-slate-500 rounded-xl p-2">
+                  <span className="text-slate-400">Referred by: </span>
+                  {sponsorName}
+                </span>
+              </div>
+            ) : (
+              <div className="w-full z-[1000000]">
+                <input
+                  type="text"
+                  required
+                  value={referralCode}
+                  placeholder="Referral Code"
+                  onChange={(e) => setReferralCode(e.target.value)}
+                  className="bg-transparent border-b-2 pb-2 outline-none w-full"
+                ></input>
+                <p
+                  className={`text-red-500 text-[14px] ${
+                    invalidReferral ? "" : "hidden"
+                  }`}
+                >
+                  Invalid refferal id...
+                </p>
+              </div>
+            )}
+            {/* <div className="mt-[-30px]">
               <p className="text-[12px] font-300">
                 If you don't have a referral code, please use the one below
               </p>
               <span className="text-[16px] font-500 text-[#C653FF]">
                 {Cookies.get("referral_id")}
               </span>
-            </div>
+            </div> */}
 
             <div className="text-center">
               <button
@@ -310,10 +397,17 @@ const Signup9 = ({ onNextStep }) => {
         <img src="/ellipse.png" alt="hello"></img>
       </div>
       <div className="absolute top-0 left-0">
-        {passwordModal && <SetPassword />}
+        {successModal && <SuccessModal text={successModalText} />}
+      </div>
+      <div className="absolute top-0 left-0">
+        {failedModal && (
+          <FailedModal
+            closeModal={() => setFailedModal(false)}
+            text={failedModalText}
+          />
+        )}
       </div>
       <div className="bg-[#0f011a] fixed top-0 left-0 -z-10 h-screen w-screen"></div>
-
     </div>
   );
 };

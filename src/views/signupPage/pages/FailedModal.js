@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-function InvalidOtp({ closeModal }) {
+function FailedModal({ closeModal , text}) {
   const modalRef = useRef();
   const bgModal = (e) => {
     if (modalRef.current === e.target) {
@@ -22,11 +22,11 @@ function InvalidOtp({ closeModal }) {
         </div>
         <i className="ri-close-circle-line text-7xl sm:text-8xl text-red-600"></i>
         <p className="text-center text-[14px] sm:text-[18px]">
-          Invalid OTPs. Please try again.
+          {text}
         </p>
       </div>
     </div>
   );
 }
 
-export default InvalidOtp;
+export default FailedModal;

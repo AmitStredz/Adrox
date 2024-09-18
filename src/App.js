@@ -13,6 +13,7 @@ import SignupFlow from "./views/signupPage/signupFlow";
 import Login from "./views/loginPage/login";
 import ChangePassword from "./views/components/changePassword";
 import AutoLogin from "./AutoLogin";
+import ReferralPage from "./ReferralPage";
 
 import Wallet from "./views/staking/wallet";
 import HomePage from "./views/homePage/homePage";
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/Login" element={<Login />} />
         <Route path="/changePassword" element={<ChangePassword />} />
         <Route path="/app/users/auto-login" element={<AutoLogin />} />
+        <Route path="/referral" element={<ReferralPage />} />
 
         <Route path="/homePage" element={<HomePage />} />
         <Route path="/staking1" element={<Staking1 />} />
