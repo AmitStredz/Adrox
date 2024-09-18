@@ -389,6 +389,8 @@ const Withdraw = ({ onClose, holdings }) => {
     try {
       const walletId = Cookies.get("wallet_id");
       if (!walletId) {
+        alert("wallet id not found.");
+        return;
         throw new Error("Wallet ID not found for User.");
       }
 
@@ -415,13 +417,13 @@ const Withdraw = ({ onClose, holdings }) => {
     } catch (error) {
       console.error("Error:", error);
       if (error.message === "Wallet not found") {
-        // alert("Wallet not found");
+        alert("Wallet not found");
         throw new Error("Wallet not found");
       } else if (error.message === "Insufficient balance") {
-        // alert("Insufficient balance");
+        alert("Insufficient balance");
         throw new Error("Insufficient balance");
       } else {
-        // alert("ami");
+        alert("Some error occurred");
         throw new Error("unknown error occurred");
       }
       // alert("An error occurred. Please try again.");
@@ -500,7 +502,7 @@ const Withdraw = ({ onClose, holdings }) => {
 
             <div className="flex justify-between">
               <p>Total Withdrawal Amount</p>
-            <p>{amount - -0.0005} USDT</p>
+              <p>{amount - -0.0005} USDT</p>
             </div>
           </div>
 
@@ -509,7 +511,7 @@ const Withdraw = ({ onClose, holdings }) => {
               className={`p-2 px-14 sm:px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
                 isLoading ? "cursor-not-allowed" : ""
               }`}
-              onClick={handleButtonClick}
+              onClick={handleWithdraw}
               disabled={isLoading} // Disable button when loading
             >
               {isLoading ? "Withdrawing..." : "Withdraw"}

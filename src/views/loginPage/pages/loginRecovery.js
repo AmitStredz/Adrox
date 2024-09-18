@@ -51,6 +51,7 @@ export default function Login1() {
       Cookies.set("email", responseData.email);
       Cookies.set("mobile_number", responseData.mobile_number);
       Cookies.set("referral_id", responseData.referral_id);
+      Cookies.set("wallet_id", responseData.wallet_id);
 
       if (response.ok) {
         setShowValidPopup(true);

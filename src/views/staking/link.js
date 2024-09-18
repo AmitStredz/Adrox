@@ -343,7 +343,7 @@ export default function Link() {
                   </a>
                 </div>
                 <div className="flex gap-1 px-3">
-                  <p>{leftReferralLink.slice(-8) || "referral_id"}</p>
+                  <p>{leftReferralLink.slice(-10) || "referral_id"}</p>
                   <i
                     className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
                     onClick={() =>
@@ -384,7 +384,7 @@ export default function Link() {
                   </a>
                 </div>
                 <div className="flex gap-1 px-3">
-                  <p>{RightReferralLink.slice(-8) || "referral_id"}</p>
+                  <p>{RightReferralLink.slice(-10) || "referral_id"}</p>
                   <i
                     className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
                     onClick={() =>

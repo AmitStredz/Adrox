@@ -278,22 +278,22 @@ const Deposit = ({ onClose }) => {
   const [errorText, setErrorText] = useState("");
   const [isErrorModal, setIsErrorModal] = useState(false);
   const [phoneLoginLink, setPhoneLoginLink] = useState("");
-  // const [token, SetToken] = useState("");
-
-  // useEffect(() => {
-  //   const storedWalletId = localStorage.getItem("wallet_id");
-  //   if (storedWalletId) {
-  //     setWalletId(storedWalletId);
-  //   }
-  // }, []);
+  const [walletId, setWalletId] = useState("");
 
   useEffect(() => {
-    const storedAddress = localStorage.getItem("walletAddress");
-    if (storedAddress) {
-      console.log("Wallet address retrieved from localStorage:", storedAddress);
-      setWalletAddress(storedAddress);
+    const storedWalletId = Cookies.get("wallet_id");
+    if (storedWalletId) {
+      setWalletId(storedWalletId);
     }
   }, []);
+
+  // useEffect(() => {
+  //   const storedAddress = localStorage.getItem("walletAddress");
+  //   if (storedAddress) {
+  //     console.log("Wallet address retrieved from localStorage:", storedAddress);
+  //     setWalletAddress(storedAddress);
+  //   }
+  // }, []);
 
   useEffect(() => {
     // Check transaction status when transactionHash changes
@@ -302,6 +302,45 @@ const Deposit = ({ onClose }) => {
       verifyTransactionStatus();
     }
   }, [transactionHash]);
+
+  
+  const handleDeposit = async () => {
+    setIsLoading(true);
+
+    if (dollarValue < 20) {
+      alert("Minimum Deposit Amount: 20$");
+      setIsLoading(false);
+      return;
+    }
+    try {
+      const response = await axios.post(
+        "https://adrox-89b6c88377f5.herokuapp.com/api/wallet/deposit/",
+        {
+          wallet_id: walletId,
+          amount: dollarValue,
+        }
+      );
+
+      // console.log("Amount: ", amount);
+      Cookies.set("balance", response.data.balance);
+
+      if (response.status === 200) {
+        setShowModal(true);
+        setTimeout(() => {
+          setShowModal(false);
+          onClose();
+          // navigate("/wallet");
+        }, 2000);
+      } else {
+        alert("No response");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleButtonClick = async () => {
     console.log("Button clicked - attempting transaction...");
@@ -551,7 +590,7 @@ const Deposit = ({ onClose }) => {
             className={`p-2 px-14 sm:px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
               isLoading ? "cursor-not-allowed" : ""
             }`}
-            onClick={handleButtonClick}
+            onClick={handleDeposit}
             disabled={isLoading} // Disable button when loading
           >
             {isLoading ? "Depositing..." : "Deposit"}
