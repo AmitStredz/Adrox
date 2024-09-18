@@ -35,12 +35,12 @@ export default function Link() {
     const right_link = Cookies.get("right_referral_link");
 
     if (left_link) {
-      console.log("left got");
-      
+      console.log("left got from cookie");
+
       setLeftReferralLink(left_link);
     }
     if (right_link) {
-      console.log("right got");
+      console.log("right got from cookie");
       setRightReferralLink(right_link);
     }
   }, []);
@@ -125,6 +125,9 @@ export default function Link() {
         setTotReferralComm(response?.data?.direct_commission_usdt);
         setDirectCommLeft(response?.data?.direct_commission_usdt_left);
         setDirectCommRight(response?.data?.direct_commission_usdt_right);
+
+        setLeftReferralLink(response?.data?.left_referral_link);
+        setRightReferralLink(response?.data?.right_referral_link);
       }
     } catch (error) {
       console.error("Error fetching referral tree:", error);
