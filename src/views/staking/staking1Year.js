@@ -12,7 +12,7 @@ const Staking1Year = ({ onClose }) => {
   //   }, []);
 
   const [usdt, setUsdt] = useState(150); // Initial value of USDT
-  const [adx, setAdx] = useState(150 * 20.83); // Initial value of ADX based on conversion ratio
+  const [adx, setAdx] = useState(150 * 20); // Initial value of ADX based on conversion ratio
   const [stakeDate, setStakeDate] = useState(new Date());
   const [rewardDate, setRewardDate] = useState(
     new Date(new Date().setMonth(new Date().getMonth() + 12))
@@ -107,7 +107,7 @@ const Staking1Year = ({ onClose }) => {
   const handleUsdtChange = (e) => {
     const value = parseFloat(e.target.value) || 0;
     setUsdt(value);
-    setAdx(value * 20.83); // Update ADX based on the conversion ratio
+    setAdx(value * 20); // Update ADX based on the conversion ratio
   };
 
   const formatDateToIST = (date) => {
@@ -152,7 +152,7 @@ const Staking1Year = ({ onClose }) => {
             ></i>
           </div>
           <div>
-            <h1 className="text-[48px] font-700">Stake USDT</h1>
+            <h1 className="text-[48px] font-700">Lend USDT</h1>
             <a className="text-[20px] font-300 bg-slate-600 bg-opacity-20 p-1 px-3 rounded-xl">
               1 Year Plan
             </a>
@@ -203,7 +203,7 @@ const Staking1Year = ({ onClose }) => {
           <div className="font-300 text-[16px] gap-3 flex flex-col">
             <div className="flex justify-between">
               <p>Conversion Ratio</p>
-              <p>1 USDT : 20.83 ADX</p>
+              <p>1 USDT : 20 ADX</p>
             </div>
             <div className="flex justify-between">
               <p>APY</p>
@@ -211,7 +211,7 @@ const Staking1Year = ({ onClose }) => {
             </div>
             <div className="flex justify-between">
               <p>Projected Monthly Reward</p>
-              <p>{((usdt * 20.83 * 0.365) / 12).toFixed(2)} ADX</p>
+              <p>{((usdt * 20 * 0.365) / 12).toFixed(2)} ADX</p>
             </div>
           </div>
 
@@ -223,7 +223,7 @@ const Staking1Year = ({ onClose }) => {
               <img src={stroke} alt="stroke effect" />
             </div>
             <div className="flex justify-between">
-              <p>Stake Date</p>
+              <p>Lend Date</p>
               <p>{formatDateToIST(stakeDate)}</p>
             </div>
             <div className="flex justify-between">
@@ -237,13 +237,13 @@ const Staking1Year = ({ onClose }) => {
               className="p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
               onClick={handleButtonClick}
             >
-              Stake
+              Lend
             </a>
           </div>
         </div>
       </div>
 
-      {successModal && <SuccessModal message="Staking Successfull" />}
+      {successModal && <SuccessModal message="Lend Successfull" />}
     </div>
 
     //   <div className="absolute right-0 top-[25rem]">

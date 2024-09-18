@@ -326,9 +326,9 @@ export default function Link() {
               />
             </div>
           </div>
-          <div className="lower flex justify-between text-center">
+          <div className="lower flex justify-between text-center sm:px-5">
             <div className="left flex flex-col gap-10 ">
-              <div className="flex justify-center">
+              <div className="flex justify-center w-full">
                 <div className="flex flex-col gap-3 p-3 sm:px-10 bg-slate-600 bg-opacity-15 rounded-2xl">
                   <p className="font-400 text-[20px] sm:text-[24px]">Left</p>
                   <p className="font-800 text-[40px] sm:text-[64px] text-[#AB00FF] text-sha">
@@ -336,18 +336,18 @@ export default function Link() {
                   </p>
                 </div>
               </div>
-              <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
+              {/* <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
                 <div>
                   <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
                     ADROX Left Link
                   </a>
                 </div>
                 <div className="flex gap-1 px-3">
-                  <p>{leftReferralLink.slice(-10) || "referral_id"}</p>
+                  <p>{leftReferralLink?.slice(-10) || "referral_id"}</p>
                   <i
                     className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
                     onClick={() =>
-                      handleCopyToClipboard(leftReferralLink.slice(-8))
+                      handleCopyToClipboard(leftReferralLink?.slice(-8))
                     }
                   ></i>
                 </div>
@@ -359,14 +359,14 @@ export default function Link() {
                       window.open(leftReferralLink, "_blank");
                     }}
                   >
-                    {leftReferralLink.slice(0, 33) + "..." || "referral link"}
+                    {leftReferralLink?.slice(0, 33) + "..." || "referral link"}
                   </p>
                   <i
                     className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
                     onClick={() => handleCopyToClipboard(leftReferralLink)}
                   ></i>{" "}
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="right flex flex-col gap-10">
               <div className="flex justify-center">
@@ -377,18 +377,18 @@ export default function Link() {
                   </p>
                 </div>
               </div>
-              <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
+              {/* <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
                 <div>
                   <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
                     ADROX Right Link
                   </a>
                 </div>
                 <div className="flex gap-1 px-3">
-                  <p>{RightReferralLink.slice(-10) || "referral_id"}</p>
+                  <p>{RightReferralLink?.slice(-10) || "referral_id"}</p>
                   <i
                     className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
                     onClick={() =>
-                      handleCopyToClipboard(RightReferralLink.slice(-8))
+                      handleCopyToClipboard(RightReferralLink?.slice(-8))
                     }
                   ></i>
                 </div>
@@ -400,13 +400,78 @@ export default function Link() {
                       window.open(leftReferralLink, "_blank");
                     }}
                   >
-                    {RightReferralLink.slice(0, 33) + "..." || "referral link"}
+                    {RightReferralLink?.slice(0, 33) + "..." || "referral link"}
                   </p>
                   <i
                     className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
                     onClick={() => handleCopyToClipboard(RightReferralLink)}
                   ></i>{" "}
                 </div>
+              </div> */}
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 justify-between mt-5">
+            <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
+              <div>
+                <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
+                  ADROX Left Link
+                </a>
+              </div>
+              <div className="flex gap-1 px-3">
+                <p>{leftReferralLink?.slice(-10) || "referral_id"}</p>
+                <i
+                  className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
+                  onClick={() =>
+                    handleCopyToClipboard(leftReferralLink?.slice(-8))
+                  }
+                ></i>
+              </div>
+              <div className="flex gap-1">
+                <i className="ri-link-m"></i>
+                <p
+                  className="hover:underline cursor-pointer hover:text-slate-400"
+                  onClick={() => {
+                    window.open(leftReferralLink, "_blank");
+                  }}
+                >
+                  {leftReferralLink?.slice(0, 33) + "..." || "referral link"}
+                </p>
+                <i
+                  className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
+                  onClick={() => handleCopyToClipboard(leftReferralLink)}
+                ></i>{" "}
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
+              <div>
+                <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
+                  ADROX Right Link
+                </a>
+              </div>
+              <div className="flex gap-1 px-3">
+                <p>{RightReferralLink?.slice(-10) || "referral_id"}</p>
+                <i
+                  className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
+                  onClick={() =>
+                    handleCopyToClipboard(RightReferralLink?.slice(-8))
+                  }
+                ></i>
+              </div>
+              <div className="flex gap-1">
+                <i className="ri-link-m"></i>
+                <p
+                  className="hover:underline cursor-pointer hover:text-slate-400"
+                  onClick={() => {
+                    window.open(leftReferralLink, "_blank");
+                  }}
+                >
+                  {RightReferralLink?.slice(0, 33) + "..." || "referral link"}
+                </p>
+                <i
+                  className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
+                  onClick={() => handleCopyToClipboard(RightReferralLink)}
+                ></i>{" "}
               </div>
             </div>
           </div>
