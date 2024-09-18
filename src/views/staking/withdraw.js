@@ -493,14 +493,14 @@ const Withdraw = ({ onClose, holdings }) => {
             </div>
             <div className="flex justify-between">
               <p>Withdrawal Transfer fees</p>
-              <p>0.0005 BTC</p>
+              <p>0.0005 USDT</p>
             </div>
 
             <div className="w-full h-[1px] bg-opacity-45 bg-white"></div>
 
             <div className="flex justify-between">
               <p>Total Withdrawal Amount</p>
-              <p>{amount - -0.0005} BTC</p>
+            <p>{amount - -0.0005} USDT</p>
             </div>
           </div>
 

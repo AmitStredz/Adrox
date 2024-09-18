@@ -154,10 +154,10 @@ export default function ProfitWallet() {
               <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
                 <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
                 <th className="py-2 px-2 sm:px-4 text-left">
-                  Staking Size (ADX)
+                  Swap Size (ADX)
                 </th>
                 <th className="py-2 px-2 sm:px-4 text-left">
-                  Staking Size (USDT)
+                  Swap Size (USDT)
                 </th>
                 <th className="py-2 px-2 sm:px-4 text-left">
                   Daily Reward (ADX)

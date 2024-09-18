@@ -345,10 +345,10 @@ export default function Staking() {
               <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
                 <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
                 <th className="py-2 px-2 sm:px-4 text-left">
-                  Staking Size (ADX)
+                  Lending Size (ADX)
                 </th>
                 <th className="py-2 px-2 sm:px-4 text-left">
-                  Staking Size (USDT)
+                  Lending Size (USDT)
                 </th>
                 <th className="py-2 px-2 sm:px-4 text-left">
                   Daily Reward (ADX)
