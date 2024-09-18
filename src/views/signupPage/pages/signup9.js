@@ -160,6 +160,7 @@ const Signup9 = ({ onNextStep }) => {
         setIsLoading(false);
       }
     } else {
+      setInvalidRefferal(true);
       console.log("No referral Code found...");
     }
 

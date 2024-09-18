@@ -74,7 +74,7 @@ export default function Account({ closeModal }) {
                 </div>
               </div>
             </div>
-            <div className="bottom flex flex-col gap-3 max-md:items-center">
+            {/* <div className="bottom flex flex-col gap-3 max-md:items-center">
               <div className="w-full flex gap-2 items-center max-md:text-center">
                 <a className="p-1 px-3 rounded-lg bg-slate-600 bg-opacity-20">
                   Referral id
@@ -90,7 +90,7 @@ export default function Account({ closeModal }) {
                   {clipBoard}
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="right flex flex-col gap-20 max-md:items-center">

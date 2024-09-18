@@ -11,6 +11,7 @@ import CopiedModal from "../signupPage/pages/copiedModal";
 
 import Cookies from "js-cookie";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Link() {
   // const [newTree, setNewTree] = useState([]);
@@ -25,8 +26,29 @@ export default function Link() {
   const [directCommRight, setDirectCommRight] = useState("");
   const [history, setHistory] = useState([]);
 
-  const handleCopyToClipboard = () => {
-    navigator.clipboard.writeText(Cookies.get("referral_id")).then(
+  const [leftReferralLink, setLeftReferralLink] = useState("");
+  const [RightReferralLink, setRightReferralLink] = useState("");
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    const left_link = Cookies.get("left_referral_link");
+    const right_link = Cookies.get("right_referral_link");
+
+    if (left_link) {
+      console.log("left got");
+      
+      setLeftReferralLink(left_link);
+    }
+    if (right_link) {
+      console.log("right got");
+      setRightReferralLink(right_link);
+    }
+  }, []);
+
+  const handleCopyToClipboard = (e) => {
+    console.log("copy: ", e);
+
+    navigator.clipboard.writeText(e).then(
       setShowModal(true),
       setClipBoard("Copied..."),
       setTimeout(() => {
@@ -248,7 +270,7 @@ export default function Link() {
     <div className="flex flex-col justify-center items-center">
       <div className="w-[90vw] lg:w-8/12 z-50">
         <div className="flex flex-col sm:flex-row gap-3 sm:px-10 sm:p-5 justify-between">
-          <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
+          {/* <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
             <div>
               <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
                 ADROX Friend Code
@@ -258,10 +280,12 @@ export default function Link() {
               <p>{Cookies.get("referral_id") || "referral_id"}</p>
               <i
                 className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
-                onClick={() => handleCopyToClipboard()}
+                onClick={() =>
+                  handleCopyToClipboard(Cookies.get("referral_id"))
+                }
               ></i>
             </div>
-          </div>
+          </div> */}
           <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
             <div>
               <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
@@ -309,22 +333,37 @@ export default function Link() {
                   </p>
                 </div>
               </div>
-                <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
-                  <div>
-                    <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
-                      ADROX Left Link
-                    </a>
-                  </div>
-                  <div className="flex gap-1">
-                    <p>CDY56KASJGB</p>
-                    <i className="ri-file-copy-line"></i>
-                  </div>
-                  <div className="flex gap-1">
-                    <i className="ri-link-m"></i>
-                    <p>https://www.adrox.com/invite....</p>
-                    <i className="ri-file-copy-line"></i>
-                  </div>
+              <div className="flex flex-col gap-3 p-7 border border-slate-600 rounded-xl">
+                <div>
+                  <a className="p-2 px-4 font-700 bg-slate-600 bg-opacity-15 rounded-lg">
+                    ADROX Left Link
+                  </a>
                 </div>
+                <div className="flex gap-1 px-3">
+                  <p>{leftReferralLink.slice(-8) || "referral_id"}</p>
+                  <i
+                    className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
+                    onClick={() =>
+                      handleCopyToClipboard(leftReferralLink.slice(-8))
+                    }
+                  ></i>
+                </div>
+                <div className="flex gap-1">
+                  <i className="ri-link-m"></i>
+                  <p
+                    className="hover:underline cursor-pointer hover:text-slate-400"
+                    onClick={() => {
+                      window.open(leftReferralLink, "_blank");
+                    }}
+                  >
+                    {leftReferralLink.slice(0, 33) + "..." || "referral link"}
+                  </p>
+                  <i
+                    className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
+                    onClick={() => handleCopyToClipboard(leftReferralLink)}
+                  ></i>{" "}
+                </div>
+              </div>
             </div>
             <div className="right flex flex-col gap-10">
               <div className="flex justify-center">
@@ -341,14 +380,29 @@ export default function Link() {
                     ADROX Right Link
                   </a>
                 </div>
-                <div className="flex gap-1">
-                  <p>CDY56KASJGB</p>
-                  <i className="ri-file-copy-line"></i>
+                <div className="flex gap-1 px-3">
+                  <p>{RightReferralLink.slice(-8) || "referral_id"}</p>
+                  <i
+                    className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
+                    onClick={() =>
+                      handleCopyToClipboard(RightReferralLink.slice(-8))
+                    }
+                  ></i>
                 </div>
                 <div className="flex gap-1">
                   <i className="ri-link-m"></i>
-                  <p>https://www.adrox.com/invite....</p>
-                  <i className="ri-file-copy-line"></i>
+                  <p
+                    className="hover:underline cursor-pointer hover:text-slate-400"
+                    onClick={() => {
+                      window.open(leftReferralLink, "_blank");
+                    }}
+                  >
+                    {RightReferralLink.slice(0, 33) + "..." || "referral link"}
+                  </p>
+                  <i
+                    className="ri-file-copy-line cursor-pointer hover:scale-110 hover:text-green-500 transition-all"
+                    onClick={() => handleCopyToClipboard(RightReferralLink)}
+                  ></i>{" "}
                 </div>
               </div>
             </div>
@@ -372,7 +426,7 @@ export default function Link() {
         {showModal && (
           <CopiedModal
             closeModal={() => setShowModal(false)}
-            text="Refferal id Copied to clipboard"
+            text="Copied to Clipboard."
           />
         )}
       </div>
@@ -400,6 +454,8 @@ const TreeNode = ({ node, setUser }) => {
             `https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy-live-profit-from-user/${userID}`
           );
           const responseData = await response.json();
+          console.log("responseData: ", responseData);
+
           setFirstLevelBComm(responseData?.binary_commission);
           // console.log("parentId: ", parentId);
         } catch (error) {

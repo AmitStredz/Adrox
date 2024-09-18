@@ -58,11 +58,12 @@ const Signup7 = ({ onNextStep }) => {
       Cookies.set("referral_id", response.data.referral_id, {
         expires: new Date("2050-01-01"),
       });
-      Cookies.set("wallet_id", response.data.wallet_id);
+      Cookies.set("wallet_id", response?.data.wallet_id);
+      Cookies.set("balance", 0);
 
-      Cookies.set("balance", 0);      
+      Cookies.set("left_referral_link", response?.data?.left_referral_link);
+      Cookies.set("right_referral_link", response?.data?.right_referral_link);
       onNextStep();
-
     } catch (error) {
       console.error("There was an error!", error);
       alert("Error: " + (error.response?.data || error.message));
@@ -73,7 +74,6 @@ const Signup7 = ({ onNextStep }) => {
 
   return (
     <div className="flex   bg-[#0f011a] h-screen text-white font-nunito p-5 sm:p-14 lg:p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
-     
       <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">
         <div className="text-center z-50 max-lg:-left-40">
           <h1 className="font-700 text-[48px] text-[#C653FF] max-sm:leading-11">
@@ -83,9 +83,8 @@ const Signup7 = ({ onNextStep }) => {
             Just A Couple Of Clicks And We Start
           </p>
         </div>
-        <div>
-        </div>
-          <SignupAnimation></SignupAnimation>
+        <div></div>
+        <SignupAnimation></SignupAnimation>
       </div>
 
       {/* Signup7 is this */}
@@ -151,7 +150,6 @@ const Signup7 = ({ onNextStep }) => {
       <div className="absolute w-[80%] bottom-[-50%] left-[-40%] z-10 ">
         <img src="/ellipse.png" alt="hello"></img>
       </div>
-
     </div>
   );
 };

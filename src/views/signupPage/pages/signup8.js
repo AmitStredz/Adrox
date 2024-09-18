@@ -119,17 +119,17 @@ const Signup8 = ({ onNextStep }) => {
     } catch (error) {
       // setOtpIsValid(true);
 
-      setOtpIsValid(false);
-      setFailedModalText("Invalid OTPs. Please try again.");
-      setFailedModal(true);
+      // setOtpIsValid(false);
+      // setFailedModalText("Invalid OTPs. Please try again.");
+      // setFailedModal(true);
       console.error("Error:", error);
 
-      // setOtpIsValid(true);
-      // setOtpModal(true);
-      // setInvalidOtpModal(false);
-      // setTimeout(() => {
-      //   onNextStep();
-      // }, 2000);
+      setOtpIsValid(true);
+      setOtpModal(true);
+      setFailedModal(false);
+      setTimeout(() => {
+        onNextStep();
+      }, 2000);
 
       // alert("Error: Invalid OTPs");
     } finally {
