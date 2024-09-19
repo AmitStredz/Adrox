@@ -1,21 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import img1 from "../assets/adrox-logo.png";
 import adam from "../assets/adam.png";
-import { useNavigate } from "react-router-dom";
 import { FaRegCopy, FaUserPlus, FaWallet } from "react-icons/fa";
 import { LuUser2, LuWallet2 } from "react-icons/lu";
 import { FiLogOut, FiRepeat } from "react-icons/fi";
 import { HiOutlineDownload } from "react-icons/hi";
 import { GiWallet } from "react-icons/gi";
-import Cookies from "js-cookie";
 import DownloadPopup from "../../components/downloadPopup";
+import { useAuth } from "../../customHook/AuthProvider";
 
-export default function HomeHeader({onLogout}) {
+export default function HomeHeader({ onLogout }) {
   const [showMenu, setShowMenu] = useState(false);
   const [downloadPopup, setDownloadPopup] = useState(false);
-
+  const { logout } = useAuth();
   const navigate = useNavigate();
+
+
   const handleLogout = () => {
     const cookies = document.cookie.split(";");
 
@@ -29,8 +32,10 @@ export default function HomeHeader({onLogout}) {
     alert("Successfully Logget Out.");
     console.log("logout triggered in homeheader...");
 
-    onLogout();
-    // navigate("/");
+    sessionStorage.clear();
+    // onLogout();
+    logout();
+    navigate("/");
   };
 
   const handleReferralClick = () => {

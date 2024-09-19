@@ -83,7 +83,7 @@ const ChangePassword = ({ onNextStep }) => {
   return (
     <div className="bg-[#0f011a] h-screen text-white font-nunito p-5 sm:p-14 lg:p-24 justify-evenly gap-10 relative overflow-hidden max-md:flex-col">
       <div className="top-0 fixed left-0 z-[100000]">
-        <HomeHeader></HomeHeader>
+        <HomeHeader/>
       </div>
       <div className="relative flex justify-evenly">
         <div className="w-full md:w-[40%] items-center z-50 max-lg:flex justify-center">

@@ -10,9 +10,14 @@ import StarAnimation from "../landingPage/pages/starAnimation";
 import { Helmet } from "react-helmet";
 
 export default function homePage({onLogout}) {
+  const handleLogout = () => {
+    console.log("logout triggered in homepage...");
+
+    onLogout();
+  };
   return (
     <div className="bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden relative">
-      <HomeHeader onLogout={onLogout}></HomeHeader>
+      <HomeHeader onLogout={handleLogout}></HomeHeader>
       <Page1></Page1>
       <Page3></Page3>
       <Page2></Page2>

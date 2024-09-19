@@ -3,10 +3,15 @@ import logo from "./assets/adrox-logo2.png";
 import LoginPhrase from "./pages/loginRecovery";
 import LoginEmail from "./pages/loginEmail";
 import LoginPhone from "./pages/loginPhone";
+import { useAuth } from "../customHook/AuthProvider";
 
-export default function Login({onLoginSuccess}) {
+export default function Login({ onLoginSuccess }) {
   const [loginType, setLoginType] = useState("loginPhrase");
+  const { login } = useAuth();
 
+  const handleLogin = () => {
+    login();
+  };
   return (
     <div className="flex bg-[#0f011a] w-full h-full text-white font-nunito p-5 sm:p-10 justify-center overflow-hidden relative">
       <div className="flex justify-center w-full h-screen">
@@ -16,9 +21,17 @@ export default function Login({onLoginSuccess}) {
             <h1 className="font-700 text-[40px] sm:text-[48px]">Log in</h1>
           </div>
 
-          {loginType === "loginPhrase" ? <LoginPhrase onLoginSuccess={onLoginSuccess}/> : <></>}
+          {loginType === "loginPhrase" ? (
+            <LoginPhrase onLoginSuccess={() => handleLogin()} />
+          ) : (
+            <></>
+          )}
 
-          <div className={`text-center gap-5 flex flex-col z-50 mb-5 w-full ${(loginType == "loginPhrase")? "" : "mt-10"}`}>
+          <div
+            className={`text-center gap-5 flex flex-col z-50 mb-5 w-full ${
+              loginType == "loginPhrase" ? "" : "mt-10"
+            }`}
+          >
             <h1 className="font-100 max-sm:hidden">
               ---------------
               <span className="font-400">Alternative login methods</span>
@@ -33,14 +46,22 @@ export default function Login({onLoginSuccess}) {
 
           <div className="flex max-sm:flex-col items-center gap-5 text-center justify-evenly  w-full z-50">
             <div
-              className={`flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer ${(loginType == "loginEmail")? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]" : ""}`}
+              className={`flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer ${
+                loginType == "loginEmail"
+                  ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
+                  : ""
+              }`}
               onClick={() => setLoginType("loginEmail")}
             >
               <i className="ri-mail-line"></i>
               <p>Email</p>
             </div>
             <div
-              className={`flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer ${(loginType == "loginPhone")? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]" : ""}`}
+              className={`flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer ${
+                loginType == "loginPhone"
+                  ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
+                  : ""
+              }`}
               onClick={() => setLoginType("loginPhone")}
             >
               <i className="ri-smartphone-line"></i>
