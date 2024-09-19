@@ -43,9 +43,18 @@ export default function Staking() {
           const response = await fetch(
             `https://adrox-89b6c88377f5.herokuapp.com/api/staking/live-profit/${userID}`
           );
+          console.log(response);
+
           const responseData = await response.json();
-          setData(responseData);
-          console.log("response:", responseData);
+          console.log("responseData:", responseData);
+          if (responseData?.error == "No active stake found for this user.") {
+            console.log("no data...");
+
+            setData("No active stake found for this user.");
+            return;
+          } else {
+            setData(responseData);
+          }
 
           const {
             days_completed,
@@ -122,7 +131,7 @@ export default function Staking() {
 
       historyData?.map((val) => {
         // console.log("ex: ", val.date_time.split(' ')[0]);
-        if (val.date_time.split(' ')[0] == todaysDate) {
+        if (val.date_time.split(" ")[0] == todaysDate) {
           setTodayProfit(val.daily_reward_adrx);
         }
       });
@@ -179,6 +188,11 @@ export default function Staking() {
   //   return `${hours}:${minutes}`;
   // };
 
+  if(data == "No active stake found for this user."){
+    return <div className="px-5 sm:px-20 sm:text-[30px] font-sans -mt-12">
+      No active stake found for this user.
+    </div>
+  }
   return (
     <div className=" overflow-hidden p-5 sm:p-10">
       <div className="sm:p-20 flex flex-col items-center z-50">
@@ -198,7 +212,9 @@ export default function Staking() {
             </div>
             <div className={styles.eachRow}>
               <Heading Name={"Total Value Locked"} />
-              <span className={`${styles.heading}`}>{data?.total_staked_adrx || 0}</span>
+              <span className={`${styles.heading}`}>
+                {data?.total_staked_adrx || 0}
+              </span>
             </div>
             <div className={styles.eachRow}>
               <Heading Name={"Today's Profit"} />
@@ -315,9 +331,10 @@ export default function Staking() {
             </div>
           </div>
         </div>
-        <div className="absolute left-[-30%] w-[80%] -top-40">
-          <img src={ellipse}></img>
-        </div>
+      </div>
+
+      <div className="absolute left-[-30%] w-[80%] -top-40">
+        <img src={ellipse}></img>
       </div>
 
       {/* Page2 */}

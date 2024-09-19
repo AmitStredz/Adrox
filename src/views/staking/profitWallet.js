@@ -44,6 +44,12 @@ export default function ProfitWallet() {
       )
         .then((response) => response.json())
         .then((data) => {
+          if (data?.detail == "Not found.") {
+            console.log("data not found...");
+            setHoldings(0);
+            setSwappedUsdt(0);
+            return;
+          }
           setHoldings(data?.unswapped_adrx);
           setSwappedUsdt(data?.swapped_usdt);
           console.log("response: ", data);

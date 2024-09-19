@@ -18,7 +18,7 @@ export default function Footer() {
           <h1 className="font-600 text-[14px] sm:text-[20px]">Products</h1>
           <ul>Trading Bot</ul>
           <ul>Lending</ul>
-          <ul>Minig</ul>
+          <ul>Mining</ul>
           <ul>Converter</ul>
           <ul>ADROX Earn</ul>
           <ul>ADROX Learn</ul>

@@ -206,7 +206,7 @@ export default function Staking() {
               <div className="flex flex-col gap-8">
                 <div className="flex gap-5 justify-between">
                   <div className="bg-slate-600 bg-opacity-20 p-3 rounded-lg">
-                    <h1 className="text-[24px] font-700">1 Year Plan</h1>
+                    <h1 className="text-[24px] font-700">12 Months Plan</h1>
                   </div>
                   <div className="text-[16px] font-100 flex flex-col justify-between">
                     <p>
@@ -247,6 +247,7 @@ export default function Staking() {
           </div>
         </div>
       </div>
+      
 
       <div className="absolute right-[-30%] w-[80%] top-[20rem]">
         <img src={ellipse}></img>

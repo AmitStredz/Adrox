@@ -148,7 +148,7 @@ export default function Link() {
     if (cookieId) {
       setUserID(cookieId);
     } else {
-      window.location.href = "/landingPage";
+      window.location.href = "/";
     }
   }, []);
 

@@ -156,9 +156,9 @@ const Staking1Year = ({ onClose }) => {
             ></i>
           </div>
           <div>
-            <h1 className="text-[48px] font-700">Lend USDT</h1>
+            <h1 className="text-[48px] font-700">LEND USDT</h1>
             <a className="text-[20px] font-300 bg-slate-600 bg-opacity-20 p-1 px-3 rounded-xl">
-              1 Year Plan
+              12 Months Plan
             </a>
           </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import HomeHeader from "../homePage/pages/homeHeader";
 import Staking from "./staking";
 import Link from "./link";
+import Footer from "../homePage/pages/footer";
 
 export default function Staking2() {
   const [activeComponent, setactiveComponent] = useState(
@@ -48,6 +49,7 @@ export default function Staking2() {
         {activeComponent === "Staking" && <Staking />}
         {activeComponent === "link" && <Link />}
       </div>
+      <Footer></Footer>
     </div>
   );
 }
