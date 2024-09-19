@@ -105,9 +105,14 @@ const Staking3Month = ({ onClose }) => {
   };
 
   const handleUsdtChange = (e) => {
-    const value = parseFloat(e.target.value) || 0;
-    setUsdt(value);
-    setAdx(value * 20); // Update ADX based on the conversion ratio
+    const value = parseFloat(e.target.value);
+    if (value < 0) {
+      setUsdt(0);
+      setAdx(0); // Update ADX based on the conversion ratio
+    } else {
+      setUsdt(value);
+      setAdx(value * 20 || 0); // Update ADX based on the conversion ratio
+    }
   };
 
   const formatDateToIST = (date) => {
@@ -152,7 +157,7 @@ const Staking3Month = ({ onClose }) => {
             ></i>
           </div>
           <div>
-            <h1 className="text-[48px] font-700">Lend USDT</h1>
+            <h1 className="text-[48px] font-700">LEND USDT</h1>
             <a className="text-[20px] font-300 bg-slate-600 bg-opacity-20 p-1 px-3 rounded-xl">
               3 Month Plan
             </a>
@@ -164,6 +169,7 @@ const Staking3Month = ({ onClose }) => {
                 type="number"
                 value={usdt}
                 onChange={handleUsdtChange}
+                placeholder="0"
                 className="bg-transparent outline-none w-full text-left"
                 style={{ appearance: "textfield" }}
               />
@@ -207,12 +213,12 @@ const Staking3Month = ({ onClose }) => {
             </div>
             <div className="flex justify-between">
               <p>APY</p>
-              <p>36.5%</p>
+              <p>75%</p>
             </div>
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
               <p>Projected Monthly Reward</p>
               <p>{((usdt * 20 * 0.365) / 12).toFixed(2)} ADX</p>
-            </div>
+            </div> */}
           </div>
 
           <div className="font-300 text-[16px] gap-3 flex flex-col">

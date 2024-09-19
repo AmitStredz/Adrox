@@ -33,11 +33,11 @@ export default function LiveProfits() {
     "wrapped-bitcoin": wbtc,
     ripple: xrp,
   };
-  useEffect(() => {
-    Object.entries(logoName).forEach(([name, url]) => {
-      console.log("names: ", url); // This will log 'ada', 'avax', 'bnb', etc.
-    });
-  }, []);
+  // useEffect(() => {
+  //   Object.entries(logoName).forEach(([name, url]) => {
+  //     console.log("names: ", url); // This will log 'ada', 'avax', 'bnb', etc.
+  //   });
+  // }, []);
 
   useEffect(() => {
     let interval;
@@ -48,8 +48,8 @@ export default function LiveProfits() {
           `https://adrox-89b6c88377f5.herokuapp.com/api/live-prices/`
         );
         const responseData = await response.json();
-        console.log("response:", Object.entries(responseData));
-        console.log("response length: ", responseData.length);
+        // console.log("response:", Object.entries(responseData));
+        // console.log("response length: ", responseData.length);
         const arrayData = Object.entries(responseData);
         if (arrayData.length > 3) {
           console.log("data valid...");
@@ -69,7 +69,7 @@ export default function LiveProfits() {
   }, []);
 
   useEffect(() => {
-    console.log("LivePrice: ", livePrice);
+    // console.log("LivePrice: ", livePrice);
   }, [livePrice]);
 
   return (
@@ -80,7 +80,7 @@ export default function LiveProfits() {
             const cryptoName = crypto[0];
             const priceData = crypto[1];
             const logo = logoName[cryptoName]; // Get the logo for the current crypto
-            console.log("logo: ", logo);
+            // console.log("logo: ", logo);
 
             return (
               <div

@@ -159,7 +159,7 @@ const Staking1Month = ({ onClose }) => {
             ></i>
           </div>
           <div>
-            <h1 className="text-[30px] sm:text-[48px] font-700">Lend USDT</h1>
+            <h1 className="text-[30px] sm:text-[48px] font-700">LEND USDT</h1>
             <a className="text-[14px] sm:text-[20px] font-300 bg-slate-600 bg-opacity-20 p-1 px-3 rounded-xl">
               1 Month Plan
             </a>
@@ -217,10 +217,10 @@ const Staking1Month = ({ onClose }) => {
               <p>APY</p>
               <p>36.5%</p>
             </div>
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
               <p>Projected Monthly Reward</p>
               <p>{((usdt * 20 * 0.365) / 12 || 0).toFixed(2)} ADX</p>
-            </div>
+            </div> */}
           </div>
 
           <div className="font-300 text-[16px] gap-3 flex flex-col">

@@ -4,7 +4,7 @@ import LoginPhrase from "./pages/loginRecovery";
 import LoginEmail from "./pages/loginEmail";
 import LoginPhone from "./pages/loginPhone";
 
-export default function Login() {
+export default function Login({onLoginSuccess}) {
   const [loginType, setLoginType] = useState("loginPhrase");
 
   return (
@@ -16,7 +16,7 @@ export default function Login() {
             <h1 className="font-700 text-[40px] sm:text-[48px]">Log in</h1>
           </div>
 
-          {loginType === "loginPhrase" ? <LoginPhrase /> : <></>}
+          {loginType === "loginPhrase" ? <LoginPhrase onLoginSuccess={onLoginSuccess}/> : <></>}
 
           <div className={`text-center gap-5 flex flex-col z-50 mb-5 w-full ${(loginType == "loginPhrase")? "" : "mt-10"}`}>
             <h1 className="font-100 max-sm:hidden">

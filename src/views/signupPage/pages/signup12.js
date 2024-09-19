@@ -4,11 +4,12 @@ import Background from "../assets/account-background.png";
 import Cookies from "js-cookie";
 
 const Signup12 = ({onNextStep}) => {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
     Cookies.set("signupDone", true);
-    history("/homePage");
+    onNextStep();
+    navigate("/");
   };
   return (
     <div className="flex bg-[#0f011a] h-screen  w-screen text-white font-nunito p-10 sm:p-24 justify-evenly gap-10 overflow-hidden relative">

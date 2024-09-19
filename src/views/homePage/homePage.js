@@ -9,10 +9,10 @@ import Footer from "./pages/footer";
 import StarAnimation from "../landingPage/pages/starAnimation";
 import { Helmet } from "react-helmet";
 
-export default function homePage() {
+export default function homePage({onLogout}) {
   return (
     <div className="bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden relative">
-      <HomeHeader></HomeHeader>
+      <HomeHeader onLogout={onLogout}></HomeHeader>
       <Page1></Page1>
       <Page3></Page3>
       <Page2></Page2>

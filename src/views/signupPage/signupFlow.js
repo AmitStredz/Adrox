@@ -30,8 +30,8 @@ const SignupFlow = () => {
     const userPhone = Cookies.get("mobile_number");
 
     if (userId) {
-      if (signupDone === "true") {
-        navigate("/homePage");
+      if (currentStep == 11) {
+        navigate("/");
       } else if (recoveryPhrase) {
         // If user details are present, navigate to the step they left off
         if (userName || userEmail || userPhone) {
@@ -145,7 +145,7 @@ const SignupFlow = () => {
       case 11:
         return (
           <Signup12
-            onNextStep={() => navigate("/homePage")}
+            onNextStep={() => navigate("/")}
             onPrevious={() => handleNextStep(11)}
           />
         );

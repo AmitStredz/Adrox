@@ -105,11 +105,15 @@ const Staking1Year = ({ onClose }) => {
   };
 
   const handleUsdtChange = (e) => {
-    const value = parseFloat(e.target.value) || 0;
-    setUsdt(value);
-    setAdx(value * 20); // Update ADX based on the conversion ratio
+    const value = parseFloat(e.target.value);
+    if (value < 0) {
+      setUsdt(0);
+      setAdx(0); // Update ADX based on the conversion ratio
+    } else {
+      setUsdt(value);
+      setAdx(value * 20 || 0); // Update ADX based on the conversion ratio
+    }
   };
-
   const formatDateToIST = (date) => {
     const options = {
       timeZone: "Asia/Kolkata",
@@ -163,6 +167,8 @@ const Staking1Year = ({ onClose }) => {
               <input
                 type="number"
                 value={usdt}
+                placeholder="0"
+
                 onChange={handleUsdtChange}
                 className="bg-transparent outline-none w-full text-left"
                 style={{ appearance: "textfield" }}
@@ -207,12 +213,12 @@ const Staking1Year = ({ onClose }) => {
             </div>
             <div className="flex justify-between">
               <p>APY</p>
-              <p>36.5%</p>
+              <p>219%</p>
             </div>
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
               <p>Projected Monthly Reward</p>
               <p>{((usdt * 20 * 0.365) / 12).toFixed(2)} ADX</p>
-            </div>
+            </div> */}
           </div>
 
           <div className="font-300 text-[16px] gap-3 flex flex-col">
@@ -223,7 +229,7 @@ const Staking1Year = ({ onClose }) => {
               <img src={stroke} alt="stroke effect" />
             </div>
             <div className="flex justify-between">
-              <p>Lend Date</p>
+              <p>LEND Date</p>
               <p>{formatDateToIST(stakeDate)}</p>
             </div>
             <div className="flex justify-between">

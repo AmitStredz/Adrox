@@ -73,7 +73,7 @@ export default function Staking() {
       <div>
         <div className="text-center">
           <h1 className="text-[40px] sm:text-[56px] font-700 text-[#C653FF]">
-            ADROX Lending plans
+            ADROX LENDING PLANS
           </h1>
         </div>
 

@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import InvalidPopup from "./incorrectPhraseModal"; // popup to show invalid input
 import ValidPopup from "./correctPhraseModal"; // popup to show success
 
-export default function Login1() {
+export default function Login1({ onLoginSuccess }) {
   const navigate = useNavigate();
   const [phrase, setPhrase] = useState(Array(12).fill(""));
   const [showInvalidPopup, setShowInvalidPopup] = useState(false);
@@ -56,7 +56,8 @@ export default function Login1() {
       if (response.ok) {
         setShowValidPopup(true);
         setTimeout(() => {
-          navigate("/homePage");
+          onLoginSuccess();
+          navigate("/");
         }, 2000);
         setIsLoading(false);
       } else {

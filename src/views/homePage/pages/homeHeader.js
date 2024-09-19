@@ -11,7 +11,7 @@ import { GiWallet } from "react-icons/gi";
 import Cookies from "js-cookie";
 import DownloadPopup from "../../components/downloadPopup";
 
-export default function HomeHeader() {
+export default function HomeHeader({onLogout}) {
   const [showMenu, setShowMenu] = useState(false);
   const [downloadPopup, setDownloadPopup] = useState(false);
 
@@ -27,7 +27,10 @@ export default function HomeHeader() {
     }
 
     alert("Successfully Logget Out.");
-    navigate("/landingPage");
+    console.log("logout triggered in homeheader...");
+
+    onLogout();
+    // navigate("/");
   };
 
   const handleReferralClick = () => {
@@ -45,7 +48,7 @@ export default function HomeHeader() {
   return (
     <div className=" w-screen flex items-center justify-between p-2  lg:p-5 px-5 md:px-14 xl:px-28 fixed bg-gradient-to-b from-[#150c1b] to-[#49474728] bg-opacity-15 z-[100]">
       <div className="w-[30vw] sm:w-56 cursor-pointer">
-        <img src={img1} alt="img1" onClick={() => navigate("/homepage")} />
+        <img src={img1} alt="img1" onClick={() => navigate("/")} />
       </div>
       <div className="flex gap-5 md:gap-10 items-center">
         <div className="hidden lg:flex">
