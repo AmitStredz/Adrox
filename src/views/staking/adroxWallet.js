@@ -28,7 +28,7 @@ export default function AdroxWallet() {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log("response: ", data);
+          console.log("Adrox wallet response: ", data);
           setHoldings(data?.wallet.balance);
           setTransactionHistory(data?.transactions);
           setIsLoading(false);
@@ -128,7 +128,7 @@ export default function AdroxWallet() {
           <img src={table}></img>
         </div> */}
 
-        <div className="w-full overflow-auto">
+        <div className="w-full overflow-auto z-[1000000000000]">
           <table className="w-full">
             <thead className="">
               <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px] z-50">
@@ -141,26 +141,24 @@ export default function AdroxWallet() {
                 </th> */}
               </tr>
             </thead>
-            <tbody className="text-[12px] sm:text-[16px] font-200">
-              {transactionHistory?.map((item, index) => (
-                <tr key={index} className="border-b border-gray-700">
-                  <td className="py-2 px-4">{item.timestamp}</td>
-                  <td className="py-2 px-4">USDT</td>
-                  <td className="py-2 px-4">{item.amount}</td>
-                  {/* <td className="py-2 px-4">{item.is_deposit}</td> */}
-                  <td className="py-2 px-4">Deposit</td>
-                </tr>
-              ))}
-              {transactionHistory?.map((item, index) => (
-                <tr key={index} className="border-b border-gray-700">
-                  <td className="py-2 px-4">{item.timestamp}</td>
-                  <td className="py-2 px-4">USDT</td>
-                  <td className="py-2 px-4">{item.amount}</td>
-                  {/* <td className="py-2 px-4">{item.is_deposit}</td> */}
-                  <td className="py-2 px-4">Deposit</td>
-                </tr>
-              ))}
-            </tbody>
+              {transactionHistory.length > 0 ? (
+                transactionHistory?.map((item, index) => (
+                  <tbody className="text-[12px] sm:text-[16px] font-200 ">
+                    <tr
+                      key={index}
+                      className="border-b border-gray-700 z-[500000]"
+                    >
+                      <p className="py-2 px-4 z-50">{item.timestamp}</p>
+                      <td className="py-2 px-4">USDT</td>
+                      <td className="py-2 px-4">{item.amount}</td>
+                      {/* <td className="py-2 px-4">{item.is_deposit}</td> */}
+                      <td className="py-2 px-4">Deposit</td>
+                    </tr>
+                  </tbody>
+                ))
+              ) : (
+                <div>No transaction history found.</div>
+              )}
           </table>
         </div>
       </div>

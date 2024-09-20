@@ -232,8 +232,8 @@ const Staking1Year = ({ onClose }) => {
             </div>
             <div className="flex justify-between">
               <p>Projected Monthly Reward</p>
-              {/* <p>{((usdt * 20 * 0.365) / 12).toFixed(2)} ADX</p> */}
-              <p>0.6 * 30</p>
+              <p>{(usdtValue * 0.006 * 30 || 0).toFixed(2)} ADX</p>
+              {/* <p>0.6 * 30</p> */}
             </div>
           </div>
 

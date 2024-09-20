@@ -16,6 +16,7 @@ export default function ProfitWallet() {
 
   const [holdings, setHoldings] = useState(null); //balance
   const [swappedUsdt, setSwappedUsdt] = useState(0); //balance
+  const [swapHistory, setSwapHistory] = useState([]); //balance
 
   // useEffect(() => {
   //   const userId = Cookies.get("user_id");
@@ -38,6 +39,7 @@ export default function ProfitWallet() {
   // }, []);
 
   const userId = Cookies.get("user_id");
+
   const fetchProfitWalletDetails = () => {
     if (isLoading) return;
     setIsLoading(true);
@@ -70,14 +72,17 @@ export default function ProfitWallet() {
   };
   useEffect(() => {
     fetchProfitWalletDetails();
+    fetchSwapHistory();
   }, []);
 
   const handleWithdrawalClose = () => {
     fetchProfitWalletDetails();
+    fetchSwapHistory();
     setIsWithdrawModal(false);
   };
   const handleSwapClose = () => {
     fetchProfitWalletDetails();
+    fetchSwapHistory();
     setIsSwapModal(false);
   };
 
@@ -86,6 +91,29 @@ export default function ProfitWallet() {
       setSwappedUsdt(0);
     }
   }, [swappedUsdt]);
+
+  const fetchSwapHistory = () => {
+    if (isLoading) return;
+    setIsLoading(true);
+    if (userId) {
+      fetch(
+        `https://adrox-89b6c88377f5.herokuapp.com/api/staking/profit-wallet/swapping-history-datetime/${userId}/`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Swap History response: ", data);
+          setHoldings(data?.swapping_history || []);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error("Error fetching holdings data:", error);
+          setIsLoading(false);
+        });
+    } else {
+      console.log("UserId not found...");
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -181,11 +209,11 @@ export default function ProfitWallet() {
           <img src={table}></img>
         </div> */}
 
-        <div className="w-full overflow-auto">
-          <table className="w-full">
-            <thead className="">
-              <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
-                <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
+        <div className="w-full overflow-auto z-[10000000000000]">
+          <table className="w-full z-[10000000000000]">
+            <thead className="z-[10000000000000]">
+              <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px] z-[10000000000000]">
+                <th className="py-2 px-2 sm:px-4 text-left z-[10000000000000]">Date & Time</th>
                 <th className="py-2 px-2 sm:px-4 text-left">Swap Size (ADX)</th>
                 <th className="py-2 px-2 sm:px-4 text-left">
                   Swap Size (USDT)
@@ -198,17 +226,21 @@ export default function ProfitWallet() {
                 </th>
               </tr>
             </thead>
-            <tbody className="text-[12px] sm:text-[16px] font-200">
-              {/* {historyData?.map((item, index) => (
-                <tr key={index} className="border-b border-gray-700">
-                  <td className="py-2 px-4">{item.date_time}</td>
-                  <td className="py-2 px-4">{item.staking_size_adrx}</td>
-                  <td className="py-2 px-4">{item.staking_size_usdt}</td>
-                  <td className="py-2 px-4">{item.daily_reward_adrx}</td>
-                  <td className="py-2 px-4">{item.daily_reward_usdt}</td>
-                </tr>
-              ))} */}
-            </tbody>
+            {swapHistory.length > 0 ? (
+              swapHistory?.map((item, index) => (
+                <tbody className="text-[12px] sm:text-[16px] font-200 z-[1000000]">
+                  <tr key={index} className="border-b border-gray-700">
+                    <td className="py-2 px-4">{item.date_time}</td>
+                    <td className="py-2 px-4">{item.staking_size_adrx}</td>
+                    <td className="py-2 px-4">{item.staking_size_usdt}</td>
+                    <td className="py-2 px-4">{item.daily_reward_adrx}</td>
+                    <td className="py-2 px-4">{item.daily_reward_usdt}</td>
+                  </tr>
+                </tbody>
+              ))
+            ) : (
+              <div>No swapping history found.</div>
+            )}
           </table>
         </div>
       </div>

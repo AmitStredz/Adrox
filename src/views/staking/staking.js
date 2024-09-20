@@ -383,17 +383,21 @@ export default function Staking() {
                 </th>
               </tr>
             </thead>
-            <tbody className="text-[12px] sm:text-[16px] font-200">
-              {historyData?.map((item, index) => (
-                <tr key={index} className="border-b border-gray-700">
-                  <td className="py-2 px-4">{item.date_time}</td>
-                  <td className="py-2 px-4">{item.staking_size_adrx}</td>
-                  <td className="py-2 px-4">{item.staking_size_usdt}</td>
-                  <td className="py-2 px-4">{item.daily_reward_adrx}</td>
-                  <td className="py-2 px-4">{item.daily_reward_usdt}</td>
-                </tr>
-              ))}
-            </tbody>
+            {historyData.length > 0 ? (
+              historyData?.map((item, index) => (
+                <tbody className="text-[12px] sm:text-[16px] font-200">
+                  <tr key={index} className="border-b border-gray-700">
+                    <td className="py-2 px-4">{item.date_time}</td>
+                    <td className="py-2 px-4">{item.staking_size_adrx}</td>
+                    <td className="py-2 px-4">{item.staking_size_usdt}</td>
+                    <td className="py-2 px-4">{item.daily_reward_adrx}</td>
+                    <td className="py-2 px-4">{item.daily_reward_usdt}</td>
+                  </tr>
+                </tbody>
+              ))
+            ) : (
+              <div>No profit history found.</div>
+            )}
           </table>
         </div>
       </div>
