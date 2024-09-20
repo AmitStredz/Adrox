@@ -79,7 +79,8 @@ const Swap = ({ onClose, holdings }) => {
         alert("Wallet not found");
         // throw new Error("Wallet not found");
       } else if (error.message === "Insufficient balance") {
-        alert("Insufficient balance");
+        setErrorText("Insuffient Balance.");
+        // alert("Insufficient balance");
         // throw new Error("Insufficient balance");
       } else if (
         error.response.data.error ==
@@ -190,7 +191,7 @@ const Swap = ({ onClose, holdings }) => {
                   : "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
               }`}
               onClick={() => handleSwap()}
-              disabled={adxValue <=0}
+              disabled={adxValue <= 0}
             >
               {isLoading ? "Swapping..." : "Swap"}
             </button>

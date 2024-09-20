@@ -23,8 +23,7 @@ export default function page4() {
               <div>
                 <h1 className="font-700 text-[36px]">Spot Trading</h1>
                 <p className="font-400 text-[16px]">
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt mollit anim id est laborum
+                  Unlock the Future of Trading with ADROX Spot
                 </p>
               </div>
               <div className="text-center text-3xl">
@@ -38,8 +37,7 @@ export default function page4() {
               <div>
                 <h1 className="font-700 text-[36px]">Buy Crypto</h1>
                 <p className="font-400 text-[16px]">
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt mollit anim id est laborum
+                  Your Simplest, Most Secure Path to Owning Digital Assets
                 </p>
               </div>
               <div className="text-center text-3xl">
@@ -52,8 +50,8 @@ export default function page4() {
               <div>
                 <h1 className="font-700 text-[36px]">Trading Bot</h1>
                 <p className="font-400 text-[16px]">
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt mollit anim id est laborum
+                  Automate Your Success in the Crypto Market with Unmatched
+                  Efficiency and Speed
                 </p>
               </div>
               <div className="text-center text-3xl">
@@ -66,8 +64,7 @@ export default function page4() {
               <div>
                 <h1 className="font-700 text-[36px]">Adrox Earn</h1>
                 <p className="font-400 text-[16px]">
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt mollit anim id est laborum
+                  ADROX Lending Turns Your Idle Assets Into Active Income
                 </p>
               </div>
               <div className="text-center text-3xl">
