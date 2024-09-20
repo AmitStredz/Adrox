@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -16,8 +16,52 @@ import { IoIosInfinite } from "react-icons/io";
 
 export default function Staking() {
   const [stakingType, setStakingType] = useState();
+  const [historyData, setHistoryData] = useState([]);
 
-  const history = useNavigate();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let interval;
+    const updateStakingData = async () => {
+      const userID = Cookies.get("user_id");
+      if (userID) {
+        try {
+          const response = await fetch(
+            `https://adrox-89b6c88377f5.herokuapp.com/api/staking/live-profit/${userID}`
+          );
+          console.log(response);
+
+          const responseData = await response.json();
+          console.log("responseData:", responseData);
+          const { daily_profit_history } = responseData;
+          if (responseData?.error == "No active stake found for this user.") {
+            console.log("no data...");
+            setHistoryData([]);
+            return;
+          } else {
+            console.log("history set...", daily_profit_history);
+
+            setHistoryData(daily_profit_history);
+            // setHistoryData(responseData);
+          }
+        } catch (error) {
+          console.error("Error fetching user holdings:", error);
+        }
+      }
+    };
+
+    updateStakingData(); // Fetch the data immediately on mount
+    interval = setInterval(updateStakingData, 10000); // Fetch the data every 10 seconds
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("histroyData: ", historyData);
+  }, [historyData]);
+
   return (
     <div className="bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden relative">
       <div>
@@ -52,8 +96,12 @@ export default function Staking() {
             <div className="flex flex-col leading-8 max-sm:items-center">
               <p className="font-300 text-[18px]">Holdings</p>
               <div className="bg-gradient-to-r from-white to-slate-900 h-[0.1px] w-full mb-2"></div>
-              <span className="text-[30px] font-800 text-[#C653FF]">0 ADX</span>
-              <p className="font-300 text-[18px]">$ 0 USDT</p>
+              <span className="text-[30px] font-800 text-[#C653FF]">
+                {historyData[0]?.staking_size_adrx || 0} ADX
+              </span>
+              <p className="font-300 text-[18px]">
+                $ {historyData[0]?.staking_size_usdt || 0} USDT
+              </p>
             </div>
           </div>
 
@@ -213,7 +261,7 @@ export default function Staking() {
                       Min. Deposit : <span className="font-400">100 USDT</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      Max. Deposit :  
+                      Max. Deposit :
                       <span className="font-400">
                         <IoIosInfinite size={20} />
                       </span>
@@ -247,7 +295,6 @@ export default function Staking() {
           </div>
         </div>
       </div>
-      
 
       <div className="absolute right-[-30%] w-[80%] top-[20rem]">
         <img src={ellipse}></img>

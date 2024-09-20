@@ -11,8 +11,10 @@ const Staking1Year = ({ onClose }) => {
   //     setInitialData();
   //   }, []);
 
-  const [usdt, setUsdt] = useState(150); // Initial value of USDT
-  const [adx, setAdx] = useState(150 * 20); // Initial value of ADX based on conversion ratio
+  const [usdtValue, setUsdtValue] = useState(150); // Initial value of USDT
+  const [adxValue, setAdxValue] = useState(150 * 20); // Initial value of ADX based on conversion ratio
+  const [error, setError] = useState(""); // Initial value of ADX based on conversion ratio
+  const [isLoading, setIsLoading] = useState(false);
   const [stakeDate, setStakeDate] = useState(new Date());
   const [rewardDate, setRewardDate] = useState(
     new Date(new Date().setMonth(new Date().getMonth() + 12))
@@ -22,40 +24,43 @@ const Staking1Year = ({ onClose }) => {
   const navigate = useNavigate();
 
   const handleButtonClick = async () => {
+    setIsLoading(true);
+    setError("");
+    if (usdtValue < 100) {
+      setError("Min amount is 100 USDT.");
+      setIsLoading(false);
+      return;
+    }
     const currentStakeDate = new Date();
     const currentRewardDate = new Date(currentStakeDate);
-    currentRewardDate.setMonth(currentStakeDate.getMonth() + 12); // Set reward collection date to one month later
+    currentRewardDate.setMonth(currentStakeDate.getMonth() + 1); // Set reward collection date to one month later
 
-    const initialData = {
-      staked_usdt: "123",
-      lock_in_period: 1,
-      start_date: currentStakeDate.toISOString(),
-      end_date: currentRewardDate.toISOString(),
-    };
+    // const initialData = {
+    //   staked_usdt: "123",
+    //   lock_in_period: 1,
+    //   start_date: currentStakeDate.toISOString(),
+    //   end_date: currentRewardDate.toISOString(),
+    // };
 
-    Cookies.set("stakingData", JSON.stringify(initialData));
+    // Cookies.set("stakingData", JSON.stringify(initialData));
 
     const userId = Cookies.get("user_id"); // Retrieve user_id from Cookies
 
     if (!userId) {
       alert("User ID is not available. Please sign up or log in first.");
+      setIsLoading(false);
       return;
     }
 
-    // const currentStakeDate = new Date();
-    console.log("CurrentStakeDate: ", currentStakeDate);
-    // const currentRewardDate = new Date(currentStakeDate);
-    console.log("CurrentRewardDate: ", currentRewardDate);
-    currentRewardDate.setMonth(currentStakeDate.getMonth() + 12); // Set reward collection date to one month later
-
     const data = {
       user_id: userId,
-      staked_usdt: usdt.toFixed(2), // Ensure the value is formatted as a string with two decimals
-      lock_in_period: 1,
+      staked_usdt: parseFloat(usdtValue).toFixed(2), // Ensure the value is formatted as a string with two decimals
+      lock_in_period: 12,
     };
 
     try {
-      console.log("Sending data to API:", data);
+      console.log("Sending data to API");
+      // console.log("Sending data to API:", data);
       const response = await axios.post(
         "https://adrox-89b6c88377f5.herokuapp.com/api/staking/create-stake/",
         data,
@@ -66,7 +71,8 @@ const Staking1Year = ({ onClose }) => {
         }
       );
 
-      Cookies.set("balance", Cookies.get("balance") - usdt);
+      // Cookies.set("balance", Cookies.get("balance") - usdtValue);
+
       // Store the response data in Cookies
       Cookies.set(
         "stakingData",
@@ -81,13 +87,15 @@ const Staking1Year = ({ onClose }) => {
       setStakeDate(currentStakeDate);
       setRewardDate(currentRewardDate);
       setSuccessModal(true);
+      setIsLoading(false);
+
       setTimeout(() => {
         navigate("/staking2"); // Navigate to staking2 on successful response
         setSuccessModal(false);
       }, 2000);
     } catch (error) {
       console.error("There was an error!", error);
-
+      setIsLoading(false);
       if (error.response) {
         // Server responded with a status other than 200 range
         console.error("Server Response:", error.response.data);
@@ -101,17 +109,22 @@ const Staking1Year = ({ onClose }) => {
         console.error("Error Message:", error.message);
         alert("Error: " + error.message);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleUsdtChange = (e) => {
-    const value = parseFloat(e.target.value);
-    if (value < 0) {
-      setUsdt(0);
-      setAdx(0); // Update ADX based on the conversion ratio
-    } else {
-      setUsdt(value);
-      setAdx(value * 20 || 0); // Update ADX based on the conversion ratio
+    setError("");
+    const newValue = e.target.value;
+
+    // Regular expression to match valid numbers (including decimals and negatives)
+    const regex = /^-?\d*\.?\d*$/;
+
+    // If value is empty or matches the regex, update state
+    if (newValue === "" || regex.test(newValue)) {
+      setUsdtValue(newValue);
+      setAdxValue(newValue * 20 || 0);
     }
   };
   const formatDateToIST = (date) => {
@@ -163,35 +176,37 @@ const Staking1Year = ({ onClose }) => {
           </div>
 
           <div className="flex flex-col w-full gap-6">
-            <div className="flex text-[24px] font-700 justify-between border border-slate-500 rounded-xl p-3 px-5">
-              <input
-                type="number"
-                value={usdt}
-                placeholder="0"
-
-                onChange={handleUsdtChange}
-                className="bg-transparent outline-none w-full text-left"
-                style={{ appearance: "textfield" }}
-              />
-              <div className="flex items-center">
-                <p className="font-400">USDT</p>
-                <div className="ml-2 flex flex-col">
-                  <button
-                    onClick={() =>
-                      handleUsdtChange({ target: { value: usdt + 1 } })
-                    }
-                  >
-                    +
-                  </button>
-                  <button
-                    onClick={() =>
-                      handleUsdtChange({ target: { value: usdt - 1 } })
-                    }
-                  >
-                    -
-                  </button>
+          <div>
+              <div className="flex text-[24px] font-700 justify-between border border-slate-500 rounded-xl p-3 px-5">
+                <input
+                  type="text"
+                  value={usdtValue}
+                  onChange={handleUsdtChange}
+                  placeholder="0"
+                  className="bg-transparent outline-none w-full text-left"
+                  style={{ appearance: "textfield" }}
+                />
+                <div className="flex items-center">
+                  <p className="font-400">USDT</p>
+                  <div className="ml-2 flex flex-col">
+                    <button
+                      onClick={() =>
+                        handleUsdtChange({ target: { value: usdtValue + 1 } })
+                      }
+                    >
+                      +
+                    </button>
+                    <button
+                      onClick={() =>
+                        handleUsdtChange({ target: { value: usdtValue - 1 } })
+                      }
+                    >
+                      -
+                    </button>
+                  </div>
                 </div>
               </div>
+              <span className="px-5 text-red-500">{error && error}</span>
             </div>
 
             <div className="text-center">
@@ -199,7 +214,7 @@ const Staking1Year = ({ onClose }) => {
             </div>
 
             <div className="flex text-[24px] font-700 justify-between border border-slate-500 rounded-xl p-3 px-5">
-              <p>{adx.toFixed(2)}</p>
+              <p>{adxValue.toFixed(2)}</p>
               <div className="flex items-center">
                 <p className="font-400">ADX</p>
               </div>
@@ -244,8 +259,8 @@ const Staking1Year = ({ onClose }) => {
               className="p-2 px-32 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
               onClick={handleButtonClick}
             >
-              Lend
-            </a>
+              {isLoading ? "Lending..." : "Lend"}
+              </a>
           </div>
         </div>
       </div>
