@@ -68,6 +68,11 @@ const SignupFlow = () => {
     Cookies.set("signup_step", nextStep); // Save the current step
   };
 
+  const handleLastClick = () => {
+    navigate("/");
+    window.location.reload();
+  };
+
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -145,7 +150,7 @@ const SignupFlow = () => {
       case 11:
         return (
           <Signup12
-            onNextStep={() => window.location.reload()}
+            onNextStep={() => handleLastClick()}
             onPrevious={() => handleNextStep(11)}
           />
         );

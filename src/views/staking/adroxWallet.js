@@ -32,7 +32,25 @@ export default function AdroxWallet() {
         });
     }
   };
+
+
+  const fetchTransactionDetails = ()=>{
+    if (userId) {
+      fetch(
+        `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/transactions/history/${userId}/`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("transactionResponse: ", data);
+          // setHoldings(data?.wallet.balance); // Adjust the property to match your API response
+        })
+        .catch((error) => {
+          console.error("Error fetching holdings data:", error);
+        });
+    }
+  }
   useEffect(() => {
+    fetchTransactionDetails();
     fetchAdroxWalletDetails();
   }, []);
 

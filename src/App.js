@@ -23,7 +23,7 @@ import Staking2 from "./views/staking/staking2";
 import Account from "./views/staking/account";
 
 const App = () => {
-  const [signupStep, setSignupStep] = useState(Cookies.get("signup_step"));
+  const [signupStep, setSignupStep] = useState(Cookies.get("signup_step") || null);
   const navigate = useNavigate();
   const { isAuthenticated, loading } = useAuth();
 
