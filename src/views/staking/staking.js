@@ -11,6 +11,8 @@ export default function Staking() {
   // const [stakingData, setStakingData] = useState(null);
   const [historyData, setHistoryData] = useState(null);
   const [todayProfit, setTodayProfit] = useState("");
+  const [apyValue, setApyValue] = useState("");
+  const [dpyValue, setDpyValue] = useState("");
 
   const [data, setData] = useState();
 
@@ -62,6 +64,8 @@ export default function Staking() {
             minutes_completed,
             seconds_completed_loop,
             daily_profit_history,
+            APY,
+            DPY,
           } = responseData;
 
           setTimeLeft((prev) => ({
@@ -74,6 +78,8 @@ export default function Staking() {
             // You can compute the seconds dynamically if needed, or set a default
           }));
           setHistoryData(daily_profit_history);
+          setApyValue(APY || 0);
+          setDpyValue(DPY || 0);
         } catch (error) {
           console.error("Error fetching referral tree:", error);
         }
@@ -188,10 +194,12 @@ export default function Staking() {
   //   return `${hours}:${minutes}`;
   // };
 
-  if(data == "No active stake found for this user."){
-    return <div className="px-5 sm:px-20 sm:text-[30px] font-sans -mt-12">
-      No active stake found for this user.
-    </div>
+  if (data == "No active stake found for this user.") {
+    return (
+      <div className="px-5 sm:px-40 sm:text-[30px] fon -mt-12">
+        NO ACTIVE LENDS FOUND.
+      </div>
+    );
   }
   return (
     <div className=" overflow-hidden p-5 sm:p-10">
@@ -223,11 +231,11 @@ export default function Staking() {
             <div className={styles.firstBottomRow}>
               <div className={styles.eachRow}>
                 <Heading Name={"APY"} />
-                <span className={`${styles.heading}`}>10.5%</span>
+                <span className={`${styles.heading}`}>{apyValue}</span>
               </div>
               <div className={styles.eachRow}>
                 <Heading Name={"DPY"} />
-                <span className={`${styles.heading}`}>35.5%</span>
+                <span className={`${styles.heading}`}>{dpyValue}</span>
               </div>
             </div>
           </div>

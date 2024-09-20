@@ -28,7 +28,10 @@ const App = () => {
   const { isAuthenticated, loading } = useAuth();
 
   useEffect(() => {
-    console.log("initialComponent: ", getInitialComponent().type.name);
+    const name = getInitialComponent()?.type?.name;
+    console.log("name: ", name);
+    
+    console.log("initialComponent: ", getInitialComponent()?.type?.name);
     console.log("isAuthenticated: ", isAuthenticated);
   }, [isAuthenticated]);
 
