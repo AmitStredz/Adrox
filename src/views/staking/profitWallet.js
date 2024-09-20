@@ -12,6 +12,7 @@ import SwapModal from "./swap";
 export default function ProfitWallet() {
   const [isSwapModal, setIsSwapModal] = useState(false);
   const [isWithdrawModal, setIsWithdrawModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [holdings, setHoldings] = useState(null); //balance
   const [swappedUsdt, setSwappedUsdt] = useState(0); //balance
@@ -38,6 +39,8 @@ export default function ProfitWallet() {
 
   const userId = Cookies.get("user_id");
   const fetchProfitWalletDetails = () => {
+    if (isLoading) return;
+    setIsLoading(true);
     if (userId) {
       fetch(
         `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/profit-wallet/details/${userId}/`
@@ -45,20 +48,24 @@ export default function ProfitWallet() {
         .then((response) => response.json())
         .then((data) => {
           if (data?.detail == "Not found.") {
-            console.log("data not found...");
+            console.log("Profit Wallet data not found...");
             setHoldings(0);
             setSwappedUsdt(0);
+            setIsLoading(false);
             return;
           }
           setHoldings(data?.unswapped_adrx);
           setSwappedUsdt(data?.swapped_usdt);
           console.log("response: ", data);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching holdings data:", error);
+          setIsLoading(false);
         });
     } else {
       console.log("UserId not found...");
+      setIsLoading(false);
     }
   };
   useEffect(() => {
@@ -92,9 +99,11 @@ export default function ProfitWallet() {
             </div>
             <div className="flex justify-center">
               <p className="font-800 text-[20px] sm:text-[30px] md:text-[52px]">
-                {holdings >= 0
-                  ? `${parseFloat(holdings).toFixed(3)} ADX`
-                  : "Loading..."}
+                {isLoading
+                  ? "Loading..."
+                  : `${
+                      holdings > 0 ? parseFloat(holdings).toFixed(3) : "0.00"
+                    } USDT`}
               </p>
             </div>
           </div>
@@ -129,13 +138,13 @@ export default function ProfitWallet() {
                   <span className="text-font-bold">
                     {swappedUsdt && !isNaN(swappedUsdt)
                       ? parseFloat(swappedUsdt).toFixed(3)
-                      : 0}{" "}
-                    USDT{" "}
+                      : 0}
+                    USDT
                     <span className="text-slate-400 font-semibold sm:text-[40px]">
                       (
                       {swappedUsdt && !isNaN(swappedUsdt)
                         ? (parseFloat(swappedUsdt) * 0.05).toFixed(3)
-                        : 0}{" "}
+                        : 0}
                       ADX )
                     </span>
                   </span>

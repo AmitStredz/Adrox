@@ -15,42 +15,34 @@ export default function AdroxWallet() {
   const [holdings, setHoldings] = useState(null); //balance
   const navigate = useNavigate();
   const [transactionType, setTransactionType] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [transactionHistory, setTransactionHistory] = useState([]);
 
   const userId = Cookies.get("user_id");
   const fetchAdroxWalletDetails = () => {
+    if (isLoading) return;
+    setIsLoading(true);
     if (userId) {
       fetch(
         `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/details/${userId}/`
       )
         .then((response) => response.json())
         .then((data) => {
-          setHoldings(data?.wallet.balance); // Adjust the property to match your API response
           console.log("response: ", data);
+          setHoldings(data?.wallet.balance);
+          setTransactionHistory(data?.transactions);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching holdings data:", error);
+          setIsLoading(false);
         });
+    } else {
+      console.log("UserId not found...");
+      setIsLoading(false);
     }
   };
-
-
-  const fetchTransactionDetails = ()=>{
-    if (userId) {
-      fetch(
-        `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/transactions/history/${userId}/`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("transactionResponse: ", data);
-          // setHoldings(data?.wallet.balance); // Adjust the property to match your API response
-        })
-        .catch((error) => {
-          console.error("Error fetching holdings data:", error);
-        });
-    }
-  }
   useEffect(() => {
-    fetchTransactionDetails();
     fetchAdroxWalletDetails();
   }, []);
 
@@ -81,9 +73,11 @@ export default function AdroxWallet() {
             </div>
             <div>
               <p className="font-800 text-[40px] sm:text-[52px]">
-                {holdings !== null
-                  ? `$${parseFloat(holdings).toFixed(2)} USDT`
-                  : "Loading..."}
+                {isLoading
+                  ? "Loading..."
+                  : `${
+                      holdings > 0 ? parseFloat(holdings).toFixed(3) : "0.00"
+                    } USDT`}
               </p>
             </div>
           </div>
@@ -137,7 +131,7 @@ export default function AdroxWallet() {
         <div className="w-full overflow-auto">
           <table className="w-full">
             <thead className="">
-              <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px]">
+              <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px] z-50">
                 <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
                 <th className="py-2 px-2 sm:px-4 text-left">Crypto</th>
                 <th className="py-2 px-2 sm:px-4 text-left">Amount</th>
@@ -148,15 +142,24 @@ export default function AdroxWallet() {
               </tr>
             </thead>
             <tbody className="text-[12px] sm:text-[16px] font-200">
-              {/* {historyData?.map((item, index) => (
+              {transactionHistory?.map((item, index) => (
                 <tr key={index} className="border-b border-gray-700">
-                  <td className="py-2 px-4">{item.date_time}</td>
-                  <td className="py-2 px-4">{item.staking_size_adrx}</td>
-                  <td className="py-2 px-4">{item.staking_size_usdt}</td>
-                  <td className="py-2 px-4">{item.daily_reward_adrx}</td>
-                  <td className="py-2 px-4">{item.daily_reward_usdt}</td>
+                  <td className="py-2 px-4">{item.timestamp}</td>
+                  <td className="py-2 px-4">USDT</td>
+                  <td className="py-2 px-4">{item.amount}</td>
+                  {/* <td className="py-2 px-4">{item.is_deposit}</td> */}
+                  <td className="py-2 px-4">Deposit</td>
                 </tr>
-              ))} */}
+              ))}
+              {transactionHistory?.map((item, index) => (
+                <tr key={index} className="border-b border-gray-700">
+                  <td className="py-2 px-4">{item.timestamp}</td>
+                  <td className="py-2 px-4">USDT</td>
+                  <td className="py-2 px-4">{item.amount}</td>
+                  {/* <td className="py-2 px-4">{item.is_deposit}</td> */}
+                  <td className="py-2 px-4">Deposit</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

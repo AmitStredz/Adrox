@@ -303,7 +303,6 @@ const Deposit = ({ onClose }) => {
     }
   }, [transactionHash]);
 
-  
   const handleDeposit = async () => {
     setIsLoading(true);
 
@@ -320,9 +319,10 @@ const Deposit = ({ onClose }) => {
           amount: dollarValue,
         }
       );
+      console.log("depositResponse: ", response);
 
       // console.log("Amount: ", amount);
-      Cookies.set("balance", response.data.balance);
+      // Cookies.set("balance", response.data.balance);
 
       if (response.status === 200) {
         setShowModal(true);
@@ -336,7 +336,11 @@ const Deposit = ({ onClose }) => {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred. Please try again.");
+      if (error?.response?.data?.error == "Wallet not found") {
+        alert("Wallet not found. Try re-logging in");
+      } else {
+        alert("An error occurred. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }
