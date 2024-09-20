@@ -36,7 +36,7 @@ export default function Footer() {
           <ul>Official Verification Center</ul>
         </div>
 
-        <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col mt-5">
+        <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col">
           <h1 className="font-600 text-[14px] sm:text-[20px]">Legal</h1>
           <ul>Term of use</ul>
           <ul>Privacy Policy</ul>

@@ -34,8 +34,9 @@ export default function Page3() {
               </div>
               <div className="text-[12px] sm:text-[16px] font-400 max-md:text-center">
                 <p>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt mollit anim id est laborum
+                  Join the Lending Pool Protocol community and experience the
+                  future of finance. Sign up now to explore a world where your
+                  assets work for you efficiently, securely, and transparently.
                 </p>
               </div>
             </div>
@@ -51,8 +52,9 @@ export default function Page3() {
               </div>
               <div className="text-[12px] sm:text-[16px] font-400 max-md:text-center">
                 <p>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt mollit anim id est laborum
+                  Unlock your potential in the blockchain space. Sign up now to
+                  become a part of our mining community and start earning
+                  rewards while securing the network.
                 </p>
               </div>
             </div>
@@ -60,16 +62,17 @@ export default function Page3() {
           <div className="flex max-sm:flex-col bg-slate-500 items-center w-full  bg-opacity-15 p-5 sm:p-10 gap-5 rounded-2xl col-start-1 md:col-start-2 lg:col-start-2 col-span-8 lg:col-span-7 group cursor-pointer z-50">
             <img src={img3} className="w-28 h-20"></img>
             <div className="flex flex-col max-sm:items-center">
-            <div className="flex gap-2 sm:gap-10 items-center">
-            <h1 className="font-700 text-[28px] sm:text-[36px] group-hover:underline text-center">
-            ADROX Trading Bots
+              <div className="flex gap-2 sm:gap-10 items-center">
+                <h1 className="font-700 text-[28px] sm:text-[36px] group-hover:underline text-center">
+                  ADROX Trading Bots
                 </h1>
                 <i className="ri-arrow-right-s-line px-1 text-2xl font-100 border rounded-full cursor-pointer"></i>
               </div>
               <div className="text-[12px] sm:text-[16px] font-400 max-md:text-center">
                 <p>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia deserunt mollit anim id est laborum
+                  Transform your trading experience with our innovative trading
+                  bots. Sign up now to automate your trading and stay ahead in
+                  the fast-paced market.
                 </p>
               </div>
             </div>

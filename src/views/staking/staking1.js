@@ -83,8 +83,8 @@ export default function Staking() {
             </h1>
           </div>
           <p className="font-300 text-[16px] w-[70vw] sm:w-[60vw] md:w-64 lg:w-96 max-md:text-center">
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum
+            Engage in trustless transactions, ensuring security
+            and transparency.
           </p>
         </div>
         <div className="flex max-sm:flex-col items-center justify-between p-5 w-[80vw] sm:w-[30rem] sm:h-[16rem] bg-slate-600 bg-opacity-15 rounded-3xl border-l z-50 border-slate-500">
