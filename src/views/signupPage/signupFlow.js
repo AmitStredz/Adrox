@@ -145,7 +145,7 @@ const SignupFlow = () => {
       case 11:
         return (
           <Signup12
-            onNextStep={() => navigate("/")}
+            onNextStep={() => window.location.reload()}
             onPrevious={() => handleNextStep(11)}
           />
         );
