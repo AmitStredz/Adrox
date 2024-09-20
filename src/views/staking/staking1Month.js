@@ -155,11 +155,11 @@ const Staking1Month = ({ onClose }) => {
       }}
     >
       <div
-        className="w-full h-full flex items-center justify-center overflow-auto"
+        className="w-full h-full flex items-center justify-center overflow-auto pb-10"
         style={{ marginTop: "1em" }}
       >
         <div
-          className="flex flex-col gap-5 sm:gap-10 mt-60 p-4 sm:p-14 rounded-3xl w-[95vw] sm:w-[40rem] z-50 bg-gradient-to-r from-[#210F34] to-[#170D25]"
+          className="flex flex-col gap-5 sm:gap-10 mt-60 p-4 sm:p-14 rounded-3xl w-[95vw] sm:w-[40rem] z-50 bg-gradient-to-r from-[#210F34] to-[#170D25] pb-10"
           style={{
             marginTop: "auto",
           }}
