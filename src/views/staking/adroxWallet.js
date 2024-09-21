@@ -141,24 +141,26 @@ export default function AdroxWallet() {
                 </th> */}
               </tr>
             </thead>
-              {transactionHistory.length > 0 ? (
-                transactionHistory?.map((item, index) => (
-                  <tbody className="text-[12px] sm:text-[16px] font-200 ">
-                    <tr
-                      key={index}
-                      className="border-b border-gray-700 z-[500000]"
-                    >
-                      <p className="py-2 px-4 z-50">{item.timestamp}</p>
-                      <td className="py-2 px-4">USDT</td>
-                      <td className="py-2 px-4">{item.amount}</td>
-                      {/* <td className="py-2 px-4">{item.is_deposit}</td> */}
-                      <td className="py-2 px-4">Deposit</td>
-                    </tr>
-                  </tbody>
-                ))
-              ) : (
-                <div>No transaction history found.</div>
-              )}
+            {transactionHistory.length > 0 ? (
+              transactionHistory?.map((item, index) => (
+                <tbody className="text-[12px] sm:text-[16px] font-200 ">
+                  <tr
+                    key={index}
+                    className="border-b border-gray-700 z-[500000]"
+                  >
+                    <p className="py-2 px-4 z-50">{item.timestamp}</p>
+                    <td className="py-2 px-4">USDT</td>
+                    <td className="py-2 px-4">{item.amount}</td>
+                    {/* <td className="py-2 px-4">{item.is_deposit}</td> */}
+                    <td className="py-2 px-4">
+                      {item.is_deposit == true ? "Deposit" : "Lending"}
+                    </td>
+                  </tr>
+                </tbody>
+              ))
+            ) : (
+              <div>No transaction history found.</div>
+            )}
           </table>
         </div>
       </div>

@@ -16,7 +16,9 @@ import { IoIosInfinite } from "react-icons/io";
 
 export default function Staking() {
   const [stakingType, setStakingType] = useState();
-  const [historyData, setHistoryData] = useState([]);
+  const [responseData, setResponseData] = useState();
+  const [totalStakedAdrx, setTotalStakedAdrx] = useState(0);
+  const [totalStakedUsdt, setTotalStakedUsdt] = useState(0);
 
   const navigate = useNavigate();
 
@@ -31,19 +33,28 @@ export default function Staking() {
           );
           console.log(response);
 
-          const responseData = await response.json();
-          console.log("responseData:", responseData);
-          const { daily_profit_history } = responseData;
-          if (responseData?.error == "No active stake found for this user.") {
-            console.log("no data...");
-            setHistoryData([]);
+          const jsonResponse = await response.json();
+          console.log("jsonresponse:", jsonResponse);
+          if (jsonResponse?.error == "No active stakes found for this user.") {
             return;
           } else {
-            console.log("history set...", daily_profit_history);
-
-            setHistoryData(daily_profit_history);
-            // setHistoryData(responseData);
+            setResponseData(jsonResponse);
           }
+
+          // const { daily_profit_history } = responseData;
+          // if (responseData?.error == "No active stake found for this user.") {
+          //   console.log("no data...");
+          //   setHistoryData([]);
+          //   return;
+          // } else if(daily_profit_history) {
+          //   console.log("history set...", daily_profit_history);
+
+          //   setHistoryData(daily_profit_history);
+          //   // setHistoryData(responseData);
+          // }else{
+          //   console.log("no history data...");
+
+          // }
         } catch (error) {
           console.error("Error fetching user holdings:", error);
         }
@@ -51,16 +62,30 @@ export default function Staking() {
     };
 
     updateStakingData(); // Fetch the data immediately on mount
-    interval = setInterval(updateStakingData, 10000); // Fetch the data every 10 seconds
+    interval = setInterval(updateStakingData, 1000); // Fetch the data every 10 seconds
 
     return () => {
       clearInterval(interval);
     };
   }, []);
 
+  // Initialize total sum variables
+  let totalStakedADRX = 0;
+  let totalStakedUSDT = 0;
+
+  const fetchHoldings = () => {
+    responseData?.forEach((item) => {
+      totalStakedADRX += item.total_staked_adrx;
+      totalStakedUSDT += item.total_staked_usdt;
+      setTotalStakedAdrx(totalStakedADRX);
+      setTotalStakedUsdt(totalStakedUSDT);
+    });
+  };
+
   useEffect(() => {
-    console.log("histroyData: ", historyData);
-  }, [historyData]);
+    fetchHoldings();
+    console.log("responseData: ", responseData);
+  }, [responseData]);
 
   return (
     <div className="bg-[#0F011A] w-screen h-screen font-nunito text-white overflow-x-hidden relative">
@@ -96,11 +121,11 @@ export default function Staking() {
             <div className="flex flex-col leading-8 max-sm:items-center">
               <p className="font-300 text-[18px]">Holdings</p>
               <div className="bg-gradient-to-r from-white to-slate-900 h-[0.1px] w-full mb-2"></div>
-              <span className="text-[30px] font-800 text-[#C653FF]">
-                {historyData[0]?.staking_size_adrx || 0} ADX
+              <span className="text-[25px] sm:text-[30px] font-800 text-[#C653FF]">
+                {totalStakedAdrx?.toFixed(2)} ADX
               </span>
               <p className="font-300 text-[18px]">
-                $ {historyData[0]?.staking_size_usdt || 0} USDT
+                $ {totalStakedUsdt?.toFixed(2)} USDT
               </p>
             </div>
           </div>

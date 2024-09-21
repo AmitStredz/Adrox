@@ -41,8 +41,8 @@ export default function ProfitWallet() {
   const userId = Cookies.get("user_id");
 
   const fetchProfitWalletDetails = () => {
-    if (isLoading) return;
-    setIsLoading(true);
+    // if (isLoading) return;
+    // setIsLoading(true);
     if (userId) {
       fetch(
         `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/profit-wallet/details/${userId}/`
@@ -59,20 +59,25 @@ export default function ProfitWallet() {
           setHoldings(data?.unswapped_adrx);
           setSwappedUsdt(data?.swapped_usdt);
           console.log("response: ", data);
-          setIsLoading(false);
+          // setIsLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching holdings data:", error);
-          setIsLoading(false);
+          // setIsLoading(false);
         });
     } else {
       console.log("UserId not found...");
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   };
   useEffect(() => {
+    let interval;
     fetchProfitWalletDetails();
+    interval = setInterval(fetchProfitWalletDetails, 1000);
     fetchSwapHistory();
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const handleWithdrawalClose = () => {
@@ -127,9 +132,12 @@ export default function ProfitWallet() {
             </div>
             <div className="flex justify-center">
               <p className="font-800 text-[20px] sm:text-[30px] md:text-[52px]">
-                {isLoading
+                {/* {isLoading
                   ? "Loading..."
                   : `${
+                      holdings > 0 ? parseFloat(holdings).toFixed(3) : "0.00"
+                    } USDT`} */}
+                    {`${
                       holdings > 0 ? parseFloat(holdings).toFixed(3) : "0.00"
                     } USDT`}
               </p>
@@ -213,7 +221,9 @@ export default function ProfitWallet() {
           <table className="w-full z-[10000000000000]">
             <thead className="z-[10000000000000]">
               <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px] z-[10000000000000]">
-                <th className="py-2 px-2 sm:px-4 text-left z-[10000000000000]">Date & Time</th>
+                <th className="py-2 px-2 sm:px-4 text-left z-[10000000000000]">
+                  Date & Time
+                </th>
                 <th className="py-2 px-2 sm:px-4 text-left">Swap Size (ADX)</th>
                 <th className="py-2 px-2 sm:px-4 text-left">
                   Swap Size (USDT)

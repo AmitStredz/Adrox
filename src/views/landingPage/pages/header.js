@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <div className=" w-full flex items-center justify-between p-2 lg:p-5 px-5 md:px-14 xl:px-28 fixed bg-blur z-[100]">
-      <div className="w-[30vw] sm:w-56 cursor-pointer" onClick={() => navigate("/landingPage")}>
+      <div className="w-[30vw] sm:w-56 cursor-pointer" onClick={() => navigate("/")}>
         <img src={img1} alt="img1" />
       </div>
       <div className="flex gap-5 md:gap-10 items-center">

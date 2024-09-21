@@ -267,7 +267,7 @@ const Staking6Month = ({ onClose }) => {
         </div>
       </div>
 
-      {successModal && <SuccessModal message="Staking Successfull" />}
+      {successModal && <SuccessModal message="Lend Successfull" />}
     </div>
 
     //   <div className="absolute right-0 top-[25rem]">
