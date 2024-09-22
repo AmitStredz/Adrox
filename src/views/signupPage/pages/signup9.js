@@ -64,7 +64,8 @@ const Signup9 = ({ onNextStep }) => {
     }
     if (password == "" || confirmPassword == "") {
       setFailedModalText("Enter valid password.");
-      setFailedModal(true);      setIsLoading(false);
+      setFailedModal(true);
+      setIsLoading(false);
       return;
     }
     if (password == confirmPassword) {
@@ -84,7 +85,7 @@ const Signup9 = ({ onNextStep }) => {
         );
 
         const data = await response.json();
-
+        console.log("passwordResponse: ", data);
         if (response.ok && data.message === "Password set successfully.") {
           console.log("password set successfully.");
 
@@ -154,7 +155,7 @@ const Signup9 = ({ onNextStep }) => {
         }
       } catch (error) {
         console.error("Error:", error);
-        setFailedModalText("Failed to set password. Try again.");
+        setFailedModalText("Invalid referral code. Try again.");
         setFailedModal(true);
       } finally {
         setIsLoading(false);
@@ -283,7 +284,7 @@ const Signup9 = ({ onNextStep }) => {
             <div className="line w-10 h-[2px] bg-white"></div>
             <div className="circle bg-white rounded-full w-3 h-3"></div>
           </div>
-          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10  max-lg:bg-slate-700 max-lg:bg-opacity-30 w-[30rem] max-w-[100%] p-10 md:p-20  rounded-2xl">
+          <div className="flex flex-col gap-10 bg-slate-400 bg-opacity-10  max-lg:bg-slate-700 max-lg:bg-opacity-30 w-[30rem] max-w-[100%] p-5 sm:p-10 md:p-20  rounded-2xl">
             <h1 className="font-700 text-[28px] sm:text-[36px]">
               Create Account
             </h1>
@@ -339,11 +340,12 @@ const Signup9 = ({ onNextStep }) => {
                 Password does not match
               </p>
             </div>
-            {sponsorCode && sponsorName ? (
+            {sponsorCode && sponsorCode ? (
               <div>
-                <span className="text-green-500 border border-slate-500 rounded-xl p-2">
+                <span className="flex text-green-500 border border-slate-500 rounded-xl p-2 flex-wrap w-full">
                   <span className="text-slate-400">Referred by: </span>
                   {sponsorName}
+                  {/* <span className="flex flex-wrap">Abdull rahmaan faris</span> */}
                 </span>
               </div>
             ) : (
