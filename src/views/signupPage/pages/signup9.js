@@ -396,7 +396,7 @@ const Signup9 = ({ onNextStep }) => {
       <div className="absolute w-[90%] top-[-40%] right-[-40%] ">
         <img src="/ellipse.png" alt="hello"></img>
       </div>
-      <div className="absolute w-[90%] bottom-[-50%] left-[-40%] ">
+      <div className="absolute w-[90%] bottom-0 md:bottom-[-50%] left-[-40%] ">
         <img src="/ellipse.png" alt="hello"></img>
       </div>
       <div className="absolute top-0 left-0">
