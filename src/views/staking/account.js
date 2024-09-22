@@ -18,7 +18,9 @@ import CopiedModal from "../signupPage/pages/copiedModal";
 export default function Account({ closeModal }) {
   const [showModal, setShowModal] = useState(false);
   const [clipBoard, setClipBoard] = useState("Copy to Clipboard");
-  const [balance, setBalance] = useState(null);
+  const [adxBalance, setAdxBalance] = useState(0);
+  const [ProfitBalance, setProfitBalance] = useState(0);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const history = useNavigate();
 
@@ -32,8 +34,11 @@ export default function Account({ closeModal }) {
     );
   };
 
-  useEffect(() => {
-    const userId = Cookies.get("user_id");
+  const userId = Cookies.get("user_id");
+
+  const fetchAdxBalance = () => {
+    // setIsLoading(true);
+    console.log("fetching adx balance");
 
     if (userId) {
       fetch(
@@ -41,13 +46,50 @@ export default function Account({ closeModal }) {
       )
         .then((response) => response.json())
         .then((data) => {
-          setBalance(data?.wallet.balance); // Adjust the property to match your API response
-          console.log("response: ", data);
+          setAdxBalance(data?.wallet.balance);
+          console.log("AdxBalanceResponse: ", data);
         })
         .catch((error) => {
-          console.error("Error fetching holdings data:", error);
+          console.error("Error fetching adx balance:", error);
         });
+    } else {
+      console.log("UserId not found");
     }
+  };
+  const fetchProfitBalance = () => {
+    console.log("fetching profit balance");
+    if (userId) {
+      fetch(
+        `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/profit-wallet/details/${userId}/`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("ProfitBalanceResponse: ", data);
+          if (data?.detail == "Not found.") {
+            console.log("Profit Wallet balance not found...");
+            setProfitBalance(0);
+            return;
+          }
+          setProfitBalance(data?.unswapped_adrx);
+          // setSwappedUsdt(data?.swapped_usdt);
+        })
+        .catch((error) => {
+          console.error("Error fetching profit balance:", error);
+        });
+    } else {
+      console.log("UserId not found");
+    }
+  };
+  useEffect(() => {
+    let interval;
+
+    fetchAdxBalance();
+    fetchProfitBalance();
+    interval = setInterval(fetchProfitBalance, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -103,7 +145,7 @@ export default function Account({ closeModal }) {
                   <p className="text-[14px] font-100">Holdings</p>
                   <div className="h-[1px] w-full bg-white bg-opacity-15 "></div>
                   <p className="font-700 text-[32px]">
-                    $ {parseInt(balance)?.toFixed(2) || "0.00"} USDT
+                    $ {parseInt(adxBalance)?.toFixed(2) || "0.00"} USDT
                   </p>
                 </div>
               </div>
@@ -115,7 +157,9 @@ export default function Account({ closeModal }) {
                 <div className="flex flex-col gap-2">
                   <p className="text-[14px] font-100">Holdings</p>
                   <div className="h-[1px] w-full bg-white bg-opacity-15 "></div>
-                  <p className="font-700 text-[32px]">$ 0 USDT</p>
+                  <p className="font-700 text-[32px]">
+                    $ {parseInt(ProfitBalance)?.toFixed(2) || "0.00"} ADX
+                  </p>
                 </div>
               </div>
             </div>

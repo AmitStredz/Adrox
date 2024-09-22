@@ -53,7 +53,7 @@ export default function ProfitWallet() {
             console.log("Profit Wallet data not found...");
             setHoldings(0);
             setSwappedUsdt(0);
-            setIsLoading(false);
+            // setIsLoading(false);
             return;
           }
           setHoldings(data?.unswapped_adrx);
