@@ -11,6 +11,7 @@ export default function Login1({ onLoginSuccess }) {
   const [showInvalidPopup, setShowInvalidPopup] = useState(false);
   const [showValidPopup, setShowValidPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorText, setErrorText] = useState("Something went wrong. Try again");
 
   const handlePaste = (event) => {
     event.preventDefault();
@@ -61,10 +62,12 @@ export default function Login1({ onLoginSuccess }) {
         }, 2000);
         setIsLoading(false);
       } else {
+        setErrorText("Invalid recovery phrase. Try again.");
         setShowInvalidPopup(true);
         setIsLoading(false);
       }
     } catch (error) {
+      setErrorText("Network error. Please try again.");
       setShowInvalidPopup(true);
       setIsLoading(false);
     } finally {
@@ -104,7 +107,7 @@ export default function Login1({ onLoginSuccess }) {
 
       <div className="text-center z-50">
         <button
-          className={`p-2 px-20 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer ${
+          className={`p-2 px-20 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] ${
             isLoading ? "bg-gray-500" : ""
           }`}
           disabled={isLoading}
@@ -116,7 +119,7 @@ export default function Login1({ onLoginSuccess }) {
 
       {showInvalidPopup && (
         <InvalidPopup
-          text="Invalid Recovery Phrase. Please try again"
+          text={errorText}
           closeModal={() => setShowInvalidPopup(false)}
         />
       )}

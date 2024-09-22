@@ -73,8 +73,8 @@ export default function ProfitWallet() {
   useEffect(() => {
     let interval;
     fetchProfitWalletDetails();
-    interval = setInterval(fetchProfitWalletDetails, 1000);
     fetchSwapHistory();
+    interval = setInterval(fetchProfitWalletDetails, 1000);
     return () => {
       clearInterval(interval);
     };
@@ -98,7 +98,7 @@ export default function ProfitWallet() {
   }, [swappedUsdt]);
 
   const fetchSwapHistory = () => {
-    if (isLoading) return;
+    // if (isLoading) return;
     setIsLoading(true);
     if (userId) {
       fetch(
@@ -106,12 +106,12 @@ export default function ProfitWallet() {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log("Swap History response: ", data);
-          setHoldings(data?.swapping_history || []);
+          console.log("SwapHistory response: ", data);
+          setSwapHistory(data?.swapping_history);
           setIsLoading(false);
         })
         .catch((error) => {
-          console.error("Error fetching holdings data:", error);
+          console.error("Error fetching SwapHistory:", error);
           setIsLoading(false);
         });
     } else {
@@ -137,9 +137,9 @@ export default function ProfitWallet() {
                   : `${
                       holdings > 0 ? parseFloat(holdings).toFixed(3) : "0.00"
                     } USDT`} */}
-                    {`${
-                      holdings > 0 ? parseFloat(holdings).toFixed(3) : "0.00"
-                    } USDT`}
+                {`${
+                  holdings > 0 ? parseFloat(holdings).toFixed(3) : "0.00"
+                } ADX`}
               </p>
             </div>
           </div>
@@ -179,7 +179,7 @@ export default function ProfitWallet() {
                     <span className="text-slate-400 font-semibold sm:text-[40px]">
                       (
                       {swappedUsdt && !isNaN(swappedUsdt)
-                        ? (parseFloat(swappedUsdt) * 0.05).toFixed(3)
+                        ? (parseFloat(swappedUsdt) / 0.05).toFixed(3)
                         : 0}
                       ADX )
                     </span>
@@ -222,29 +222,33 @@ export default function ProfitWallet() {
             <thead className="z-[10000000000000]">
               <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px] z-[10000000000000]">
                 <th className="py-2 px-2 sm:px-4 text-left z-[10000000000000]">
-                  Date & Time
+                  Date
+                </th>
+                <th className="py-2 px-2 sm:px-4 text-left z-[10000000000000]">
+                Time
                 </th>
                 <th className="py-2 px-2 sm:px-4 text-left">Swap Size (ADX)</th>
                 <th className="py-2 px-2 sm:px-4 text-left">
                   Swap Size (USDT)
                 </th>
-                <th className="py-2 px-2 sm:px-4 text-left">
+                {/* <th className="py-2 px-2 sm:px-4 text-left">
                   Daily Reward (ADX)
                 </th>
                 <th className="py-2 px-2 sm:px-4 text-left">
                   Daily Reward (USDT)
-                </th>
+                </th> */}
               </tr>
             </thead>
             {swapHistory.length > 0 ? (
               swapHistory?.map((item, index) => (
                 <tbody className="text-[12px] sm:text-[16px] font-200 z-[1000000]">
                   <tr key={index} className="border-b border-gray-700">
-                    <td className="py-2 px-4">{item.date_time}</td>
-                    <td className="py-2 px-4">{item.staking_size_adrx}</td>
-                    <td className="py-2 px-4">{item.staking_size_usdt}</td>
-                    <td className="py-2 px-4">{item.daily_reward_adrx}</td>
-                    <td className="py-2 px-4">{item.daily_reward_usdt}</td>
+                    <td className="">{item?.date}</td>
+                    <td className="">{item?.time}</td>
+                    <td className="py-2 px-4">{item?.adrx_swapped}</td>
+                    <td className="py-2 px-4">{item?.usdt_received}</td>
+                    {/* <td className="py-2 px-4">{item.daily_reward_adrx}</td> */}
+                    {/* <td className="py-2 px-4">{item.daily_reward_usdt}</td> */}
                   </tr>
                 </tbody>
               ))

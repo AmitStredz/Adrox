@@ -92,6 +92,7 @@
 .timeCounterCont {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 1em;
   text-align: center;
   width: 90%;
