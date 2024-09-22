@@ -8,7 +8,7 @@ export default function Page3() {
   const history = useNavigate();
 
   const handleClick = () => {
-    history("/staking1");
+    history("/adxLending");
   };
   return (
     <div className="p- w-full">

@@ -14,9 +14,10 @@ export default function Staking() {
   // const [apyValue, setApyValue] = useState("");
   // const [dpyValue, setDpyValue] = useState("");
 
-  const [stakingData, setStakingData] = useState();
+  const [stakingData, setStakingData] = useState([]);
   const [selectedStake, setSelectedStake] = useState();
   const [selectedStakeIndex, setSelectedStakeIndex] = useState(0);
+  const [errorText, setErrorText] = useState("");
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -40,10 +41,10 @@ export default function Staking() {
           );
           const responseData = await response.json();
           console.log("responseData:", responseData);
-          if (responseData?.error == "No active stake found for this user.") {
+          if (responseData?.error == "No active stakes found for this user.") {
             console.log("no data...");
-
-            setStakingData("No active stake found for this user.");
+            setStakingData([]);
+            setErrorText("No active stakes found for this user.");
             return;
           } else {
             setStakingData(responseData);
@@ -114,7 +115,8 @@ export default function Staking() {
   }, [selectedStake]);
 
   const renderStakeDetails = () => {
-    if (stakingData?.length == 0) return <div>NO ACTIVE LENDS FOUND.</div>;
+    if (stakingData?.length == 0)
+      return <div className="sm:px-20 sm:text-[30px]">NO ACTIVE LENDS FOUND.</div>;
 
     // const selectedStake = stakingData?.[selectedStakeIndex];
 
@@ -325,9 +327,9 @@ export default function Staking() {
       </div>
     );
   };
-  if (stakingData == "No active stake found for this user.") {
+  if (errorText == "No active stake found for this user.") {
     return (
-      <div className="px-5 sm:px-40 sm:text-[30px] fon -mt-12">
+      <div className="px-5 sm:px-40 sm:text-[30px] -mt-12">
         NO ACTIVE LENDS FOUND.
       </div>
     );

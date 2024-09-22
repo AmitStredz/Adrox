@@ -51,7 +51,7 @@ export default function Account({ closeModal }) {
   }, []);
 
   return (
-    <div className=" font-nunito bg-[#0F011A]  text-white overflow-hidden relative">
+    <div className="h-screen font-nunito bg-[#0F011A]  text-white overflow-x-hidden relative">
       <div>
         <HomeHeader></HomeHeader>
       </div>

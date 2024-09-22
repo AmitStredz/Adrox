@@ -36,6 +36,7 @@ export default function Staking() {
           const jsonResponse = await response.json();
           console.log("jsonresponse:", jsonResponse);
           if (jsonResponse?.error == "No active stakes found for this user.") {
+            console.log("no active stakes found...");
             return;
           } else {
             setResponseData(jsonResponse);
@@ -134,7 +135,10 @@ export default function Staking() {
             <div className="text-center flex flex-col gap-2 items-center">
               <img src={starLogo} className="w-16"></img>
               <h1 className="font-800">ADROX</h1>
-              <a className="text-[14px] p-2 px-7 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer">
+              <a
+                className="text-[14px] p-2 px-7 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+                onClick={() => navigate("/wallet")}
+              >
                 My Wallet
               </a>
             </div>

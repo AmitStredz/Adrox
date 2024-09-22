@@ -96,7 +96,7 @@ const Staking3Month = ({ onClose }) => {
       setIsLoading(false);
 
       setTimeout(() => {
-        navigate("/staking2"); // Navigate to staking2 on successful response
+        navigate("/lend"); // Navigate to staking2 on successful response
         setSuccessModal(false);
       }, 2000);
     } catch (error) {

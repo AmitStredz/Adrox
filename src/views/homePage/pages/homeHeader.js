@@ -40,11 +40,11 @@ export default function HomeHeader({ onLogout }) {
 
   const handleReferralClick = () => {
     localStorage.setItem("op", "link");
-    navigate("/staking2");
+    navigate("/lend");
   };
   const handleLendingClick = () => {
-    localStorage.setItem("op", "Staking");
-    navigate("/staking2");
+    localStorage.setItem("op", "lend");
+    navigate("/lend");
   };
   // const handleLendingClick = () => {
   //   localStorage.setItem("op", "staking");
@@ -84,7 +84,7 @@ export default function HomeHeader({ onLogout }) {
 
       <div
         className={`fixed p-5 px-14 flex flex-col h z-50 h-full sm:w-96 top-0 gap-10  transition-all bg-gradient-to-b from-[#210f34e3] to-[#170d25d2] ${
-          showMenu ? "right-0" : "-right-[100%]"
+          showMenu ? "right-0" : "-right-[150%]"
         }`}
       >
         <div className="flex justify-between">

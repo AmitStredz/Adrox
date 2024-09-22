@@ -65,11 +65,11 @@ const App = () => {
       <Route path="/app/users/auto-login" element={<AutoLogin />} />
       <Route path="/referral" element={<ReferralPage />} />
       <Route
-        path="/staking1"
+        path="/adxLending"
         element={isAuthenticated ? <Staking1 /> : <Navigate to="/login" />}
       />
       <Route
-        path="/staking2"
+        path="/lend"
         // element={<Staking2 />}
         element={isAuthenticated ? <Staking2 /> : <Navigate to="/login" />}
       />

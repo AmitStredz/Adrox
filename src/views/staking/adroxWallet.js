@@ -12,8 +12,8 @@ import WithdrawModal from "./withdraw";
 import SwapModal from "./swap";
 
 export default function AdroxWallet() {
-  const [holdings, setHoldings] = useState(null); //balance
   const navigate = useNavigate();
+  const [holdings, setHoldings] = useState(0); //balance
   const [transactionType, setTransactionType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [transactionHistory, setTransactionHistory] = useState([]);
@@ -29,8 +29,8 @@ export default function AdroxWallet() {
         .then((response) => response.json())
         .then((data) => {
           console.log("Adrox wallet response: ", data);
-          setHoldings(data?.wallet.balance);
-          setTransactionHistory(data?.transactions);
+          setHoldings(data?.wallet.balance || 0);
+          setTransactionHistory(data?.transactions || []);
           setIsLoading(false);
         })
         .catch((error) => {

@@ -24,11 +24,11 @@ export default function Staking2() {
         <div className="flex gap-2 sm:gap-5 z-50">
           <button
             className={` p-1 sm:p-2 px-6 sm:px-12 rounded-2xl ${
-              activeComponent === "Staking"
+              activeComponent === "lend"
                 ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
                 : "border border-slate-500"
             }`}
-            onClick={() => handleButtonClick("Staking")}
+            onClick={() => handleButtonClick("lend")}
           >
             Lending
           </button>
@@ -46,7 +46,7 @@ export default function Staking2() {
       </div>
 
       <div className="mt-20">
-        {activeComponent === "Staking" && <Staking />}
+        {activeComponent === "lend" && <Staking />}
         {activeComponent === "link" && <Link />}
       </div>
       <Footer></Footer>
