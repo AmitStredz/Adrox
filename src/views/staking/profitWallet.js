@@ -122,7 +122,7 @@ export default function ProfitWallet() {
 
   return (
     <div>
-      <div className="flex flex-col gap-10 max-sm:flex-col sm:items-center p-5 sm:px-10 lg:px-40 xl:px-52  mt-20 bg-slate-500 bg-opacity-10 rounded-3xl border border-slate-600 z-50">
+      <div className="flex flex-col gap-10 max-sm:flex-col sm:items-center p-5 sm:px-10 lg:px-40  mt-20 bg-slate-500 bg-opacity-10 rounded-3xl border border-slate-600 z-50">
         <div className="flex flex-col gap-2 sm:flex-row justify-between items-center sm:items-center w-full">
           <div className="flex flex-col max-sm:items-center gap-5 z-50">
             <div>
@@ -170,18 +170,18 @@ export default function ProfitWallet() {
                 </a>
               </div>
               <div className="flex justify-center">
-                <p className="font-800 text-[20px] sm:text-[30px] md:text-[52px]">
-                  <span className="text-font-bold">
+                <p className="font-800 text-[20px] sm:text-[30px] md:text-[52px] text-center flex-wrap">
+                  <span className="text-font-bold ">
                     {swappedUsdt && !isNaN(swappedUsdt)
                       ? parseFloat(swappedUsdt).toFixed(3)
-                      : 0}
-                    USDT
+                      : 0}{" "}
+                    USDT{" "}
                     <span className="text-slate-400 font-semibold sm:text-[40px]">
                       (
                       {swappedUsdt && !isNaN(swappedUsdt)
                         ? (parseFloat(swappedUsdt) / 0.05).toFixed(3)
-                        : 0}
-                      ADX )
+                        : 0}{" "}
+                      ADX)
                     </span>
                   </span>
                 </p>
@@ -225,7 +225,7 @@ export default function ProfitWallet() {
                   Date
                 </th>
                 <th className="py-2 px-2 sm:px-4 text-left z-[10000000000000]">
-                Time
+                  Time
                 </th>
                 <th className="py-2 px-2 sm:px-4 text-left">Swap Size (ADX)</th>
                 <th className="py-2 px-2 sm:px-4 text-left">

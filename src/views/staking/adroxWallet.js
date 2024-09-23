@@ -132,7 +132,8 @@ export default function AdroxWallet() {
           <table className="w-full">
             <thead className="">
               <tr className="bg-white bg-opacity-10 text-[12px] sm:text-[16px] z-50">
-                <th className="py-2 px-2 sm:px-4 text-left">Date & Time</th>
+                <th className="py-2 px-2 sm:px-4 text-left">Date</th>
+                <th className="py-2 px-2 sm:px-4 text-left">Time</th>
                 <th className="py-2 px-2 sm:px-4 text-left">Crypto</th>
                 <th className="py-2 px-2 sm:px-4 text-left">Amount</th>
                 <th className="py-2 px-2 sm:px-4 text-left">Type</th>
@@ -148,7 +149,16 @@ export default function AdroxWallet() {
                     key={index}
                     className="border-b border-gray-700 z-[500000]"
                   >
-                    <p className="py-2 px-4 z-50">{item.timestamp}</p>
+                    <td>
+                      <p className="py-2 px-4 z-50">
+                        {new Date(item?.timestamp).toLocaleDateString()}
+                      </p>
+                    </td>
+                    <td>
+                      <p className="py-2 px-4 z-50">
+                        {new Date(item?.timestamp).toLocaleTimeString()}
+                      </p> 
+                    </td>
                     <td className="py-2 px-4">USDT</td>
                     <td className="py-2 px-4">{item.amount}</td>
                     {/* <td className="py-2 px-4">{item.is_deposit}</td> */}
