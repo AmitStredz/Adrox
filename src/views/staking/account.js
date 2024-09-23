@@ -157,7 +157,8 @@ export default function Account({ closeModal }) {
                 <div className="flex flex-col gap-2">
                   <p className="text-[14px] font-100">Holdings</p>
                   <div className="h-[1px] w-full bg-white bg-opacity-15 "></div>
-                  <p className="font-700 text-[32px]">
+                  <p className="font-700 text-[32px] flex sm:items-center gap-2">
+                    <img src="/adroxlogo.png" className="w-7 h-7 max-sm:mt-2"></img>
                     {parseInt(ProfitBalance)?.toFixed(2) || "0.00"} ADX
                   </p>
                 </div>
