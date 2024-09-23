@@ -158,7 +158,7 @@ export default function Account({ closeModal }) {
                   <p className="text-[14px] font-100">Holdings</p>
                   <div className="h-[1px] w-full bg-white bg-opacity-15 "></div>
                   <p className="font-700 text-[32px]">
-                    $ {parseInt(ProfitBalance)?.toFixed(2) || "0.00"} ADX
+                    {parseInt(ProfitBalance)?.toFixed(2) || "0.00"} ADX
                   </p>
                 </div>
               </div>

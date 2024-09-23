@@ -89,7 +89,7 @@ const Swap = ({ onClose, holdings }) => {
         console.log("Insuficient balance...");
         setErrorText("Insuffient Balance.");
       } else {
-        alert("ami");
+        alert("Network error. Try again.");
         // throw new Error("unknown error occurred");
       }
       // alert("An error occurred. Please try again.");

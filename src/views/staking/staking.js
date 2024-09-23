@@ -140,14 +140,14 @@ export default function Staking() {
               <div className={styles.eachRow}>
                 <Heading Name={"Total Value Locked"} />
                 <span className={`${styles.heading}`}>
-                  {selectedStake?.total_staked_adrx || 0}
+                  {selectedStake?.total_staked_adrx || 0} ADX
                 </span>
               </div>
               <div className={styles.eachRow}>
                 <Heading Name={"Today's Profit"} />
                 <span className={`${styles.heading}`}>
                   {selectedStake?.daily_profit_history?.[0]
-                    ?.daily_reward_adrx || 0}
+                    ?.daily_reward_adrx || 0} ADX
                 </span>
               </div>
               <div className={styles.firstBottomRow}>
@@ -336,10 +336,10 @@ export default function Staking() {
   }
   return (
     <div className=" overflow-hidden p-5 sm:px-20 -mt-20">
-      <div className="flex gap-3 px-20">
+      <div className="flex gap-1 sm:gap-3 sm:px-20 overflow-auto max-sm:mb-5">
         {stakingData?.map((stake, index) => (
           <div
-            className={`flex flex-col flex-wrap text-slate-300 text-[12px] p-1 sm:p-2 px-3 sm:px-5 rounded-2xl cursor-pointer z-50 ${
+            className={`flex flex-col flex-wrap text-slate-300 text-[12px] p-1 sm:p-2 px-3 sm:px-5 rounded-2xl cursor-pointer z-50  min-w-20 ${
               index === selectedStakeIndex
                 ? "bg-gradient-to-r from-[#500f819b] to-[#a702fa72] cursor-pointer"
                 : "border border-slate-500"
@@ -349,11 +349,11 @@ export default function Staking() {
             <span className="text-white text-[14px] font-semibold">
               Lend {index + 1}
             </span>
-            <span>
+            {/* <span>
               {stake?.total_staked_adrx} ADX ({stake?.total_staked_usdt} USDT)
             </span>
-            <span>Lend start date: {stake?.stake_start_time.slice(0, 10)}</span>
-            <span>Lock in Period: {stake?.lock_in_period}</span>
+            <span>Lend start date: {stake?.stake_start_time.slice(0, 10)}</span> */}
+            <span>Period: {stake?.lock_in_period}</span>
             {/* <button
               key={index}
               onClick={() => setSelectedStakeIndex(index)}
