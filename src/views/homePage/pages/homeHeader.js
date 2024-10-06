@@ -41,10 +41,13 @@ export default function HomeHeader({ onLogout }) {
   const handleReferralClick = () => {
     localStorage.setItem("op", "link");
     navigate("/lend");
+    window.location.reload();
   };
   const handleLendingClick = () => {
     localStorage.setItem("op", "lend");
     navigate("/lend");
+    window.location.reload();
+
   };
   // const handleLendingClick = () => {
   //   localStorage.setItem("op", "staking");
