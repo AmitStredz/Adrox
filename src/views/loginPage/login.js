@@ -46,7 +46,7 @@ export default function Login({ onLoginSuccess }) {
 
           <div className="flex max-sm:flex-col items-center gap-5 text-center justify-evenly  w-full z-50">
             <div
-              className={`flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer ${
+              className={`relative group overflow-hidden flex justify-center border-2 border-[#4F0F81] rounded-xl p-2 w-48 gap-2 cursor-pointer ${
                 loginType == "loginEmail"
                   ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
                   : ""
@@ -54,18 +54,20 @@ export default function Login({ onLoginSuccess }) {
               onClick={() => setLoginType("loginEmail")}
             >
               <i className="ri-mail-line"></i>
-              <p>Email</p>
+              <span className="relative z-10">Email</span>
+              <span className="absolute -z-10 inset-0 bg-gradient-to-r from-[#4F0F81] to-[#A702FA] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
             </div>
             <div
-              className={`flex justify-center border border-slate-500 rounded-xl p-2 w-48 gap-2 cursor-pointer ${
+              className={`relative group overflow-hidden flex justify-center border-2 border-[#4F0F81] rounded-xl p-2 w-48 gap-2 cursor-pointer ${
                 loginType == "loginPhone"
-                  ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
-                  : ""
+                ? "bg-gradient-to-r from-[#4F0F81] to-[#A702FA]"
+                : ""
               }`}
               onClick={() => setLoginType("loginPhone")}
             >
               <i className="ri-smartphone-line"></i>
-              <p>Phone Number</p>
+              <span className="relative z-10">Phone Number</span>
+              <span className="absolute -z-10 inset-0 bg-gradient-to-r from-[#4F0F81] to-[#A702FA] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
             </div>
           </div>
 

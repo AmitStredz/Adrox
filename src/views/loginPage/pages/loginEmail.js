@@ -111,10 +111,11 @@ export default function LoginEmail() {
       ></input>
       <div className="text-center   z-50">
         <button
-          className="p-2 px-20 rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+          className="relative group overflow-hidden p-2 px-20 z-50 border-2 border-[#4F0F81] rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
           onClick={handleLoginClick}
         >
-          {isLoading ? "Loading..." : "Login"}
+          <span className="z-10">{isLoading ? "Loading..." : "Login"}</span>
+          <span className="absolute -z-10 inset-0 bg-[#0f011a] bg-opacity-80 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
         </button>
       </div>
 
