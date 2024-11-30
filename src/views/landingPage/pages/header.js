@@ -7,7 +7,10 @@ export default function Header() {
 
   return (
     <div className=" w-full flex items-center justify-between p-2 lg:p-5 px-5 md:px-14 xl:px-28 fixed bg-blur z-[100]">
-      <div className="w-[30vw] sm:w-56 cursor-pointer" onClick={() => navigate("/")}>
+      <div
+        className="w-[30vw] sm:w-56 cursor-pointer"
+        onClick={() => navigate("/")}
+      >
         <img src={img1} alt="img1" />
       </div>
       <div className="flex gap-5 md:gap-10 items-center">
@@ -19,16 +22,18 @@ export default function Header() {
           />
         </div>
         <a
-          onClick={() => navigate('/signup')}
-          className=" p-1 md:p-2 px-4 md:px-8 rounded-xl md:rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer"
+          onClick={() => navigate("/signup")}
+          className="relative group p-1 md:p-2 px-4 md:px-8 rounded-xl md:rounded-2xl bg-gradient-to-r from-[#4F0F81] to-[#A702FA] cursor-pointer z-50 overflow-hidden border-2 border-[#4F0F81]"
         >
-          Sign Up
+          <span className="relative z-10">Sign Up</span>
+          <span className="absolute inset-0 bg-[#0F011A] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
         </a>
         <a
-          className="border p-1 md:p-2 px-4 md:px-8 rounded-xl cursor-pointer"
-          onClick={() =>navigate('/login')}
+          className="relative group border-2 border-[#4F0F81] p-1 md:p-2 px-4 md:px-8 rounded-xl cursor-pointer overflow-hidden"
+          onClick={() => navigate("/login")}
         >
-          Log in
+          <span className="relative z-10">Log In</span>
+          <span className="absolute inset-0 bg-gradient-to-r from-[#4F0F81] to-[#A702FA]  transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
         </a>
       </div>
     </div>

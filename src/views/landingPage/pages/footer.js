@@ -4,52 +4,54 @@ export default function Footer() {
       <div className="flex justify-between w-full flex-wrap gap-1">
         <div className="font-100 text-[12px] sm:text-[16px]  sm:gap-4 flex flex-col">
           <h1 className="font-600 text-[14px] sm:text-[20px]">Corporate</h1>
-          <ul>About Us</ul>
-          <ul>Join Us</ul>
-          <ul>Media Kit</ul>
-          <ul>Affiliate Program</ul>
-          <ul>Blog</ul>
+          <ul className="hover:underline transition-all cursor-pointer">
+            About Us
+          </ul>
+          <ul className="hover:underline transition-all cursor-pointer">Join Us</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Media Kit</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Affiliate Program</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Blog</ul>
           {/* <ul>News & Announcements</ul> */}
-          <ul>Referral</ul>
-          <ul>Security</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Referral</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Security</ul>
         </div>
 
         <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col">
           <h1 className="font-600 text-[14px] sm:text-[20px]">Products</h1>
-          <ul>Trading Bot</ul>
-          <ul>Lending</ul>
-          <ul>Minig</ul>
-          <ul>Converter</ul>
-          <ul>ADROX Earn</ul>
-          <ul>ADROX Learn</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Trading Bot</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Lending</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Minig</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Converter</ul>
+          <ul className="hover:underline transition-all cursor-pointer">ADROX Earn</ul>
+          <ul className="hover:underline transition-all cursor-pointer">ADROX Learn</ul>
         </div>
 
         <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col">
           <h1 className="font-600 text-[14px] sm:text-[20px]">Services</h1>
-          <ul>Help Center</ul>
-          <ul>Suubmit a Ticket</ul>
-          <ul>Fees & VIP</ul>
-          <ul>Ticket Verification</ul>
-          <ul>Technical Support</ul>
-          <ul>Bug Bounty</ul>
-          <ul>Beginner's Guide</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Help Center</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Suubmit a Ticket</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Fees & VIP</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Ticket Verification</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Technical Support</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Bug Bounty</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Beginner's Guide</ul>
           <ul>Official Verification Center</ul>
         </div>
 
         <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col mt-5">
           <h1 className="font-600 text-[14px] sm:text-[20px]">Legal</h1>
-          <ul>Term of use</ul>
-          <ul>Privacy Policy</ul>
-          <ul>Risk Disclosure Statement</ul>
-          <ul>Special Treatement</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Privacy Policy</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Term of use</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Risk Disclosure Statement</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Special Treatement</ul>
         </div>
 
         <div className="font-100 text-[12px] sm:text-[16px] gap-2 sm:gap-4 flex flex-col max-sm:mt-5">
           <h1 className="font-600 text-[14px] sm:text-[20px]">Business</h1>
-          <ul>Token Listing</ul>
-          <ul>ADROX Labs</ul>
-          <ul>ADROX Ventures</ul>
-          <ul>Safeguard Program</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Token Listing</ul>
+          <ul className="hover:underline transition-all cursor-pointer">ADROX Labs</ul>
+          <ul className="hover:underline transition-all cursor-pointer">ADROX Ventures</ul>
+          <ul className="hover:underline transition-all cursor-pointer">Safeguard Program</ul>
         </div>
       </div>
 

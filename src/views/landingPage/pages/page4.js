@@ -18,7 +18,7 @@ export default function page4() {
         <div className="flex justify-center p-24 ">
           <div className="flex flex-col gap-5 md:grid md:grid-cols-2 md:gap-24">
             {/* Grid 1 */}
-            <div className="bg-slate-500 bg-opacity-20 w-[22rem] rounded-2xl p-9 px-16 items-center flex flex-col gap-4 z-50">
+            <div className="relative bg-slate-500 bg-opacity-20 w-[22rem] rounded-2xl p-9 px-16 items-center flex flex-col gap-4 group overflow-hidden o z-50">
               <img src={grid1} alt="" className="object-cover w-24" />
               <div>
                 <h1 className="font-700 text-[36px]">Spot Trading</h1>
@@ -26,13 +26,14 @@ export default function page4() {
                   Unlock the Future of Trading with ADROX Spot
                 </p>
               </div>
-              <div className="text-center text-3xl">
+              <div className="text-center text-3xl hover:scale-105 transition-all duration-300">
                 <i className="ri-arrow-right-s-line border rounded-full cursor-pointer"></i>
               </div>
+              <span className="absolute -z-10 inset-0 bg-gradient-to-r from-transparent via-[#4F0F81] to-transparent opacity-0 transform scale-150 rotate-45 translate-x-full translate-y-full group-hover:opacity-100 group-hover:translate-x-[-50%] group-hover:translate-y-[-50%] transition-all duration-700 ease-out will-change-transform w-[200%] h-[200%]"></span>
             </div>
 
             {/* Grid 2 */}
-            <div className="bg-slate-500 bg-opacity-20 w-[22rem] rounded-2xl p-9 px-16 items-center flex flex-col gap-4 z-50">
+            <div className="relative bg-slate-500 bg-opacity-20 w-[22rem] rounded-2xl p-9 px-16 items-center flex flex-col gap-4 group overflow-hidden o z-50">
               <img src={grid2} alt="" className="object-cover w-24" />
               <div>
                 <h1 className="font-700 text-[36px]">Buy Crypto</h1>
@@ -40,12 +41,13 @@ export default function page4() {
                   Your Simplest, Most Secure Path to Owning Digital Assets
                 </p>
               </div>
-              <div className="text-center text-3xl">
+              <div className="text-center text-3xl hover:scale-105 transition-all duration-300">
                 <i className="ri-arrow-right-s-line border rounded-full cursor-pointer"></i>
               </div>
+              <span className="absolute -z-10 inset-0 bg-gradient-to-r from-transparent via-[#4F0F81] to-transparent opacity-0 transform scale-150 rotate-45 translate-x-full translate-y-full group-hover:opacity-100 group-hover:translate-x-[-50%] group-hover:translate-y-[-50%] transition-all duration-700 ease-out will-change-transform w-[200%] h-[200%]"></span>
             </div>
             {/* Grid 3 */}
-            <div className="bg-slate-500 bg-opacity-20 w-[22rem] rounded-2xl p-9 px-16 items-center flex flex-col gap-4">
+            <div className="relative bg-slate-500 bg-opacity-20 w-[22rem] rounded-2xl p-9 px-16 items-center flex flex-col gap-4 group overflow-hidden o z-50">
               <img src={grid3} alt="" className="object-cover w-24" />
               <div>
                 <h1 className="font-700 text-[36px]">Trading Bot</h1>
@@ -54,12 +56,13 @@ export default function page4() {
                   Efficiency and Speed
                 </p>
               </div>
-              <div className="text-center text-3xl">
+              <div className="text-center text-3xl hover:scale-105 transition-all duration-300">
                 <i className="ri-arrow-right-s-line border rounded-full cursor-pointer"></i>
               </div>
+              <span className="absolute -z-10 inset-0 bg-gradient-to-r from-transparent via-[#4F0F81] to-transparent opacity-0 transform scale-150 rotate-45 translate-x-full translate-y-full group-hover:opacity-100 group-hover:translate-x-[-50%] group-hover:translate-y-[-50%] transition-all duration-700 ease-out will-change-transform w-[200%] h-[200%]"></span>
             </div>
             {/* Grid 4 */}
-            <div className="bg-slate-500 bg-opacity-20 w-[22rem] rounded-2xl p-9 px-16 items-center flex flex-col gap-4 z-50">
+            <div className="relative bg-slate-500 bg-opacity-20 w-[22rem] rounded-2xl p-9 px-16 items-center flex flex-col gap-4 group overflow-hidden o z-50">
               <img src={grid4} alt="" className="object-cover w-24" />
               <div>
                 <h1 className="font-700 text-[36px]">Adrox Earn</h1>
@@ -67,9 +70,10 @@ export default function page4() {
                   ADROX Lending Turns Your Idle Assets Into Active Income
                 </p>
               </div>
-              <div className="text-center text-3xl">
+              <div className="text-center text-3xl hover:scale-105 transition-all duration-300">
                 <i className="ri-arrow-right-s-line border rounded-full cursor-pointer"></i>
               </div>
+              <span className="absolute -z-10 inset-0 bg-gradient-to-r from-transparent via-[#4F0F81] to-transparent opacity-0 transform scale-150 rotate-45 translate-x-full translate-y-full group-hover:opacity-100 group-hover:translate-x-[-50%] group-hover:translate-y-[-50%] transition-all duration-700 ease-out will-change-transform w-[200%] h-[200%]"></span>
             </div>
           </div>
         </div>

@@ -19,8 +19,9 @@ export default function Page2() {
           <h1 className="text-center text-[#C653FF]">Secure Crypto Exchange</h1>
         </div>
         <div className="flex justify-center text-center">
-          <button className="p-2 px-14 rounded-2xl  text-[18px] font-400 bg-gradient-to-t from-[#4C127C] to-[#AA00FE] cursor-pointer">
-            Learn More
+          <button className="relative group border-2 border-[#4F0F81] p-2 px-14 rounded-2xl  text-[18px] font-400 bg-gradient-to-t from-[#4C127C] to-[#AA00FE] cursor-pointer">
+            <span className="relative z-10">Learn More</span>
+            <span className="absolute inset-0 bg-[#0F011A] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
           </button>
         </div>
       </div>
