@@ -14,7 +14,7 @@ const Signup4 = ({ onNextStep }) => {
     try {
       console.log("Button clicked, initiating API call");
       const response = await fetch(
-        "https://adrox-89b6c88377f5.herokuapp.com/api/users/generate-phrase/",
+        "https://adrox-5ed452640f6d.herokuapp.com/api/users/generate-phrase/",
         {
           method: "GET",
           headers: {
