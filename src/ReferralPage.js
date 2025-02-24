@@ -19,7 +19,7 @@ const ReferralPage = () => {
       // Call the backend API to get the sponsor user ID based on the referral code
       const fetchReferralInfo = async () => {
         try {
-          const response = await axios.get(`https://adrox-89b6c88377f5.herokuapp.com/api/users/referral?referral_code=${referralCode}`, {
+          const response = await axios.get(`https://adrox-5ed452640f6d.herokuapp.com/api/users/referral?referral_code=${referralCode}`, {
             params: { referral_code: referralCode }
           });
           console.log("response: ", response);

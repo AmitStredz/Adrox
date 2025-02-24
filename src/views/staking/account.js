@@ -42,7 +42,7 @@ export default function Account({ closeModal }) {
 
     if (userId) {
       fetch(
-        `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/details/${userId}/`
+        `https://adrox-5ed452640f6d.herokuapp.com/api/wallet/details/${userId}/`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -60,7 +60,7 @@ export default function Account({ closeModal }) {
     console.log("fetching profit balance");
     if (userId) {
       fetch(
-        `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/profit-wallet/details/${userId}/`
+        `https://adrox-5ed452640f6d.herokuapp.com/api/wallet/profit-wallet/details/${userId}/`
       )
         .then((response) => response.json())
         .then((data) => {

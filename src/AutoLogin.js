@@ -17,7 +17,7 @@ const AutoLogin = () => {
       // Send the token to the backend to authenticate
       axios
         .post(
-          "https://adrox-89b6c88377f5.herokuapp.com/api/users/auto-login/",
+          "https://adrox-5ed452640f6d.herokuapp.com/api/users/auto-login/",
           { token },
           { withCredentials: true }
         )

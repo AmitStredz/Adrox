@@ -50,7 +50,7 @@ export default function LoginEmail() {
 
     try {
       const response = await fetch(
-        "https://adrox-89b6c88377f5.herokuapp.com/api/users/login-with-credentials/",
+        "https://adrox-5ed452640f6d.herokuapp.com/api/users/login-with-credentials/",
         {
           method: "POST",
           headers: {

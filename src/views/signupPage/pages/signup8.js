@@ -90,7 +90,7 @@ const Signup8 = ({ onNextStep }) => {
 
     try {
       const response = await axios.post(
-        "https://adrox-89b6c88377f5.herokuapp.com/api/users/verify-otp/",
+        "https://adrox-5ed452640f6d.herokuapp.com/api/users/verify-otp/",
         {
           user_id: userId,
           mobile_otp: phoneOtp,

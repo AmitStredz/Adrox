@@ -62,7 +62,7 @@ const Staking6Month = ({ onClose }) => {
       console.log("Sending data to API");
       // console.log("Sending data to API:", data);
       const response = await axios.post(
-        "https://adrox-89b6c88377f5.herokuapp.com/api/staking/create-stake/",
+        "https://adrox-5ed452640f6d.herokuapp.com/api/staking/create-stake/",
         data,
         {
           headers: {

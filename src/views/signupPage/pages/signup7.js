@@ -46,7 +46,7 @@ const Signup7 = ({ onNextStep }) => {
 
     try {
       const response = await axios.post(
-        "https://adrox-89b6c88377f5.herokuapp.com/api/users/store-profile/",
+        "https://adrox-5ed452640f6d.herokuapp.com/api/users/store-profile/",
         data
       );
 

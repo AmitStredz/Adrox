@@ -45,7 +45,7 @@ export default function LiveProfits() {
     const updateLiveProfits = async () => {
       try {
         const response = await fetch(
-          `https://adrox-89b6c88377f5.herokuapp.com/api/live-prices/`
+          `https://adrox-5ed452640f6d.herokuapp.com/api/live-prices/`
         );
         const responseData = await response.json();
         // console.log("response:", Object.entries(responseData));

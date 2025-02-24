@@ -55,7 +55,7 @@ const Swap = ({ onClose, holdings }) => {
       }
 
       const response = await axios.post(
-        `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/profit-wallet/swap-custom/${userId}/`,
+        `https://adrox-5ed452640f6d.herokuapp.com/api/wallet/profit-wallet/swap-custom/${userId}/`,
         {
           adrx_amount: adxValue,
         }

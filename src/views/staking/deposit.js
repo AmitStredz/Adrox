@@ -313,7 +313,7 @@ const Deposit = ({ onClose }) => {
     }
     try {
       const response = await axios.post(
-        "https://adrox-89b6c88377f5.herokuapp.com/api/wallet/deposit/",
+        "https://adrox-5ed452640f6d.herokuapp.com/api/wallet/deposit/",
         {
           wallet_id: walletId,
           amount: dollarValue,
@@ -382,7 +382,7 @@ const Deposit = ({ onClose }) => {
 
   //   try {
   //     const response = await fetch(
-  //       `https://adrox-89b6c88377f5.herokuapp.com/api/users/generate-login-link/?user_id=${userId}`
+  //       `https://adrox-5ed452640f6d.herokuapp.com/api/users/generate-login-link/?user_id=${userId}`
   //     );
   //     const data = await response.json();
 
@@ -531,7 +531,7 @@ const Deposit = ({ onClose }) => {
   //   }
   //   try {
   //     const response = await axios.post(
-  //       "https://adrox-89b6c88377f5.herokuapp.com/api/wallet/deposit/",
+  //       "https://adrox-5ed452640f6d.herokuapp.com/api/wallet/deposit/",
   //       {
   //         wallet_id: walletAddress,
   //         amount: dollarValue,

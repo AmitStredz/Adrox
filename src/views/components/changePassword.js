@@ -48,7 +48,7 @@ const ChangePassword = ({ onNextStep }) => {
 
     try {
       const response = await axios.post(
-        "https://adrox-89b6c88377f5.herokuapp.com/api/users/change-password/",
+        "https://adrox-5ed452640f6d.herokuapp.com/api/users/change-password/",
         data
       );
 

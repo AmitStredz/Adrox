@@ -104,7 +104,7 @@ export default function Link() {
   async function fetchReferralTree(user) {
     try {
       const response = await axios.get(
-        `https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy-from-user/${user}/`
+        `https://adrox-5ed452640f6d.herokuapp.com/referrals/nested-hierarchy-from-user/${user}/`
       );
       if (response?.data) {
         console.log("response: ", response?.data);
@@ -519,7 +519,7 @@ const TreeNode = ({ node, setUser }) => {
       if (userID) {
         try {
           const response = await fetch(
-            `https://adrox-89b6c88377f5.herokuapp.com/referrals/nested-hierarchy-live-profit-from-user/${userID}`
+            `https://adrox-5ed452640f6d.herokuapp.com/referrals/nested-hierarchy-live-profit-from-user/${userID}`
           );
           const responseData = await response.json();
           console.log("responseData: ", responseData);

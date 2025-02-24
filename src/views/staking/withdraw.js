@@ -395,7 +395,7 @@ const Withdraw = ({ onClose, holdings }) => {
       }
 
       const response = await axios.post(
-        "https://adrox-89b6c88377f5.herokuapp.com/api/wallet/withdraw/",
+        "https://adrox-5ed452640f6d.herokuapp.com/api/wallet/withdraw/",
         {
           wallet_id: walletId,
           amount: amount,

@@ -37,7 +37,7 @@ export default function Staking() {
       if (userID) {
         try {
           const response = await fetch(
-            `https://adrox-89b6c88377f5.herokuapp.com/api/staking/live-profit/${userID}`
+            `https://adrox-5ed452640f6d.herokuapp.com/api/staking/live-profit/${userID}`
           );
           const responseData = await response.json();
           console.log("responseData:", responseData);

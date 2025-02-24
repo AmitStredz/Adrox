@@ -24,7 +24,7 @@ export default function AdroxWallet() {
     setIsLoading(true);
     if (userId) {
       fetch(
-        `https://adrox-89b6c88377f5.herokuapp.com/api/wallet/details/${userId}/`
+        `https://adrox-5ed452640f6d.herokuapp.com/api/wallet/details/${userId}/`
       )
         .then((response) => response.json())
         .then((data) => {

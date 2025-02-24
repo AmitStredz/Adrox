@@ -71,7 +71,7 @@ const Signup9 = ({ onNextStep }) => {
     if (password == confirmPassword) {
       try {
         const response = await fetch(
-          "https://adrox-89b6c88377f5.herokuapp.com/api/users/set-password/",
+          "https://adrox-5ed452640f6d.herokuapp.com/api/users/set-password/",
           {
             method: "POST",
             headers: {
@@ -122,7 +122,7 @@ const Signup9 = ({ onNextStep }) => {
 
       try {
         const response = await fetch(
-          "https://adrox-89b6c88377f5.herokuapp.com/referrals/add-referral/",
+          "https://adrox-5ed452640f6d.herokuapp.com/referrals/add-referral/",
           {
             method: "POST",
             headers: {
@@ -170,7 +170,7 @@ const Signup9 = ({ onNextStep }) => {
     //   // Mock API call to set password
     //   try {
     //     const response = await fetch(
-    //       "https://adrox-89b6c88377f5.herokuapp.com/api/users/set-password/",
+    //       "https://adrox-5ed452640f6d.herokuapp.com/api/users/set-password/",
     //       {
     //         method: "POST",
     //         headers: {
@@ -213,7 +213,7 @@ const Signup9 = ({ onNextStep }) => {
 
     //   try {
     //     const response = await fetch(
-    //       "https://adrox-89b6c88377f5.herokuapp.com/referrals/add-referral/",
+    //       "https://adrox-5ed452640f6d.herokuapp.com/referrals/add-referral/",
     //       {
     //         method: "POST",
     //         headers: {
