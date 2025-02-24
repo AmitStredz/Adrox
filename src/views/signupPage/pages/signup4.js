@@ -33,19 +33,15 @@ const Signup4 = ({ onNextStep }) => {
       }
 
       const data = await response.json();
-      // console.log("API response received", data);
+      console.log("API response received", data);
 
       if (data.phrase && data.user_id) {
         const phraseArray = data.phrase.split(" ");
 
-        Cookies.set("recoveryPhrase", JSON.stringify(phraseArray), {
-          secure: true,
-          sameSite: "Strict",
-        });
-        Cookies.set("user_id", data.user_id, {
-          secure: true,
-          sameSite: "Strict",
-        });
+        
+        localStorage.setItem("recoveryPhrase", JSON.stringify(phraseArray));
+        Cookies.set("recoveryPhrase", JSON.stringify(phraseArray));
+        Cookies.set("user_id", data.user_id);
         Cookies.set("signupDone", false);
         Cookies.set("recoveryPhraseDate", new Date().toISOString());
         onNextStep();
@@ -187,7 +183,6 @@ const Signup4 = ({ onNextStep }) => {
         </div>
       </div>
       <div className="bg-[#0f011a] fixed top-0 left-0 -z-10 h-screen w-screen"></div>
-
     </div>
   );
 };
